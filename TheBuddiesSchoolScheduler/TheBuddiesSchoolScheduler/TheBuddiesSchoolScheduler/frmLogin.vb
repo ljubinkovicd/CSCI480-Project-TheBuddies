@@ -9,11 +9,20 @@
     ' such as the username, display name, etc.
 
     Private Sub OK_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OK.Click
-        Me.Close()
+        Dim SQL As New SQLConnect
+        SQL.Connect(txtUser.Text, txtPassword.Text)
+
+        If SQL.HasConnection Then
+            Me.Close()
+        End If
     End Sub
 
     Private Sub Cancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Cancel.Click
         Me.Close()
         frmWelcome.Close()
+    End Sub
+
+    Private Sub frmLogin_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
     End Sub
 End Class
