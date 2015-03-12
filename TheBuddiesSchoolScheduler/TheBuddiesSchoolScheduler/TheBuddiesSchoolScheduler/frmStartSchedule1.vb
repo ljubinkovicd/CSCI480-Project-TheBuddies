@@ -19,6 +19,12 @@ Public Class frmStartSchedule1
     End Sub
 
     Private Sub btnNext_Click(sender As Object, e As EventArgs) Handles btnNext.Click
+        'Save the values in the grid to be used in the next page
+        Dim dt As New DataTable
+        dt = TryCast(ClassListGridView.DataSource, DataTable)
+
+        'pass this datatable to the next screen
+
         Me.Visible = False
         frmStartSchedule2.Visible = True
     End Sub
@@ -32,7 +38,8 @@ Public Class frmStartSchedule1
         Dim ds As New DataSet
         Dim sql As String
 
-        'needs to change based on the person testing this
+        'Temporary solution
+        '*****needs to change based on the person testing this******
         connetionString = "Server=ALEXPC\ALEX080714;Database=SchoolScheduler;User=test_user;Pwd=pass;"
         sql = "EXEC GetClasses"
 
@@ -50,30 +57,13 @@ Public Class frmStartSchedule1
             MsgBox(ex.Message)
         End Try
 
-        'create the dynamic table for all of the classes, num sections, and online classes
-        'Dim MyTable As TableLayoutPanel
-
-        'With MyTable
-        '    .Name = "Class Table"
-        '    .RowCount = ds.Tables(0).Rows.Count
-        '    .ColumnCount = 3
-        '    .CellBorderStyle = TableLayoutPanelCellBorderStyle.Single
-
-        'End With
-
-        Dim Table As New DataGridView
-        With Table
-            .Name = "table"
-            .DataSource = ds.Tables(0)
-            .Visible = True
-            .Height = 300
-            .Width = 300
-            .Left = 200
-            .Top = 200
-            '.ColumnCount = 3
-            '.Columns.Add(ds.Tables(0).Columns)
-        End With
-        Me.Controls.Add(Table)
+        ClassListGridView.DataSource = ds.Tables(0)
+        '.AllowUserToAddRows = False
+        '.AllowUserToDeleteRows = False
+        '.AllowUserToOrderColumns = False
+        '.AllowUserToResizeColumns = False
+        '.AllowUserToResizeRows = False
+        '.AutoGenerateColumns = False
 
     End Sub
 End Class

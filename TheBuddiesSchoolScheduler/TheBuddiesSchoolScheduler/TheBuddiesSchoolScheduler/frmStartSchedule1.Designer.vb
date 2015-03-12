@@ -30,6 +30,8 @@ Partial Class frmStartSchedule1
         Me.btnCancel = New System.Windows.Forms.Button()
         Me.btnNext = New System.Windows.Forms.Button()
         Me.Label5 = New System.Windows.Forms.Label()
+        Me.ClassListGridView = New System.Windows.Forms.DataGridView()
+        CType(Me.ClassListGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label1
@@ -105,11 +107,20 @@ Partial Class frmStartSchedule1
         Me.Label5.TabIndex = 63
         Me.Label5.Text = "Online"
         '
+        'ClassListGridView
+        '
+        Me.ClassListGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.ClassListGridView.Location = New System.Drawing.Point(105, 100)
+        Me.ClassListGridView.Name = "ClassListGridView"
+        Me.ClassListGridView.Size = New System.Drawing.Size(443, 384)
+        Me.ClassListGridView.TabIndex = 64
+        '
         'frmStartSchedule1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(614, 608)
+        Me.Controls.Add(Me.ClassListGridView)
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.btnNext)
         Me.Controls.Add(Me.btnCancel)
@@ -121,6 +132,7 @@ Partial Class frmStartSchedule1
         Me.Name = "frmStartSchedule1"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "The Buddies Easy Scheduler"
+        CType(Me.ClassListGridView, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -133,4 +145,5 @@ Partial Class frmStartSchedule1
     Friend WithEvents btnCancel As System.Windows.Forms.Button
     Friend WithEvents btnNext As System.Windows.Forms.Button
     Friend WithEvents Label5 As System.Windows.Forms.Label
+    Friend WithEvents ClassListGridView As System.Windows.Forms.DataGridView
 End Class
