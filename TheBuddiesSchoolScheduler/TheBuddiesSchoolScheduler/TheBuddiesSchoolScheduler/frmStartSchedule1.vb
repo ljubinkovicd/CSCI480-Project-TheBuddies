@@ -1,4 +1,5 @@
 ﻿Imports TheBuddiesSchoolScheduler.SQLConnect
+Imports TheBuddiesSchoolScheduler.Globals
 Imports System.Data.Sql
 Imports System.Data.SqlClient
 
@@ -24,38 +25,16 @@ Public Class frmStartSchedule1
         dt = TryCast(ClassListGridView.DataSource, DataTable)
 
         'pass this datatable to the next screen
+        Dim g As New Globals
+        g.SetDT(dt)
 
         Me.Visible = False
         frmStartSchedule2.Visible = True
     End Sub
 
     Private Sub frmStartSchedule1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'get all of the classes from the CLASS table
-        Dim connetionString As String
-        Dim con As SqlConnection
-        Dim cmd As SqlCommand
-        Dim adapter As New SqlDataAdapter
-        Dim ds As New DataSet
-        Dim sql As String
-
-        'Temporary solution
-        '*****needs to change based on the person testing this******
-        connetionString = "Server=ALEXPC\ALEX080714;Database=SchoolScheduler;User=test_user;Pwd=pass;"
-        sql = "EXEC GetClasses"
-
-        con = New SqlConnection(connetionString)
-
-        Try
-            con.Open()
-            cmd = New SqlCommand(sql, con)
-            adapter.SelectCommand = cmd
-            adapter.Fill(ds)
-            adapter.Dispose()
-            cmd.Dispose()
-            con.Close()
-        Catch ex As Exception
-            MsgBox(ex.Message)
-        End Try
+        Dim SQL As New SQLConnect
+        Dim ds As DataSet = SQL.GetStoredProc("GetClasses")
 
         ClassListGridView.DataSource = ds.Tables(0)
         '.AllowUserToAddRows = False

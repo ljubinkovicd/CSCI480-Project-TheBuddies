@@ -39,7 +39,7 @@ Partial Class frmLogin
         Me.OK = New System.Windows.Forms.Button()
         Me.Cancel = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.cboServer = New System.Windows.Forms.ComboBox()
+        Me.txtServer = New System.Windows.Forms.TextBox()
         CType(Me.LogoPictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -111,15 +111,12 @@ Partial Class frmLogin
         Me.Label1.Text = "&Server"
         Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'cboServer
+        'txtServer
         '
-        Me.cboServer.FormattingEnabled = True
-        Me.cboServer.Items.AddRange(New Object() {"Mars"})
-        Me.cboServer.Location = New System.Drawing.Point(171, 36)
-        Me.cboServer.Name = "cboServer"
-        Me.cboServer.Size = New System.Drawing.Size(220, 21)
-        Me.cboServer.TabIndex = 7
-        Me.cboServer.Text = "Mars"
+        Me.txtServer.Location = New System.Drawing.Point(171, 33)
+        Me.txtServer.Name = "txtServer"
+        Me.txtServer.Size = New System.Drawing.Size(220, 20)
+        Me.txtServer.TabIndex = 7
         '
         'frmLogin
         '
@@ -128,7 +125,7 @@ Partial Class frmLogin
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.Cancel
         Me.ClientSize = New System.Drawing.Size(401, 192)
-        Me.Controls.Add(Me.cboServer)
+        Me.Controls.Add(Me.txtServer)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.Cancel)
         Me.Controls.Add(Me.OK)
@@ -150,6 +147,6 @@ Partial Class frmLogin
 
     End Sub
     Friend WithEvents Label1 As System.Windows.Forms.Label
-    Friend WithEvents cboServer As System.Windows.Forms.ComboBox
+    Friend WithEvents txtServer As System.Windows.Forms.TextBox
 
 End Class

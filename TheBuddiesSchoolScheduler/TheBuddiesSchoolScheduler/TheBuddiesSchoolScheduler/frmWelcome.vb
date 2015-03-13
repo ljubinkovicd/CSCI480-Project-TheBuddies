@@ -10,7 +10,7 @@
         If frmLogin.ShowDialog = DialogResult.OK Then
             Password = frmLogin.txtPassword.Text
             Username = frmLogin.txtUser.Text
-            Server = frmLogin.cboServer.Text
+            Server = frmLogin.txtServer.Text
         End If
 
     End Sub
