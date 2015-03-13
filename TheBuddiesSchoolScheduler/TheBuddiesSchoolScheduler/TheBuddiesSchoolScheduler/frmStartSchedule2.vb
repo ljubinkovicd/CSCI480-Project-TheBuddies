@@ -23,20 +23,50 @@ Public Class frmStartSchedule2
         dt = g.GetDT(dt)
 
         'determine the number of sections for each class
-
-        'temp, removes last to columns of dt just to get list of classes
-        dt.Columns.RemoveAt(1)
-        dt.Columns.RemoveAt(1)
+        '*********Check that sections is numer of sections in physical class room***********
+        dt = getSections(dt)
 
         Dim cbb As New DataGridViewComboBoxColumn() With {.HeaderText = "Choose"}
         'need to use a stored proc here instead of static items
-        cbb.Items.Add("Gunnett")
-        cbb.Items.Add("Geise")
-        cbb.Items.Add("Schneider")
+        Dim sql As New SQLConnect
+        Dim ds As New DataSet
+        Dim dr As DataRow
+        ds = sql.GetStoredProc("GetProfessorLastName")
+
+        For Each dr In ds.Tables(0).Rows
+            cbb.Items.Add(dr.Item(0).ToString)
+        Next
 
         'The first column will be filled with the values from the last screen
         'TeacherGridView.Columns.Add("", "Class")
         TeacherGridView.DataSource = dt
         TeacherGridView.Columns.Insert(1, cbb)
     End Sub
+
+    Function getSections(dt As DataTable)
+        Dim tempdt As New DataTable
+        tempdt.Columns.Add()
+        Dim dr As DataRow
+
+        For Each dr In dt.Rows
+            If dr.Item(2) > 0 Then
+                'add class sections
+                For i As Integer = 1 To dr.Item(2)
+                    If i < 10 Then
+                        tempdt.Rows.Add(dr.Item(0) + ".0" + i.ToString)
+                    Else
+                        tempdt.Rows.Add(dr.Item(0) + "." + i.ToString)
+                    End If
+                Next
+            End If
+            If dr.Item(3) > 0 Then
+                'add online sections
+                For i As Integer = 1 To dr.Item(3)
+                    tempdt.Rows.Add(dr.Item(0) + ".N" + i.ToString)
+                Next
+            End If
+        Next
+
+        Return tempdt
+    End Function
 End Class
