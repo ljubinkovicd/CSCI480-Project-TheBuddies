@@ -13,6 +13,14 @@ Public Class frmStartSchedule2
     End Sub
 
     Private Sub btnNext_Click(sender As Object, e As EventArgs) Handles btnNext.Click
+        'Save the values in the grid to be used in the next page
+        Dim dt As New DataTable
+        dt = TryCast(TeacherGridView.DataSource, DataTable)
+
+        'pass this datatable to the next screen
+        Dim g As New Globals
+        g.SetDT(dt)
+
         Me.Visible = False
         frmScheduleBuilder.Visible = True
     End Sub
@@ -26,7 +34,7 @@ Public Class frmStartSchedule2
         '*********Check that sections is numer of sections in physical class room***********
         dt = getSections(dt)
 
-        Dim cbb As New DataGridViewComboBoxColumn() With {.HeaderText = "Choose"}
+        Dim cbb As New DataGridViewComboBoxColumn() With {.HeaderText = "Choose Professor"}
         'need to use a stored proc here instead of static items
         Dim sql As New SQLConnect
         Dim ds As New DataSet
@@ -40,7 +48,14 @@ Public Class frmStartSchedule2
         'The first column will be filled with the values from the last screen
         'TeacherGridView.Columns.Add("", "Class")
         TeacherGridView.DataSource = dt
+        TeacherGridView.Columns(0).HeaderText = "Course"
+        TeacherGridView.Columns(0).AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
         TeacherGridView.Columns.Insert(1, cbb)
+        TeacherGridView.Columns(1).Width = 100
+
+        'set the semester label
+        Dim str As String = ""
+        lblSemester.Text = g.GetSemester(str)
     End Sub
 
     Function getSections(dt As DataTable)
@@ -66,6 +81,8 @@ Public Class frmStartSchedule2
                 Next
             End If
         Next
+
+        'tempdt.Columns(0).ColumnName = "Course Number"
 
         Return tempdt
     End Function

@@ -23,11 +23,11 @@ Partial Class frmStartSchedule2
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
         Me.btnNext = New System.Windows.Forms.Button()
         Me.btnCancel = New System.Windows.Forms.Button()
         Me.btnBack = New System.Windows.Forms.Button()
         Me.TeacherGridView = New System.Windows.Forms.DataGridView()
+        Me.lblSemester = New System.Windows.Forms.Label()
         CType(Me.TeacherGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -39,15 +39,6 @@ Partial Class frmStartSchedule2
         Me.Label1.Size = New System.Drawing.Size(282, 43)
         Me.Label1.TabIndex = 2
         Me.Label1.Text = "Professor Select"
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(461, 44)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(128, 13)
-        Me.Label3.TabIndex = 65
-        Me.Label3.Text = "Please Select a Professor"
         '
         'btnNext
         '
@@ -79,21 +70,30 @@ Partial Class frmStartSchedule2
         'TeacherGridView
         '
         Me.TeacherGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.TeacherGridView.Location = New System.Drawing.Point(54, 98)
+        Me.TeacherGridView.Location = New System.Drawing.Point(158, 106)
         Me.TeacherGridView.Name = "TeacherGridView"
-        Me.TeacherGridView.Size = New System.Drawing.Size(488, 314)
+        Me.TeacherGridView.Size = New System.Drawing.Size(229, 426)
         Me.TeacherGridView.TabIndex = 72
+        '
+        'lblSemester
+        '
+        Me.lblSemester.AutoSize = True
+        Me.lblSemester.Location = New System.Drawing.Point(333, 52)
+        Me.lblSemester.Name = "lblSemester"
+        Me.lblSemester.Size = New System.Drawing.Size(39, 13)
+        Me.lblSemester.TabIndex = 73
+        Me.lblSemester.Text = "Label2"
         '
         'frmStartSchedule2
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(614, 608)
+        Me.Controls.Add(Me.lblSemester)
         Me.Controls.Add(Me.TeacherGridView)
         Me.Controls.Add(Me.btnNext)
         Me.Controls.Add(Me.btnCancel)
         Me.Controls.Add(Me.btnBack)
-        Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label1)
         Me.Name = "frmStartSchedule2"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -104,9 +104,9 @@ Partial Class frmStartSchedule2
 
     End Sub
     Friend WithEvents Label1 As System.Windows.Forms.Label
-    Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents btnNext As System.Windows.Forms.Button
     Friend WithEvents btnCancel As System.Windows.Forms.Button
     Friend WithEvents btnBack As System.Windows.Forms.Button
     Friend WithEvents TeacherGridView As System.Windows.Forms.DataGridView
+    Friend WithEvents lblSemester As System.Windows.Forms.Label
 End Class
