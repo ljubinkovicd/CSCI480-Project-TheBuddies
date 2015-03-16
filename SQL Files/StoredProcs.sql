@@ -178,3 +178,51 @@ BEGIN
 END
 GO
 --- End Procedure  RemoveClass ---
+
+--- Start Procedure GetAllClasses ---
+IF EXISTS ( SELECT  *
+            FROM    sys.objects
+            WHERE   object_id = OBJECT_ID(N'GetAllClasses')
+                    AND type IN ( N'P', N'PC' ) ) 
+DROP PROCEDURE GetAllClasses;
+GO
+
+CREATE PROCEDURE GetAllClasses AS
+(
+	SELECT Department, CourseNum, CourseName, StudentCreditHours, TeacherCreditHours, IsGradClass
+	FROM	CLASS
+)
+GO
+--- End Procedure  GetAllClasses ---
+
+--- Start Procedure GetAllProfessors ---
+IF EXISTS ( SELECT  *
+            FROM    sys.objects
+            WHERE   object_id = OBJECT_ID(N'GetAllProfessors')
+                    AND type IN ( N'P', N'PC' ) ) 
+DROP PROCEDURE GetAllProfessors;
+GO
+
+CREATE PROCEDURE GetAllProfessors AS
+(
+	SELECT TeacherID, FirstName, LastName, YearlyCreditHours, Associates, Bachelors, Masters, PhD
+	FROM	PROFESSOR
+)
+GO
+--- End Procedure  GetAllProfessors ---
+
+--- Start Procedure GetCourseNumAndClassName ---
+IF EXISTS ( SELECT  *
+            FROM    sys.objects
+            WHERE   object_id = OBJECT_ID(N'GetCourseNumAndClassName')
+                    AND type IN ( N'P', N'PC' ) ) 
+DROP PROCEDURE GetCourseNumAndClassName;
+GO
+
+CREATE PROCEDURE GetCourseNumAndClassName AS
+(
+	SELECT	(Department + ' ' + CourseNum + ' - ' + CourseName) AS Course, ClassID
+	FROM	CLASS
+)
+GO
+--- End Procedure GetCourseNumAndClassName ---
