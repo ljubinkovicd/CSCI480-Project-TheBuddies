@@ -151,3 +151,9 @@ VALUES
 ('000008', 'Bill', 'Baker', 24, 1, 1, 1, 0);
 GO
 --- END PROFESSOR Insert Statement ---
+
+-- BEGIN ROOMS Insert Statement --
+INSERT INTO ROOMS
+VALUES
+	('Unassigned', 0)
+-- END ROOMS Insert Statement --

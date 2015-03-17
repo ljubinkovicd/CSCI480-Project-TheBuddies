@@ -41,10 +41,10 @@ Public Class frmStartSchedule1
         Dim ds As DataSet = SQL.GetStoredProc("GetClasses")
 
         ClassListGridView.DataSource = ds.Tables(0)
-        ClassListGridView.Columns(0).AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
-        ClassListGridView.Columns(1).Width = 285
-        ClassListGridView.Columns(2).AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
-        ClassListGridView.Columns(3).AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
+        ClassListGridView.Columns("Course").AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
+        ClassListGridView.Columns("Course Name").Width = 285
+        ClassListGridView.Columns("Sections").AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
+        ClassListGridView.Columns("Online").AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
 
         'Get current year and put values close to that in combo box
         Dim thisYear As Integer = Today.Year

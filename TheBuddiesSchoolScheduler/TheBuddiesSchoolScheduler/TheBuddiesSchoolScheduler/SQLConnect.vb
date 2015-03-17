@@ -9,7 +9,7 @@ Public Class SQLConnect
     Public Sub Connect(server As String, username As String, password As String)
         Try
             connectionString = "Server=" + server + ";Database=SchoolScheduler;User=" + username.ToString + ";Pwd=" + password.ToString + ";"
-            'connectionString = "Server=ALEXPC\ALEX080714;Database=SchoolScheduler;User=test_user;Pwd=pass;"
+            'connectionString = "Server=ALEXPC\ALEX080714;Database=SchoolScheduler1;User=test_user;Pwd=pass;"
             SQLCon.ConnectionString = connectionString
         Catch ex As Exception
             MsgBox(ex.Message)

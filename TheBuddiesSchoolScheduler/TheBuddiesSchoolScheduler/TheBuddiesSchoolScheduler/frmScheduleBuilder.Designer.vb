@@ -22,6 +22,7 @@ Partial Class frmScheduleBuilder
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label22 = New System.Windows.Forms.Label()
         Me.Label23 = New System.Windows.Forms.Label()
@@ -31,6 +32,10 @@ Partial Class frmScheduleBuilder
         Me.btnTeacher = New System.Windows.Forms.Button()
         Me.btnSave = New System.Windows.Forms.Button()
         Me.btnCancel = New System.Windows.Forms.Button()
+        Me.ClassesPanel = New System.Windows.Forms.Panel()
+        Me.cmsRightClick = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.EditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.cmsRightClick.SuspendLayout()
         Me.SuspendLayout()
         '
         'Label1
@@ -115,12 +120,33 @@ Partial Class frmScheduleBuilder
         Me.btnCancel.Text = "Cancel"
         Me.btnCancel.UseVisualStyleBackColor = True
         '
+        'ClassesPanel
+        '
+        Me.ClassesPanel.AutoScroll = True
+        Me.ClassesPanel.Location = New System.Drawing.Point(28, 86)
+        Me.ClassesPanel.Name = "ClassesPanel"
+        Me.ClassesPanel.Size = New System.Drawing.Size(331, 521)
+        Me.ClassesPanel.TabIndex = 36
+        '
+        'cmsRightClick
+        '
+        Me.cmsRightClick.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EditToolStripMenuItem})
+        Me.cmsRightClick.Name = "cmsRightClick"
+        Me.cmsRightClick.Size = New System.Drawing.Size(95, 26)
+        '
+        'EditToolStripMenuItem
+        '
+        Me.EditToolStripMenuItem.Name = "EditToolStripMenuItem"
+        Me.EditToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.EditToolStripMenuItem.Text = "Edit"
+        '
         'frmScheduleBuilder
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoScroll = True
         Me.ClientSize = New System.Drawing.Size(953, 657)
+        Me.Controls.Add(Me.ClassesPanel)
         Me.Controls.Add(Me.btnCancel)
         Me.Controls.Add(Me.btnSave)
         Me.Controls.Add(Me.btnTeacher)
@@ -133,6 +159,7 @@ Partial Class frmScheduleBuilder
         Me.Name = "frmScheduleBuilder"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "The Buddies Easy Scheduler"
+        Me.cmsRightClick.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -146,4 +173,7 @@ Partial Class frmScheduleBuilder
     Friend WithEvents btnTeacher As System.Windows.Forms.Button
     Friend WithEvents btnSave As System.Windows.Forms.Button
     Friend WithEvents btnCancel As System.Windows.Forms.Button
+    Friend WithEvents ClassesPanel As System.Windows.Forms.Panel
+    Friend WithEvents cmsRightClick As System.Windows.Forms.ContextMenuStrip
+    Friend WithEvents EditToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class
