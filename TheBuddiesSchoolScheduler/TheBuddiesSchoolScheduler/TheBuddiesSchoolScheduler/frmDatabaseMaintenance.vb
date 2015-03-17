@@ -3,24 +3,6 @@ Imports System.Text.RegularExpressions
 
 Public Class frmDatabaseMaintenance
 
-    Private Sub btnAddClass_Click(sender As Object, e As EventArgs)
-
-    End Sub
-
-    Private Sub btnEditClass_Click(sender As Object, e As EventArgs)
-
-    End Sub
-
-    Private Sub btnRemoveClass_Click(sender As Object, e As EventArgs)
-
-
-    End Sub
-
-
-    Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
-
-    End Sub
-
     Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
         frmWelcome.Visible = True
 
@@ -69,11 +51,18 @@ Public Class frmDatabaseMaintenance
             cbDBData.Visible = True
             btnRemove.Visible = True '
         ElseIf tcDBMaint.SelectedIndex = 3 Then
+            ' Add Professor
 
         ElseIf tcDBMaint.SelectedIndex = 4 Then
+            ' Edit Professor
 
         ElseIf tcDBMaint.SelectedIndex = 5 Then
+            ' Remove Professor
+            ds = SQL.GetStoredProc("GetProfessorName")
 
+            cbRmProfessor.DataSource = ds.Tables(0)
+            cbRmProfessor.ValueMember = "Professor"
+            'cbDBData.DisplayMember = "au_lname"
 
         End If
     End Sub
@@ -84,22 +73,30 @@ Public Class frmDatabaseMaintenance
         Dim ds2 As DataSet = New DataSet
         Dim classID As Integer = 0
         Dim index As Integer = 0
+        Dim success As Boolean = True
 
         Try
             index = cbDBData.SelectedIndex
             classID = ds.Tables(0).Rows(index).Item("ClassID")
 
-            ds2 = SQL.GetStoredProc("RemoveClass " + classID.ToString())
-
-            ds.Tables(0).Rows(index).Delete()
-
-            cbDBData.DataSource = ds.Tables(0)
-            cbDBData.ValueMember = "Course"
+            Dim result As Integer = MessageBox.Show("Are you sure that you would like to delete " + ds.Tables(0).Rows(index).Item("Course") + "?", "The Buddies Scheduler", MessageBoxButtons.YesNoCancel)
+            If result = DialogResult.Yes Then
+                ds2 = SQL.GetStoredProc("RemoveClass " + classID.ToString())
+                ds.Tables(0).Rows(index).Delete()
+                cbDBData.DataSource = ds.Tables(0)
+                cbDBData.ValueMember = "Course"
+            Else
+                success = False
+            End If
         Catch ex As Exception
-
+            success = False
         End Try
 
-        MessageBox.Show("The Course has been Removed succesfully")
+        If success Then
+            MessageBox.Show("The Course has been Removed successfully")
+        Else
+            MessageBox.Show("The Course has not been removed")
+        End If
     End Sub
 
 
@@ -207,5 +204,100 @@ Public Class frmDatabaseMaintenance
         tbEditClassProfHr.Text = ds.Tables(0).Rows(index).Item("TeacherCreditHours")
         tbEditClassStuCredHr.Text = ds.Tables(0).Rows(index).Item("StudentCreditHours")
         chkEditClassGradClass.Checked = ds.Tables(0).Rows(index).Item("IsGradClass")
+    End Sub
+
+    Private Sub btnRemoveProfessor_Click(sender As Object, e As EventArgs) Handles btnRemoveProfessor.Click
+        Dim SQL As New SQLConnect
+        Dim ds As DataSet = SQL.GetStoredProc("GetProfessorName")
+        Dim ds2 As DataSet = New DataSet
+        Dim TeacherID As Integer = 0
+        Dim index As Integer = 0
+        Dim success As Boolean = True
+
+        Try
+            index = cbRmProfessor.SelectedIndex
+            TeacherID = ds.Tables(0).Rows(index).Item("TeacherID")
+
+            Dim result As Integer = MessageBox.Show("Are you sure that you would like to delete " + ds.Tables(0).Rows(index).Item("Professor") + "?", "The Buddies Scheduler", MessageBoxButtons.YesNoCancel)
+            If result = DialogResult.Yes Then
+                ds2 = SQL.GetStoredProc("DeleteProfessor " + TeacherID.ToString())
+                ds.Tables(0).Rows(index).Delete()
+                cbRmProfessor.DataSource = ds.Tables(0)
+                cbRmProfessor.ValueMember = "Professor"
+            Else
+                success = False
+            End If
+
+        Catch ex As Exception
+            success = False
+        End Try
+
+        If success Then
+            MessageBox.Show("The Professor has been Removed successfully")
+        Else
+            MessageBox.Show("The Professor has not been removed")
+        End If
+
+    End Sub
+
+    Private Sub btnAddProfSaveProf_Click(sender As Object, e As EventArgs) Handles btnAddProfSaveProf.Click
+        Dim TeacherID As String = tbAddProfTeacherID.Text
+        Dim FirstName As String = tbAddProfFirstName.Text
+        Dim LastName As String = tbAddProfLastName.Text
+        Dim CreditHours As String = tbAddProfCredHours.Text
+        Dim Associates As Boolean = chkAddProfAssociates.Checked
+        Dim Bachelors As Boolean = chkAddProfBachelors.Checked
+        Dim Masters As Boolean = chkAddProfMasters.Checked
+        Dim Doctorate As Boolean = chkAddProfPhD.Checked
+        Dim passed As Boolean = True
+        Dim proc As String = ""
+        Dim ds As DataSet = New DataSet
+        Dim SQL As New SQLConnect
+
+        If Not (Trim(TeacherID) <> "" And CheckStringLength(TeacherID, 6, 6)) Then
+            MessageBox.Show("Teacher ID is either Blank or of the wrong size.")
+            passed = False
+        End If
+
+        If Not (Trim(FirstName) <> "" And CheckStringLength(FirstName, 0, 255)) Then
+            MessageBox.Show("First Name is either Blank or of the wrong size.")
+            passed = False
+        End If
+
+        If Not (Trim(LastName) <> "" And CheckStringLength(LastName, 0, 255)) Then
+            MessageBox.Show("Last Name is either Blank or of the wrong size.")
+            passed = False
+        End If
+
+        If Not (Trim(CreditHours) <> "" And CheckStringLength(CreditHours, 0, 6)) Then
+            MessageBox.Show("Yearly Credit Hours is either Blank or of the wrong size.")
+            passed = False
+        End If
+
+        If passed Then
+            Try
+                proc = "AddProfessor '" + TeacherID + "', '" + FirstName + "' , '" + LastName + "', " + CreditHours + _
+                                            ", " + Associates.ToString + ", " + Bachelors.ToString + ", " + Masters.ToString + ", " + Doctorate.ToString
+                ds = Sql.GetStoredProc(proc)
+            Catch ex As Exception
+                passed = False
+                MessageBox.Show("Class was not inserted successfully into the database.")
+            End Try
+
+        Else
+            MessageBox.Show("Please fix the problems and try again")
+        End If
+
+        If passed Then
+            MessageBox.Show("The professor was inserted successfully into the database.")
+            tbAddProfTeacherID.Clear()
+            tbAddProfFirstName.Clear()
+            tbAddProfLastName.Clear()
+            tbAddProfCredHours.Clear()
+            chkAddProfAssociates.CheckState = CheckState.Unchecked
+            chkAddProfBachelors.CheckState = CheckState.Unchecked
+            chkAddProfMasters.CheckState = CheckState.Unchecked
+            chkAddProfPhD.CheckState = CheckState.Unchecked
+        End If
     End Sub
 End Class

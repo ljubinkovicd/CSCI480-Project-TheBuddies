@@ -39,15 +39,7 @@ Partial Class frmDatabaseMaintenance
         Me.lblAddClassDept = New System.Windows.Forms.Label()
         Me.tbAddClassDepartment = New System.Windows.Forms.TextBox()
         Me.tpEditClass = New System.Windows.Forms.TabPage()
-        Me.tpRmClass = New System.Windows.Forms.TabPage()
-        Me.btnRemove = New System.Windows.Forms.Button()
-        Me.cbDBData = New System.Windows.Forms.ComboBox()
-        Me.tpAddProf = New System.Windows.Forms.TabPage()
-        Me.tpEditProf = New System.Windows.Forms.TabPage()
-        Me.tpRmProf = New System.Windows.Forms.TabPage()
-        Me.btnClear = New System.Windows.Forms.Button()
-        Me.btnSave = New System.Windows.Forms.Button()
-        Me.tcEditClass = New System.Windows.Forms.ComboBox()
+        Me.btnEditClassSave = New System.Windows.Forms.Button()
         Me.chkEditClassGradClass = New System.Windows.Forms.CheckBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.tbEditClassProfHr = New System.Windows.Forms.TextBox()
@@ -59,11 +51,36 @@ Partial Class frmDatabaseMaintenance
         Me.tbEditClassCourseNum = New System.Windows.Forms.TextBox()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.tbEditClassDept = New System.Windows.Forms.TextBox()
-        Me.btnEditClassSave = New System.Windows.Forms.Button()
+        Me.tcEditClass = New System.Windows.Forms.ComboBox()
+        Me.tpRmClass = New System.Windows.Forms.TabPage()
+        Me.btnRemove = New System.Windows.Forms.Button()
+        Me.cbDBData = New System.Windows.Forms.ComboBox()
+        Me.tpAddProf = New System.Windows.Forms.TabPage()
+        Me.tpEditProf = New System.Windows.Forms.TabPage()
+        Me.tpRmProf = New System.Windows.Forms.TabPage()
+        Me.btnRemoveProfessor = New System.Windows.Forms.Button()
+        Me.cbRmProfessor = New System.Windows.Forms.ComboBox()
+        Me.btnClear = New System.Windows.Forms.Button()
+        Me.btnSave = New System.Windows.Forms.Button()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.tbAddProfCredHours = New System.Windows.Forms.TextBox()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.tbAddProfLastName = New System.Windows.Forms.TextBox()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.tbAddProfFirstName = New System.Windows.Forms.TextBox()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.tbAddProfTeacherID = New System.Windows.Forms.TextBox()
+        Me.chkAddProfAssociates = New System.Windows.Forms.CheckBox()
+        Me.chkAddProfBachelors = New System.Windows.Forms.CheckBox()
+        Me.chkAddProfMasters = New System.Windows.Forms.CheckBox()
+        Me.chkAddProfPhD = New System.Windows.Forms.CheckBox()
+        Me.btnAddProfSaveProf = New System.Windows.Forms.Button()
         Me.tcDBMaint.SuspendLayout()
         Me.tpAddClass.SuspendLayout()
         Me.tpEditClass.SuspendLayout()
         Me.tpRmClass.SuspendLayout()
+        Me.tpAddProf.SuspendLayout()
+        Me.tpRmProf.SuspendLayout()
         Me.SuspendLayout()
         '
         'Label1
@@ -244,89 +261,14 @@ Partial Class frmDatabaseMaintenance
         Me.tpEditClass.Text = "Edit Class"
         Me.tpEditClass.UseVisualStyleBackColor = True
         '
-        'tpRmClass
+        'btnEditClassSave
         '
-        Me.tpRmClass.Controls.Add(Me.btnRemove)
-        Me.tpRmClass.Controls.Add(Me.cbDBData)
-        Me.tpRmClass.Location = New System.Drawing.Point(4, 29)
-        Me.tpRmClass.Name = "tpRmClass"
-        Me.tpRmClass.Padding = New System.Windows.Forms.Padding(3)
-        Me.tpRmClass.Size = New System.Drawing.Size(834, 583)
-        Me.tpRmClass.TabIndex = 2
-        Me.tpRmClass.Text = "Remove Class"
-        Me.tpRmClass.UseVisualStyleBackColor = True
-        '
-        'btnRemove
-        '
-        Me.btnRemove.Location = New System.Drawing.Point(403, 156)
-        Me.btnRemove.Name = "btnRemove"
-        Me.btnRemove.Size = New System.Drawing.Size(143, 38)
-        Me.btnRemove.TabIndex = 3
-        Me.btnRemove.Text = "Remove"
-        Me.btnRemove.UseVisualStyleBackColor = True
-        '
-        'cbDBData
-        '
-        Me.cbDBData.FormattingEnabled = True
-        Me.cbDBData.Location = New System.Drawing.Point(89, 83)
-        Me.cbDBData.Name = "cbDBData"
-        Me.cbDBData.Size = New System.Drawing.Size(401, 28)
-        Me.cbDBData.TabIndex = 2
-        '
-        'tpAddProf
-        '
-        Me.tpAddProf.Location = New System.Drawing.Point(4, 29)
-        Me.tpAddProf.Name = "tpAddProf"
-        Me.tpAddProf.Size = New System.Drawing.Size(834, 583)
-        Me.tpAddProf.TabIndex = 3
-        Me.tpAddProf.Text = "Add Professor"
-        Me.tpAddProf.UseVisualStyleBackColor = True
-        '
-        'tpEditProf
-        '
-        Me.tpEditProf.Location = New System.Drawing.Point(4, 29)
-        Me.tpEditProf.Name = "tpEditProf"
-        Me.tpEditProf.Size = New System.Drawing.Size(834, 583)
-        Me.tpEditProf.TabIndex = 4
-        Me.tpEditProf.Text = "Edit Professor"
-        Me.tpEditProf.UseVisualStyleBackColor = True
-        '
-        'tpRmProf
-        '
-        Me.tpRmProf.Location = New System.Drawing.Point(4, 29)
-        Me.tpRmProf.Name = "tpRmProf"
-        Me.tpRmProf.Size = New System.Drawing.Size(834, 583)
-        Me.tpRmProf.TabIndex = 5
-        Me.tpRmProf.Text = "Remove Professor"
-        Me.tpRmProf.UseVisualStyleBackColor = True
-        '
-        'btnClear
-        '
-        Me.btnClear.Location = New System.Drawing.Point(380, 728)
-        Me.btnClear.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.btnClear.Name = "btnClear"
-        Me.btnClear.Size = New System.Drawing.Size(112, 35)
-        Me.btnClear.TabIndex = 10
-        Me.btnClear.Text = "Clear"
-        Me.btnClear.UseVisualStyleBackColor = True
-        '
-        'btnSave
-        '
-        Me.btnSave.Location = New System.Drawing.Point(211, 728)
-        Me.btnSave.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.btnSave.Name = "btnSave"
-        Me.btnSave.Size = New System.Drawing.Size(112, 35)
-        Me.btnSave.TabIndex = 9
-        Me.btnSave.Text = "Save"
-        Me.btnSave.UseVisualStyleBackColor = True
-        '
-        'tcEditClass
-        '
-        Me.tcEditClass.FormattingEnabled = True
-        Me.tcEditClass.Location = New System.Drawing.Point(45, 38)
-        Me.tcEditClass.Name = "tcEditClass"
-        Me.tcEditClass.Size = New System.Drawing.Size(401, 28)
-        Me.tcEditClass.TabIndex = 0
+        Me.btnEditClassSave.Location = New System.Drawing.Point(56, 512)
+        Me.btnEditClassSave.Name = "btnEditClassSave"
+        Me.btnEditClassSave.Size = New System.Drawing.Size(143, 38)
+        Me.btnEditClassSave.TabIndex = 22
+        Me.btnEditClassSave.Text = "Save"
+        Me.btnEditClassSave.UseVisualStyleBackColor = True
         '
         'chkEditClassGradClass
         '
@@ -418,14 +360,234 @@ Partial Class frmDatabaseMaintenance
         Me.tbEditClassDept.Size = New System.Drawing.Size(151, 26)
         Me.tbEditClassDept.TabIndex = 11
         '
-        'btnEditClassSave
+        'tcEditClass
         '
-        Me.btnEditClassSave.Location = New System.Drawing.Point(56, 512)
-        Me.btnEditClassSave.Name = "btnEditClassSave"
-        Me.btnEditClassSave.Size = New System.Drawing.Size(143, 38)
-        Me.btnEditClassSave.TabIndex = 22
-        Me.btnEditClassSave.Text = "Save"
-        Me.btnEditClassSave.UseVisualStyleBackColor = True
+        Me.tcEditClass.FormattingEnabled = True
+        Me.tcEditClass.Location = New System.Drawing.Point(45, 38)
+        Me.tcEditClass.Name = "tcEditClass"
+        Me.tcEditClass.Size = New System.Drawing.Size(401, 28)
+        Me.tcEditClass.TabIndex = 0
+        '
+        'tpRmClass
+        '
+        Me.tpRmClass.Controls.Add(Me.btnRemove)
+        Me.tpRmClass.Controls.Add(Me.cbDBData)
+        Me.tpRmClass.Location = New System.Drawing.Point(4, 29)
+        Me.tpRmClass.Name = "tpRmClass"
+        Me.tpRmClass.Padding = New System.Windows.Forms.Padding(3)
+        Me.tpRmClass.Size = New System.Drawing.Size(834, 583)
+        Me.tpRmClass.TabIndex = 2
+        Me.tpRmClass.Text = "Remove Class"
+        Me.tpRmClass.UseVisualStyleBackColor = True
+        '
+        'btnRemove
+        '
+        Me.btnRemove.Location = New System.Drawing.Point(403, 156)
+        Me.btnRemove.Name = "btnRemove"
+        Me.btnRemove.Size = New System.Drawing.Size(143, 38)
+        Me.btnRemove.TabIndex = 3
+        Me.btnRemove.Text = "Remove"
+        Me.btnRemove.UseVisualStyleBackColor = True
+        '
+        'cbDBData
+        '
+        Me.cbDBData.FormattingEnabled = True
+        Me.cbDBData.Location = New System.Drawing.Point(89, 83)
+        Me.cbDBData.Name = "cbDBData"
+        Me.cbDBData.Size = New System.Drawing.Size(401, 28)
+        Me.cbDBData.TabIndex = 2
+        '
+        'tpAddProf
+        '
+        Me.tpAddProf.Controls.Add(Me.btnAddProfSaveProf)
+        Me.tpAddProf.Controls.Add(Me.chkAddProfPhD)
+        Me.tpAddProf.Controls.Add(Me.chkAddProfMasters)
+        Me.tpAddProf.Controls.Add(Me.chkAddProfBachelors)
+        Me.tpAddProf.Controls.Add(Me.chkAddProfAssociates)
+        Me.tpAddProf.Controls.Add(Me.Label8)
+        Me.tpAddProf.Controls.Add(Me.tbAddProfCredHours)
+        Me.tpAddProf.Controls.Add(Me.Label9)
+        Me.tpAddProf.Controls.Add(Me.tbAddProfLastName)
+        Me.tpAddProf.Controls.Add(Me.Label10)
+        Me.tpAddProf.Controls.Add(Me.tbAddProfFirstName)
+        Me.tpAddProf.Controls.Add(Me.Label11)
+        Me.tpAddProf.Controls.Add(Me.tbAddProfTeacherID)
+        Me.tpAddProf.Location = New System.Drawing.Point(4, 29)
+        Me.tpAddProf.Name = "tpAddProf"
+        Me.tpAddProf.Size = New System.Drawing.Size(834, 583)
+        Me.tpAddProf.TabIndex = 3
+        Me.tpAddProf.Text = "Add Professor"
+        Me.tpAddProf.UseVisualStyleBackColor = True
+        '
+        'tpEditProf
+        '
+        Me.tpEditProf.Location = New System.Drawing.Point(4, 29)
+        Me.tpEditProf.Name = "tpEditProf"
+        Me.tpEditProf.Size = New System.Drawing.Size(834, 583)
+        Me.tpEditProf.TabIndex = 4
+        Me.tpEditProf.Text = "Edit Professor"
+        Me.tpEditProf.UseVisualStyleBackColor = True
+        '
+        'tpRmProf
+        '
+        Me.tpRmProf.Controls.Add(Me.btnRemoveProfessor)
+        Me.tpRmProf.Controls.Add(Me.cbRmProfessor)
+        Me.tpRmProf.Location = New System.Drawing.Point(4, 29)
+        Me.tpRmProf.Name = "tpRmProf"
+        Me.tpRmProf.Size = New System.Drawing.Size(834, 583)
+        Me.tpRmProf.TabIndex = 5
+        Me.tpRmProf.Text = "Remove Professor"
+        Me.tpRmProf.UseVisualStyleBackColor = True
+        '
+        'btnRemoveProfessor
+        '
+        Me.btnRemoveProfessor.Location = New System.Drawing.Point(374, 135)
+        Me.btnRemoveProfessor.Name = "btnRemoveProfessor"
+        Me.btnRemoveProfessor.Size = New System.Drawing.Size(143, 38)
+        Me.btnRemoveProfessor.TabIndex = 5
+        Me.btnRemoveProfessor.Text = "Remove"
+        Me.btnRemoveProfessor.UseVisualStyleBackColor = True
+        '
+        'cbRmProfessor
+        '
+        Me.cbRmProfessor.FormattingEnabled = True
+        Me.cbRmProfessor.Location = New System.Drawing.Point(60, 62)
+        Me.cbRmProfessor.Name = "cbRmProfessor"
+        Me.cbRmProfessor.Size = New System.Drawing.Size(401, 28)
+        Me.cbRmProfessor.TabIndex = 4
+        '
+        'btnClear
+        '
+        Me.btnClear.Location = New System.Drawing.Point(380, 728)
+        Me.btnClear.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.btnClear.Name = "btnClear"
+        Me.btnClear.Size = New System.Drawing.Size(112, 35)
+        Me.btnClear.TabIndex = 10
+        Me.btnClear.Text = "Clear"
+        Me.btnClear.UseVisualStyleBackColor = True
+        '
+        'btnSave
+        '
+        Me.btnSave.Location = New System.Drawing.Point(211, 728)
+        Me.btnSave.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.btnSave.Name = "btnSave"
+        Me.btnSave.Size = New System.Drawing.Size(112, 35)
+        Me.btnSave.TabIndex = 9
+        Me.btnSave.Text = "Save"
+        Me.btnSave.UseVisualStyleBackColor = True
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(84, 267)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(146, 20)
+        Me.Label8.TabIndex = 28
+        Me.Label8.Text = "Yearly Credit Hours"
+        '
+        'tbAddProfCredHours
+        '
+        Me.tbAddProfCredHours.Location = New System.Drawing.Point(88, 290)
+        Me.tbAddProfCredHours.Name = "tbAddProfCredHours"
+        Me.tbAddProfCredHours.Size = New System.Drawing.Size(151, 26)
+        Me.tbAddProfCredHours.TabIndex = 27
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(84, 199)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(86, 20)
+        Me.Label9.TabIndex = 26
+        Me.Label9.Text = "Last Name"
+        '
+        'tbAddProfLastName
+        '
+        Me.tbAddProfLastName.Location = New System.Drawing.Point(88, 222)
+        Me.tbAddProfLastName.Name = "tbAddProfLastName"
+        Me.tbAddProfLastName.Size = New System.Drawing.Size(151, 26)
+        Me.tbAddProfLastName.TabIndex = 25
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(84, 119)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(86, 20)
+        Me.Label10.TabIndex = 24
+        Me.Label10.Text = "First Name"
+        '
+        'tbAddProfFirstName
+        '
+        Me.tbAddProfFirstName.Location = New System.Drawing.Point(88, 142)
+        Me.tbAddProfFirstName.Name = "tbAddProfFirstName"
+        Me.tbAddProfFirstName.Size = New System.Drawing.Size(151, 26)
+        Me.tbAddProfFirstName.TabIndex = 23
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Location = New System.Drawing.Point(84, 47)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(88, 20)
+        Me.Label11.TabIndex = 22
+        Me.Label11.Text = "Teacher ID"
+        '
+        'tbAddProfTeacherID
+        '
+        Me.tbAddProfTeacherID.Location = New System.Drawing.Point(88, 70)
+        Me.tbAddProfTeacherID.Name = "tbAddProfTeacherID"
+        Me.tbAddProfTeacherID.Size = New System.Drawing.Size(151, 26)
+        Me.tbAddProfTeacherID.TabIndex = 21
+        '
+        'chkAddProfAssociates
+        '
+        Me.chkAddProfAssociates.AutoSize = True
+        Me.chkAddProfAssociates.Location = New System.Drawing.Point(88, 348)
+        Me.chkAddProfAssociates.Name = "chkAddProfAssociates"
+        Me.chkAddProfAssociates.Size = New System.Drawing.Size(175, 24)
+        Me.chkAddProfAssociates.TabIndex = 29
+        Me.chkAddProfAssociates.Text = "Associates (AS/AA)"
+        Me.chkAddProfAssociates.UseVisualStyleBackColor = True
+        '
+        'chkAddProfBachelors
+        '
+        Me.chkAddProfBachelors.AutoSize = True
+        Me.chkAddProfBachelors.Location = New System.Drawing.Point(88, 378)
+        Me.chkAddProfBachelors.Name = "chkAddProfBachelors"
+        Me.chkAddProfBachelors.Size = New System.Drawing.Size(168, 24)
+        Me.chkAddProfBachelors.TabIndex = 30
+        Me.chkAddProfBachelors.Text = "Bachelors (BS/BA)"
+        Me.chkAddProfBachelors.UseVisualStyleBackColor = True
+        '
+        'chkAddProfMasters
+        '
+        Me.chkAddProfMasters.AutoSize = True
+        Me.chkAddProfMasters.Location = New System.Drawing.Point(88, 408)
+        Me.chkAddProfMasters.Name = "chkAddProfMasters"
+        Me.chkAddProfMasters.Size = New System.Drawing.Size(92, 24)
+        Me.chkAddProfMasters.TabIndex = 31
+        Me.chkAddProfMasters.Text = "Masters"
+        Me.chkAddProfMasters.UseVisualStyleBackColor = True
+        '
+        'chkAddProfPhD
+        '
+        Me.chkAddProfPhD.AutoSize = True
+        Me.chkAddProfPhD.Location = New System.Drawing.Point(88, 438)
+        Me.chkAddProfPhD.Name = "chkAddProfPhD"
+        Me.chkAddProfPhD.Size = New System.Drawing.Size(106, 24)
+        Me.chkAddProfPhD.TabIndex = 32
+        Me.chkAddProfPhD.Text = "Doctorate"
+        Me.chkAddProfPhD.UseVisualStyleBackColor = True
+        '
+        'btnAddProfSaveProf
+        '
+        Me.btnAddProfSaveProf.Location = New System.Drawing.Point(88, 481)
+        Me.btnAddProfSaveProf.Name = "btnAddProfSaveProf"
+        Me.btnAddProfSaveProf.Size = New System.Drawing.Size(131, 34)
+        Me.btnAddProfSaveProf.TabIndex = 33
+        Me.btnAddProfSaveProf.Text = "Save Professor"
+        Me.btnAddProfSaveProf.UseVisualStyleBackColor = True
         '
         'frmDatabaseMaintenance
         '
@@ -447,6 +609,9 @@ Partial Class frmDatabaseMaintenance
         Me.tpEditClass.ResumeLayout(False)
         Me.tpEditClass.PerformLayout()
         Me.tpRmClass.ResumeLayout(False)
+        Me.tpAddProf.ResumeLayout(False)
+        Me.tpAddProf.PerformLayout()
+        Me.tpRmProf.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -488,4 +653,19 @@ Partial Class frmDatabaseMaintenance
     Friend WithEvents Label6 As System.Windows.Forms.Label
     Friend WithEvents tbEditClassDept As System.Windows.Forms.TextBox
     Friend WithEvents btnEditClassSave As System.Windows.Forms.Button
+    Friend WithEvents btnRemoveProfessor As System.Windows.Forms.Button
+    Friend WithEvents cbRmProfessor As System.Windows.Forms.ComboBox
+    Friend WithEvents chkAddProfPhD As System.Windows.Forms.CheckBox
+    Friend WithEvents chkAddProfMasters As System.Windows.Forms.CheckBox
+    Friend WithEvents chkAddProfBachelors As System.Windows.Forms.CheckBox
+    Friend WithEvents chkAddProfAssociates As System.Windows.Forms.CheckBox
+    Friend WithEvents Label8 As System.Windows.Forms.Label
+    Friend WithEvents tbAddProfCredHours As System.Windows.Forms.TextBox
+    Friend WithEvents Label9 As System.Windows.Forms.Label
+    Friend WithEvents tbAddProfLastName As System.Windows.Forms.TextBox
+    Friend WithEvents Label10 As System.Windows.Forms.Label
+    Friend WithEvents tbAddProfFirstName As System.Windows.Forms.TextBox
+    Friend WithEvents Label11 As System.Windows.Forms.Label
+    Friend WithEvents tbAddProfTeacherID As System.Windows.Forms.TextBox
+    Friend WithEvents btnAddProfSaveProf As System.Windows.Forms.Button
 End Class

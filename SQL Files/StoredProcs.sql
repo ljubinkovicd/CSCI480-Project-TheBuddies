@@ -189,7 +189,7 @@ GO
 
 CREATE PROCEDURE GetAllClasses AS
 (
-	SELECT Department, CourseNum, CourseName, StudentCreditHours, TeacherCreditHours, IsGradClass
+	SELECT ClassID, Department, CourseNum, CourseName, StudentCreditHours, TeacherCreditHours, IsGradClass
 	FROM	CLASS
 )
 GO
