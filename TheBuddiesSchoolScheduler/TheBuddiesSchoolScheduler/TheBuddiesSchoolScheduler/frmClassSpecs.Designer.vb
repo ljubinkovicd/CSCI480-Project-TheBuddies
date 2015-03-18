@@ -22,37 +22,38 @@ Partial Class frmClassSpecs
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.Label1 = New System.Windows.Forms.Label()
+        Me.lblClass = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.chk7 = New System.Windows.Forms.CheckBox()
-        Me.chk6 = New System.Windows.Forms.CheckBox()
-        Me.chk3 = New System.Windows.Forms.CheckBox()
-        Me.chk1 = New System.Windows.Forms.CheckBox()
-        Me.chk5 = New System.Windows.Forms.CheckBox()
-        Me.chk4 = New System.Windows.Forms.CheckBox()
-        Me.chk2 = New System.Windows.Forms.CheckBox()
+        Me.chkSunday = New System.Windows.Forms.CheckBox()
+        Me.chkSaturday = New System.Windows.Forms.CheckBox()
+        Me.chkWednesday = New System.Windows.Forms.CheckBox()
+        Me.chkMonday = New System.Windows.Forms.CheckBox()
+        Me.chkFriday = New System.Windows.Forms.CheckBox()
+        Me.chkThursday = New System.Windows.Forms.CheckBox()
+        Me.chkTuesday = New System.Windows.Forms.CheckBox()
         Me.Label10 = New System.Windows.Forms.Label()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
-        Me.TextBox3 = New System.Windows.Forms.TextBox()
-        Me.TextBox4 = New System.Windows.Forms.TextBox()
+        Me.txtStartTime = New System.Windows.Forms.TextBox()
+        Me.txtEndTime = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
+        Me.btnSave = New System.Windows.Forms.Button()
+        Me.btnCancel = New System.Windows.Forms.Button()
+        Me.lblClassName = New System.Windows.Forms.Label()
+        Me.cboProfessor = New System.Windows.Forms.ComboBox()
+        Me.txtRoom = New System.Windows.Forms.TextBox()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
-        'Label1
+        'lblClass
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(13, 21)
-        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(147, 20)
-        Me.Label1.TabIndex = 0
-        Me.Label1.Text = "Class: CSCI 355.01"
+        Me.lblClass.AutoSize = True
+        Me.lblClass.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblClass.Location = New System.Drawing.Point(13, 21)
+        Me.lblClass.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblClass.Name = "lblClass"
+        Me.lblClass.Size = New System.Drawing.Size(0, 20)
+        Me.lblClass.TabIndex = 0
         '
         'Label2
         '
@@ -70,93 +71,93 @@ Partial Class frmClassSpecs
         Me.Label3.Location = New System.Drawing.Point(36, 114)
         Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(67, 20)
+        Me.Label3.Size = New System.Drawing.Size(81, 20)
         Me.Label3.TabIndex = 2
-        Me.Label3.Text = "Subtitle:"
+        Me.Label3.Text = "Professor:"
         '
-        'chk7
+        'chkSunday
         '
-        Me.chk7.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.chk7.Location = New System.Drawing.Point(316, 275)
-        Me.chk7.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.chk7.Name = "chk7"
-        Me.chk7.Size = New System.Drawing.Size(45, 68)
-        Me.chk7.TabIndex = 31
-        Me.chk7.Text = "Sun"
-        Me.chk7.TextAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.chk7.UseVisualStyleBackColor = True
+        Me.chkSunday.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.chkSunday.Location = New System.Drawing.Point(316, 322)
+        Me.chkSunday.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.chkSunday.Name = "chkSunday"
+        Me.chkSunday.Size = New System.Drawing.Size(45, 68)
+        Me.chkSunday.TabIndex = 31
+        Me.chkSunday.Text = "Sun"
+        Me.chkSunday.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.chkSunday.UseVisualStyleBackColor = True
         '
-        'chk6
+        'chkSaturday
         '
-        Me.chk6.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.chk6.Location = New System.Drawing.Point(272, 275)
-        Me.chk6.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.chk6.Name = "chk6"
-        Me.chk6.Size = New System.Drawing.Size(45, 68)
-        Me.chk6.TabIndex = 30
-        Me.chk6.Text = "Sat"
-        Me.chk6.TextAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.chk6.UseVisualStyleBackColor = True
+        Me.chkSaturday.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.chkSaturday.Location = New System.Drawing.Point(272, 322)
+        Me.chkSaturday.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.chkSaturday.Name = "chkSaturday"
+        Me.chkSaturday.Size = New System.Drawing.Size(45, 68)
+        Me.chkSaturday.TabIndex = 30
+        Me.chkSaturday.Text = "Sat"
+        Me.chkSaturday.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.chkSaturday.UseVisualStyleBackColor = True
         '
-        'chk3
+        'chkWednesday
         '
-        Me.chk3.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.chk3.Location = New System.Drawing.Point(136, 275)
-        Me.chk3.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.chk3.Name = "chk3"
-        Me.chk3.Size = New System.Drawing.Size(45, 68)
-        Me.chk3.TabIndex = 29
-        Me.chk3.Text = "W"
-        Me.chk3.TextAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.chk3.UseVisualStyleBackColor = True
+        Me.chkWednesday.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.chkWednesday.Location = New System.Drawing.Point(136, 322)
+        Me.chkWednesday.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.chkWednesday.Name = "chkWednesday"
+        Me.chkWednesday.Size = New System.Drawing.Size(45, 68)
+        Me.chkWednesday.TabIndex = 29
+        Me.chkWednesday.Text = "W"
+        Me.chkWednesday.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.chkWednesday.UseVisualStyleBackColor = True
         '
-        'chk1
+        'chkMonday
         '
-        Me.chk1.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.chk1.Location = New System.Drawing.Point(46, 275)
-        Me.chk1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.chk1.Name = "chk1"
-        Me.chk1.Size = New System.Drawing.Size(45, 68)
-        Me.chk1.TabIndex = 28
-        Me.chk1.Text = "M"
-        Me.chk1.TextAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.chk1.UseVisualStyleBackColor = True
+        Me.chkMonday.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.chkMonday.Location = New System.Drawing.Point(46, 322)
+        Me.chkMonday.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.chkMonday.Name = "chkMonday"
+        Me.chkMonday.Size = New System.Drawing.Size(45, 68)
+        Me.chkMonday.TabIndex = 28
+        Me.chkMonday.Text = "M"
+        Me.chkMonday.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.chkMonday.UseVisualStyleBackColor = True
         '
-        'chk5
+        'chkFriday
         '
-        Me.chk5.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.chk5.Location = New System.Drawing.Point(226, 275)
-        Me.chk5.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.chk5.Name = "chk5"
-        Me.chk5.Size = New System.Drawing.Size(45, 68)
-        Me.chk5.TabIndex = 27
-        Me.chk5.Text = "F"
-        Me.chk5.TextAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.chk5.UseVisualStyleBackColor = True
+        Me.chkFriday.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.chkFriday.Location = New System.Drawing.Point(226, 322)
+        Me.chkFriday.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.chkFriday.Name = "chkFriday"
+        Me.chkFriday.Size = New System.Drawing.Size(45, 68)
+        Me.chkFriday.TabIndex = 27
+        Me.chkFriday.Text = "F"
+        Me.chkFriday.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.chkFriday.UseVisualStyleBackColor = True
         '
-        'chk4
+        'chkThursday
         '
-        Me.chk4.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.chk4.Location = New System.Drawing.Point(182, 275)
-        Me.chk4.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.chk4.Name = "chk4"
-        Me.chk4.Size = New System.Drawing.Size(45, 68)
-        Me.chk4.TabIndex = 26
-        Me.chk4.Text = "H"
-        Me.chk4.TextAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.chk4.UseVisualStyleBackColor = True
+        Me.chkThursday.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.chkThursday.Location = New System.Drawing.Point(182, 322)
+        Me.chkThursday.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.chkThursday.Name = "chkThursday"
+        Me.chkThursday.Size = New System.Drawing.Size(45, 68)
+        Me.chkThursday.TabIndex = 26
+        Me.chkThursday.Text = "H"
+        Me.chkThursday.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.chkThursday.UseVisualStyleBackColor = True
         '
-        'chk2
+        'chkTuesday
         '
-        Me.chk2.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.chk2.Location = New System.Drawing.Point(92, 275)
-        Me.chk2.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.chk2.Name = "chk2"
-        Me.chk2.Size = New System.Drawing.Size(45, 68)
-        Me.chk2.TabIndex = 25
-        Me.chk2.Text = "T"
-        Me.chk2.TextAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.chk2.UseVisualStyleBackColor = True
+        Me.chkTuesday.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.chkTuesday.Location = New System.Drawing.Point(92, 322)
+        Me.chkTuesday.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.chkTuesday.Name = "chkTuesday"
+        Me.chkTuesday.Size = New System.Drawing.Size(45, 68)
+        Me.chkTuesday.TabIndex = 25
+        Me.chkTuesday.Text = "T"
+        Me.chkTuesday.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.chkTuesday.UseVisualStyleBackColor = True
         '
         'Label10
         '
@@ -168,37 +169,21 @@ Partial Class frmClassSpecs
         Me.Label10.TabIndex = 24
         Me.Label10.Text = "Start:"
         '
-        'TextBox1
+        'txtStartTime
         '
-        Me.TextBox1.Location = New System.Drawing.Point(123, 63)
-        Me.TextBox1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(148, 26)
-        Me.TextBox1.TabIndex = 32
+        Me.txtStartTime.Location = New System.Drawing.Point(123, 157)
+        Me.txtStartTime.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.txtStartTime.Name = "txtStartTime"
+        Me.txtStartTime.Size = New System.Drawing.Size(148, 26)
+        Me.txtStartTime.TabIndex = 34
         '
-        'TextBox2
+        'txtEndTime
         '
-        Me.TextBox2.Location = New System.Drawing.Point(123, 111)
-        Me.TextBox2.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(148, 26)
-        Me.TextBox2.TabIndex = 33
-        '
-        'TextBox3
-        '
-        Me.TextBox3.Location = New System.Drawing.Point(123, 157)
-        Me.TextBox3.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(148, 26)
-        Me.TextBox3.TabIndex = 34
-        '
-        'TextBox4
-        '
-        Me.TextBox4.Location = New System.Drawing.Point(123, 204)
-        Me.TextBox4.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.TextBox4.Name = "TextBox4"
-        Me.TextBox4.Size = New System.Drawing.Size(148, 26)
-        Me.TextBox4.TabIndex = 36
+        Me.txtEndTime.Location = New System.Drawing.Point(123, 204)
+        Me.txtEndTime.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.txtEndTime.Name = "txtEndTime"
+        Me.txtEndTime.Size = New System.Drawing.Size(148, 26)
+        Me.txtEndTime.TabIndex = 36
         '
         'Label4
         '
@@ -213,57 +198,96 @@ Partial Class frmClassSpecs
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(36, 250)
+        Me.Label5.Location = New System.Drawing.Point(36, 297)
         Me.Label5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(87, 20)
         Me.Label5.TabIndex = 37
         Me.Label5.Text = "Repeating:"
         '
-        'Button1
+        'btnSave
         '
-        Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button1.Location = New System.Drawing.Point(62, 348)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 24)
-        Me.Button1.TabIndex = 38
-        Me.Button1.Text = "Save"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.btnSave.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnSave.Location = New System.Drawing.Point(62, 395)
+        Me.btnSave.Name = "btnSave"
+        Me.btnSave.Size = New System.Drawing.Size(75, 24)
+        Me.btnSave.TabIndex = 38
+        Me.btnSave.Text = "Save"
+        Me.btnSave.UseVisualStyleBackColor = True
         '
-        'Button2
+        'btnCancel
         '
-        Me.Button2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button2.Location = New System.Drawing.Point(226, 348)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(75, 23)
-        Me.Button2.TabIndex = 39
-        Me.Button2.Text = "Cancel"
-        Me.Button2.UseVisualStyleBackColor = True
+        Me.btnCancel.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnCancel.Location = New System.Drawing.Point(226, 395)
+        Me.btnCancel.Name = "btnCancel"
+        Me.btnCancel.Size = New System.Drawing.Size(75, 23)
+        Me.btnCancel.TabIndex = 39
+        Me.btnCancel.Text = "Cancel"
+        Me.btnCancel.UseVisualStyleBackColor = True
+        '
+        'lblClassName
+        '
+        Me.lblClassName.AutoSize = True
+        Me.lblClassName.Location = New System.Drawing.Point(119, 66)
+        Me.lblClassName.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblClassName.Name = "lblClassName"
+        Me.lblClassName.Size = New System.Drawing.Size(0, 20)
+        Me.lblClassName.TabIndex = 40
+        '
+        'cboProfessor
+        '
+        Me.cboProfessor.FormattingEnabled = True
+        Me.cboProfessor.Location = New System.Drawing.Point(124, 106)
+        Me.cboProfessor.Name = "cboProfessor"
+        Me.cboProfessor.Size = New System.Drawing.Size(147, 28)
+        Me.cboProfessor.TabIndex = 41
+        '
+        'txtRoom
+        '
+        Me.txtRoom.AccessibleRole = System.Windows.Forms.AccessibleRole.SplitButton
+        Me.txtRoom.Location = New System.Drawing.Point(123, 249)
+        Me.txtRoom.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.txtRoom.Name = "txtRoom"
+        Me.txtRoom.Size = New System.Drawing.Size(148, 26)
+        Me.txtRoom.TabIndex = 43
+        '
+        'Label1
+        '
+        Me.Label1.AccessibleRole = System.Windows.Forms.AccessibleRole.SplitButton
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(36, 252)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(56, 20)
+        Me.Label1.TabIndex = 42
+        Me.Label1.Text = "Room:"
         '
         'frmClassSpecs
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(375, 386)
-        Me.Controls.Add(Me.Button2)
-        Me.Controls.Add(Me.Button1)
+        Me.ClientSize = New System.Drawing.Size(384, 431)
+        Me.Controls.Add(Me.txtRoom)
+        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.cboProfessor)
+        Me.Controls.Add(Me.lblClassName)
+        Me.Controls.Add(Me.btnCancel)
+        Me.Controls.Add(Me.btnSave)
         Me.Controls.Add(Me.Label5)
-        Me.Controls.Add(Me.TextBox4)
+        Me.Controls.Add(Me.txtEndTime)
         Me.Controls.Add(Me.Label4)
-        Me.Controls.Add(Me.TextBox3)
-        Me.Controls.Add(Me.TextBox2)
-        Me.Controls.Add(Me.TextBox1)
-        Me.Controls.Add(Me.chk7)
-        Me.Controls.Add(Me.chk6)
-        Me.Controls.Add(Me.chk3)
-        Me.Controls.Add(Me.chk1)
-        Me.Controls.Add(Me.chk5)
-        Me.Controls.Add(Me.chk4)
-        Me.Controls.Add(Me.chk2)
+        Me.Controls.Add(Me.txtStartTime)
+        Me.Controls.Add(Me.chkSunday)
+        Me.Controls.Add(Me.chkSaturday)
+        Me.Controls.Add(Me.chkWednesday)
+        Me.Controls.Add(Me.chkMonday)
+        Me.Controls.Add(Me.chkFriday)
+        Me.Controls.Add(Me.chkThursday)
+        Me.Controls.Add(Me.chkTuesday)
         Me.Controls.Add(Me.Label10)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.lblClass)
         Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Name = "frmClassSpecs"
@@ -273,23 +297,25 @@ Partial Class frmClassSpecs
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents lblClass As System.Windows.Forms.Label
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents Label3 As System.Windows.Forms.Label
-    Friend WithEvents chk7 As System.Windows.Forms.CheckBox
-    Friend WithEvents chk6 As System.Windows.Forms.CheckBox
-    Friend WithEvents chk3 As System.Windows.Forms.CheckBox
-    Friend WithEvents chk1 As System.Windows.Forms.CheckBox
-    Friend WithEvents chk5 As System.Windows.Forms.CheckBox
-    Friend WithEvents chk4 As System.Windows.Forms.CheckBox
-    Friend WithEvents chk2 As System.Windows.Forms.CheckBox
+    Friend WithEvents chkSunday As System.Windows.Forms.CheckBox
+    Friend WithEvents chkSaturday As System.Windows.Forms.CheckBox
+    Friend WithEvents chkWednesday As System.Windows.Forms.CheckBox
+    Friend WithEvents chkMonday As System.Windows.Forms.CheckBox
+    Friend WithEvents chkFriday As System.Windows.Forms.CheckBox
+    Friend WithEvents chkThursday As System.Windows.Forms.CheckBox
+    Friend WithEvents chkTuesday As System.Windows.Forms.CheckBox
     Friend WithEvents Label10 As System.Windows.Forms.Label
-    Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
-    Friend WithEvents TextBox2 As System.Windows.Forms.TextBox
-    Friend WithEvents TextBox3 As System.Windows.Forms.TextBox
-    Friend WithEvents TextBox4 As System.Windows.Forms.TextBox
+    Friend WithEvents txtStartTime As System.Windows.Forms.TextBox
+    Friend WithEvents txtEndTime As System.Windows.Forms.TextBox
     Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents Label5 As System.Windows.Forms.Label
-    Friend WithEvents Button1 As System.Windows.Forms.Button
-    Friend WithEvents Button2 As System.Windows.Forms.Button
+    Friend WithEvents btnSave As System.Windows.Forms.Button
+    Friend WithEvents btnCancel As System.Windows.Forms.Button
+    Friend WithEvents lblClassName As System.Windows.Forms.Label
+    Friend WithEvents cboProfessor As System.Windows.Forms.ComboBox
+    Friend WithEvents txtRoom As System.Windows.Forms.TextBox
+    Friend WithEvents Label1 As System.Windows.Forms.Label
 End Class

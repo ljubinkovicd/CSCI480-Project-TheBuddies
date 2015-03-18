@@ -28,6 +28,10 @@ Public Class frmStartSchedule1
         Dim g As New Globals
         g.SetDT(dt)
 
+        'Set the semester
+        Dim semester As String = cboSemester.Text
+        g.SetSemester(semester)
+
         Me.Visible = False
         frmStartSchedule2.Visible = True
     End Sub
@@ -37,6 +41,22 @@ Public Class frmStartSchedule1
         Dim ds As DataSet = SQL.GetStoredProc("GetClasses")
 
         ClassListGridView.DataSource = ds.Tables(0)
+        ClassListGridView.Columns("Course").AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
+        ClassListGridView.Columns("Course Name").Width = 285
+        ClassListGridView.Columns("Sections").AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
+        ClassListGridView.Columns("Online").AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
+
+        'Get current year and put values close to that in combo box
+        Dim thisYear As Integer = Today.Year
+
+        For i As Integer = -3 To 3
+            cboSemester.Items.Add("Spring " + ((thisYear + i).ToString))
+            cboSemester.Items.Add("Fall " + ((thisYear + i).ToString))
+        Next
+
+        'change to reflect the next semester
+        cboSemester.SelectedText = "Spring " + thisYear.ToString
+
         '.AllowUserToAddRows = False
         '.AllowUserToDeleteRows = False
         '.AllowUserToOrderColumns = False
