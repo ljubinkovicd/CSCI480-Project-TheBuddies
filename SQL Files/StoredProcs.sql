@@ -149,8 +149,7 @@ CREATE PROCEDURE EditClass
 	@StudentCreditHours DECIMAL(5,2),
 	@TeacherCreditHours DECIMAL(5,2),
 	@IsGradClass BIT,
-	@OrigDepartment VARCHAR(255),
-	@OrigCourseNum VARCHAR(255)
+	@ClassID INT
 AS
 BEGIN
 	UPDATE CLASS
