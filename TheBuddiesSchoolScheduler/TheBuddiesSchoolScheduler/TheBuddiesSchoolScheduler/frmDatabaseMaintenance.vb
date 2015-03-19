@@ -24,8 +24,10 @@ Public Class frmDatabaseMaintenance
             ' Edit Class Tab
             ds = SQL.GetStoredProc("GetCourseNumAndClassName")
 
+            tcEditClass.DisplayMember = ds.Tables(0).Columns(0).ToString
+            tcEditClass.ValueMember = ds.Tables(0).Columns(1).ToString
             tcEditClass.DataSource = ds.Tables(0)
-            tcEditClass.ValueMember = "Course"
+
             'cbDBData.DisplayMember = "au_lname"
 
             ds2 = SQL.GetStoredProc("GetAllClasses")
@@ -45,25 +47,42 @@ Public Class frmDatabaseMaintenance
             ' Remove Class Tab
             ds = SQL.GetStoredProc("GetCourseNumAndClassName")
 
+            cbDBData.DisplayMember = ds.Tables(0).Columns(0).ToString
+            cbDBData.ValueMember = ds.Tables(0).Columns(1).ToString
+
             cbDBData.DataSource = ds.Tables(0)
-            cbDBData.ValueMember = "Course"
-            'cbDBData.DisplayMember = "au_lname"
-            cbDBData.Visible = True
-            btnRemove.Visible = True '
         ElseIf tcDBMaint.SelectedIndex = 3 Then
             ' Add Professor
 
         ElseIf tcDBMaint.SelectedIndex = 4 Then
             ' Edit Professor
+            ds = SQL.GetStoredProc("GetProfessorName")
 
+            cbEditProfSelectProf.DisplayMember = ds.Tables(0).Columns(1).ToString
+            cbEditProfSelectProf.ValueMember = ds.Tables(0).Columns(0).ToString
+            cbEditProfSelectProf.DataSource = ds.Tables(0)
+
+            ds2 = SQL.GetStoredProc("GetAllProfessors")
+
+            index = cbEditProfSelectProf.SelectedIndex
+
+            ' TeacherID, FirstName, LastName, YearlyCreditHours, Associates, Bachelors, Masters, PhD
+            tbEditProfTeacherID.Text = ds2.Tables(0).Rows(0).Item("TeacherID")
+            tbEditProfFirstName.Text = ds2.Tables(0).Rows(0).Item("FirstName")
+            tbEditProfLastName.Text = ds2.Tables(0).Rows(0).Item("LastName")
+            tbEditProfCredHours.Text = ds2.Tables(0).Rows(0).Item("YearlyCreditHours")
+            chkEditProfAssociates.Checked = ds2.Tables(0).Rows(0).Item("Associates")
+            chkEditProfBachelors.Checked = ds2.Tables(0).Rows(0).Item("Bachelors")
+            chkEditProfMasters.Checked = ds2.Tables(0).Rows(0).Item("Masters")
+            chkEditProfPhD.Checked = ds2.Tables(0).Rows(0).Item("PhD")
         ElseIf tcDBMaint.SelectedIndex = 5 Then
             ' Remove Professor
             ds = SQL.GetStoredProc("GetProfessorName")
 
-            cbRmProfessor.DataSource = ds.Tables(0)
-            cbRmProfessor.ValueMember = "Professor"
-            'cbDBData.DisplayMember = "au_lname"
+            cbRmProfessor.DisplayMember = ds.Tables(0).Columns(1).ToString
+            cbRmProfessor.ValueMember = ds.Tables(0).Columns(0).ToString
 
+            cbRmProfessor.DataSource = ds.Tables(0)
         End If
     End Sub
 
@@ -110,6 +129,7 @@ Public Class frmDatabaseMaintenance
         Dim passed As Boolean = True
         Dim SQL As New SQLConnect
         Dim ds As DataSet = New DataSet
+        Dim ds2 As DataSet = New DataSet
         Dim proc As String = ""
 
         If Not (Trim(Dept) <> "" And CheckStringLength(Dept, 3, 4)) Then
@@ -119,6 +139,14 @@ Public Class frmDatabaseMaintenance
 
         If Not (Trim(CourseNum) <> "" And CheckStringLength(CourseNum, 3, 3)) Then
             MessageBox.Show("Course Number is either Blank or of the wrong size.")
+            passed = False
+        End If
+
+        proc = "CheckIfClassExists '" + Dept + "', '" + CourseNum + "'"
+        ds2 = SQL.GetStoredProc(proc)
+
+        If Not ds2 Is Nothing And ds2.Tables(0).Rows.Count > 0 Then
+            MessageBox.Show("The class " + Dept + CourseName + " already exists")
             passed = False
         End If
 
@@ -210,17 +238,19 @@ Public Class frmDatabaseMaintenance
         Dim SQL As New SQLConnect
         Dim ds As DataSet = SQL.GetStoredProc("GetProfessorName")
         Dim ds2 As DataSet = New DataSet
-        Dim TeacherID As Integer = 0
-        Dim index As Integer = 0
+        Dim TeacherID As String = ""
         Dim success As Boolean = True
+        Dim index As Integer = 0
+        Dim proc As String = ""
 
         Try
+            TeacherID = cbRmProfessor.SelectedValue
             index = cbRmProfessor.SelectedIndex
-            TeacherID = ds.Tables(0).Rows(index).Item("TeacherID")
 
             Dim result As Integer = MessageBox.Show("Are you sure that you would like to delete " + ds.Tables(0).Rows(index).Item("Professor") + "?", "The Buddies Scheduler", MessageBoxButtons.YesNoCancel)
             If result = DialogResult.Yes Then
-                ds2 = SQL.GetStoredProc("DeleteProfessor " + TeacherID.ToString())
+                proc = "DeleteProfessor '" + TeacherID + "'"
+                ds2 = SQL.GetStoredProc(proc)
                 ds.Tables(0).Rows(index).Delete()
                 cbRmProfessor.DataSource = ds.Tables(0)
                 cbRmProfessor.ValueMember = "Professor"
@@ -252,6 +282,7 @@ Public Class frmDatabaseMaintenance
         Dim passed As Boolean = True
         Dim proc As String = ""
         Dim ds As DataSet = New DataSet
+        Dim ds2 As DataSet = New DataSet
         Dim SQL As New SQLConnect
 
         If Not (Trim(TeacherID) <> "" And CheckStringLength(TeacherID, 6, 6)) Then
@@ -266,6 +297,15 @@ Public Class frmDatabaseMaintenance
 
         If Not (Trim(LastName) <> "" And CheckStringLength(LastName, 0, 255)) Then
             MessageBox.Show("Last Name is either Blank or of the wrong size.")
+            passed = False
+        End If
+
+        proc = "CheckIfProfessorExists '" + TeacherID + "', '" + FirstName + "', '" + LastName + "'"
+        ds2 = SQL.GetStoredProc(proc)
+
+        If Not ds2 Is Nothing And ds2.Tables(0).Rows.Count > 0 Then
+            MessageBox.Show("The teacher: " + FirstName + " " + LastName + " or the ID Number: " + TeacherID + _
+                                " already exists")
             passed = False
         End If
 
@@ -299,5 +339,155 @@ Public Class frmDatabaseMaintenance
             chkAddProfMasters.CheckState = CheckState.Unchecked
             chkAddProfPhD.CheckState = CheckState.Unchecked
         End If
+    End Sub
+
+    Private Sub cbEditProfSelectProf_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbEditProfSelectProf.SelectedIndexChanged
+        Dim SQL As New SQLConnect
+        Dim ds As DataSet = SQL.GetStoredProc("GetAllProfessors")
+        Dim ds2 As DataSet = New DataSet
+        Dim TeacherID As String = ""
+        Dim index As Integer = 0
+
+        index = cbEditProfSelectProf.SelectedIndex
+        TeacherID = ds.Tables(0).Rows(index).Item("TeacherID")
+
+        ' TeacherID, FirstName, LastName, YearlyCreditHours, Associates, Bachelors, Masters, PhD
+        tbEditProfTeacherID.Text = ds.Tables(0).Rows(index).Item("TeacherID")
+        tbEditProfFirstName.Text = ds.Tables(0).Rows(index).Item("FirstName")
+        tbEditProfLastName.Text = ds.Tables(0).Rows(index).Item("LastName")
+        tbEditProfCredHours.Text = ds.Tables(0).Rows(index).Item("YearlyCreditHours")
+        chkEditProfAssociates.Checked = ds.Tables(0).Rows(index).Item("Associates")
+        chkEditProfBachelors.Checked = ds.Tables(0).Rows(index).Item("Bachelors")
+        chkEditProfMasters.Checked = ds.Tables(0).Rows(index).Item("Masters")
+        chkEditProfPhD.Checked = ds.Tables(0).Rows(index).Item("PhD")
+    End Sub
+
+    Private Sub btnEditClassSave_Click(sender As Object, e As EventArgs) Handles btnEditClassSave.Click
+        Dim Dept As String = tbEditClassDept.Text
+        Dim CourseNum As String = tbEditClassCourseNum.Text
+        Dim CourseName As String = tbEditClassCourseName.Text
+        Dim StudentCredWorth As String = tbEditClassStuCredHr.Text
+        Dim ProfCredWorth As String = tbEditClassProfHr.Text
+        Dim GradClass As Boolean = chkEditClassGradClass.CheckState
+        Dim passed As Boolean = True
+        Dim SQL As New SQLConnect
+        Dim ds As DataSet = New DataSet
+        Dim proc As String = ""
+        Dim index = tcEditClass.SelectedIndex
+        Dim ClassID As Integer
+
+        ClassID = tcEditClass.SelectedValue
+
+        If Not (Trim(Dept) <> "" And CheckStringLength(Dept, 3, 4)) Then
+            MessageBox.Show("Department is either Blank or of the wrong size.")
+            passed = False
+        End If
+
+        If Not (Trim(CourseNum) <> "" And CheckStringLength(CourseNum, 3, 3)) Then
+            MessageBox.Show("Course Number is either Blank or of the wrong size.")
+            passed = False
+        End If
+
+        If Not (CheckIntegerNumeric(CourseNum, 3)) Then
+            MessageBox.Show("A Course Number Must be a 3 Digit Numeric Value")
+            passed = False
+        End If
+
+        If Not (Trim(CourseName) <> "" And CheckStringLength(CourseName, 0, 255)) Then
+            MessageBox.Show("Course Name is either Blank or of the wrong size.")
+            passed = False
+        End If
+
+        If Not (Trim(StudentCredWorth) <> "") Then
+            MessageBox.Show("Student Credit Hour Worth is either Blank or of the wrong size.")
+            passed = False
+        End If
+
+        If Not (Trim(ProfCredWorth) <> "") Then
+            MessageBox.Show("Professor Credit Hour Worth is either Blank or of the wrong size.")
+            passed = False
+        End If
+
+        If passed Then
+            Try
+                proc = "EditClass '" + Dept + "', '" + CourseNum + "' , '" + CourseName + "', " + StudentCredWorth.ToString + _
+                                            ", " + ProfCredWorth.ToString + ", " + GradClass.ToString + ", " + ClassID.ToString
+                ds = SQL.GetStoredProc(proc)
+            Catch ex As Exception
+                passed = False
+                MessageBox.Show("Class was not successfully changed in the database.")
+            End Try
+
+        Else
+            MessageBox.Show("Please fix the problems and try again")
+        End If
+
+        If passed Then
+            MessageBox.Show("Class was successfully edited in the database.")
+
+            ds = SQL.GetStoredProc("GetCourseNumAndClassName")
+
+            tcEditClass.DisplayMember = ds.Tables(0).Columns(0).ToString
+            tcEditClass.ValueMember = ds.Tables(0).Columns(1).ToString
+            tcEditClass.DataSource = ds.Tables(0)
+        End If
+
+    End Sub
+
+    Private Sub btnEditProfessorSave_Click(sender As Object, e As EventArgs) Handles btnEditProfessorSave.Click
+        Dim TeacherID As String = tbEditProfTeacherID.Text
+        Dim FirstName As String = tbEditProfFirstName.Text
+        Dim LastName As String = tbEditProfLastName.Text
+        Dim CreditHours As String = tbEditProfCredHours.Text
+        Dim Associates As Boolean = chkEditProfAssociates.Checked
+        Dim Bachelors As Boolean = chkEditProfBachelors.Checked
+        Dim Masters As Boolean = chkEditProfMasters.Checked
+        Dim Doctorate As Boolean = chkEditProfPhD.Checked
+        Dim passed As Boolean = True
+        Dim proc As String = ""
+        Dim ds As DataSet = New DataSet
+        Dim SQL As New SQLConnect
+
+        TeacherID = cbEditProfSelectProf.SelectedValue
+        'OrigCourseNum = Trim(tcEditClass.SelectedValue.ToString.Substring(5, 3))
+
+        If Not (Trim(FirstName) <> "" And CheckStringLength(FirstName, 0, 255)) Then
+            MessageBox.Show("First Name is either Blank or of the wrong size.")
+            passed = False
+        End If
+
+        If Not (Trim(LastName) <> "" And CheckStringLength(LastName, 0, 255)) Then
+            MessageBox.Show("Last Name is either Blank or of the wrong size.")
+            passed = False
+        End If
+
+        If Not (Trim(CreditHours) <> "" And CheckStringLength(CreditHours, 0, 6)) Then
+            MessageBox.Show("Yearly Credit Hours is either Blank or of the wrong size.")
+            passed = False
+        End If
+
+        If passed Then
+            Try
+                proc = "EditProfessor '" + TeacherID + "', '" + FirstName + "' , '" + LastName + "', " + CreditHours + _
+                                            ", " + Associates.ToString + ", " + Bachelors.ToString + ", " + Masters.ToString + ", " + Doctorate.ToString
+                ds = SQL.GetStoredProc(proc)
+            Catch ex As Exception
+                passed = False
+                MessageBox.Show("The professor was not successfully changed in the database.")
+            End Try
+
+        Else
+            MessageBox.Show("Please fix the problems and try again")
+        End If
+
+        If passed Then
+            MessageBox.Show("Class was successfully edited in the database.")
+            ds = SQL.GetStoredProc("GetProfessorName")
+
+            cbEditProfSelectProf.DisplayMember = ds.Tables(0).Columns(1).ToString
+            cbEditProfSelectProf.ValueMember = ds.Tables(0).Columns(0).ToString
+            cbEditProfSelectProf.DataSource = ds.Tables(0)
+        End If
+
     End Sub
 End Class

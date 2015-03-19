@@ -81,7 +81,7 @@ CREATE PROCEDURE EditProfessor
 	@PhD BIT
 AS
 BEGIN
-	UPDATE Professor
+	UPDATE PROFESSOR
 	SET FirstName = @FirstName, LastName = @LastName, YearlyCreditHours = @YearlyCreditHours, 
 		Associates = @Associates, Bachelors = @Bachelors, Masters = @Masters, PhD = @PhD
 	WHERE TeacherID = @TeacherID
@@ -149,7 +149,8 @@ CREATE PROCEDURE EditClass
 	@StudentCreditHours DECIMAL(5,2),
 	@TeacherCreditHours DECIMAL(5,2),
 	@IsGradClass BIT,
-	@ClassID INT
+	@OrigDepartment VARCHAR(255),
+	@OrigCourseNum VARCHAR(255)
 AS
 BEGIN
 	UPDATE CLASS
@@ -386,3 +387,45 @@ BEGIN
 	END
 END
 --End Procedure InsertToSchedule --
+
+
+-- Start Procedure CheckIfClassExists --
+IF EXISTS ( SELECT  *
+            FROM    sys.objects
+            WHERE   object_id = OBJECT_ID(N'CheckIfClassExists')
+                    AND type IN ( N'P', N'PC' ) ) 
+DROP PROCEDURE CheckIfClassExists;
+GO
+
+CREATE PROCEDURE CheckIfClassExists 
+	@Department VARCHAR(255),
+	@CourseNum VARCHAR(255)
+AS
+(
+	SELECT *
+	FROM	CLASS
+	WHERE Department = @Department AND CourseNum = @CourseNum
+)
+GO
+-- End Procedure CheckIfClassExists --
+
+-- Start Procedure CheckIfProfessorExists --
+IF EXISTS ( SELECT  *
+            FROM    sys.objects
+            WHERE   object_id = OBJECT_ID(N'CheckIfProfessorExists')
+                    AND type IN ( N'P', N'PC' ) ) 
+DROP PROCEDURE CheckIfProfessorExists;
+GO
+
+CREATE PROCEDURE CheckIfProfessorExists 
+    @TeacherID VARCHAR(6),
+	@FirstName VARCHAR(255),
+	@LastName VARCHAR(255)
+AS
+(
+	SELECT *
+	FROM	PROFESSOR
+	WHERE (FirstName = @FirstName AND LastName = @LastName) OR (TeacherID = @TeacherID)
+)
+GO
+-- End Procedure CheckIfProfessorExists --
