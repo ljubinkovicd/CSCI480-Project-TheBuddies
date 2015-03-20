@@ -13,6 +13,7 @@ Public Class frmScheduleBuilder
     Dim CursorX, CursorY As Integer
     Dim Dragging As Boolean = False
     Dim controlPoint As Point
+    Dim dragToggle As Boolean = False
 
     Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
         Me.Visible = False
@@ -62,7 +63,7 @@ Public Class frmScheduleBuilder
                 .TextAlign = ContentAlignment.MiddleCenter
                 .BorderStyle = BorderStyle.FixedSingle
                 .ContextMenuStrip = cmsRightClick
-                AddHandler .Click, AddressOf LabelMouseUp
+                'AddHandler .Click, AddressOf LabelMouseUp
                 AddHandler .MouseDown, AddressOf labelDown
                 AddHandler .MouseMove, AddressOf labelMove
                 AddHandler .MouseUp, AddressOf labelUp
@@ -87,11 +88,11 @@ Public Class frmScheduleBuilder
 
     End Sub
 
-    Public Sub LabelMouseUp(ByVal sender As System.Object, ByVal e As System.Windows.Forms.MouseEventArgs)
-        If e.Button = Windows.Forms.MouseButtons.Right Then
-            cmsRightClick.Show()
-        End If
-    End Sub
+    'Public Sub LabelMouseUp(ByVal sender As System.Object, ByVal e As System.Windows.Forms.MouseEventArgs)
+    '    If e.Button = Windows.Forms.MouseButtons.Right Then
+    '        cmsRightClick.Show()
+    '    End If
+    'End Sub
 
     Private Sub EditToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EditToolStripMenuItem.Click
         Dim lbl = cmsRightClick.SourceControl.Name.ToString.Remove(0, 3)
@@ -100,50 +101,74 @@ Public Class frmScheduleBuilder
         frmClassSpecs.ShowDialog()
     End Sub
 
+    Private Sub RemoveToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RemoveToolStripMenuItem.Click
+        Dim lbl = cmsRightClick.SourceControl.Name.ToString
+        Dim label2 As Label = CType(Me.TableLayoutPanel1.Controls(lbl), Label)
+
+        '***************eventually want to not place labels on top of each other if removing multiple **************
+
+        If label2 IsNot Nothing Then
+            TableLayoutPanel1.Controls.Remove(label2)
+            ClassesPanel.Controls.Add(label2)
+        End If
+    End Sub
+
     Private Sub labelDown(sender As System.Object, e As System.Windows.Forms.MouseEventArgs) Handles Label1.MouseDown
-        Dim lbl As Label = DirectCast(sender, Label)
-        Dim mousePoint As Point = Cursor.Position ' mouse position in screen coordinates
+        If e.Button = Windows.Forms.MouseButtons.Left Then
+            If dragToggle Then
+                Dragging = True
+            Else
+                Dim lbl As Label = DirectCast(sender, Label)
+                Dim mousePoint As Point = Cursor.Position ' mouse position in screen coordinates
 
-        controlPoint = lbl.PointToClient(mousePoint) ' offset from (0, 0) in label coordinates
+                controlPoint = lbl.PointToClient(mousePoint) ' offset from (0, 0) in label coordinates
 
-        ' This is the location of the label's (0, 0) in screen coordinates.
-        Dim screenLoc As Point = New Point(mousePoint.X - controlPoint.X, mousePoint.Y - controlPoint.Y)
+                ' This is the location of the label's (0, 0) in screen coordinates.
+                Dim screenLoc As Point = New Point(mousePoint.X - controlPoint.X, mousePoint.Y - controlPoint.Y)
 
-        ' Remove the label from the panel and make it a child of the form; bring it to 
-        'the front to make sure it's not hidden behind the panel.
-        TableLayoutPanel1.Controls.Remove(lbl)
-        Me.Controls.Add(lbl)
-        lbl.BringToFront()
+                ' Remove the label from the panel and make it a child of the form; bring it to 
+                'the front to make sure it's not hidden behind the panel.
+                TableLayoutPanel1.Controls.Remove(lbl)
+                Me.Controls.Add(lbl)
+                lbl.BringToFront()
 
-        lbl.Location = Me.PointToClient(screenLoc)
-        ' Set the flag
-        Dragging = True
+                lbl.Location = Me.PointToClient(screenLoc)
+                ' Set the flag
+                Dragging = True
 
-        ' Note positions of cursor when pressed
-        CursorX = e.X
-        CursorY = e.Y
+                ' Note positions of cursor when pressed
+                CursorX = e.X
+                CursorY = e.Y
+            End If
+        End If
     End Sub
 
     Private Sub labelUp(sender As System.Object, e As System.Windows.Forms.MouseEventArgs) Handles Label1.MouseUp
-        If Dragging Then
-            Dim mouseLocation As Point = Cursor.Position ' mouse location in screen coordinates
-            Dim formLocation As Point = Me.PointToClient(mouseLocation) ' form coordinates
+        If e.Button = Windows.Forms.MouseButtons.Right Then
+            cmsRightClick.Show()
+        ElseIf Dragging Then
+            If dragToggle Then
+                Dragging = False
+            Else
+                Dim mouseLocation As Point = Cursor.Position ' mouse location in screen coordinates
+                Dim formLocation As Point = Me.PointToClient(mouseLocation) ' form coordinates
 
-            ' This is what the location of the label should be set to; it's in form coordinates
-            Dim finalLocation As Point = New Point(formLocation.X - controlPoint.X, formLocation.Y - controlPoint.Y)
+                ' This is what the location of the label should be set to; it's in form coordinates
+                Dim finalLocation As Point = New Point(formLocation.X - controlPoint.X, formLocation.Y - controlPoint.Y)
 
-            ' Get the label and set its location
-            Dim lbl As Label = DirectCast(sender, Label)
-            lbl.Location = finalLocation
+                ' Get the label and set its location
+                Dim lbl As Label = DirectCast(sender, Label)
+                lbl.Location = finalLocation
 
-            ' Remove the label from the form's controls and make it a child of the table layout
-            ' panel.  Also, calculate its new position in the table.
-            Me.Controls.Remove(lbl)
-            TableLayoutPanel1.Controls.Add(lbl)
-            TableLayoutPanel1.SetCellPosition(lbl, GetCellCoordinates())
+                ' Remove the label from the form's controls and make it a child of the table layout
+                ' panel.  Also, calculate its new position in the table.
+                Me.Controls.Remove(lbl)
+                TableLayoutPanel1.Controls.Add(lbl)
+                TableLayoutPanel1.SetCellPosition(lbl, GetCellCoordinates())
 
-            ' Indicate we're no longer dragging
-            Dragging = False
+                ' Indicate we're no longer dragging
+                Dragging = False
+            End If
         End If
     End Sub
 
@@ -226,4 +251,16 @@ Public Class frmScheduleBuilder
         Return pos
 
     End Function
+
+    Private Sub btnToggleDrag_Click(sender As Object, e As EventArgs) Handles btnToggleDrag.Click
+        If dragToggle Then
+            dragToggle = False
+            lbldragToggle.Text = "Off"
+        Else
+            dragToggle = True
+            lbldragToggle.Text = "On"
+        End If
+
+
+    End Sub
 End Class

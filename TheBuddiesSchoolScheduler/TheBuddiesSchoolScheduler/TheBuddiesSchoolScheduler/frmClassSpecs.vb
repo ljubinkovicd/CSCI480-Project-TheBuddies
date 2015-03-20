@@ -64,10 +64,15 @@
 
         'change the text of the label on the schedule builder screen
         Dim label As Label = CType(frmScheduleBuilder.ClassesPanel.Controls("lbl" + lbl), Label)
+        Dim label2 As Label = CType(frmScheduleBuilder.TableLayoutPanel1.Controls("lbl" + lbl), Label)
 
         '"CSCI 027.1" & vbCrLf & "Helen Schneider" & vbCrLf & "3.00 hours"
         'Need to figure out how to get the credit hours
-        label.Text = lbl + vbNewLine + cboProfessor.SelectedItem(1).ToString + vbNewLine + "3 hours"
+        If label IsNot Nothing Then
+            label.Text = lbl + vbNewLine + cboProfessor.SelectedItem(1).ToString + vbNewLine + "3 hours"
+        ElseIf label2 IsNot Nothing Then
+            label2.Text = lbl + vbNewLine + cboProfessor.SelectedItem(1).ToString + vbNewLine + "3 hours"
+        End If
 
         Me.Close()
         frmScheduleBuilder.Visible = True
