@@ -1,8 +1,7 @@
 ﻿Public Class frmClassSpecs
 
     Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
-        Me.Visible = False
-        frmScheduleBuilder.Visible = True
+        Me.Close()
     End Sub
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
@@ -75,7 +74,6 @@
         End If
 
         Me.Close()
-        frmScheduleBuilder.Visible = True
     End Sub
 
     Private Sub frmClassSpecs_Load(sender As Object, e As EventArgs) Handles MyBase.Load

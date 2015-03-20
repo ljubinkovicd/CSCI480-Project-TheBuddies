@@ -4,9 +4,7 @@ Imports System.Text.RegularExpressions
 Public Class frmDatabaseMaintenance
 
     Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
-        frmWelcome.Visible = True
-
-        Me.Visible = False
+        Me.Close()
     End Sub
 
 

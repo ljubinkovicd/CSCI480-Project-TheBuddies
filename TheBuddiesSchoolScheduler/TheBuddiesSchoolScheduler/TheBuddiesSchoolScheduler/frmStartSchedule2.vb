@@ -3,13 +3,12 @@
 Public Class frmStartSchedule2
 
     Private Sub btnBack_Click_1(sender As Object, e As EventArgs) Handles btnBack.Click
-        Me.Visible = False
-        frmStartSchedule1.Visible = True
+        frmStartSchedule1.Show()
+        Me.Close()
     End Sub
 
     Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
-        Me.Visible = False
-        frmWelcome.Visible = True
+        Me.Close()
     End Sub
 
     Private Sub btnNext_Click(sender As Object, e As EventArgs) Handles btnNext.Click
@@ -68,8 +67,8 @@ Public Class frmStartSchedule2
 
         Next
 
-        Me.Visible = False
-        frmScheduleBuilder.Visible = True
+        frmScheduleBuilder.Show()
+        Me.Close()
     End Sub
 
     Private Sub frmStartSchedule2_Load(sender As Object, e As EventArgs) Handles MyBase.Load
