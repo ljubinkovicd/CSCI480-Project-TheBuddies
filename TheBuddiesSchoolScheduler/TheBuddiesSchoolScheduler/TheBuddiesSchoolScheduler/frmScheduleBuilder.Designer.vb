@@ -35,6 +35,7 @@ Partial Class frmScheduleBuilder
         Me.ClassesPanel = New System.Windows.Forms.Panel()
         Me.cmsRightClick = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.EditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.RemoveToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -48,11 +49,15 @@ Partial Class frmScheduleBuilder
         Me.Label11 = New System.Windows.Forms.Label()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.Label13 = New System.Windows.Forms.Label()
-        Me.Label14 = New System.Windows.Forms.Label()
-        Me.Label15 = New System.Windows.Forms.Label()
-        Me.RemoveToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.lblMonday = New System.Windows.Forms.Label()
         Me.btnToggleDrag = New System.Windows.Forms.Button()
         Me.lbldragToggle = New System.Windows.Forms.Label()
+        Me.lblTuesday = New System.Windows.Forms.Label()
+        Me.lblWednesday = New System.Windows.Forms.Label()
+        Me.lblThursday = New System.Windows.Forms.Label()
+        Me.lblFriday = New System.Windows.Forms.Label()
+        Me.lblSaturday = New System.Windows.Forms.Label()
+        Me.lblSunday = New System.Windows.Forms.Label()
         Me.cmsRightClick.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -158,19 +163,25 @@ Partial Class frmScheduleBuilder
         Me.EditToolStripMenuItem.Size = New System.Drawing.Size(117, 22)
         Me.EditToolStripMenuItem.Text = "Edit"
         '
+        'RemoveToolStripMenuItem
+        '
+        Me.RemoveToolStripMenuItem.Name = "RemoveToolStripMenuItem"
+        Me.RemoveToolStripMenuItem.Size = New System.Drawing.Size(117, 22)
+        Me.RemoveToolStripMenuItem.Text = "Remove"
+        '
         'TableLayoutPanel1
         '
         Me.TableLayoutPanel1.AllowDrop = True
         Me.TableLayoutPanel1.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.[Single]
         Me.TableLayoutPanel1.ColumnCount = 7
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 101.0!))
-        Me.TableLayoutPanel1.Location = New System.Drawing.Point(435, 58)
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(427, 58)
         Me.TableLayoutPanel1.Margin = New System.Windows.Forms.Padding(2)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 28
@@ -202,15 +213,14 @@ Partial Class frmScheduleBuilder
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(700, 589)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(490, 589)
         Me.TableLayoutPanel1.TabIndex = 37
         '
         'Label2
         '
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(398, 61)
+        Me.Label2.Location = New System.Drawing.Point(390, 61)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(32, 16)
         Me.Label2.TabIndex = 38
@@ -220,7 +230,7 @@ Partial Class frmScheduleBuilder
         '
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(398, 82)
+        Me.Label3.Location = New System.Drawing.Point(390, 82)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(32, 16)
         Me.Label3.TabIndex = 39
@@ -230,7 +240,7 @@ Partial Class frmScheduleBuilder
         '
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(398, 102)
+        Me.Label4.Location = New System.Drawing.Point(390, 102)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(32, 16)
         Me.Label4.TabIndex = 40
@@ -240,7 +250,7 @@ Partial Class frmScheduleBuilder
         '
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(398, 164)
+        Me.Label5.Location = New System.Drawing.Point(390, 164)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(32, 16)
         Me.Label5.TabIndex = 43
@@ -250,7 +260,7 @@ Partial Class frmScheduleBuilder
         '
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(398, 144)
+        Me.Label6.Location = New System.Drawing.Point(390, 144)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(32, 16)
         Me.Label6.TabIndex = 42
@@ -260,7 +270,7 @@ Partial Class frmScheduleBuilder
         '
         Me.Label7.AutoSize = True
         Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.Location = New System.Drawing.Point(398, 123)
+        Me.Label7.Location = New System.Drawing.Point(390, 123)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(32, 16)
         Me.Label7.TabIndex = 41
@@ -270,7 +280,7 @@ Partial Class frmScheduleBuilder
         '
         Me.Label8.AutoSize = True
         Me.Label8.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label8.Location = New System.Drawing.Point(398, 289)
+        Me.Label8.Location = New System.Drawing.Point(390, 289)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(32, 16)
         Me.Label8.TabIndex = 49
@@ -280,7 +290,7 @@ Partial Class frmScheduleBuilder
         '
         Me.Label9.AutoSize = True
         Me.Label9.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.Location = New System.Drawing.Point(398, 269)
+        Me.Label9.Location = New System.Drawing.Point(390, 269)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(32, 16)
         Me.Label9.TabIndex = 48
@@ -290,7 +300,7 @@ Partial Class frmScheduleBuilder
         '
         Me.Label10.AutoSize = True
         Me.Label10.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label10.Location = New System.Drawing.Point(398, 248)
+        Me.Label10.Location = New System.Drawing.Point(390, 248)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(32, 16)
         Me.Label10.TabIndex = 47
@@ -300,7 +310,7 @@ Partial Class frmScheduleBuilder
         '
         Me.Label11.AutoSize = True
         Me.Label11.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label11.Location = New System.Drawing.Point(398, 227)
+        Me.Label11.Location = New System.Drawing.Point(390, 227)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(32, 16)
         Me.Label11.TabIndex = 46
@@ -310,7 +320,7 @@ Partial Class frmScheduleBuilder
         '
         Me.Label12.AutoSize = True
         Me.Label12.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label12.Location = New System.Drawing.Point(398, 207)
+        Me.Label12.Location = New System.Drawing.Point(390, 207)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(32, 16)
         Me.Label12.TabIndex = 45
@@ -320,37 +330,22 @@ Partial Class frmScheduleBuilder
         '
         Me.Label13.AutoSize = True
         Me.Label13.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label13.Location = New System.Drawing.Point(398, 186)
+        Me.Label13.Location = New System.Drawing.Point(390, 186)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(32, 16)
         Me.Label13.TabIndex = 44
         Me.Label13.Text = "8:00"
         '
-        'Label14
+        'lblMonday
         '
-        Me.Label14.AutoSize = True
-        Me.Label14.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label14.Location = New System.Drawing.Point(454, 40)
-        Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(57, 16)
-        Me.Label14.TabIndex = 50
-        Me.Label14.Text = "Monday"
-        '
-        'Label15
-        '
-        Me.Label15.AutoSize = True
-        Me.Label15.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label15.Location = New System.Drawing.Point(556, 40)
-        Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(57, 16)
-        Me.Label15.TabIndex = 51
-        Me.Label15.Text = "Monday"
-        '
-        'RemoveToolStripMenuItem
-        '
-        Me.RemoveToolStripMenuItem.Name = "RemoveToolStripMenuItem"
-        Me.RemoveToolStripMenuItem.Size = New System.Drawing.Size(117, 22)
-        Me.RemoveToolStripMenuItem.Text = "Remove"
+        Me.lblMonday.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.lblMonday.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblMonday.Location = New System.Drawing.Point(429, 28)
+        Me.lblMonday.Name = "lblMonday"
+        Me.lblMonday.Size = New System.Drawing.Size(65, 25)
+        Me.lblMonday.TabIndex = 50
+        Me.lblMonday.Text = "Monday"
+        Me.lblMonday.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'btnToggleDrag
         '
@@ -370,16 +365,87 @@ Partial Class frmScheduleBuilder
         Me.lbldragToggle.TabIndex = 53
         Me.lbldragToggle.Text = "Off"
         '
+        'lblTuesday
+        '
+        Me.lblTuesday.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.lblTuesday.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblTuesday.Location = New System.Drawing.Point(501, 28)
+        Me.lblTuesday.Name = "lblTuesday"
+        Me.lblTuesday.Size = New System.Drawing.Size(65, 25)
+        Me.lblTuesday.TabIndex = 54
+        Me.lblTuesday.Text = "Tuesday"
+        Me.lblTuesday.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'lblWednesday
+        '
+        Me.lblWednesday.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.lblWednesday.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblWednesday.Location = New System.Drawing.Point(572, 28)
+        Me.lblWednesday.Name = "lblWednesday"
+        Me.lblWednesday.Size = New System.Drawing.Size(67, 25)
+        Me.lblWednesday.TabIndex = 55
+        Me.lblWednesday.Text = "Wednesday"
+        Me.lblWednesday.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'lblThursday
+        '
+        Me.lblThursday.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.lblThursday.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblThursday.Location = New System.Drawing.Point(644, 28)
+        Me.lblThursday.Name = "lblThursday"
+        Me.lblThursday.Size = New System.Drawing.Size(65, 25)
+        Me.lblThursday.TabIndex = 56
+        Me.lblThursday.Text = "Thursday"
+        Me.lblThursday.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'lblFriday
+        '
+        Me.lblFriday.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.lblFriday.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblFriday.Location = New System.Drawing.Point(715, 28)
+        Me.lblFriday.Name = "lblFriday"
+        Me.lblFriday.Size = New System.Drawing.Size(65, 25)
+        Me.lblFriday.TabIndex = 57
+        Me.lblFriday.Text = "Friday"
+        Me.lblFriday.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'lblSaturday
+        '
+        Me.lblSaturday.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.lblSaturday.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblSaturday.Location = New System.Drawing.Point(785, 28)
+        Me.lblSaturday.Name = "lblSaturday"
+        Me.lblSaturday.Size = New System.Drawing.Size(65, 25)
+        Me.lblSaturday.TabIndex = 58
+        Me.lblSaturday.Text = "Saturday"
+        Me.lblSaturday.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'lblSunday
+        '
+        Me.lblSunday.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.lblSunday.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblSunday.Location = New System.Drawing.Point(854, 28)
+        Me.lblSunday.Name = "lblSunday"
+        Me.lblSunday.Size = New System.Drawing.Size(65, 25)
+        Me.lblSunday.TabIndex = 59
+        Me.lblSunday.Text = "Sunday"
+        Me.lblSunday.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
         'frmScheduleBuilder
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoScroll = True
         Me.ClientSize = New System.Drawing.Size(1146, 765)
+        Me.Controls.Add(Me.lblSunday)
+        Me.Controls.Add(Me.lblSaturday)
+        Me.Controls.Add(Me.lblFriday)
+        Me.Controls.Add(Me.lblThursday)
+        Me.Controls.Add(Me.lblWednesday)
+        Me.Controls.Add(Me.lblTuesday)
         Me.Controls.Add(Me.lbldragToggle)
         Me.Controls.Add(Me.btnToggleDrag)
-        Me.Controls.Add(Me.Label15)
-        Me.Controls.Add(Me.Label14)
+        Me.Controls.Add(Me.lblMonday)
         Me.Controls.Add(Me.Label8)
         Me.Controls.Add(Me.Label9)
         Me.Controls.Add(Me.Label10)
@@ -436,9 +502,14 @@ Partial Class frmScheduleBuilder
     Friend WithEvents Label11 As System.Windows.Forms.Label
     Friend WithEvents Label12 As System.Windows.Forms.Label
     Friend WithEvents Label13 As System.Windows.Forms.Label
-    Friend WithEvents Label14 As System.Windows.Forms.Label
-    Friend WithEvents Label15 As System.Windows.Forms.Label
+    Friend WithEvents lblMonday As System.Windows.Forms.Label
     Friend WithEvents RemoveToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents btnToggleDrag As System.Windows.Forms.Button
     Friend WithEvents lbldragToggle As System.Windows.Forms.Label
+    Friend WithEvents lblTuesday As System.Windows.Forms.Label
+    Friend WithEvents lblWednesday As System.Windows.Forms.Label
+    Friend WithEvents lblThursday As System.Windows.Forms.Label
+    Friend WithEvents lblFriday As System.Windows.Forms.Label
+    Friend WithEvents lblSaturday As System.Windows.Forms.Label
+    Friend WithEvents lblSunday As System.Windows.Forms.Label
 End Class
