@@ -9,7 +9,7 @@ CREATE TABLE CLASS
 	ClassID INT IDENTITY(1,1) PRIMARY KEY,
 	Department VARCHAR(255) NOT NULL,
 	CourseNum VARCHAR(255) NOT NULL,
-	CourseName VARCHAR(255),
+	CourseName VARCHAR(255) NOT NULL,
 	StudentCreditHours DECIMAL(5,2),
 	TeacherCreditHours DECIMAL(5,2),
 	IsGradClass BIT
@@ -63,7 +63,7 @@ GO
 CREATE TABLE SCHEDULE
 (
 	ClassID INT FOREIGN KEY REFERENCES CLASS(ClassID),
-	SectionNum INT NOT NULL,
+	SectionNum VARCHAR(2) NOT NULL,
 	StartTime INT,
 	EndTime INT,
 	Mon BIT,
@@ -157,3 +157,16 @@ INSERT INTO ROOMS
 VALUES
 	('Unassigned', 0)
 -- END ROOMS Insert Statement --
+
+-- BEGIN PROFESSOR FirstNameLastName INDEX Statement --
+CREATE INDEX ProfFirstNameLastName
+ON PROFESSOR (LastName, FirstName)
+GO
+-- END PROFESSOR FirstNameLastName INDEX Statement --
+
+
+-- BEGIN CLASS DeptCourseNumUnique INDEX Statement --
+CREATE UNIQUE INDEX DeptCourseNumUnique
+ON CLASS (Department, CourseNum)
+GO
+-- END PROFESSOR DeptCourseNumUnique INDEX Statement --

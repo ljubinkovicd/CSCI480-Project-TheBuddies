@@ -408,6 +408,7 @@ AS
 GO
 -- End Procedure CheckIfClassExists --
 
+
 -- Start Procedure CheckIfProfessorExists --
 IF EXISTS ( SELECT  *
             FROM    sys.objects
@@ -428,3 +429,4 @@ AS
 )
 GO
 -- End Procedure CheckIfProfessorExists --
+
