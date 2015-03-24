@@ -333,6 +333,7 @@ BEGIN
 	JOIN	CLASS C ON S.ClassID = C.ClassID
 	LEFT JOIN	PROFESSOR P ON S.TeacherID = P.TeacherID
 END
+GO
 -- End Procedure GetScheduleForLabels --
 
 -- Start Procedure InsertToSchedule --
@@ -385,7 +386,96 @@ BEGIN
 		VALUES (@classID, @sectionNum, @startTime, @endTime, @mon, @tues, @wed, @thurs, @fri, @sat, @sun, @teacherID, @roomID)
 	END
 END
+GO
 --End Procedure InsertToSchedule --
+
+-- Start Procedure InsertTimeDayToSchedule --
+IF EXISTS ( SELECT  *
+            FROM    sys.objects
+            WHERE   object_id = OBJECT_ID(N'InsertTimeDayToSchedule')
+                    AND type IN ( N'P', N'PC' ) ) 
+DROP PROCEDURE InsertTimeDayToSchedule;
+GO
+
+CREATE PROCEDURE InsertTimeDayToSchedule 
+	@department varchar(255),
+	@courseNum varchar(255),
+	@sectionNum int,
+	@startTime int,
+	@endTime int,
+	@dayOfWeek varchar(255)
+	AS
+BEGIN
+	DECLARE @classID int
+	SELECT	@classID = (	SELECT	ClassID	
+							FROM	CLASS
+							WHERE	Department = @department
+							AND		CourseNum = @courseNum)
+
+	IF @dayOfWeek = 'Monday'
+	BEGIN
+		UPDATE SCHEDULE
+		SET		Mon = 1
+		WHERE	ClassID = @classID
+		AND		SectionNum = @sectionNum
+	END
+	IF @dayOfWeek = 'Tuesday'
+	BEGIN
+		UPDATE SCHEDULE
+		SET		Tues = 1
+		WHERE	ClassID = @classID
+		AND		SectionNum = @sectionNum
+	END
+	IF @dayOfWeek = 'Wednesday'
+	BEGIN
+		UPDATE SCHEDULE
+		SET		Wed = 1
+		WHERE	ClassID = @classID
+		AND		SectionNum = @sectionNum
+	END
+	IF @dayOfWeek = 'Thursday'
+	BEGIN
+		UPDATE SCHEDULE
+		SET		Thurs = 1
+		WHERE	ClassID = @classID
+		AND		SectionNum = @sectionNum
+	END
+	IF @dayOfWeek = 'Friday'
+	BEGIN
+		UPDATE SCHEDULE
+		SET		Fri = 1
+		WHERE	ClassID = @classID
+		AND		SectionNum = @sectionNum
+	END
+	IF @dayOfWeek = 'Saturday'
+	BEGIN
+		UPDATE SCHEDULE
+		SET		Sat = 1
+		WHERE	ClassID = @classID
+		AND		SectionNum = @sectionNum
+	END
+	IF @dayOfWeek = 'Sunday'
+	BEGIN
+		UPDATE SCHEDULE
+		SET		Sun = 1
+		WHERE	ClassID = @classID
+		AND		SectionNum = @sectionNum
+	END
+	IF @dayOfWeek = 'Remove'
+	BEGIN
+		UPDATE SCHEDULE
+		SET		Mon = 0, Tues = 0, Wed = 0, Thurs = 0, Fri = 0, Sat = 0, Sun = 0
+		WHERE	ClassID = @classID
+		AND		SectionNum = @sectionNum
+	END
+		
+	UPDATE	SCHEDULE
+	SET		StartTime = @startTime, EndTime = @endTime
+	WHERE	ClassID = @classID
+	AND		SectionNum = @sectionNum
+END
+GO
+--End Procedure InsertTimeDayToSchedule --
 
 
 -- Start Procedure CheckIfClassExists --

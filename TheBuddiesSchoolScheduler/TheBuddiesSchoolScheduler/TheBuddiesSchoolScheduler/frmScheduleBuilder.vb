@@ -11,6 +11,7 @@ Imports System.Threading.Tasks
 Public Class frmScheduleBuilder
     Const tlpCol As Integer = 70
     Const tlpRow As Integer = 20
+    Const tlpRowCount As Integer = 28
 
     Dim CursorX, CursorY As Integer
     Dim Dragging As Boolean = False
@@ -18,6 +19,7 @@ Public Class frmScheduleBuilder
     Dim dragToggle As Boolean = False
     Dim addedColList As New List(Of Integer)
     Dim daysdt As New DataTable
+    Dim time(tlpRowCount) As Integer
 
     Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
         Me.Close()
@@ -37,10 +39,6 @@ Public Class frmScheduleBuilder
     End Sub
 
     Private Sub frmScheduleBuilder_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'Dim g As New Globals
-        'Dim dt As New DataTable
-        'dt = g.GetDT(dt)
-
         Dim sql As New SQLConnect
         Dim ds As New DataSet
         ds = sql.GetStoredProc("GetScheduleForLabels")
@@ -88,6 +86,8 @@ Public Class frmScheduleBuilder
         Next
 
         initializeDaysDt()
+        initializeTime()
+        testDGV.DataSource = daysdt
 
     End Sub
 
@@ -98,10 +98,93 @@ Public Class frmScheduleBuilder
     'End Sub
 
     Private Sub EditToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EditToolStripMenuItem.Click
-        Dim lbl = cmsRightClick.SourceControl.Name.ToString.Remove(0, 3)
+        Dim lbl = cmsRightClick.SourceControl.Name.ToString
         Dim g As New Globals
-        g.SetLabel(lbl)
-        frmClassSpecs.ShowDialog()
+        g.SetLabel(lbl.Remove(0, 3))
+        Dim frm = frmClassSpecs.ShowDialog()
+
+        'if either the time or day has change, need to reflect in table
+        Dim changeDT As New DataTable
+        changeDT = g.GetDT(changeDT)
+        Try
+            If changeDT.Rows(0).Item("ChangeTime").ToString = "True" Or changeDT.Rows(0).Item("ChangeDay").ToString = "True" Then
+                Dim startTime = CType(changeDT.Rows(0).Item("StartTime").ToString, Integer)
+                Dim endTime = CType(changeDT.Rows(0).Item("EndTime").ToString, Integer)
+                Dim days = changeDT.Rows(0).Item("Days").ToString
+
+                'if there are no days to add, check to see where the label is and only change if it is in the tlp
+                If days.Length > 0 Then
+                    'set the new label position
+                    'for now grabbing the first day to add it like that
+                    days = days.Substring(0, days.IndexOf(","))
+
+                End If
+
+                'find the col and row
+                Dim col As Integer = 0
+                Dim startRow As Integer = 0
+                Dim endRow As Integer = 0
+
+                'col is day
+                For Each dr As DataRow In daysdt.Rows
+                    If days = dr.Item("DayOfWeek") Then
+                        col = dr.Item("ColStart")
+                    End If
+                Next
+
+                'rows determined by start and end times
+                For i = 0 To time.Length - 1
+                    If startTime = time(i) Then
+                        startRow = i
+                    End If
+                    If endTime = time(i) Then
+                        endRow = i - 1
+                    End If
+                Next
+
+                'Check to make sure there is no label in this position
+                Dim pos As New TableLayoutPanelCellPosition(0, 0)
+                pos.Column = col
+                pos.Row = startRow
+                Dim cntrl As New Control
+                Dim addCntrl As Boolean = True
+
+                For i = 0 To endRow - startRow
+                    cntrl = TableLayoutPanel1.GetControlFromPosition(col, startRow + i)
+                    If cntrl IsNot Nothing Then
+                        'then we need to move the label over a column, possibly increment the column also
+                        addCntrl = False
+                    End If
+                Next
+
+                If addCntrl Then
+                    Dim label As Label = CType(TableLayoutPanel1.Controls(lbl), Label)
+                    If label Is Nothing Then
+                        label = CType(ClassesPanel.Controls(lbl), Label)
+                        ClassesPanel.Controls.Remove(label)
+                        If label Is Nothing Then
+                            label = CType(Me.Controls(lbl), Label)
+                            Me.Controls.Remove(label)
+                        End If
+                    End If
+                    TableLayoutPanel1.Controls.Add(label)
+                    TableLayoutPanel1.SetCellPosition(label, pos)
+                    TableLayoutPanel1.SetRowSpan(label, endRow - startRow + 1)
+                Else
+                    'check to see if there is an available column
+
+                    'if there is, add it there
+
+                    'if not, increment the columns and add it there
+
+                End If
+                'if there are days, for now check to find the day we want so we only add one day for right now
+                '*********update to include more days**************
+
+            End If
+        Catch ex As Exception
+
+        End Try
     End Sub
 
     Private Sub RemoveToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RemoveToolStripMenuItem.Click
@@ -113,6 +196,19 @@ Public Class frmScheduleBuilder
         If label2 IsNot Nothing Then
             TableLayoutPanel1.Controls.Remove(label2)
             ClassesPanel.Controls.Add(label2)
+
+            'remove the start and end times from the database
+            Dim startTime As Integer = 0
+            Dim endTime As Integer = 0
+            Dim dayOfWeek As String = "Remove"
+            Dim department As String = lbl.Substring(3, lbl.IndexOf(" ") - 3)
+            Dim courseNum As String = lbl.Substring(lbl.IndexOf(" ") + 1)
+            Dim sectionNum As String = courseNum.Substring(courseNum.IndexOf(".") + 1)
+            courseNum = courseNum.Substring(0, courseNum.IndexOf("."))
+            Dim sql As New SQLConnect
+            Dim ds As New DataSet
+            ds = sql.GetStoredProc("InsertTimeDayToSchedule '" + department + "', '" + courseNum + "', '" + sectionNum + "', '" + startTime.ToString + "', '" + endTime.ToString + "', '" + dayOfWeek + "'")
+
         End If
     End Sub
 
@@ -154,10 +250,11 @@ Public Class frmScheduleBuilder
                 Dragging = True
 
                 ' Note positions of cursor when pressed
-                CursorX = e.X
-                CursorY = e.Y
+                'CursorX = e.X
+                'CursorY = e.Y
             End If
         End If
+        testDGV.DataSource = daysdt
     End Sub
 
     Private Sub labelUp(sender As System.Object, e As System.Windows.Forms.MouseEventArgs)
@@ -187,20 +284,41 @@ Public Class frmScheduleBuilder
                 TableLayoutPanel1.Controls.Add(lbl)
                 TableLayoutPanel1.SetCellPosition(lbl, pos)
 
-                TableLayoutPanel1.SetRowSpan(lbl, 2)
-                '**orgininal
-                'TableLayoutPanel1.Controls.Add(lbl)
-                'TableLayoutPanel1.SetCellPosition(lbl, GetCellCoordinates())
-
-                'test
-                'TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle())
-                'TableLayoutPanel1.GetControlFromPosition()
+                'TableLayoutPanel1.SetRowSpan(lbl, 2)
 
                 ' Indicate we're no longer dragging
                 Dragging = False
 
+                'send the hours to the edit screen
+                'figure out the start and end hours
+                Dim col As Integer = pos.Column
+                Dim row As Integer = pos.Row
+                Dim startTime As Integer = calcStartTime(col, row)
+                Dim endTime As Integer = calcEndTime(col, row, lbl)
+                Dim dayOfWeek As String = ""
+                For Each dr As DataRow In daysdt.Rows
+                    If dr.Item("ColStart") <= col AndAlso col <= dr.Item("ColStart") + (dr.Item("NumCol") - 1) Then
+                        dayOfWeek = dr.Item("DayOfWeek")
+                    End If
+                Next
+                Dim department As String = lbl.Text.Substring(0, lbl.Text.IndexOf(" "))
+                Dim courseNum As String = lbl.Text.Substring(lbl.Text.IndexOf(" ") + 1)
+                courseNum = courseNum.Substring(0, courseNum.IndexOf(".") + 2)
+                Dim sectionNum As String = courseNum.Substring(courseNum.IndexOf(".") + 1)
+                courseNum = courseNum.Substring(0, courseNum.IndexOf("."))
+                Dim sql As New SQLConnect
+                Dim ds As New DataSet
+                ds = sql.GetStoredProc("InsertTimeDayToSchedule '" + department + "', '" + courseNum + "', '" + sectionNum + "', '" + startTime.ToString + "', '" + endTime.ToString + "', '" + dayOfWeek + "'")
+
+                'pull up the edit screen when she places something
+                Dim temp As String = lbl.Name.Remove(0, 3)
+                Dim g As New Globals
+                g.SetLabel(temp)
+                frmClassSpecs.ShowDialog()
+
             End If
         End If
+        testDGV.DataSource = daysdt
     End Sub
 
     Private Sub labelMove(sender As System.Object, e As System.Windows.Forms.MouseEventArgs)
@@ -314,11 +432,13 @@ Public Class frmScheduleBuilder
         If cntrl IsNot Nothing Then
             Dim newcol As Boolean = True
             'check to see if this column in in the added column list
-            For i As Integer = 0 To addedColList.Count - 1
-                If c = addedColList.Item(i) Then
-                    newcol = False
-                End If
-            Next
+            'For i As Integer = 0 To addedColList.Count - 1
+            '    If c = addedColList.Item(i) Then
+            '        newcol = False
+            '    End If
+            'Next
+
+
 
             'push everything to the right if it is not a column that already has a duplicate class time and
             If newcol Then
@@ -330,15 +450,15 @@ Public Class frmScheduleBuilder
                 c = pushLabelsRight(c)
                 pos.Column = c
 
-                linkDaysToSchedule(c - 1)
+                AddColToDaysDT(c - 1)
 
                 'increment columns that are to right
-                For i As Integer = 0 To addedColList.Count - 1
-                    If c < addedColList.Item(i) Then
-                        addedColList.Item(i) = addedColList.Item(i) + 1
-                    End If
-                Next
-                addedColList.Add(c - 1)
+                'For i As Integer = 0 To addedColList.Count - 1
+                '    If c < addedColList.Item(i) Then
+                '        addedColList.Item(i) = addedColList.Item(i) + 1
+                '    End If
+                'Next
+                'addedColList.Add(c - 1)
 
             End If
         End If
@@ -366,6 +486,23 @@ Public Class frmScheduleBuilder
 
         Return newcol
     End Function
+
+    Private Sub pushLabelsLeft(ByVal col As Integer)
+        Dim cntrl As New Control
+        Dim pos As New TableLayoutPanelCellPosition(0, 0)
+
+        'Push everything left
+        For c As Integer = col + 1 To TableLayoutPanel1.ColumnStyles.Count - 1
+            pos.Column = c - 1
+            For r As Integer = 0 To TableLayoutPanel1.RowStyles.Count - 1
+                cntrl = TableLayoutPanel1.GetControlFromPosition(c, r)
+                If cntrl IsNot Nothing Then
+                    pos.Row = r
+                    TableLayoutPanel1.SetCellPosition(cntrl, pos)
+                End If
+            Next
+        Next
+    End Sub
 
 
     Private Sub initializeDaysDt()
@@ -397,7 +534,7 @@ Public Class frmScheduleBuilder
             i += 1
         Next
     End Sub
-    Private Sub linkDaysToSchedule(ByVal c As Integer)
+    Private Sub AddColToDaysDT(ByVal c As Integer)
         'increase the label size on the column that was added
         Dim lbl As Label
         For Each dr As DataRow In daysdt.Rows
@@ -406,14 +543,146 @@ Public Class frmScheduleBuilder
                 lbl.Width = lbl.Width + tlpCol
                 dr.Item("NumCol") += 1
             End If
+            'aligns the labels to the right up with their new row
             If c < dr.Item("ColStart") Then
                 dr.Item("ColStart") += 1
                 lbl = CType(Me.Controls("lbl" + dr.Item("DayOfWeek")), Label)
                 lbl.Left = lbl.Left + tlpCol + 1
             End If
         Next
+    End Sub
 
-        'updated the daysdt
+    Private Sub RemColFromDaysDT(ByVal c As Integer)
+        Dim hasMoreThanOneCol As Boolean = False
+        'check to see if there is only one column for this day
+        For Each dr As DataRow In daysdt.Rows
+            If dr.Item("ColStart") < c And c <= dr.Item("ColStart") + (dr.Item("NumCol") - 1) Then
+                hasMoreThanOneCol = True
+            End If
+        Next
 
+        If hasMoreThanOneCol Then
+            'check to see if there are any controls in the column
+            Dim cntrl As New Control
+            Dim pos As New TableLayoutPanelCellPosition(0, 0)
+            Dim canDelete As Boolean = True
+
+            For i As Integer = 0 To TableLayoutPanel1.RowCount - 1
+                cntrl = TableLayoutPanel1.GetControlFromPosition(c, i)
+                If cntrl IsNot Nothing Then
+                    canDelete = False
+                    i = TableLayoutPanel1.RowCount
+                End If
+            Next
+
+            If canDelete Then
+                'delete the column and update the daysdt
+                TableLayoutPanel1.ColumnCount -= 1
+                TableLayoutPanel1.ColumnStyles.RemoveAt(c)
+                ' how to set the new size
+                'TableLayoutPanel1.Size.Width = TableLayoutPanel1.Size.Width - tlpCol
+
+                'move all the labels to the right of this column left one column
+                pushLabelsLeft(c)
+
+                'decrease the label size of the row deleted
+                Dim lbl As Label
+                For Each dr As DataRow In daysdt.Rows
+                    If dr.Item("ColStart") <= c And c <= dr.Item("ColStart") + (dr.Item("NumCol") - 1) Then
+                        lbl = CType(Me.Controls("lbl" + dr.Item("DayOfWeek")), Label)
+                        lbl.Width = lbl.Width - tlpCol
+                        dr.Item("NumCol") -= 1
+                    End If
+                    'aligns the labels to the right up with their new row
+                    If c < dr.Item("ColStart") Then
+                        dr.Item("ColStart") -= 1
+                        lbl = CType(Me.Controls("lbl" + dr.Item("DayOfWeek")), Label)
+                        lbl.Left = lbl.Left - tlpCol - 1
+                    End If
+                Next
+            Else
+                'display message
+                MsgBox("Cannot remove column. There is a class in this column.")
+            End If
+        Else
+            MsgBox("Cannot remove column. There is not more than one for this day.")
+        End If
+        testDGV.DataSource = daysdt
+    End Sub
+
+    Private Sub btnRemCol_Click(sender As Object, e As EventArgs) Handles btnRemCol.Click
+
+        Dim c As Integer = 0
+
+
+        Dim s = InputBox("Type in the column to remove", "Remove Column", "1")
+
+        Try
+            c = CType(s, Integer)
+        Catch ex As Exception
+            MsgBox("Incorrect value. Try again.")
+        End Try
+
+        RemColFromDaysDT(c)
+
+    End Sub
+
+    Private Function calcStartTime(ByVal c As Integer, ByVal r As Integer)
+        Return time(r)
+    End Function
+
+    Private Function calcEndTime(ByVal c As Integer, ByVal r As Integer, ByVal lbl As Label)
+        Dim endTime As Integer = 0
+        Dim s As String = ""
+
+        For Each dr As DataRow In daysdt.Rows
+            If dr.Item("ColStart") <= c AndAlso c <= dr.Item("ColStart") + (dr.Item("NumCol") - 1) Then
+                s = dr.Item("DayOfWeek").ToString
+            End If
+        Next
+
+        If s = "Monday" Or s = "Wednesday" Or s = "Friday" Then
+            endTime = time(r + 2)
+            TableLayoutPanel1.SetRowSpan(lbl, 2)
+        ElseIf s = "Tuesday" Or s = "Thursday" Then
+            endTime = time(r + 3)
+            TableLayoutPanel1.SetRowSpan(lbl, 3)
+        Else
+            endTime = time(r + 2)
+            TableLayoutPanel1.SetRowSpan(lbl, 2)
+        End If
+
+        Return endTime
+    End Function
+
+    Private Sub initializeTime()
+        time(0) = 800
+        time(1) = 830
+        time(2) = 900
+        time(3) = 930
+        time(4) = 1000
+        time(5) = 1030
+        time(6) = 1100
+        time(7) = 1130
+        time(8) = 1200
+        time(9) = 1230
+        time(10) = 1300
+        time(11) = 1330
+        time(12) = 1400
+        time(13) = 1430
+        time(14) = 1500
+        time(15) = 1530
+        time(16) = 1600
+        time(17) = 1630
+        time(18) = 1700
+        time(19) = 1730
+        time(20) = 1800
+        time(21) = 1830
+        time(22) = 1900
+        time(23) = 1930
+        time(24) = 2000
+        time(25) = 2030
+        time(26) = 2100
+        time(27) = 2130
     End Sub
 End Class

@@ -1,5 +1,8 @@
 ﻿Public Class frmClassSpecs
 
+    Dim changeTime As Boolean = False
+    Dim changeDay As Boolean = False
+    Dim changeDT As New DataTable
     Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
         Me.Close()
     End Sub
@@ -73,6 +76,68 @@
             label2.Text = lbl + vbNewLine + cboProfessor.SelectedItem(1).ToString + vbNewLine + "3 hours"
         End If
 
+        If changeTime Or changeDay Then
+            'updateChangeDT()
+            initChangeDT()
+            changeDT.Rows(0).Item("ChangeTime") = changeTime
+            changeDT.Rows(0).Item("ChangeDay") = changeDay
+            changeDT.Rows(0).Item("StartTime") = txtStartTime.Text
+            changeDT.Rows(0).Item("EndTime") = txtEndTime.Text
+
+            Dim days As String = ""
+            If chkMonday.Checked Then
+                days = "Monday"
+            End If
+            If chkTuesday.Checked Then
+                If days.Length > 0 Then
+                    days += ",Tuesday"
+                Else
+                    days = "Tuesday"
+                End If
+            End If
+            If chkWednesday.Checked Then
+                If days.Length > 0 Then
+                    days += ",Wednesday"
+                Else
+                    days = "Wednesday"
+                End If
+            End If
+            If chkThursday.Checked Then
+                If days.Length > 0 Then
+                    days += ",Thursday"
+                Else
+                    days = "Thursday"
+                End If
+            End If
+            If chkFriday.Checked Then
+                If days.Length > 0 Then
+                    days += ",Friday"
+                Else
+                    days = "Friday"
+                End If
+            End If
+            If chkSaturday.Checked Then
+                If days.Length > 0 Then
+                    days += ",Saturday"
+                Else
+                    days = "Saturday"
+                End If
+            End If
+            If chkSunday.Checked Then
+                If days.Length > 0 Then
+                    days += ",Sunday"
+                Else
+                    days = "Sunday"
+                End If
+            End If
+            changeDT.Rows(0).Item("Days") = days
+
+            Dim g As New Globals
+            Dim dt As New DataTable
+            g.SetDT(changeDT)
+            changeDT = New DataTable
+        End If
+
         Me.Close()
     End Sub
 
@@ -114,28 +179,92 @@
         txtEndTime.Text = ds.Tables(0).Rows(0).Item("EndTime").ToString
         'need to change to get room name not id
         txtRoom.Text = ds.Tables(0).Rows(0).Item("RoomID").ToString
-        If ds.Tables(0).Rows(0).Item("Mon").ToString = "1" Then
+        Dim s As String = ds.Tables(0).Rows(0).Item("Mon").ToString
+        If ds.Tables(0).Rows(0).Item("Mon").ToString = "True" Then
             chkMonday.Checked = True
+        Else
+            chkMonday.Checked = False
         End If
-        If ds.Tables(0).Rows(0).Item("Tues").ToString = "1" Then
+        If ds.Tables(0).Rows(0).Item("Tues").ToString = "True" Then
             chkTuesday.Checked = True
+        Else
+            chkTuesday.Checked = False
         End If
-        If ds.Tables(0).Rows(0).Item("Wed").ToString = "1" Then
+        If ds.Tables(0).Rows(0).Item("Wed").ToString = "True" Then
             chkWednesday.Checked = True
+        Else
+            chkWednesday.Checked = False
         End If
-        If ds.Tables(0).Rows(0).Item("Thurs").ToString = "1" Then
+        If ds.Tables(0).Rows(0).Item("Thurs").ToString = "True" Then
             chkThursday.Checked = True
+        Else
+            chkThursday.Checked = False
         End If
-        If ds.Tables(0).Rows(0).Item("Fri").ToString = "1" Then
+        If ds.Tables(0).Rows(0).Item("Fri").ToString = "True" Then
             chkFriday.Checked = True
+        Else
+            chkFriday.Checked = False
         End If
-        If ds.Tables(0).Rows(0).Item("Sat").ToString = "1" Then
+        If ds.Tables(0).Rows(0).Item("Sat").ToString = "True" Then
             chkSaturday.Checked = True
+        Else
+            chkSaturday.Checked = False
         End If
-        If ds.Tables(0).Rows(0).Item("Sun").ToString = "1" Then
+        If ds.Tables(0).Rows(0).Item("Sun").ToString = "True" Then
             chkSunday.Checked = True
+        Else
+            chkSunday.Checked = False
         End If
 
 
+    End Sub
+
+    Private Sub initChangeDT()
+        changeDT.Columns.Add("ChangeTime")
+        changeDT.Columns.Add("ChangeDay")
+        changeDT.Columns.Add("StartTime")
+        changeDT.Columns.Add("EndTime")
+        changeDT.Columns.Add("Days")
+        changeDT.Rows.Add()
+    End Sub
+
+    Private Sub updateChangeDT()
+
+    End Sub
+
+    Private Sub txtStartTime_TextChanged(sender As Object, e As EventArgs) Handles txtStartTime.TextChanged
+        changeTime = True
+    End Sub
+
+    Private Sub txtEndTime_TextChanged(sender As Object, e As EventArgs) Handles txtEndTime.TextChanged
+        changeTime = True
+    End Sub
+
+    Private Sub chkMonday_CheckedChanged(sender As Object, e As EventArgs) Handles chkMonday.CheckedChanged
+        changeDay = True
+    End Sub
+
+    Private Sub chkTuesday_CheckedChanged(sender As Object, e As EventArgs) Handles chkTuesday.CheckedChanged
+        changeDay = True
+    End Sub
+
+    Private Sub chkWednesday_CheckedChanged(sender As Object, e As EventArgs) Handles chkWednesday.CheckedChanged
+        changeDay = True
+    End Sub
+
+    Private Sub chkThursday_CheckedChanged(sender As Object, e As EventArgs) Handles chkThursday.CheckedChanged
+        changeDay = True
+    End Sub
+
+    Private Sub chkFriday_CheckedChanged(sender As Object, e As EventArgs) Handles chkFriday.CheckedChanged
+        changeDay = True
+    End Sub
+
+    Private Sub chkSaturday_CheckedChanged(sender As Object, e As EventArgs) Handles chkSaturday.CheckedChanged
+        changeDay = True
+    End Sub
+
+    Private Sub chkSunday_CheckedChanged(sender As Object, e As EventArgs) Handles chkSunday.CheckedChanged
+        changeDay = True
     End Sub
 End Class
