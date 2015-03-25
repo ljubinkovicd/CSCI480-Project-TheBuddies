@@ -238,7 +238,7 @@ GO
 CREATE PROCEDURE GetEditInfo 
 	@department varchar(255), 
 	@courseNum varchar(255),
-	@sectionNum int
+	@sectionNum varchar(2)
 AS
 BEGIN
 	DECLARE	@teacherID VARCHAR(6)
@@ -280,7 +280,7 @@ GO
 CREATE PROCEDURE InsertProfessorToSchedule 
 	@department varchar(255), 
 	@courseNum varchar(255),
-	@sectionNum int,
+	@sectionNum varchar(2),
 	@firstName varchar(255),
 	@lastName varchar(255)
 AS
@@ -347,7 +347,7 @@ GO
 CREATE PROCEDURE InsertToSchedule 
 	@department varchar(255),
 	@courseNum varchar(255),
-	@sectionNum int,
+	@sectionNum varchar(2),
 	@startTime int,
 	@endTime int,
 	@mon bit,
@@ -400,7 +400,7 @@ GO
 CREATE PROCEDURE InsertTimeDayToSchedule 
 	@department varchar(255),
 	@courseNum varchar(255),
-	@sectionNum int,
+	@sectionNum varchar(2),
 	@startTime int,
 	@endTime int,
 	@dayOfWeek varchar(255)
