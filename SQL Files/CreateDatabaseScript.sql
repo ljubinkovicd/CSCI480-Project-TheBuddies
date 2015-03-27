@@ -25,10 +25,7 @@ CREATE TABLE PROFESSOR
 	FirstName VARCHAR(255) NOT NULL,
 	LastName VARCHAR(255) NOT NULL,
 	YearlyCreditHours DECIMAL(5,2),
-	Associates BIT,
-	Bachelors BIT,
-	Masters BIT,
-	PhD BIT
+	ProfessorRank VARCHAR(255) NOT NULL
 )
 GO
 --- END CREATING PROFESSOR TABLE ---
@@ -52,8 +49,9 @@ GO
 CREATE TABLE ROOMS
 (
 	RoomID INT IDENTITY(1,1) PRIMARY KEY,
-	BuildingName VARCHAR(255),
-	BuildingRoomNumber INT
+	BuildingName VARCHAR(255) NOT NULL,
+	RoomNumber VARCHAR(10) NOT NULL,
+	RoomColor INT,
 )
 GO
 --- END CREATING ROOMS TABLE ---
