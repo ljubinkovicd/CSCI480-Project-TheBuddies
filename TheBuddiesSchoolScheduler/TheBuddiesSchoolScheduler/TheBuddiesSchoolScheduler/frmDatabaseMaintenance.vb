@@ -20,7 +20,7 @@ Public Class frmDatabaseMaintenance
 
         ElseIf tcDBMaint.SelectedIndex = 1 Then
             ' Edit Class Tab
-            ds = SQL.GetStoredProc("GetCourseNumAndClassName")
+            ds = SQL.GetStoredProc("GetAllClasses")
 
             tcEditClass.DisplayMember = ds.Tables(0).Columns(0).ToString
             tcEditClass.ValueMember = ds.Tables(0).Columns(1).ToString
@@ -28,22 +28,17 @@ Public Class frmDatabaseMaintenance
 
             'cbDBData.DisplayMember = "au_lname"
 
-            ds2 = SQL.GetStoredProc("GetAllClasses")
-
-            index = tcEditClass.SelectedIndex
-            classID = ds.Tables(0).Rows(0).Item("ClassID")
-
             ' ClassID, Department, CourseNum, CourseName, StudentCreditHours, TeacherCreditHours, IsGradClass
-            tbEditClassCourseName.Text = ds2.Tables(0).Rows(0).Item("CourseName")
-            tbEditClassCourseNum.Text = ds2.Tables(0).Rows(0).Item("CourseNum")
-            tbEditClassDept.Text = ds2.Tables(0).Rows(0).Item("Department")
-            tbEditClassProfHr.Text = ds2.Tables(0).Rows(0).Item("TeacherCreditHours")
-            tbEditClassStuCredHr.Text = ds2.Tables(0).Rows(0).Item("StudentCreditHours")
-            chkEditClassGradClass.CheckState = ds2.Tables(0).Rows(0).Item("IsGradClass")
+            tbEditClassCourseName.Text = ds.Tables(0).Rows(0).Item("CourseName")
+            tbEditClassCourseNum.Text = ds.Tables(0).Rows(0).Item("CourseNum")
+            tbEditClassDept.Text = ds.Tables(0).Rows(0).Item("Department")
+            tbEditClassProfHr.Text = ds.Tables(0).Rows(0).Item("TeacherCreditHours")
+            tbEditClassStuCredHr.Text = ds.Tables(0).Rows(0).Item("StudentCreditHours")
+            chkEditClassGradClass.CheckState = ds.Tables(0).Rows(0).Item("IsGradClass")
 
         ElseIf tcDBMaint.SelectedIndex = 2 Then
             ' Remove Class Tab
-            ds = SQL.GetStoredProc("GetCourseNumAndClassName")
+            ds = SQL.GetStoredProc("GetAllClasses")
 
             cbDBData.DisplayMember = ds.Tables(0).Columns(0).ToString
             cbDBData.ValueMember = ds.Tables(0).Columns(1).ToString
@@ -54,31 +49,29 @@ Public Class frmDatabaseMaintenance
 
         ElseIf tcDBMaint.SelectedIndex = 4 Then
             ' Edit Professor
-            ds = SQL.GetStoredProc("GetProfessorName")
+            ds = SQL.GetStoredProc("GetAllProfessors")
 
-            cbEditProfSelectProf.DisplayMember = ds.Tables(0).Columns(1).ToString
-            cbEditProfSelectProf.ValueMember = ds.Tables(0).Columns(0).ToString
+            cbEditProfSelectProf.DisplayMember = ds.Tables(0).Columns(0).ToString
+            cbEditProfSelectProf.ValueMember = ds.Tables(0).Columns(1).ToString
             cbEditProfSelectProf.DataSource = ds.Tables(0)
-
-            ds2 = SQL.GetStoredProc("GetAllProfessors")
 
             index = cbEditProfSelectProf.SelectedIndex
 
             ' TeacherID, FirstName, LastName, YearlyCreditHours, Associates, Bachelors, Masters, PhD
-            tbEditProfTeacherID.Text = ds2.Tables(0).Rows(0).Item("TeacherID")
-            tbEditProfFirstName.Text = ds2.Tables(0).Rows(0).Item("FirstName")
-            tbEditProfLastName.Text = ds2.Tables(0).Rows(0).Item("LastName")
-            tbEditProfCredHours.Text = ds2.Tables(0).Rows(0).Item("YearlyCreditHours")
-            chkEditProfAssociates.Checked = ds2.Tables(0).Rows(0).Item("Associates")
-            chkEditProfBachelors.Checked = ds2.Tables(0).Rows(0).Item("Bachelors")
-            chkEditProfMasters.Checked = ds2.Tables(0).Rows(0).Item("Masters")
-            chkEditProfPhD.Checked = ds2.Tables(0).Rows(0).Item("PhD")
+            tbEditProfTeacherID.Text = ds.Tables(0).Rows(0).Item("TeacherID")
+            tbEditProfFirstName.Text = ds.Tables(0).Rows(0).Item("FirstName")
+            tbEditProfLastName.Text = ds.Tables(0).Rows(0).Item("LastName")
+            tbEditProfCredHours.Text = ds.Tables(0).Rows(0).Item("YearlyCreditHours")
+            chkEditProfAssociates.Checked = ds.Tables(0).Rows(0).Item("Associates")
+            chkEditProfBachelors.Checked = ds.Tables(0).Rows(0).Item("Bachelors")
+            chkEditProfMasters.Checked = ds.Tables(0).Rows(0).Item("Masters")
+            chkEditProfPhD.Checked = ds.Tables(0).Rows(0).Item("PhD")
         ElseIf tcDBMaint.SelectedIndex = 5 Then
             ' Remove Professor
-            ds = SQL.GetStoredProc("GetProfessorName")
+            ds = SQL.GetStoredProc("GetAllProfessors")
 
-            cbRmProfessor.DisplayMember = ds.Tables(0).Columns(1).ToString
-            cbRmProfessor.ValueMember = ds.Tables(0).Columns(0).ToString
+            cbRmProfessor.DisplayMember = ds.Tables(0).Columns(0).ToString
+            cbRmProfessor.ValueMember = ds.Tables(0).Columns(1).ToString
 
             cbRmProfessor.DataSource = ds.Tables(0)
         End If
@@ -86,7 +79,7 @@ Public Class frmDatabaseMaintenance
 
     Private Sub btnRemove_Click_1(sender As Object, e As EventArgs) Handles btnRemove.Click
         Dim SQL As New SQLConnect
-        Dim ds As DataSet = SQL.GetStoredProc("GetCourseNumAndClassName")
+        Dim ds As DataSet = SQL.GetStoredProc("GetAllClasses")
         Dim ds2 As DataSet = New DataSet
         Dim classID As Integer = 0
         Dim index As Integer = 0
@@ -221,7 +214,6 @@ Public Class frmDatabaseMaintenance
         Dim index As Integer = 0
 
         index = tcEditClass.SelectedIndex
-        classID = ds.Tables(0).Rows(index).Item("ClassID")
 
         ' ClassID, Department, CourseNum, CourseName, StudentCreditHours, TeacherCreditHours, IsGradClass
         tbEditClassCourseName.Text = ds.Tables(0).Rows(index).Item("CourseName")
@@ -234,7 +226,7 @@ Public Class frmDatabaseMaintenance
 
     Private Sub btnRemoveProfessor_Click(sender As Object, e As EventArgs) Handles btnRemoveProfessor.Click
         Dim SQL As New SQLConnect
-        Dim ds As DataSet = SQL.GetStoredProc("GetProfessorName")
+        Dim ds As DataSet = SQL.GetStoredProc("GetAllProfessors")
         Dim ds2 As DataSet = New DataSet
         Dim TeacherID As String = ""
         Dim success As Boolean = True
@@ -423,7 +415,7 @@ Public Class frmDatabaseMaintenance
         If passed Then
             MessageBox.Show("Class was successfully edited in the database.")
 
-            ds = SQL.GetStoredProc("GetCourseNumAndClassName")
+            ds = SQL.GetStoredProc("GetAllClasses")
 
             tcEditClass.DisplayMember = ds.Tables(0).Columns(0).ToString
             tcEditClass.ValueMember = ds.Tables(0).Columns(1).ToString
@@ -480,12 +472,13 @@ Public Class frmDatabaseMaintenance
 
         If passed Then
             MessageBox.Show("Class was successfully edited in the database.")
-            ds = SQL.GetStoredProc("GetProfessorName")
+            ds = SQL.GetStoredProc("GetAllProfessors")
 
-            cbEditProfSelectProf.DisplayMember = ds.Tables(0).Columns(1).ToString
-            cbEditProfSelectProf.ValueMember = ds.Tables(0).Columns(0).ToString
+            cbEditProfSelectProf.DisplayMember = ds.Tables(0).Columns(0).ToString
+            cbEditProfSelectProf.ValueMember = ds.Tables(0).Columns(1).ToString
             cbEditProfSelectProf.DataSource = ds.Tables(0)
         End If
 
     End Sub
+
 End Class

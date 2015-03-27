@@ -189,7 +189,7 @@ GO
 
 CREATE PROCEDURE GetAllClasses AS
 (
-	SELECT ClassID, Department, CourseNum, CourseName, StudentCreditHours, TeacherCreditHours, IsGradClass
+	SELECT (Department + ' ' + CourseNum + ' - ' + CourseName) AS Course, ClassID, Department, CourseNum, CourseName, StudentCreditHours, TeacherCreditHours, IsGradClass
 	FROM	CLASS
 )
 GO
@@ -205,7 +205,7 @@ GO
 
 CREATE PROCEDURE GetAllProfessors AS
 (
-	SELECT TeacherID, FirstName, LastName, YearlyCreditHours, Associates, Bachelors, Masters, PhD
+	SELECT (FirstName + ' ' + LastName) AS 'Professor', TeacherID, FirstName, LastName, YearlyCreditHours, Associates, Bachelors, Masters, PhD
 	FROM	PROFESSOR
 )
 GO
@@ -519,4 +519,3 @@ AS
 )
 GO
 -- End Procedure CheckIfProfessorExists --
-
