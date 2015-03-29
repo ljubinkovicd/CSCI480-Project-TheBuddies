@@ -91,14 +91,14 @@ Partial Class frmStartSchedule1
         Me.ClassListGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.ClassListGridView.Location = New System.Drawing.Point(28, 88)
         Me.ClassListGridView.Name = "ClassListGridView"
-        Me.ClassListGridView.Size = New System.Drawing.Size(548, 447)
+        Me.ClassListGridView.Size = New System.Drawing.Size(569, 447)
         Me.ClassListGridView.TabIndex = 64
         '
         'frmStartSchedule1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(614, 608)
+        Me.ClientSize = New System.Drawing.Size(643, 608)
         Me.Controls.Add(Me.ClassListGridView)
         Me.Controls.Add(Me.btnNext)
         Me.Controls.Add(Me.btnCancel)

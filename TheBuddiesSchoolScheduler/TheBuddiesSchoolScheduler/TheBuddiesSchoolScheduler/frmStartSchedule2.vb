@@ -1,7 +1,7 @@
 ﻿Imports TheBuddiesSchoolScheduler.Globals
 
 Public Class frmStartSchedule2
-
+    Dim profdt As New DataTable
     Private Sub btnBack_Click_1(sender As Object, e As EventArgs) Handles btnBack.Click
         frmStartSchedule1.Show()
         Me.Close()
@@ -47,7 +47,7 @@ Public Class frmStartSchedule2
 
         For Each dr As DataRow In dt.Rows
             'update sql schedule table
-            Dim fullname As String = dr.Item("Professor").ToString
+            Dim name As String = dr.Item("Professor").ToString
             Dim course As String = dr.Item("Course").ToString
             Dim sql As New SQLConnect
             Dim blank As New DataSet
@@ -55,15 +55,22 @@ Public Class frmStartSchedule2
             Dim courseNum As String = course.Substring(course.IndexOf(" ") + 1)
             Dim sectionNum As String = courseNum.Substring(courseNum.IndexOf(".") + 1)
             courseNum = courseNum.Substring(0, courseNum.IndexOf("."))
-            Dim firstName As String = ""
-            Dim lastName As String = ""
+            Dim teacherId As String = ""
 
-            If fullname <> "" Then
-                firstName = fullname.Substring(0, fullname.IndexOf(" "))
-                lastName = fullname.Substring(fullname.IndexOf(" ") + 1)
-            End If
+            For Each r As DataRow In profdt.Rows
+                If name = r.Item("Professor") Then
+                    teacherId = r.Item("TeacherID")
+                End If
+            Next
+            'Dim firstName As String = ""
+            'Dim lastName As String = ""
 
-            blank = sql.GetStoredProc("InsertProfessorToSchedule '" + department + "', '" + courseNum + "', '" + sectionNum + "', '" + firstName + "', '" + lastName + "'")
+            'If fullname <> "" Then
+            '    firstName = fullname.Substring(0, fullname.IndexOf(" "))
+            '    lastName = fullname.Substring(fullname.IndexOf(" ") + 1)
+            'End If
+
+            blank = sql.GetStoredProc("InsertProfessorToSchedule '" + department + "', '" + courseNum + "', '" + sectionNum + "', '" + teacherId + "'")
 
         Next
 
@@ -85,6 +92,7 @@ Public Class frmStartSchedule2
         Dim ds As New DataSet
         Dim dr As DataRow
         ds = sql.GetStoredProc("GetProfessorName")
+        profdt = ds.Tables(0)
 
         For Each dr In ds.Tables(0).Rows
             cbb.Items.Add(dr.Item("Professor").ToString)
@@ -110,9 +118,9 @@ Public Class frmStartSchedule2
         Dim dr As DataRow
 
         For Each dr In dt.Rows
-            If dr.Item("Sections") > 0 Then
+            If dr.Item("Day") > 0 Then
                 'add class sections
-                For i As Integer = 1 To dr.Item("Sections")
+                For i As Integer = 1 To dr.Item("Day")
                     If i < 10 Then
                         tempdt.Rows.Add(dr.Item("Course") + ".0" + i.ToString)
                     Else
@@ -120,7 +128,12 @@ Public Class frmStartSchedule2
                     End If
                 Next
             End If
-            If dr.Item(3) > 0 Then
+            If dr.Item("Night") > 0 Then
+                For i As Integer = 1 To dr.Item("Night")
+                    tempdt.Rows.Add(dr.Item("Course") + ".5" + i.ToString)
+                Next
+            End If
+            If dr.Item("Online") > 0 Then
                 'add online sections
                 For i As Integer = 1 To dr.Item("Online")
                     tempdt.Rows.Add(dr.Item("Course") + ".N" + i.ToString)

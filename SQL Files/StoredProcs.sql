@@ -11,7 +11,7 @@ GO
 
 CREATE PROCEDURE GetClasses AS
 (
-	SELECT	(Department + ' ' + CourseNum) AS Course, CourseName AS 'Course Name', '1' AS Sections, '0' AS Online
+	SELECT	(Department + ' ' + CourseNum) AS Course, CourseName AS 'Course Name', '1' AS 'Day', '0' AS 'Night', '0' AS 'Online'
 	FROM	CLASS
 )
 GO
@@ -28,7 +28,7 @@ GO
 
 CREATE PROCEDURE GetProfessorName AS
 (
-	SELECT	TeacherID, (FirstName + ' ' + LastName) AS 'Professor'
+	SELECT	TeacherID, LastName AS 'Professor'
 	FROM	PROFESSOR
 )
 GO
@@ -281,16 +281,10 @@ CREATE PROCEDURE InsertProfessorToSchedule
 	@department varchar(255), 
 	@courseNum varchar(255),
 	@sectionNum varchar(2),
-	@firstName varchar(255),
-	@lastName varchar(255)
+	@teacherId varchar(6)
 AS
 BEGIN
-	DECLARE @classID int,
-			@teacherID VARCHAR(6)
-	SELECT	@teacherID = (	SELECT	TeacherID
-							FROM	PROFESSOR
-							WHERE	FirstName = @firstName
-							AND		LastName = @lastName)
+	DECLARE @classID int
 	SELECT	@classID = (	SELECT	ClassID
 							FROM	CLASS
 							WHERE	Department = @department
@@ -327,8 +321,8 @@ GO
 CREATE PROCEDURE GetScheduleForLabels AS
 BEGIN
 	SELECT	(C.Department + ' ' + C.CourseNum + '.' + CONVERT(varchar,S.SectionNum)) AS Course,
-			(P.FirstName + ' ' + P.LastName) AS Professor,
-			C.StudentCreditHours AS StudentCredits
+			P.LastName AS Professor,
+			C.TeacherCreditHours AS TeacherCredits
 	FROM	SCHEDULE S
 	JOIN	CLASS C ON S.ClassID = C.ClassID
 	LEFT JOIN	PROFESSOR P ON S.TeacherID = P.TeacherID

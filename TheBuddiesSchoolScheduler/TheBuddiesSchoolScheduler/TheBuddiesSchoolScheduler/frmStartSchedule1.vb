@@ -41,7 +41,8 @@ Public Class frmStartSchedule1
         ClassListGridView.DataSource = ds.Tables(0)
         ClassListGridView.Columns("Course").AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
         ClassListGridView.Columns("Course Name").Width = 285
-        ClassListGridView.Columns("Sections").AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
+        ClassListGridView.Columns("Day").AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
+        ClassListGridView.Columns("Night").AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
         ClassListGridView.Columns("Online").AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
 
         'Get current year and put values close to that in combo box
