@@ -10,7 +10,7 @@
 
     Private Sub OK_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OK.Click
         Dim SQL As New SQLConnect
-        SQL.Connect(txtServer.Text, txtUser.Text, txtPassword.Text)
+        SQL.Connect(txtServer.Text, txtDatabase.Text, txtUser.Text, txtPassword.Text)
 
         If SQL.HasConnection Then
             Me.Close()

@@ -89,7 +89,7 @@ Public Class frmScheduleBuilder
 
         initializeDaysDt()
         initializeTime()
-        testDGV.DataSource = daysdt
+        'dgvTeacherTotals.DataSource = daysdt
 
     End Sub
 
@@ -198,23 +198,27 @@ Public Class frmScheduleBuilder
         '***************eventually want to not place labels on top of each other if removing multiple **************
 
         If label2 IsNot Nothing Then
-            TableLayoutPanel1.Controls.Remove(label2)
-            ClassesPanel.Controls.Add(label2)
-            label2.Height = lblHeight
-            label2.Width = lblWidth
+            If label2.Name.Substring(0, 4) <> "temp" Then
+                TableLayoutPanel1.Controls.Remove(label2)
+                ClassesPanel.Controls.Add(label2)
+                label2.Height = lblHeight
+                label2.Width = lblWidth
 
-            'remove the start and end times from the database
-            Dim startTime As Integer = 0
-            Dim endTime As Integer = 0
-            Dim dayOfWeek As String = "Remove"
-            Dim department As String = lbl.Substring(3, lbl.IndexOf(" ") - 3)
-            Dim courseNum As String = lbl.Substring(lbl.IndexOf(" ") + 1)
-            Dim sectionNum As String = courseNum.Substring(courseNum.IndexOf(".") + 1)
-            courseNum = courseNum.Substring(0, courseNum.IndexOf("."))
-            Dim sql As New SQLConnect
-            Dim ds As New DataSet
-            ds = sql.GetStoredProc("InsertTimeDayToSchedule '" + department + "', '" + courseNum + "', '" + sectionNum + "', '" + startTime.ToString + "', '" + endTime.ToString + "', '" + dayOfWeek + "'")
+                'remove the start and end times from the database
+                Dim startTime As Integer = 0
+                Dim endTime As Integer = 0
+                Dim dayOfWeek As String = "Remove"
+                Dim department As String = lbl.Substring(3, lbl.IndexOf(" ") - 3)
+                Dim courseNum As String = lbl.Substring(lbl.IndexOf(" ") + 1)
+                Dim sectionNum As String = courseNum.Substring(courseNum.IndexOf(".") + 1)
+                courseNum = courseNum.Substring(0, courseNum.IndexOf("."))
+                Dim sql As New SQLConnect
+                Dim ds As New DataSet
+                ds = sql.GetStoredProc("InsertTimeDayToSchedule '" + department + "', '" + courseNum + "', '" + sectionNum + "', '" + startTime.ToString + "', '" + endTime.ToString + "', '" + dayOfWeek + "'")
+            Else
+                TableLayoutPanel1.Controls.Remove(label2)
 
+            End If
         End If
     End Sub
 
@@ -260,7 +264,7 @@ Public Class frmScheduleBuilder
                 'CursorY = e.Y
             End If
         End If
-        testDGV.DataSource = daysdt
+        'dgvTeacherTotals.DataSource = daysdt
     End Sub
 
     Private Sub labelUp(sender As System.Object, e As System.Windows.Forms.MouseEventArgs)
@@ -325,7 +329,7 @@ Public Class frmScheduleBuilder
 
             End If
         End If
-        testDGV.DataSource = daysdt
+        'dgvTeacherTotals.DataSource = daysdt
     End Sub
 
     Private Sub labelMove(sender As System.Object, e As System.Windows.Forms.MouseEventArgs)
@@ -614,7 +618,7 @@ Public Class frmScheduleBuilder
         Else
             MsgBox("Cannot remove column. There is not more than one for this day.")
         End If
-        testDGV.DataSource = daysdt
+        'dgvTeacherTotals.DataSource = daysdt
     End Sub
 
     Private Sub btnRemCol_Click(sender As Object, e As EventArgs) Handles btnRemCol.Click
@@ -672,12 +676,14 @@ Public Class frmScheduleBuilder
                 Dim startTime = CType(changeDT.Rows(0).Item("StartTime").ToString, Integer)
                 Dim endTime = CType(changeDT.Rows(0).Item("EndTime").ToString, Integer)
                 Dim days = changeDT.Rows(0).Item("Days").ToString
+                Dim repeatingDays As String = ""
 
                 'if there are no days to add, check to see where the label is and only change if it is in the tlp
                 If days.Length > 0 Then
                     'set the new label position
                     'for now grabbing the first day to add it like that
                     Try
+                        repeatingDays = days.Substring(days.IndexOf(",") + 1)
                         days = days.Substring(0, days.IndexOf(","))
                     Catch ex As Exception
 
@@ -769,6 +775,10 @@ Public Class frmScheduleBuilder
                     'if there are days, for now check to find the day we want so we only add one day for right now
                     '*********update to include more days**************
 
+                    If repeatingDays <> "" Then
+                        createRepeatingLabels(repeatingDays, label, startRow, endRow)
+                    End If
+
                 Else
                     MsgBox("Select a day to move the class")
                 End If
@@ -776,6 +786,52 @@ Public Class frmScheduleBuilder
         Catch ex As Exception
             MsgBox(ex.Message.ToString)
         End Try
+    End Sub
+
+    Private Sub createRepeatingLabels(ByVal repeatingDays As String, ByVal label As Label, ByVal startRow As Integer, ByVal endRow As Integer)
+        Dim dayArray() As String = Split(repeatingDays, ",")
+        Dim pos As New TableLayoutPanelCellPosition(0, 0)
+        pos.Row = startRow
+
+        Dim department As String = label.Text.Substring(0, label.Text.IndexOf(" "))
+        Dim courseNum As String = label.Text.Substring(label.Text.IndexOf(" ") + 1)
+        courseNum = courseNum.Substring(0, courseNum.IndexOf(".") + 3)
+        Dim sectionNum As String = courseNum.Substring(courseNum.IndexOf(".") + 1)
+        courseNum = courseNum.Substring(0, courseNum.IndexOf("."))
+        Dim labeltext As String = department + " " + courseNum + "." + sectionNum
+
+        For i = 0 To dayArray.Count - 1
+            Dim tempLabel = New Label
+            With tempLabel
+                .Name = "temp" + i.ToString + labeltext
+                .Text = labeltext
+                .AutoSize = False
+                .BackColor = Color.Orange
+                .Width = 70
+                .Height = 70
+                .TextAlign = ContentAlignment.MiddleCenter
+                .BorderStyle = BorderStyle.FixedSingle
+                .ContextMenuStrip = cmsRightClick
+            End With
+
+            'update the position
+            '****need to check if there already is a label****
+            For Each dr As DataRow In daysdt.Rows
+                If dayArray(i) = dr.Item("DayOfWeek") Then
+                    pos.Column = dr.Item("ColStart")
+                End If
+            Next
+
+            TableLayoutPanel1.Controls.Add(tempLabel)
+            TableLayoutPanel1.SetCellPosition(tempLabel, pos)
+            TableLayoutPanel1.SetRowSpan(tempLabel, endRow - startRow + 1)
+            label.Height = (tlpRow + 2) * (endRow - startRow + 1)
+
+        Next
+    End Sub
+
+    Private Sub calcTeachTotals()
+
     End Sub
 
     Private Sub initializeTime()

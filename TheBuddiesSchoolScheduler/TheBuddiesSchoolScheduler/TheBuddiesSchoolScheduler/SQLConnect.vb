@@ -6,10 +6,10 @@ Public Class SQLConnect
     Public SQLCmd As New SqlCommand
     Public Shared connectionString As String
 
-    Public Sub Connect(server As String, username As String, password As String)
+    Public Sub Connect(server As String, database As String, username As String, password As String)
         Try
-            'connectionString = "Server=" + server + ";Database=480-buddies;User=" + username.ToString + ";Pwd=" + password.ToString + ";"
-            connectionString = "Server=Mars;Database=480-buddies;User=480-buddies;Pwd=schedule;"
+            connectionString = "Server=" + server + ";Database=" + database + ";User=" + username.ToString + ";Pwd=" + password.ToString + ";"
+            'connectionString = "Server=Mars;Database=480-buddies;User=480-buddies;Pwd=schedule;"
             'connectionString = "Server=ALEXPC\ALEX080714;Database=SchoolScheduler1;User=test_user;Pwd=pass;"
             SQLCon.ConnectionString = connectionString
         Catch ex As Exception

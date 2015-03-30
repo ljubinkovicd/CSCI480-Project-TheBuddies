@@ -59,7 +59,7 @@ Partial Class frmScheduleBuilder
         Me.lblSaturday = New System.Windows.Forms.Label()
         Me.lblSunday = New System.Windows.Forms.Label()
         Me.btnRemCol = New System.Windows.Forms.Button()
-        Me.testDGV = New System.Windows.Forms.DataGridView()
+        Me.dgvTeacherTotals = New System.Windows.Forms.DataGridView()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.Label16 = New System.Windows.Forms.Label()
@@ -77,7 +77,7 @@ Partial Class frmScheduleBuilder
         Me.Label33 = New System.Windows.Forms.Label()
         Me.Label34 = New System.Windows.Forms.Label()
         Me.cmsRightClick.SuspendLayout()
-        CType(Me.testDGV, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dgvTeacherTotals, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label1
@@ -167,7 +167,7 @@ Partial Class frmScheduleBuilder
         Me.ClassesPanel.AutoScroll = True
         Me.ClassesPanel.Location = New System.Drawing.Point(28, 86)
         Me.ClassesPanel.Name = "ClassesPanel"
-        Me.ClassesPanel.Size = New System.Drawing.Size(329, 670)
+        Me.ClassesPanel.Size = New System.Drawing.Size(329, 561)
         Me.ClassesPanel.TabIndex = 36
         '
         'cmsRightClick
@@ -199,7 +199,7 @@ Partial Class frmScheduleBuilder
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 73.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 74.0!))
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(427, 58)
         Me.TableLayoutPanel1.Margin = New System.Windows.Forms.Padding(2)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
@@ -459,13 +459,15 @@ Partial Class frmScheduleBuilder
         Me.btnRemCol.Text = "Remove Column"
         Me.btnRemCol.UseVisualStyleBackColor = True
         '
-        'testDGV
+        'dgvTeacherTotals
         '
-        Me.testDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.testDGV.Location = New System.Drawing.Point(921, 652)
-        Me.testDGV.Name = "testDGV"
-        Me.testDGV.Size = New System.Drawing.Size(240, 150)
-        Me.testDGV.TabIndex = 61
+        Me.dgvTeacherTotals.AllowUserToAddRows = False
+        Me.dgvTeacherTotals.AllowUserToDeleteRows = False
+        Me.dgvTeacherTotals.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvTeacherTotals.Location = New System.Drawing.Point(117, 653)
+        Me.dgvTeacherTotals.Name = "dgvTeacherTotals"
+        Me.dgvTeacherTotals.Size = New System.Drawing.Size(240, 105)
+        Me.dgvTeacherTotals.TabIndex = 61
         '
         'Label14
         '
@@ -633,6 +635,7 @@ Partial Class frmScheduleBuilder
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoScroll = True
         Me.ClientSize = New System.Drawing.Size(1146, 765)
+        Me.Controls.Add(Me.dgvTeacherTotals)
         Me.Controls.Add(Me.Label31)
         Me.Controls.Add(Me.Label32)
         Me.Controls.Add(Me.Label33)
@@ -649,7 +652,6 @@ Partial Class frmScheduleBuilder
         Me.Controls.Add(Me.Label28)
         Me.Controls.Add(Me.Label29)
         Me.Controls.Add(Me.Label30)
-        Me.Controls.Add(Me.testDGV)
         Me.Controls.Add(Me.btnRemCol)
         Me.Controls.Add(Me.lblSunday)
         Me.Controls.Add(Me.lblSaturday)
@@ -687,7 +689,7 @@ Partial Class frmScheduleBuilder
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "The Buddies Easy Scheduler"
         Me.cmsRightClick.ResumeLayout(False)
-        CType(Me.testDGV, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dgvTeacherTotals, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -728,7 +730,7 @@ Partial Class frmScheduleBuilder
     Friend WithEvents lblSaturday As System.Windows.Forms.Label
     Friend WithEvents lblSunday As System.Windows.Forms.Label
     Friend WithEvents btnRemCol As System.Windows.Forms.Button
-    Friend WithEvents testDGV As System.Windows.Forms.DataGridView
+    Friend WithEvents dgvTeacherTotals As System.Windows.Forms.DataGridView
     Friend WithEvents Label14 As System.Windows.Forms.Label
     Friend WithEvents Label15 As System.Windows.Forms.Label
     Friend WithEvents Label16 As System.Windows.Forms.Label
