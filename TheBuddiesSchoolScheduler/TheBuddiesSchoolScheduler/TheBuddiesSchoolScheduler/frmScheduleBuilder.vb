@@ -22,6 +22,7 @@ Public Class frmScheduleBuilder
     Dim addedColList As New List(Of Integer)
     Dim daysdt As New DataTable
     Dim time(tlpRowCount) As Integer
+    Dim labelDropNewColumn As Boolean = False 'determines whether or not to add a new column when using the edit screen
 
     Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
         Me.Close()
@@ -463,6 +464,8 @@ Public Class frmScheduleBuilder
 
                 AddColToDaysDT(c - 1)
 
+                labelDropNewColumn = True
+
                 'increment columns that are to right
                 'For i As Integer = 0 To addedColList.Count - 1
                 '    If c < addedColList.Item(i) Then
@@ -683,8 +686,10 @@ Public Class frmScheduleBuilder
                     'set the new label position
                     'for now grabbing the first day to add it like that
                     Try
-                        repeatingDays = days.Substring(days.IndexOf(",") + 1)
-                        days = days.Substring(0, days.IndexOf(","))
+                        If days.Contains(",") Then
+                            repeatingDays = days.Substring(days.IndexOf(",") + 1)
+                            days = days.Substring(0, days.IndexOf(","))
+                        End If
                     Catch ex As Exception
 
                     End Try
@@ -751,7 +756,7 @@ Public Class frmScheduleBuilder
                         'End If
 
                         'check to see if the control is the same as the label
-                        If CType(cntrl, Label).Name <> label.Name Then
+                        If CType(cntrl, Label).Name <> label.Name AndAlso labelDropNewColumn <> True Then
                             '****check to see if there is an available column first
                             TableLayoutPanel1.ColumnCount += 1
                             TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, tlpCol))
@@ -783,6 +788,7 @@ Public Class frmScheduleBuilder
                     MsgBox("Select a day to move the class")
                 End If
             End If
+            labelDropNewColumn = False
         Catch ex As Exception
             MsgBox(ex.Message.ToString)
         End Try
