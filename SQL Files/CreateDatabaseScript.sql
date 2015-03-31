@@ -25,7 +25,7 @@ CREATE TABLE PROFESSOR
 	FirstName VARCHAR(255) NOT NULL,
 	LastName VARCHAR(255) NOT NULL,
 	YearlyCreditHours DECIMAL(5,2),
-	ProfessorRank VARCHAR(255) NOT NULL
+	@ProfessorRank VARCHAR(255) NOT NULL
 )
 GO
 --- END CREATING PROFESSOR TABLE ---
@@ -34,7 +34,7 @@ GO
 --- BEGIN CREATING FACULTY_HOURS TABLE ---
 CREATE TABLE FACULTY_HOURS
 (
-	TeacherID VARCHAR(6) FOREIGN KEY REFERENCES PROFESSOR(TeacherID),
+	TeacherID VARCHAR(6),
 	DayOfWeek VARCHAR(15) NOT NULL,
 	TimeOfDay INT NOT NULL,
 	StartTime INT NOT NULL,
@@ -72,7 +72,9 @@ CREATE TABLE SCHEDULE
 	Sat BIT,
 	Sun BIT,
 	TeacherID VARCHAR(6),
-	RoomID INT
+	RoomID INT,
+	Term VARCHAR(6) NOT NULL,
+	TermYear VARCHAR(4) NOT NULL,
 	CONSTRAINT pk_Class PRIMARY KEY (ClassID, SectionNum)
 )
 GO
@@ -139,21 +141,28 @@ GO
 INSERT INTO PROFESSOR
 VALUES
 
-('000001', 'Mary Jo', 'Geise', 24, 1, 1, 1, 1),
-('000002', 'Helen', 'Schneider', 24, 1, 1, 1, 1),
-('000003', 'Craig', 'Gunnett', 24, 1, 1, 1, 0),
-('000004', 'Jordan', 'Ringenberg', 24, 1, 1, 1, 1),
-('000005', 'Paul', 'Langhals', 24, 1, 1, 1, 0),
-('000006', 'Heda', 'Samimi', 24, 1, 1, 1, 0),
-('000007', 'Bob', 'Wardzala', 24, 1, 1, 1, 0),
-('000008', 'Bill', 'Baker', 24, 1, 1, 1, 0);
+('000001', 'Mary Jo', 'Geise', 24, 'Professor'),
+('000002', 'Helen', 'Schneider', 24, 'Professor'),
+('000003', 'Craig', 'Gunnett', 24, 'Associate'),
+('000004', 'Jordan', 'Ringenberg', 24, 'Assistant'),
+('000005', 'Paul', 'Langhals', 24, 'Instructor'),
+('000006', 'Heda', 'Samimi', 24, 'Instructor'),
+('000007', 'Bob', 'Wardzala', 24, 'Adjunct'),
+('000008', 'Bill', 'Baker', 24, 'Adjunct');
 GO
 --- END PROFESSOR Insert Statement ---
 
 -- BEGIN ROOMS Insert Statement --
 INSERT INTO ROOMS
 VALUES
-	('Unassigned', 0)
+	('Davis', '196', -16744448),
+	('Main', '301', -128),
+	('Davis', '179', -8323200),
+	('Main', '309', -256),
+	('INET', 'INET', -8355585),
+	('BCHS', '100', -8323073),
+	('BCHS', '107', -16776961);
+GO
 -- END ROOMS Insert Statement --
 
 -- BEGIN PROFESSOR FirstNameLastName INDEX Statement --

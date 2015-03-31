@@ -48,15 +48,12 @@ CREATE PROCEDURE AddProfessor
   	@FirstName VARCHAR(255),
 	@LastName VARCHAR(255),
 	@YearlyCreditHours DECIMAL(5,2),
-	@Associates BIT,
-	@Bachelors BIT,
-	@Masters BIT,
-	@PhD BIT
+	@ProfessorRank VARCHAR(255)
 AS
 BEGIN
 	INSERT INTO PROFESSOR
-	       (TeacherID, FirstName, LastName, YearlyCreditHours, Associates, Bachelors, Masters, PhD)
-	VALUES (@TeacherID, @FirstName, @LastName, @YearlyCreditHours, @Associates, @Bachelors, @Masters, @PhD)
+	       (TeacherID, FirstName, LastName, YearlyCreditHours, ProfessorRank)
+	VALUES (@TeacherID, @FirstName, @LastName, @YearlyCreditHours, @ProfessorRank)
 END
 GO
 --- End Procedure AddProfessor ---
@@ -75,15 +72,12 @@ CREATE PROCEDURE EditProfessor
   	@FirstName VARCHAR(255),
 	@LastName VARCHAR(255),
 	@YearlyCreditHours DECIMAL(5,2),
-	@Associates BIT,
-	@Bachelors BIT,
-	@Masters BIT,
-	@PhD BIT
+	@ProfessorRank VARCHAR(255)
 AS
 BEGIN
 	UPDATE PROFESSOR
 	SET FirstName = @FirstName, LastName = @LastName, YearlyCreditHours = @YearlyCreditHours, 
-		Associates = @Associates, Bachelors = @Bachelors, Masters = @Masters, PhD = @PhD
+		ProfessorRank = @ProfessorRank
 	WHERE TeacherID = @TeacherID
 END
 GO
@@ -205,7 +199,7 @@ GO
 
 CREATE PROCEDURE GetAllProfessors AS
 (
-	SELECT (FirstName + ' ' + LastName) AS 'Professor', TeacherID, FirstName, LastName, YearlyCreditHours, Associates, Bachelors, Masters, PhD
+	SELECT (FirstName + ' ' + LastName) AS 'Professor', TeacherID, FirstName, LastName, YearlyCreditHours, ProfessorRank
 	FROM	PROFESSOR
 )
 GO
@@ -513,3 +507,121 @@ AS
 )
 GO
 -- End Procedure CheckIfProfessorExists --
+
+-- Start Procedure LoadScreenTermsAndYears --
+IF EXISTS ( SELECT  *
+            FROM    sys.objects
+            WHERE   object_id = OBJECT_ID(N'LoadScreenTermsAndYears')
+                    AND type IN ( N'P', N'PC' ) ) 
+DROP PROCEDURE LoadScreenTermsAndYears;
+GO
+
+CREATE PROCEDURE LoadScreenTermsAndYears 
+AS
+(
+	SELECT DISTINCT Term, TermYear, Term + ' ' + TermYear AS 'TermAndYear'
+	FROM	SCHEDULE
+)
+GO
+-- End Procedure LoadScreenTermsAndYears --
+
+
+-- Start Procedure CheckIfRoomColorExists --
+IF EXISTS ( SELECT  *
+            FROM    sys.objects
+            WHERE   object_id = OBJECT_ID(N'CheckIfRoomColorExists')
+                    AND type IN ( N'P', N'PC' ) ) 
+DROP PROCEDURE CheckIfRoomColorExists;
+GO
+
+CREATE PROCEDURE CheckIfRoomColorExists 
+    @RoomColor INT
+AS
+(
+	SELECT *
+	FROM	ROOMS
+	WHERE RoomColor = @RoomColor
+)
+GO
+-- End Procedure CheckIfRoomColorExists --
+
+-- Start Procedure GetAllRooms --
+IF EXISTS ( SELECT  *
+            FROM    sys.objects
+            WHERE   object_id = OBJECT_ID(N'GetAllRooms')
+                    AND type IN ( N'P', N'PC' ) ) 
+DROP PROCEDURE GetAllRooms;
+GO
+
+CREATE PROCEDURE GetAllRooms 
+AS
+(
+	SELECT 	RoomID, BuildingName, RoomNumber, RoomColor
+	FROM	ROOMS
+)
+GO
+-- End Procedure GetAllRooms --
+
+
+--- Start Procedure AddRoom ---
+IF EXISTS ( SELECT  *
+            FROM    sys.objects
+            WHERE   object_id = OBJECT_ID(N'AddRoom')
+                    AND type IN ( N'P', N'PC' ) ) 
+DROP PROCEDURE AddRoom;
+GO
+
+CREATE PROCEDURE AddRoom
+	@BuildingName VARCHAR(255),
+	@RoomNumber VARCHAR(10),
+	@RoomColor INT
+AS
+BEGIN
+	INSERT INTO ROOMS
+	       (BuildingName, RoomNumber, RoomColor)
+	VALUES (@BuildingName, @RoomNumber, @RoomColor)
+END
+GO
+--- End Procedure AddRoom ---
+
+
+--- Start Procedure EditRoom ---
+IF EXISTS ( SELECT  *
+            FROM    sys.objects
+            WHERE   object_id = OBJECT_ID(N'EditRoom')
+                    AND type IN ( N'P', N'PC' ) ) 
+DROP PROCEDURE EditRoom;
+GO
+
+CREATE PROCEDURE EditRoom
+	@RoomID INT,
+	@BuildingName VARCHAR(255),
+	@RoomNumber VARCHAR(10),
+	@RoomColor INT
+AS
+BEGIN
+	UPDATE ROOMS
+	SET      BuildingName = @BuildingName, RoomNumber = @RoomNumber, RoomColor = @RoomColor 
+	WHERE RoomID = @RoomID
+END
+GO
+--- End Procedure EditRoom ---
+
+
+--- Start Procedure RemoveRoom ---
+IF EXISTS ( SELECT  *
+            FROM    sys.objects
+            WHERE   object_id = OBJECT_ID(N'RemoveRoom')
+                    AND type IN ( N'P', N'PC' ) ) 
+DROP PROCEDURE RemoveRoom;
+GO
+
+CREATE PROCEDURE RemoveRoom
+	@RoomID INT
+AS
+BEGIN
+	DELETE FROM ROOMS
+	WHERE RoomID = @RoomID
+END
+GO
+--- End Procedure  RemoveRoom ---
