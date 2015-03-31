@@ -81,6 +81,15 @@ GO
 --- END CREATING SCHEDULE TABLE ---
 
 
+--- BEGIN CREATING PROFESSOR_RANKS TABLE ---
+CREATE TABLE PROFESSOR_RANKS
+(
+	ProfRank VARCHAR(255) NOT NULL PRIMARY KEY
+)
+GO
+--- END CREATING PROFESSOR_RANKS TABLE ---
+
+
 --- Begin Class Insert Statement ---
 INSERT INTO CLASS
 VALUES
@@ -164,6 +173,18 @@ VALUES
 	('BCHS', '107', -16776961);
 GO
 -- END ROOMS Insert Statement --
+
+--- BEGIN PROFESSOR_RANKS Insert Statement ---
+INSERT INTO PROFESSOR_RANKS
+VALUES
+
+('Professor'),
+('Associate'),
+('Assistant'),
+('Instructor'),
+('Adjunct');
+GO
+--- END PROFESSOR_RANKS Insert Statement ---
 
 -- BEGIN PROFESSOR FirstNameLastName INDEX Statement --
 CREATE INDEX ProfFirstNameLastName
