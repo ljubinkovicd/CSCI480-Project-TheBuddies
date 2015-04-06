@@ -42,9 +42,16 @@ Public Class frmScheduleBuilder
     End Sub
 
     Private Sub frmScheduleBuilder_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Dim g As New Globals
+        'set the semester label
+        Dim str As String = ""
+        lblSemester.Text = g.GetSemester(str)
+        Dim term As String = lblSemester.Text.Substring(0, lblSemester.Text.IndexOf(" "))
+        Dim termYear As String = lblSemester.Text.Substring(lblSemester.Text.IndexOf(" ") + 1)
+
         Dim sql As New SQLConnect
         Dim ds As New DataSet
-        ds = sql.GetStoredProc("GetScheduleForLabels")
+        ds = sql.GetStoredProc("GetScheduleForLabels " + "'" + term + "', '" + termYear + "'")
         Dim count As Integer = ds.Tables(0).Rows.Count
         Dim position As String = "left"
         Dim lbls(count) As Label
@@ -213,9 +220,11 @@ Public Class frmScheduleBuilder
                 Dim courseNum As String = lbl.Substring(lbl.IndexOf(" ") + 1)
                 Dim sectionNum As String = courseNum.Substring(courseNum.IndexOf(".") + 1)
                 courseNum = courseNum.Substring(0, courseNum.IndexOf("."))
+                Dim term As String = lblSemester.Text.Substring(0, lblSemester.Text.IndexOf(" "))
+                Dim termYear As String = lblSemester.Text.Substring(lblSemester.Text.IndexOf(" ") + 1)
                 Dim sql As New SQLConnect
                 Dim ds As New DataSet
-                ds = sql.GetStoredProc("InsertTimeDayToSchedule '" + department + "', '" + courseNum + "', '" + sectionNum + "', '" + startTime.ToString + "', '" + endTime.ToString + "', '" + dayOfWeek + "'")
+                ds = sql.GetStoredProc("InsertTimeDayToSchedule '" + department + "', '" + courseNum + "', '" + sectionNum + "', '" + startTime.ToString + "', '" + endTime.ToString + "', '" + dayOfWeek + "', '" + term + "', '" + termYear + "'")
             Else
                 TableLayoutPanel1.Controls.Remove(label2)
 
@@ -317,9 +326,11 @@ Public Class frmScheduleBuilder
                 courseNum = courseNum.Substring(0, courseNum.IndexOf(".") + 3)
                 Dim sectionNum As String = courseNum.Substring(courseNum.IndexOf(".") + 1)
                 courseNum = courseNum.Substring(0, courseNum.IndexOf("."))
+                Dim term As String = lblSemester.Text.Substring(0, lblSemester.Text.IndexOf(" "))
+                Dim termYear As String = lblSemester.Text.Substring(lblSemester.Text.IndexOf(" ") + 1)
                 Dim sql As New SQLConnect
                 Dim ds As New DataSet
-                ds = sql.GetStoredProc("InsertTimeDayToSchedule '" + department + "', '" + courseNum + "', '" + sectionNum + "', '" + startTime.ToString + "', '" + endTime.ToString + "', '" + dayOfWeek + "'")
+                ds = sql.GetStoredProc("InsertTimeDayToSchedule '" + department + "', '" + courseNum + "', '" + sectionNum + "', '" + startTime.ToString + "', '" + endTime.ToString + "', '" + dayOfWeek + "', '" + term + "', '" + termYear + "'")
 
                 'pull up the edit screen when she places something
                 Dim temp As String = lbl.Name.Remove(0, 3)

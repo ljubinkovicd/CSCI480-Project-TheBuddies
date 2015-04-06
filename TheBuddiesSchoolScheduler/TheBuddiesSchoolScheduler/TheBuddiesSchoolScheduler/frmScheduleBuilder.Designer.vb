@@ -76,6 +76,7 @@ Partial Class frmScheduleBuilder
         Me.Label32 = New System.Windows.Forms.Label()
         Me.Label33 = New System.Windows.Forms.Label()
         Me.Label34 = New System.Windows.Forms.Label()
+        Me.lblSemester = New System.Windows.Forms.Label()
         Me.cmsRightClick.SuspendLayout()
         CType(Me.dgvTeacherTotals, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -199,7 +200,7 @@ Partial Class frmScheduleBuilder
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 74.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 75.0!))
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(427, 58)
         Me.TableLayoutPanel1.Margin = New System.Windows.Forms.Padding(2)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
@@ -629,12 +630,22 @@ Partial Class frmScheduleBuilder
         Me.Label34.TabIndex = 74
         Me.Label34.Text = "8:00"
         '
+        'lblSemester
+        '
+        Me.lblSemester.AutoSize = True
+        Me.lblSemester.Location = New System.Drawing.Point(318, 23)
+        Me.lblSemester.Name = "lblSemester"
+        Me.lblSemester.Size = New System.Drawing.Size(39, 13)
+        Me.lblSemester.TabIndex = 78
+        Me.lblSemester.Text = "Label2"
+        '
         'frmScheduleBuilder
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoScroll = True
         Me.ClientSize = New System.Drawing.Size(1146, 765)
+        Me.Controls.Add(Me.lblSemester)
         Me.Controls.Add(Me.dgvTeacherTotals)
         Me.Controls.Add(Me.Label31)
         Me.Controls.Add(Me.Label32)
@@ -747,4 +758,5 @@ Partial Class frmScheduleBuilder
     Friend WithEvents Label32 As System.Windows.Forms.Label
     Friend WithEvents Label33 As System.Windows.Forms.Label
     Friend WithEvents Label34 As System.Windows.Forms.Label
+    Friend WithEvents lblSemester As System.Windows.Forms.Label
 End Class

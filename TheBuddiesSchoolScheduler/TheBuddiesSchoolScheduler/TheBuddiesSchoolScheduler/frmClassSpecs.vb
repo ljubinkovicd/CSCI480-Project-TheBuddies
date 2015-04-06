@@ -57,7 +57,12 @@
 
         Dim teacherID As String = cboProfessor.SelectedValue.ToString
         Dim roomID As String = txtRoom.Text
-        Dim s As String = "InsertToSchedule '" + department + "', '" + courseNum + "', '" + sectionNum + "', '" + startTime.ToString + "', '" + endTime.ToString + "', '" + mon.ToString + "', '" + tues.ToString + "', '" + wed.ToString + "', '" + thurs.ToString + "', '" + fri.ToString + "', '" + sat.ToString + "', '" + sun.ToString + "', '" + teacherID + "', '" + roomID + "'"
+        Dim g As New Globals
+        Dim str As String = ""
+        str = g.GetSemester(str)
+        Dim term As String = str.Substring(0, str.IndexOf(" "))
+        Dim termYear As String = str.Substring(str.IndexOf(" ") + 1)
+        Dim s As String = "InsertToSchedule '" + department + "', '" + courseNum + "', '" + sectionNum + "', '" + startTime.ToString + "', '" + endTime.ToString + "', '" + mon.ToString + "', '" + tues.ToString + "', '" + wed.ToString + "', '" + thurs.ToString + "', '" + fri.ToString + "', '" + sat.ToString + "', '" + sun.ToString + "', '" + teacherID + "', '" + roomID + "', '" + term + "', '" + termYear + "'"
 
         Dim sql As New SQLConnect
         Dim ds As New DataSet
@@ -132,7 +137,6 @@
             End If
             changeDT.Rows(0).Item("Days") = days
 
-            Dim g As New Globals
             Dim dt As New DataTable
             g.SetDT(changeDT)
             changeDT = New DataTable
@@ -151,9 +155,13 @@
         Dim courseNum As String = lbl.Substring(lbl.IndexOf(" ") + 1)
         Dim sectionNum As String = courseNum.Substring(courseNum.IndexOf(".") + 1)
         courseNum = courseNum.Substring(0, courseNum.IndexOf("."))
+        Dim str As String = ""
+        str = g.GetSemester(str)
+        Dim term As String = str.Substring(0, str.IndexOf(" "))
+        Dim termYear As String = str.Substring(str.IndexOf(" ") + 1)
         Dim sql As New SQLConnect
         Dim ds As New DataSet
-        ds = sql.GetStoredProc("GetEditInfo '" + department + "', '" + courseNum + "', '" + sectionNum + "'")
+        ds = sql.GetStoredProc("GetEditInfo '" + department + "', '" + courseNum + "', '" + sectionNum + "', '" + term + "', '" + termYear + "'")
 
         Dim cbods As New DataSet
         cbods = sql.GetStoredProc("GetProfessorName")

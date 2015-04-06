@@ -56,6 +56,8 @@ Public Class frmStartSchedule2
             Dim sectionNum As String = courseNum.Substring(courseNum.IndexOf(".") + 1)
             courseNum = courseNum.Substring(0, courseNum.IndexOf("."))
             Dim teacherId As String = ""
+            Dim term As String = lblSemester.Text.Substring(0, lblSemester.Text.IndexOf(" "))
+            Dim termYear As String = lblSemester.Text.Substring(lblSemester.Text.IndexOf(" ") + 1)
 
             For Each r As DataRow In profdt.Rows
                 If name = r.Item("Professor") Then
@@ -70,9 +72,13 @@ Public Class frmStartSchedule2
             '    lastName = fullname.Substring(fullname.IndexOf(" ") + 1)
             'End If
 
-            blank = sql.GetStoredProc("InsertProfessorToSchedule '" + department + "', '" + courseNum + "', '" + sectionNum + "', '" + teacherId + "'")
+            blank = sql.GetStoredProc("InsertProfessorToSchedule '" + department + "', '" + courseNum + "', '" + sectionNum + "', '" + teacherId + "', '" + term + "', '" + termYear + "'")
 
         Next
+
+        'Set the semester
+        Dim semester As String = lblSemester.Text
+        g.SetSemester(semester)
 
         frmScheduleBuilder.Show()
         Me.Close()
