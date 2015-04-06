@@ -3,7 +3,7 @@ Imports System.Text.RegularExpressions
 
 Public Class frmDatabaseMaintenance
 
-    Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
+    Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnOK.Click
         Me.Close()
     End Sub
 
@@ -14,6 +14,8 @@ Public Class frmDatabaseMaintenance
         Dim SQL As New SQLConnect
         Dim classID As Integer = 0
         Dim index As Integer = 0
+        Dim RoomColor As Integer
+        Dim ColorString As String = ""
 
         If tcDBMaint.SelectedIndex = 0 Then
             ' Add Class Tab
@@ -46,14 +48,23 @@ Public Class frmDatabaseMaintenance
             cbDBData.DataSource = ds.Tables(0)
         ElseIf tcDBMaint.SelectedIndex = 3 Then
             ' Add Professor
+            ds2 = SQL.GetStoredProc("GetAllRanks")
 
+            comboAddProfRank.DisplayMember = ds2.Tables(0).Columns(0).ToString
+            comboAddProfRank.ValueMember = ds2.Tables(0).Columns(1).ToString
+            comboAddProfRank.DataSource = ds2.Tables(0)
         ElseIf tcDBMaint.SelectedIndex = 4 Then
             ' Edit Professor
             ds = SQL.GetStoredProc("GetAllProfessors")
+            ds2 = SQL.GetStoredProc("GetAllRanks")
 
             cbEditProfSelectProf.DisplayMember = ds.Tables(0).Columns(0).ToString
             cbEditProfSelectProf.ValueMember = ds.Tables(0).Columns(1).ToString
             cbEditProfSelectProf.DataSource = ds.Tables(0)
+
+            comboEditProfRank.DisplayMember = ds2.Tables(0).Columns(0).ToString
+            comboEditProfRank.ValueMember = ds2.Tables(0).Columns(1).ToString
+            comboEditProfRank.DataSource = ds2.Tables(0)
 
             index = cbEditProfSelectProf.SelectedIndex
 
@@ -62,10 +73,9 @@ Public Class frmDatabaseMaintenance
             tbEditProfFirstName.Text = ds.Tables(0).Rows(0).Item("FirstName")
             tbEditProfLastName.Text = ds.Tables(0).Rows(0).Item("LastName")
             tbEditProfCredHours.Text = ds.Tables(0).Rows(0).Item("YearlyCreditHours")
-            chkEditProfAssociates.Checked = ds.Tables(0).Rows(0).Item("Associates")
-            chkEditProfBachelors.Checked = ds.Tables(0).Rows(0).Item("Bachelors")
-            chkEditProfMasters.Checked = ds.Tables(0).Rows(0).Item("Masters")
-            chkEditProfPhD.Checked = ds.Tables(0).Rows(0).Item("PhD")
+            Dim Rank As Integer
+            Rank = FindProfRank(ds.Tables(0).Rows(0).Item("ProfessorRank"))
+            comboEditProfRank.SelectedIndex = Rank - 1
         ElseIf tcDBMaint.SelectedIndex = 5 Then
             ' Remove Professor
             ds = SQL.GetStoredProc("GetAllProfessors")
@@ -74,6 +84,30 @@ Public Class frmDatabaseMaintenance
             cbRmProfessor.ValueMember = ds.Tables(0).Columns(1).ToString
 
             cbRmProfessor.DataSource = ds.Tables(0)
+        ElseIf tcDBMaint.SelectedIndex = 6 Then
+            ' ADD ROOM
+            'btnAddRoomRoomColor.ForeColor = 
+        ElseIf tcDBMaint.SelectedIndex = 7 Then
+            ' EDIT ROOM
+            ds = SQL.GetStoredProc("GetAllRooms")
+
+            comboEditRoom.DisplayMember = ds.Tables(0).Columns("Room").ToString
+            comboEditRoom.ValueMember = ds.Tables(0).Columns(0).ToString
+            comboEditRoom.DataSource = ds.Tables(0)
+
+            txtEditRoomBuildingName.Text = ds.Tables(0).Rows(0).Item("BuildingName").ToString
+            txtEditRoomRmNumber.Text = ds.Tables(0).Rows(0).Item("RoomNumber").ToString
+
+            RoomColor = Convert.ToInt32(Trim(ds.Tables(0).Rows(0).Item("RoomColor").ToString))
+
+            btnEditRoomRoomColor.BackColor = Color.FromArgb(RoomColor)
+        ElseIf tcDBMaint.SelectedIndex = 8 Then
+            ' REMOVE ROOM
+            ds = SQL.GetStoredProc("GetAllRooms")
+
+            comboRemoveRoom.DisplayMember = ds.Tables(0).Columns("Room").ToString
+            comboRemoveRoom.ValueMember = ds.Tables(0).Columns(0).ToString
+            comboRemoveRoom.DataSource = ds.Tables(0)
         End If
     End Sub
 
@@ -265,10 +299,7 @@ Public Class frmDatabaseMaintenance
         Dim FirstName As String = tbAddProfFirstName.Text
         Dim LastName As String = tbAddProfLastName.Text
         Dim CreditHours As String = tbAddProfCredHours.Text
-        Dim Associates As Boolean = chkAddProfAssociates.Checked
-        Dim Bachelors As Boolean = chkAddProfBachelors.Checked
-        Dim Masters As Boolean = chkAddProfMasters.Checked
-        Dim Doctorate As Boolean = chkAddProfPhD.Checked
+        Dim ProfRank As String = comboAddProfRank.SelectedValue.ToString
         Dim passed As Boolean = True
         Dim proc As String = ""
         Dim ds As DataSet = New DataSet
@@ -307,7 +338,7 @@ Public Class frmDatabaseMaintenance
         If passed Then
             Try
                 proc = "AddProfessor '" + TeacherID + "', '" + FirstName + "' , '" + LastName + "', " + CreditHours + _
-                                            ", " + Associates.ToString + ", " + Bachelors.ToString + ", " + Masters.ToString + ", " + Doctorate.ToString
+                                            ", '" + ProfRank + "'"
                 ds = Sql.GetStoredProc(proc)
             Catch ex As Exception
                 passed = False
@@ -324,10 +355,7 @@ Public Class frmDatabaseMaintenance
             tbAddProfFirstName.Clear()
             tbAddProfLastName.Clear()
             tbAddProfCredHours.Clear()
-            chkAddProfAssociates.CheckState = CheckState.Unchecked
-            chkAddProfBachelors.CheckState = CheckState.Unchecked
-            chkAddProfMasters.CheckState = CheckState.Unchecked
-            chkAddProfPhD.CheckState = CheckState.Unchecked
+            comboAddProfRank.SelectedIndex = 0
         End If
     End Sub
 
@@ -337,19 +365,22 @@ Public Class frmDatabaseMaintenance
         Dim ds2 As DataSet = New DataSet
         Dim TeacherID As String = ""
         Dim index As Integer = 0
-
+        ds2 = SQL.GetStoredProc("GetAllRanks")
         index = cbEditProfSelectProf.SelectedIndex
         TeacherID = ds.Tables(0).Rows(index).Item("TeacherID")
+
+        comboEditProfRank.DisplayMember = ds2.Tables(0).Columns(0).ToString
+        comboEditProfRank.ValueMember = ds2.Tables(0).Columns(1).ToString
+        comboEditProfRank.DataSource = ds2.Tables(0)
 
         ' TeacherID, FirstName, LastName, YearlyCreditHours, Associates, Bachelors, Masters, PhD
         tbEditProfTeacherID.Text = ds.Tables(0).Rows(index).Item("TeacherID")
         tbEditProfFirstName.Text = ds.Tables(0).Rows(index).Item("FirstName")
         tbEditProfLastName.Text = ds.Tables(0).Rows(index).Item("LastName")
         tbEditProfCredHours.Text = ds.Tables(0).Rows(index).Item("YearlyCreditHours")
-        chkEditProfAssociates.Checked = ds.Tables(0).Rows(index).Item("Associates")
-        chkEditProfBachelors.Checked = ds.Tables(0).Rows(index).Item("Bachelors")
-        chkEditProfMasters.Checked = ds.Tables(0).Rows(index).Item("Masters")
-        chkEditProfPhD.Checked = ds.Tables(0).Rows(index).Item("PhD")
+        Dim Rank As Integer
+        Rank = FindProfRank(ds.Tables(0).Rows(index).Item("ProfessorRank"))
+        comboEditProfRank.SelectedIndex = Rank - 1
     End Sub
 
     Private Sub btnEditClassSave_Click(sender As Object, e As EventArgs) Handles btnEditClassSave.Click
@@ -429,10 +460,7 @@ Public Class frmDatabaseMaintenance
         Dim FirstName As String = tbEditProfFirstName.Text
         Dim LastName As String = tbEditProfLastName.Text
         Dim CreditHours As String = tbEditProfCredHours.Text
-        Dim Associates As Boolean = chkEditProfAssociates.Checked
-        Dim Bachelors As Boolean = chkEditProfBachelors.Checked
-        Dim Masters As Boolean = chkEditProfMasters.Checked
-        Dim Doctorate As Boolean = chkEditProfPhD.Checked
+        Dim ProfRank As String = comboEditProfRank.SelectedValue.ToString
         Dim passed As Boolean = True
         Dim proc As String = ""
         Dim ds As DataSet = New DataSet
@@ -459,7 +487,7 @@ Public Class frmDatabaseMaintenance
         If passed Then
             Try
                 proc = "EditProfessor '" + TeacherID + "', '" + FirstName + "' , '" + LastName + "', " + CreditHours + _
-                                            ", " + Associates.ToString + ", " + Bachelors.ToString + ", " + Masters.ToString + ", " + Doctorate.ToString
+                                            ", " + ProfRank
                 ds = SQL.GetStoredProc(proc)
             Catch ex As Exception
                 passed = False
@@ -481,4 +509,130 @@ Public Class frmDatabaseMaintenance
 
     End Sub
 
+    Function FindProfRank(ByVal ProfessorRank As String) As Integer
+        Dim ds As DataSet = New DataSet
+        Dim SQL As New SQLConnect
+
+        ds = SQL.GetStoredProc("FindProfRankID '" + ProfessorRank + "'")
+
+        If ds IsNot Nothing Then
+            Return ds.Tables(0).Rows(0).Item(0)
+        Else
+            Return 0
+        End If
+    End Function
+
+
+    Private Sub btnEditRoomRoomColor_Click(sender As Object, e As EventArgs) Handles btnEditRoomRoomColor.Click
+        Dim c1 As Color
+
+        If ColorDialog1.ShowDialog() = Windows.Forms.DialogResult.OK Then
+            c1 = ColorDialog1.Color
+            btnEditRoomRoomColor.BackColor = c1
+        End If
+    End Sub
+
+    Private Sub comboEditRoom_SelectedIndexChanged(sender As Object, e As EventArgs) Handles comboEditRoom.SelectedIndexChanged
+        ' EDIT ROOM
+        Dim ds As DataSet = New DataSet
+        Dim ds2 As DataSet = New DataSet
+        Dim SQL As New SQLConnect
+        Dim classID As Integer = 0
+        Dim index As Integer = 0
+        Dim RoomColor As Integer
+        Dim ColorString As String = ""
+
+        ds = Sql.GetStoredProc("GetAllRooms")
+
+        index = comboEditRoom.SelectedIndex
+
+        txtEditRoomBuildingName.Text = ds.Tables(0).Rows(index).Item("BuildingName").ToString
+        txtEditRoomRmNumber.Text = ds.Tables(0).Rows(index).Item("RoomNumber").ToString
+
+        RoomColor = Convert.ToInt32(Trim(ds.Tables(0).Rows(index).Item("RoomColor").ToString))
+
+        btnEditRoomRoomColor.BackColor = Color.FromArgb(RoomColor)
+    End Sub
+
+    Private Sub btnEditRoomSave_Click(sender As Object, e As EventArgs) Handles btnEditRoomSave.Click
+        Dim ds As DataSet = New DataSet
+        Dim ds2 As DataSet = New DataSet
+        Dim SQL As New SQLConnect
+        Dim passed As Boolean = True
+        Dim BuildingName As String = txtEditRoomBuildingName.Text
+        Dim RoomNumber As String = txtEditRoomRmNumber.Text
+        Dim RoomColor As Integer = btnEditRoomRoomColor.BackColor.ToArgb
+        Dim proc As String = ""
+        Dim index As Integer
+
+        index = comboEditRoom.SelectedValue
+
+        If Not (Trim(BuildingName) <> "" And CheckStringLength(BuildingName, 0, 255)) Then
+            MessageBox.Show("Building Name is either Blank or of the wrong size.")
+            passed = False
+        End If
+
+        If Not (Trim(RoomNumber) <> "" And CheckStringLength(RoomNumber, 0, 10)) Then
+            MessageBox.Show("Room Number is either Blank or of the wrong size.")
+            passed = False
+        End If
+
+        If passed Then
+            Try
+                proc = "EditRoom " + index.ToString + ", '" + BuildingName + "', '" + RoomNumber + "' , " + RoomColor.ToString
+                ds = SQL.GetStoredProc(proc)
+            Catch ex As Exception
+                passed = False
+                MessageBox.Show("The room was not successfully changed in the database.")
+            End Try
+
+        Else
+            MessageBox.Show("Please fix the problems and try again")
+        End If
+
+        If passed Then
+            MessageBox.Show("The room was successfully edited in the database.")
+            ds = SQL.GetStoredProc("GetAllRooms")
+
+            comboEditRoom.DisplayMember = ds.Tables(0).Columns("Room").ToString
+            comboEditRoom.ValueMember = ds.Tables(0).Columns(0).ToString
+            comboEditRoom.DataSource = ds.Tables(0)
+        End If
+    End Sub
+
+    Private Sub btnRemoveRoom_Click(sender As Object, e As EventArgs) Handles btnRemoveRoom.Click
+        Dim SQL As New SQLConnect
+        Dim ds As DataSet = SQL.GetStoredProc("GetAllRooms")
+        Dim ds2 As DataSet = New DataSet
+        Dim RoomID As String = ""
+        Dim success As Boolean = True
+        Dim index As Integer = 0
+        Dim proc As String = ""
+
+        Try
+            RoomID = comboRemoveRoom.SelectedValue
+            index = comboRemoveRoom.SelectedIndex
+
+            Dim result As Integer = MessageBox.Show("Are you sure that you would like to delete " + ds.Tables(0).Rows(index).Item("Room") + "?", "The Buddies Scheduler", MessageBoxButtons.YesNoCancel)
+            If result = DialogResult.Yes Then
+                proc = "RemoveRoom '" + RoomID + "'"
+                ds2 = SQL.GetStoredProc(proc)
+                ds.Tables(0).Rows(index).Delete()
+                comboRemoveRoom.DisplayMember = ds.Tables(0).Columns("Room").ToString
+                comboRemoveRoom.ValueMember = ds.Tables(0).Columns(0).ToString
+                comboRemoveRoom.DataSource = ds.Tables(0)
+            Else
+                success = False
+            End If
+
+        Catch ex As Exception
+            success = False
+        End Try
+
+        If success Then
+            MessageBox.Show("The Professor has been Removed successfully")
+        Else
+            MessageBox.Show("The Professor has not been removed")
+        End If
+    End Sub
 End Class

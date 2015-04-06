@@ -23,7 +23,7 @@ Partial Class frmDatabaseMaintenance
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.btnCancel = New System.Windows.Forms.Button()
+        Me.btnOK = New System.Windows.Forms.Button()
         Me.tcDBMaint = New System.Windows.Forms.TabControl()
         Me.tpAddClass = New System.Windows.Forms.TabPage()
         Me.btnAddClassSave = New System.Windows.Forms.Button()
@@ -56,11 +56,9 @@ Partial Class frmDatabaseMaintenance
         Me.btnRemove = New System.Windows.Forms.Button()
         Me.cbDBData = New System.Windows.Forms.ComboBox()
         Me.tpAddProf = New System.Windows.Forms.TabPage()
+        Me.Label16 = New System.Windows.Forms.Label()
+        Me.comboAddProfRank = New System.Windows.Forms.ComboBox()
         Me.btnAddProfSaveProf = New System.Windows.Forms.Button()
-        Me.chkAddProfPhD = New System.Windows.Forms.CheckBox()
-        Me.chkAddProfMasters = New System.Windows.Forms.CheckBox()
-        Me.chkAddProfBachelors = New System.Windows.Forms.CheckBox()
-        Me.chkAddProfAssociates = New System.Windows.Forms.CheckBox()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.tbAddProfCredHours = New System.Windows.Forms.TextBox()
         Me.Label9 = New System.Windows.Forms.Label()
@@ -70,12 +68,10 @@ Partial Class frmDatabaseMaintenance
         Me.Label11 = New System.Windows.Forms.Label()
         Me.tbAddProfTeacherID = New System.Windows.Forms.TextBox()
         Me.tpEditProf = New System.Windows.Forms.TabPage()
+        Me.Label15 = New System.Windows.Forms.Label()
+        Me.comboEditProfRank = New System.Windows.Forms.ComboBox()
         Me.cbEditProfSelectProf = New System.Windows.Forms.ComboBox()
         Me.btnEditProfessorSave = New System.Windows.Forms.Button()
-        Me.chkEditProfPhD = New System.Windows.Forms.CheckBox()
-        Me.chkEditProfMasters = New System.Windows.Forms.CheckBox()
-        Me.chkEditProfBachelors = New System.Windows.Forms.CheckBox()
-        Me.chkEditProfAssociates = New System.Windows.Forms.CheckBox()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.tbEditProfCredHours = New System.Windows.Forms.TextBox()
         Me.Label12 = New System.Windows.Forms.Label()
@@ -87,8 +83,26 @@ Partial Class frmDatabaseMaintenance
         Me.tpRmProf = New System.Windows.Forms.TabPage()
         Me.btnRemoveProfessor = New System.Windows.Forms.Button()
         Me.cbRmProfessor = New System.Windows.Forms.ComboBox()
-        Me.btnClear = New System.Windows.Forms.Button()
-        Me.btnSave = New System.Windows.Forms.Button()
+        Me.tpAddRoom = New System.Windows.Forms.TabPage()
+        Me.btnAddRoomRoomColor = New System.Windows.Forms.Button()
+        Me.Label19 = New System.Windows.Forms.Label()
+        Me.Label18 = New System.Windows.Forms.Label()
+        Me.txtAddRoomRmNumber = New System.Windows.Forms.TextBox()
+        Me.Label17 = New System.Windows.Forms.Label()
+        Me.txtAddRoomBuildingName = New System.Windows.Forms.TextBox()
+        Me.tpEditRoom = New System.Windows.Forms.TabPage()
+        Me.btnEditRoomSave = New System.Windows.Forms.Button()
+        Me.comboEditRoom = New System.Windows.Forms.ComboBox()
+        Me.btnEditRoomRoomColor = New System.Windows.Forms.Button()
+        Me.Label20 = New System.Windows.Forms.Label()
+        Me.Label21 = New System.Windows.Forms.Label()
+        Me.txtEditRoomRmNumber = New System.Windows.Forms.TextBox()
+        Me.Label22 = New System.Windows.Forms.Label()
+        Me.txtEditRoomBuildingName = New System.Windows.Forms.TextBox()
+        Me.tpRmRoom = New System.Windows.Forms.TabPage()
+        Me.ColorDialog1 = New System.Windows.Forms.ColorDialog()
+        Me.btnRemoveRoom = New System.Windows.Forms.Button()
+        Me.comboRemoveRoom = New System.Windows.Forms.ComboBox()
         Me.tcDBMaint.SuspendLayout()
         Me.tpAddClass.SuspendLayout()
         Me.tpEditClass.SuspendLayout()
@@ -96,6 +110,9 @@ Partial Class frmDatabaseMaintenance
         Me.tpAddProf.SuspendLayout()
         Me.tpEditProf.SuspendLayout()
         Me.tpRmProf.SuspendLayout()
+        Me.tpAddRoom.SuspendLayout()
+        Me.tpEditRoom.SuspendLayout()
+        Me.tpRmRoom.SuspendLayout()
         Me.SuspendLayout()
         '
         'Label1
@@ -108,15 +125,15 @@ Partial Class frmDatabaseMaintenance
         Me.Label1.TabIndex = 1
         Me.Label1.Text = "Database Maintenance"
         '
-        'btnCancel
+        'btnOK
         '
-        Me.btnCancel.Location = New System.Drawing.Point(537, 728)
-        Me.btnCancel.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.btnCancel.Name = "btnCancel"
-        Me.btnCancel.Size = New System.Drawing.Size(112, 35)
-        Me.btnCancel.TabIndex = 11
-        Me.btnCancel.Text = "Cancel"
-        Me.btnCancel.UseVisualStyleBackColor = True
+        Me.btnOK.Location = New System.Drawing.Point(403, 728)
+        Me.btnOK.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.btnOK.Name = "btnOK"
+        Me.btnOK.Size = New System.Drawing.Size(112, 35)
+        Me.btnOK.TabIndex = 11
+        Me.btnOK.Text = "Cancel"
+        Me.btnOK.UseVisualStyleBackColor = True
         '
         'tcDBMaint
         '
@@ -126,6 +143,9 @@ Partial Class frmDatabaseMaintenance
         Me.tcDBMaint.Controls.Add(Me.tpAddProf)
         Me.tcDBMaint.Controls.Add(Me.tpEditProf)
         Me.tcDBMaint.Controls.Add(Me.tpRmProf)
+        Me.tcDBMaint.Controls.Add(Me.tpAddRoom)
+        Me.tcDBMaint.Controls.Add(Me.tpEditRoom)
+        Me.tcDBMaint.Controls.Add(Me.tpRmRoom)
         Me.tcDBMaint.Location = New System.Drawing.Point(43, 104)
         Me.tcDBMaint.Name = "tcDBMaint"
         Me.tcDBMaint.SelectedIndex = 0
@@ -416,11 +436,9 @@ Partial Class frmDatabaseMaintenance
         '
         'tpAddProf
         '
+        Me.tpAddProf.Controls.Add(Me.Label16)
+        Me.tpAddProf.Controls.Add(Me.comboAddProfRank)
         Me.tpAddProf.Controls.Add(Me.btnAddProfSaveProf)
-        Me.tpAddProf.Controls.Add(Me.chkAddProfPhD)
-        Me.tpAddProf.Controls.Add(Me.chkAddProfMasters)
-        Me.tpAddProf.Controls.Add(Me.chkAddProfBachelors)
-        Me.tpAddProf.Controls.Add(Me.chkAddProfAssociates)
         Me.tpAddProf.Controls.Add(Me.Label8)
         Me.tpAddProf.Controls.Add(Me.tbAddProfCredHours)
         Me.tpAddProf.Controls.Add(Me.Label9)
@@ -436,6 +454,24 @@ Partial Class frmDatabaseMaintenance
         Me.tpAddProf.Text = "Add Professor"
         Me.tpAddProf.UseVisualStyleBackColor = True
         '
+        'Label16
+        '
+        Me.Label16.AutoSize = True
+        Me.Label16.Location = New System.Drawing.Point(84, 339)
+        Me.Label16.Name = "Label16"
+        Me.Label16.Size = New System.Drawing.Size(109, 20)
+        Me.Label16.TabIndex = 51
+        Me.Label16.Text = "Teacher Rank"
+        '
+        'comboAddProfRank
+        '
+        Me.comboAddProfRank.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboAddProfRank.FormattingEnabled = True
+        Me.comboAddProfRank.Location = New System.Drawing.Point(88, 362)
+        Me.comboAddProfRank.Name = "comboAddProfRank"
+        Me.comboAddProfRank.Size = New System.Drawing.Size(154, 28)
+        Me.comboAddProfRank.TabIndex = 50
+        '
         'btnAddProfSaveProf
         '
         Me.btnAddProfSaveProf.Location = New System.Drawing.Point(88, 481)
@@ -444,46 +480,6 @@ Partial Class frmDatabaseMaintenance
         Me.btnAddProfSaveProf.TabIndex = 33
         Me.btnAddProfSaveProf.Text = "Save Professor"
         Me.btnAddProfSaveProf.UseVisualStyleBackColor = True
-        '
-        'chkAddProfPhD
-        '
-        Me.chkAddProfPhD.AutoSize = True
-        Me.chkAddProfPhD.Location = New System.Drawing.Point(88, 438)
-        Me.chkAddProfPhD.Name = "chkAddProfPhD"
-        Me.chkAddProfPhD.Size = New System.Drawing.Size(106, 24)
-        Me.chkAddProfPhD.TabIndex = 32
-        Me.chkAddProfPhD.Text = "Doctorate"
-        Me.chkAddProfPhD.UseVisualStyleBackColor = True
-        '
-        'chkAddProfMasters
-        '
-        Me.chkAddProfMasters.AutoSize = True
-        Me.chkAddProfMasters.Location = New System.Drawing.Point(88, 408)
-        Me.chkAddProfMasters.Name = "chkAddProfMasters"
-        Me.chkAddProfMasters.Size = New System.Drawing.Size(92, 24)
-        Me.chkAddProfMasters.TabIndex = 31
-        Me.chkAddProfMasters.Text = "Masters"
-        Me.chkAddProfMasters.UseVisualStyleBackColor = True
-        '
-        'chkAddProfBachelors
-        '
-        Me.chkAddProfBachelors.AutoSize = True
-        Me.chkAddProfBachelors.Location = New System.Drawing.Point(88, 378)
-        Me.chkAddProfBachelors.Name = "chkAddProfBachelors"
-        Me.chkAddProfBachelors.Size = New System.Drawing.Size(168, 24)
-        Me.chkAddProfBachelors.TabIndex = 30
-        Me.chkAddProfBachelors.Text = "Bachelors (BS/BA)"
-        Me.chkAddProfBachelors.UseVisualStyleBackColor = True
-        '
-        'chkAddProfAssociates
-        '
-        Me.chkAddProfAssociates.AutoSize = True
-        Me.chkAddProfAssociates.Location = New System.Drawing.Point(88, 348)
-        Me.chkAddProfAssociates.Name = "chkAddProfAssociates"
-        Me.chkAddProfAssociates.Size = New System.Drawing.Size(175, 24)
-        Me.chkAddProfAssociates.TabIndex = 29
-        Me.chkAddProfAssociates.Text = "Associates (AS/AA)"
-        Me.chkAddProfAssociates.UseVisualStyleBackColor = True
         '
         'Label8
         '
@@ -551,12 +547,10 @@ Partial Class frmDatabaseMaintenance
         '
         'tpEditProf
         '
+        Me.tpEditProf.Controls.Add(Me.Label15)
+        Me.tpEditProf.Controls.Add(Me.comboEditProfRank)
         Me.tpEditProf.Controls.Add(Me.cbEditProfSelectProf)
         Me.tpEditProf.Controls.Add(Me.btnEditProfessorSave)
-        Me.tpEditProf.Controls.Add(Me.chkEditProfPhD)
-        Me.tpEditProf.Controls.Add(Me.chkEditProfMasters)
-        Me.tpEditProf.Controls.Add(Me.chkEditProfBachelors)
-        Me.tpEditProf.Controls.Add(Me.chkEditProfAssociates)
         Me.tpEditProf.Controls.Add(Me.Label7)
         Me.tpEditProf.Controls.Add(Me.tbEditProfCredHours)
         Me.tpEditProf.Controls.Add(Me.Label12)
@@ -571,6 +565,24 @@ Partial Class frmDatabaseMaintenance
         Me.tpEditProf.TabIndex = 4
         Me.tpEditProf.Text = "Edit Professor"
         Me.tpEditProf.UseVisualStyleBackColor = True
+        '
+        'Label15
+        '
+        Me.Label15.AutoSize = True
+        Me.Label15.Location = New System.Drawing.Point(79, 364)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(109, 20)
+        Me.Label15.TabIndex = 49
+        Me.Label15.Text = "Teacher Rank"
+        '
+        'comboEditProfRank
+        '
+        Me.comboEditProfRank.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboEditProfRank.FormattingEnabled = True
+        Me.comboEditProfRank.Location = New System.Drawing.Point(83, 387)
+        Me.comboEditProfRank.Name = "comboEditProfRank"
+        Me.comboEditProfRank.Size = New System.Drawing.Size(154, 28)
+        Me.comboEditProfRank.TabIndex = 48
         '
         'cbEditProfSelectProf
         '
@@ -589,46 +601,6 @@ Partial Class frmDatabaseMaintenance
         Me.btnEditProfessorSave.TabIndex = 46
         Me.btnEditProfessorSave.Text = "Save Professor"
         Me.btnEditProfessorSave.UseVisualStyleBackColor = True
-        '
-        'chkEditProfPhD
-        '
-        Me.chkEditProfPhD.AutoSize = True
-        Me.chkEditProfPhD.Location = New System.Drawing.Point(83, 461)
-        Me.chkEditProfPhD.Name = "chkEditProfPhD"
-        Me.chkEditProfPhD.Size = New System.Drawing.Size(106, 24)
-        Me.chkEditProfPhD.TabIndex = 45
-        Me.chkEditProfPhD.Text = "Doctorate"
-        Me.chkEditProfPhD.UseVisualStyleBackColor = True
-        '
-        'chkEditProfMasters
-        '
-        Me.chkEditProfMasters.AutoSize = True
-        Me.chkEditProfMasters.Location = New System.Drawing.Point(83, 431)
-        Me.chkEditProfMasters.Name = "chkEditProfMasters"
-        Me.chkEditProfMasters.Size = New System.Drawing.Size(92, 24)
-        Me.chkEditProfMasters.TabIndex = 44
-        Me.chkEditProfMasters.Text = "Masters"
-        Me.chkEditProfMasters.UseVisualStyleBackColor = True
-        '
-        'chkEditProfBachelors
-        '
-        Me.chkEditProfBachelors.AutoSize = True
-        Me.chkEditProfBachelors.Location = New System.Drawing.Point(83, 401)
-        Me.chkEditProfBachelors.Name = "chkEditProfBachelors"
-        Me.chkEditProfBachelors.Size = New System.Drawing.Size(168, 24)
-        Me.chkEditProfBachelors.TabIndex = 43
-        Me.chkEditProfBachelors.Text = "Bachelors (BS/BA)"
-        Me.chkEditProfBachelors.UseVisualStyleBackColor = True
-        '
-        'chkEditProfAssociates
-        '
-        Me.chkEditProfAssociates.AutoSize = True
-        Me.chkEditProfAssociates.Location = New System.Drawing.Point(83, 371)
-        Me.chkEditProfAssociates.Name = "chkEditProfAssociates"
-        Me.chkEditProfAssociates.Size = New System.Drawing.Size(175, 24)
-        Me.chkEditProfAssociates.TabIndex = 42
-        Me.chkEditProfAssociates.Text = "Associates (AS/AA)"
-        Me.chkEditProfAssociates.UseVisualStyleBackColor = True
         '
         'Label7
         '
@@ -724,25 +696,182 @@ Partial Class frmDatabaseMaintenance
         Me.cbRmProfessor.Size = New System.Drawing.Size(401, 28)
         Me.cbRmProfessor.TabIndex = 4
         '
-        'btnClear
+        'tpAddRoom
         '
-        Me.btnClear.Location = New System.Drawing.Point(380, 728)
-        Me.btnClear.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.btnClear.Name = "btnClear"
-        Me.btnClear.Size = New System.Drawing.Size(112, 35)
-        Me.btnClear.TabIndex = 10
-        Me.btnClear.Text = "Clear"
-        Me.btnClear.UseVisualStyleBackColor = True
+        Me.tpAddRoom.Controls.Add(Me.btnAddRoomRoomColor)
+        Me.tpAddRoom.Controls.Add(Me.Label19)
+        Me.tpAddRoom.Controls.Add(Me.Label18)
+        Me.tpAddRoom.Controls.Add(Me.txtAddRoomRmNumber)
+        Me.tpAddRoom.Controls.Add(Me.Label17)
+        Me.tpAddRoom.Controls.Add(Me.txtAddRoomBuildingName)
+        Me.tpAddRoom.Location = New System.Drawing.Point(4, 29)
+        Me.tpAddRoom.Name = "tpAddRoom"
+        Me.tpAddRoom.Size = New System.Drawing.Size(834, 583)
+        Me.tpAddRoom.TabIndex = 6
+        Me.tpAddRoom.Text = "Add Room"
+        Me.tpAddRoom.UseVisualStyleBackColor = True
         '
-        'btnSave
+        'btnAddRoomRoomColor
         '
-        Me.btnSave.Location = New System.Drawing.Point(211, 728)
-        Me.btnSave.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.btnSave.Name = "btnSave"
-        Me.btnSave.Size = New System.Drawing.Size(112, 35)
-        Me.btnSave.TabIndex = 9
-        Me.btnSave.Text = "Save"
-        Me.btnSave.UseVisualStyleBackColor = True
+        Me.btnAddRoomRoomColor.Location = New System.Drawing.Point(79, 264)
+        Me.btnAddRoomRoomColor.Name = "btnAddRoomRoomColor"
+        Me.btnAddRoomRoomColor.Size = New System.Drawing.Size(146, 26)
+        Me.btnAddRoomRoomColor.TabIndex = 5
+        Me.btnAddRoomRoomColor.UseVisualStyleBackColor = True
+        '
+        'Label19
+        '
+        Me.Label19.AutoSize = True
+        Me.Label19.Location = New System.Drawing.Point(75, 231)
+        Me.Label19.Name = "Label19"
+        Me.Label19.Size = New System.Drawing.Size(93, 20)
+        Me.Label19.TabIndex = 4
+        Me.Label19.Text = "Room Color"
+        '
+        'Label18
+        '
+        Me.Label18.AutoSize = True
+        Me.Label18.Location = New System.Drawing.Point(75, 140)
+        Me.Label18.Name = "Label18"
+        Me.Label18.Size = New System.Drawing.Size(112, 20)
+        Me.Label18.TabIndex = 3
+        Me.Label18.Text = "Room Number"
+        '
+        'txtAddRoomRmNumber
+        '
+        Me.txtAddRoomRmNumber.Location = New System.Drawing.Point(79, 178)
+        Me.txtAddRoomRmNumber.Name = "txtAddRoomRmNumber"
+        Me.txtAddRoomRmNumber.Size = New System.Drawing.Size(266, 26)
+        Me.txtAddRoomRmNumber.TabIndex = 2
+        '
+        'Label17
+        '
+        Me.Label17.AutoSize = True
+        Me.Label17.Location = New System.Drawing.Point(75, 52)
+        Me.Label17.Name = "Label17"
+        Me.Label17.Size = New System.Drawing.Size(111, 20)
+        Me.Label17.TabIndex = 1
+        Me.Label17.Text = "Building Name"
+        '
+        'txtAddRoomBuildingName
+        '
+        Me.txtAddRoomBuildingName.Location = New System.Drawing.Point(79, 92)
+        Me.txtAddRoomBuildingName.Name = "txtAddRoomBuildingName"
+        Me.txtAddRoomBuildingName.Size = New System.Drawing.Size(266, 26)
+        Me.txtAddRoomBuildingName.TabIndex = 0
+        '
+        'tpEditRoom
+        '
+        Me.tpEditRoom.Controls.Add(Me.btnEditRoomSave)
+        Me.tpEditRoom.Controls.Add(Me.comboEditRoom)
+        Me.tpEditRoom.Controls.Add(Me.btnEditRoomRoomColor)
+        Me.tpEditRoom.Controls.Add(Me.Label20)
+        Me.tpEditRoom.Controls.Add(Me.Label21)
+        Me.tpEditRoom.Controls.Add(Me.txtEditRoomRmNumber)
+        Me.tpEditRoom.Controls.Add(Me.Label22)
+        Me.tpEditRoom.Controls.Add(Me.txtEditRoomBuildingName)
+        Me.tpEditRoom.Location = New System.Drawing.Point(4, 29)
+        Me.tpEditRoom.Name = "tpEditRoom"
+        Me.tpEditRoom.Size = New System.Drawing.Size(834, 583)
+        Me.tpEditRoom.TabIndex = 7
+        Me.tpEditRoom.Text = "Edit Room"
+        Me.tpEditRoom.UseVisualStyleBackColor = True
+        '
+        'btnEditRoomSave
+        '
+        Me.btnEditRoomSave.Location = New System.Drawing.Point(79, 359)
+        Me.btnEditRoomSave.Name = "btnEditRoomSave"
+        Me.btnEditRoomSave.Size = New System.Drawing.Size(134, 41)
+        Me.btnEditRoomSave.TabIndex = 13
+        Me.btnEditRoomSave.Text = "Save"
+        Me.btnEditRoomSave.UseVisualStyleBackColor = True
+        '
+        'comboEditRoom
+        '
+        Me.comboEditRoom.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboEditRoom.FormattingEnabled = True
+        Me.comboEditRoom.Location = New System.Drawing.Point(79, 36)
+        Me.comboEditRoom.Name = "comboEditRoom"
+        Me.comboEditRoom.Size = New System.Drawing.Size(266, 28)
+        Me.comboEditRoom.TabIndex = 12
+        '
+        'btnEditRoomRoomColor
+        '
+        Me.btnEditRoomRoomColor.Location = New System.Drawing.Point(79, 295)
+        Me.btnEditRoomRoomColor.Name = "btnEditRoomRoomColor"
+        Me.btnEditRoomRoomColor.Size = New System.Drawing.Size(146, 26)
+        Me.btnEditRoomRoomColor.TabIndex = 11
+        Me.btnEditRoomRoomColor.UseVisualStyleBackColor = True
+        '
+        'Label20
+        '
+        Me.Label20.AutoSize = True
+        Me.Label20.Location = New System.Drawing.Point(75, 262)
+        Me.Label20.Name = "Label20"
+        Me.Label20.Size = New System.Drawing.Size(93, 20)
+        Me.Label20.TabIndex = 10
+        Me.Label20.Text = "Room Color"
+        '
+        'Label21
+        '
+        Me.Label21.AutoSize = True
+        Me.Label21.Location = New System.Drawing.Point(75, 171)
+        Me.Label21.Name = "Label21"
+        Me.Label21.Size = New System.Drawing.Size(112, 20)
+        Me.Label21.TabIndex = 9
+        Me.Label21.Text = "Room Number"
+        '
+        'txtEditRoomRmNumber
+        '
+        Me.txtEditRoomRmNumber.Location = New System.Drawing.Point(79, 209)
+        Me.txtEditRoomRmNumber.Name = "txtEditRoomRmNumber"
+        Me.txtEditRoomRmNumber.Size = New System.Drawing.Size(266, 26)
+        Me.txtEditRoomRmNumber.TabIndex = 8
+        '
+        'Label22
+        '
+        Me.Label22.AutoSize = True
+        Me.Label22.Location = New System.Drawing.Point(75, 83)
+        Me.Label22.Name = "Label22"
+        Me.Label22.Size = New System.Drawing.Size(111, 20)
+        Me.Label22.TabIndex = 7
+        Me.Label22.Text = "Building Name"
+        '
+        'txtEditRoomBuildingName
+        '
+        Me.txtEditRoomBuildingName.Location = New System.Drawing.Point(79, 123)
+        Me.txtEditRoomBuildingName.Name = "txtEditRoomBuildingName"
+        Me.txtEditRoomBuildingName.Size = New System.Drawing.Size(266, 26)
+        Me.txtEditRoomBuildingName.TabIndex = 6
+        '
+        'tpRmRoom
+        '
+        Me.tpRmRoom.Controls.Add(Me.btnRemoveRoom)
+        Me.tpRmRoom.Controls.Add(Me.comboRemoveRoom)
+        Me.tpRmRoom.Location = New System.Drawing.Point(4, 29)
+        Me.tpRmRoom.Name = "tpRmRoom"
+        Me.tpRmRoom.Size = New System.Drawing.Size(834, 583)
+        Me.tpRmRoom.TabIndex = 8
+        Me.tpRmRoom.Text = "Remove Room"
+        Me.tpRmRoom.UseVisualStyleBackColor = True
+        '
+        'btnRemoveRoom
+        '
+        Me.btnRemoveRoom.Location = New System.Drawing.Point(381, 124)
+        Me.btnRemoveRoom.Name = "btnRemoveRoom"
+        Me.btnRemoveRoom.Size = New System.Drawing.Size(143, 38)
+        Me.btnRemoveRoom.TabIndex = 7
+        Me.btnRemoveRoom.Text = "Remove"
+        Me.btnRemoveRoom.UseVisualStyleBackColor = True
+        '
+        'comboRemoveRoom
+        '
+        Me.comboRemoveRoom.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboRemoveRoom.FormattingEnabled = True
+        Me.comboRemoveRoom.Location = New System.Drawing.Point(67, 51)
+        Me.comboRemoveRoom.Name = "comboRemoveRoom"
+        Me.comboRemoveRoom.Size = New System.Drawing.Size(401, 28)
+        Me.comboRemoveRoom.TabIndex = 6
         '
         'frmDatabaseMaintenance
         '
@@ -750,9 +879,7 @@ Partial Class frmDatabaseMaintenance
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(921, 782)
         Me.Controls.Add(Me.tcDBMaint)
-        Me.Controls.Add(Me.btnSave)
-        Me.Controls.Add(Me.btnCancel)
-        Me.Controls.Add(Me.btnClear)
+        Me.Controls.Add(Me.btnOK)
         Me.Controls.Add(Me.Label1)
         Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Name = "frmDatabaseMaintenance"
@@ -769,11 +896,16 @@ Partial Class frmDatabaseMaintenance
         Me.tpEditProf.ResumeLayout(False)
         Me.tpEditProf.PerformLayout()
         Me.tpRmProf.ResumeLayout(False)
+        Me.tpAddRoom.ResumeLayout(False)
+        Me.tpAddRoom.PerformLayout()
+        Me.tpEditRoom.ResumeLayout(False)
+        Me.tpEditRoom.PerformLayout()
+        Me.tpRmRoom.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
     Friend WithEvents Label1 As System.Windows.Forms.Label
-    Friend WithEvents btnCancel As System.Windows.Forms.Button
+    Friend WithEvents btnOK As System.Windows.Forms.Button
     Friend WithEvents tcDBMaint As System.Windows.Forms.TabControl
     Friend WithEvents tpAddClass As System.Windows.Forms.TabPage
     Friend WithEvents tpEditClass As System.Windows.Forms.TabPage
@@ -794,8 +926,6 @@ Partial Class frmDatabaseMaintenance
     Friend WithEvents tbAddClassStuCredHours As System.Windows.Forms.TextBox
     Friend WithEvents lblAddClassCourseName As System.Windows.Forms.Label
     Friend WithEvents tbAddClassCourseName As System.Windows.Forms.TextBox
-    Friend WithEvents btnClear As System.Windows.Forms.Button
-    Friend WithEvents btnSave As System.Windows.Forms.Button
     Friend WithEvents btnAddClassSave As System.Windows.Forms.Button
     Friend WithEvents tcEditClass As System.Windows.Forms.ComboBox
     Friend WithEvents chkEditClassGradClass As System.Windows.Forms.CheckBox
@@ -812,10 +942,6 @@ Partial Class frmDatabaseMaintenance
     Friend WithEvents btnEditClassSave As System.Windows.Forms.Button
     Friend WithEvents btnRemoveProfessor As System.Windows.Forms.Button
     Friend WithEvents cbRmProfessor As System.Windows.Forms.ComboBox
-    Friend WithEvents chkAddProfPhD As System.Windows.Forms.CheckBox
-    Friend WithEvents chkAddProfMasters As System.Windows.Forms.CheckBox
-    Friend WithEvents chkAddProfBachelors As System.Windows.Forms.CheckBox
-    Friend WithEvents chkAddProfAssociates As System.Windows.Forms.CheckBox
     Friend WithEvents Label8 As System.Windows.Forms.Label
     Friend WithEvents tbAddProfCredHours As System.Windows.Forms.TextBox
     Friend WithEvents Label9 As System.Windows.Forms.Label
@@ -827,10 +953,6 @@ Partial Class frmDatabaseMaintenance
     Friend WithEvents btnAddProfSaveProf As System.Windows.Forms.Button
     Friend WithEvents cbEditProfSelectProf As System.Windows.Forms.ComboBox
     Friend WithEvents btnEditProfessorSave As System.Windows.Forms.Button
-    Friend WithEvents chkEditProfPhD As System.Windows.Forms.CheckBox
-    Friend WithEvents chkEditProfMasters As System.Windows.Forms.CheckBox
-    Friend WithEvents chkEditProfBachelors As System.Windows.Forms.CheckBox
-    Friend WithEvents chkEditProfAssociates As System.Windows.Forms.CheckBox
     Friend WithEvents Label7 As System.Windows.Forms.Label
     Friend WithEvents tbEditProfCredHours As System.Windows.Forms.TextBox
     Friend WithEvents Label12 As System.Windows.Forms.Label
@@ -839,4 +961,28 @@ Partial Class frmDatabaseMaintenance
     Friend WithEvents tbEditProfFirstName As System.Windows.Forms.TextBox
     Friend WithEvents Label14 As System.Windows.Forms.Label
     Friend WithEvents tbEditProfTeacherID As System.Windows.Forms.TextBox
+    Friend WithEvents Label16 As System.Windows.Forms.Label
+    Friend WithEvents comboAddProfRank As System.Windows.Forms.ComboBox
+    Friend WithEvents Label15 As System.Windows.Forms.Label
+    Friend WithEvents comboEditProfRank As System.Windows.Forms.ComboBox
+    Friend WithEvents tpAddRoom As System.Windows.Forms.TabPage
+    Friend WithEvents tpEditRoom As System.Windows.Forms.TabPage
+    Friend WithEvents tpRmRoom As System.Windows.Forms.TabPage
+    Friend WithEvents btnAddRoomRoomColor As System.Windows.Forms.Button
+    Friend WithEvents Label19 As System.Windows.Forms.Label
+    Friend WithEvents Label18 As System.Windows.Forms.Label
+    Friend WithEvents txtAddRoomRmNumber As System.Windows.Forms.TextBox
+    Friend WithEvents Label17 As System.Windows.Forms.Label
+    Friend WithEvents txtAddRoomBuildingName As System.Windows.Forms.TextBox
+    Friend WithEvents ColorDialog1 As System.Windows.Forms.ColorDialog
+    Friend WithEvents comboEditRoom As System.Windows.Forms.ComboBox
+    Friend WithEvents btnEditRoomRoomColor As System.Windows.Forms.Button
+    Friend WithEvents Label20 As System.Windows.Forms.Label
+    Friend WithEvents Label21 As System.Windows.Forms.Label
+    Friend WithEvents txtEditRoomRmNumber As System.Windows.Forms.TextBox
+    Friend WithEvents Label22 As System.Windows.Forms.Label
+    Friend WithEvents txtEditRoomBuildingName As System.Windows.Forms.TextBox
+    Friend WithEvents btnEditRoomSave As System.Windows.Forms.Button
+    Friend WithEvents btnRemoveRoom As System.Windows.Forms.Button
+    Friend WithEvents comboRemoveRoom As System.Windows.Forms.ComboBox
 End Class

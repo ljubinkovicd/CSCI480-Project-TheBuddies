@@ -556,7 +556,7 @@ GO
 CREATE PROCEDURE GetAllRooms 
 AS
 (
-	SELECT 	RoomID, BuildingName, RoomNumber, RoomColor
+	SELECT 	RoomID, BuildingName, RoomNumber, RoomColor, BuildingName + ' ' + RoomNumber AS 'Room'
 	FROM	ROOMS
 )
 GO
@@ -625,3 +625,39 @@ BEGIN
 END
 GO
 --- End Procedure  RemoveRoom ---
+
+-- Start Procedure GetAllRanks --
+IF EXISTS ( SELECT  *
+            FROM    sys.objects
+            WHERE   object_id = OBJECT_ID(N'GetAllRanks')
+                    AND type IN ( N'P', N'PC' ) ) 
+DROP PROCEDURE GetAllRanks;
+GO
+
+CREATE PROCEDURE GetAllRanks 
+AS
+(
+	SELECT 	ProfRank, RankID
+	FROM	PROFESSOR_RANKS
+)
+GO
+-- End Procedure GetAllRanks --
+
+-- Start Procedure FindProfRankID --
+IF EXISTS ( SELECT  *
+            FROM    sys.objects
+            WHERE   object_id = OBJECT_ID(N'FindProfRankID')
+                    AND type IN ( N'P', N'PC' ) ) 
+DROP PROCEDURE FindProfRankID;
+GO
+
+CREATE PROCEDURE FindProfRankID 
+	@ProfRank VARCHAR(255)
+AS
+(
+	SELECT 	RankID
+	FROM	PROFESSOR_RANKS
+	WHERE ProfRank = @ProfRank
+)
+GO
+-- End Procedure FindProfRankID --
