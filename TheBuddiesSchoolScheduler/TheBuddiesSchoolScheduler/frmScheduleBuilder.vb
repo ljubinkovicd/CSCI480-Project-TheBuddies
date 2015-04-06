@@ -291,7 +291,7 @@ Public Class frmScheduleBuilder
                 pos = dropLabelPos()
 
                 Dragging = False
-
+                ' Used to prevent the label from getting inserted into the table if outside of the table.
                 If (pos.Row < 0 Or pos.Column < 0) Then
                     Return
                 End If
