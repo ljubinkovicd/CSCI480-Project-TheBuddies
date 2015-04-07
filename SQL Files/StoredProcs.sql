@@ -1192,3 +1192,42 @@ BEGIN
 END
 GO
 -- End Procedure WeeklyReport --
+
+-- Start Procedure CheckIfRoomExists --
+IF EXISTS ( SELECT  *
+            FROM    sys.objects
+            WHERE   object_id = OBJECT_ID(N'CheckIfRoomExists')
+                    AND type IN ( N'P', N'PC' ) ) 
+DROP PROCEDURE CheckIfRoomExists;
+GO
+
+CREATE PROCEDURE CheckIfRoomExists 
+	@BuildingName VARCHAR(255),
+	@RoomNumber VARCHAR(10)
+AS
+(
+	SELECT *
+	FROM	ROOM
+	WHERE BuildingName = @BuildingName AND RoomNumber = @RoomNumber
+)
+GO
+-- End Procedure CheckIfRoomExists --
+
+-- Start Procedure CheckIfRoomColorExists --
+IF EXISTS ( SELECT  *
+            FROM    sys.objects
+            WHERE   object_id = OBJECT_ID(N'CheckIfRoomColorExists')
+                    AND type IN ( N'P', N'PC' ) ) 
+DROP PROCEDURE CheckIfRoomColorExists;
+GO
+
+CREATE PROCEDURE CheckIfRoomColorExists 
+	@RoomColor INT
+AS
+(
+	SELECT *
+	FROM	ROOM
+	WHERE RoomColor = @RoomColor
+)
+GO
+-- End Procedure CheckIfRoomColorExists --

@@ -22,6 +22,7 @@ Partial Class frmDatabaseMaintenance
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.btnOK = New System.Windows.Forms.Button()
         Me.tcDBMaint = New System.Windows.Forms.TabControl()
@@ -100,9 +101,11 @@ Partial Class frmDatabaseMaintenance
         Me.Label22 = New System.Windows.Forms.Label()
         Me.txtEditRoomBuildingName = New System.Windows.Forms.TextBox()
         Me.tpRmRoom = New System.Windows.Forms.TabPage()
-        Me.ColorDialog1 = New System.Windows.Forms.ColorDialog()
         Me.btnRemoveRoom = New System.Windows.Forms.Button()
         Me.comboRemoveRoom = New System.Windows.Forms.ComboBox()
+        Me.ColorDialog1 = New System.Windows.Forms.ColorDialog()
+        Me.btnAddRoomSave = New System.Windows.Forms.Button()
+        Me.dbToolTip = New System.Windows.Forms.ToolTip(Me.components)
         Me.tcDBMaint.SuspendLayout()
         Me.tpAddClass.SuspendLayout()
         Me.tpEditClass.SuspendLayout()
@@ -172,6 +175,7 @@ Partial Class frmDatabaseMaintenance
         Me.tpAddClass.Size = New System.Drawing.Size(834, 583)
         Me.tpAddClass.TabIndex = 0
         Me.tpAddClass.Text = "Add Class"
+        Me.dbToolTip.SetToolTip(Me.tpAddClass, "Add a Class to the Database")
         Me.tpAddClass.UseVisualStyleBackColor = True
         '
         'btnAddClassSave
@@ -294,6 +298,7 @@ Partial Class frmDatabaseMaintenance
         Me.tpEditClass.Size = New System.Drawing.Size(834, 583)
         Me.tpEditClass.TabIndex = 1
         Me.tpEditClass.Text = "Edit Class"
+        Me.dbToolTip.SetToolTip(Me.tpEditClass, "Edit a class in the Database")
         Me.tpEditClass.UseVisualStyleBackColor = True
         '
         'btnEditClassSave
@@ -414,6 +419,7 @@ Partial Class frmDatabaseMaintenance
         Me.tpRmClass.Size = New System.Drawing.Size(834, 583)
         Me.tpRmClass.TabIndex = 2
         Me.tpRmClass.Text = "Remove Class"
+        Me.dbToolTip.SetToolTip(Me.tpRmClass, "Remove a class from the Database")
         Me.tpRmClass.UseVisualStyleBackColor = True
         '
         'btnRemove
@@ -452,6 +458,7 @@ Partial Class frmDatabaseMaintenance
         Me.tpAddProf.Size = New System.Drawing.Size(834, 583)
         Me.tpAddProf.TabIndex = 3
         Me.tpAddProf.Text = "Add Professor"
+        Me.dbToolTip.SetToolTip(Me.tpAddProf, "Add a professor to the Database")
         Me.tpAddProf.UseVisualStyleBackColor = True
         '
         'Label16
@@ -564,6 +571,7 @@ Partial Class frmDatabaseMaintenance
         Me.tpEditProf.Size = New System.Drawing.Size(834, 583)
         Me.tpEditProf.TabIndex = 4
         Me.tpEditProf.Text = "Edit Professor"
+        Me.dbToolTip.SetToolTip(Me.tpEditProf, "Edit a professor in the Database")
         Me.tpEditProf.UseVisualStyleBackColor = True
         '
         'Label15
@@ -676,6 +684,7 @@ Partial Class frmDatabaseMaintenance
         Me.tpRmProf.Size = New System.Drawing.Size(834, 583)
         Me.tpRmProf.TabIndex = 5
         Me.tpRmProf.Text = "Remove Professor"
+        Me.dbToolTip.SetToolTip(Me.tpRmProf, "Remove a professor from the Database")
         Me.tpRmProf.UseVisualStyleBackColor = True
         '
         'btnRemoveProfessor
@@ -698,6 +707,7 @@ Partial Class frmDatabaseMaintenance
         '
         'tpAddRoom
         '
+        Me.tpAddRoom.Controls.Add(Me.btnAddRoomSave)
         Me.tpAddRoom.Controls.Add(Me.btnAddRoomRoomColor)
         Me.tpAddRoom.Controls.Add(Me.Label19)
         Me.tpAddRoom.Controls.Add(Me.Label18)
@@ -709,6 +719,7 @@ Partial Class frmDatabaseMaintenance
         Me.tpAddRoom.Size = New System.Drawing.Size(834, 583)
         Me.tpAddRoom.TabIndex = 6
         Me.tpAddRoom.Text = "Add Room"
+        Me.dbToolTip.SetToolTip(Me.tpAddRoom, "Add a room to the Database")
         Me.tpAddRoom.UseVisualStyleBackColor = True
         '
         'btnAddRoomRoomColor
@@ -717,12 +728,13 @@ Partial Class frmDatabaseMaintenance
         Me.btnAddRoomRoomColor.Name = "btnAddRoomRoomColor"
         Me.btnAddRoomRoomColor.Size = New System.Drawing.Size(146, 26)
         Me.btnAddRoomRoomColor.TabIndex = 5
+        Me.dbToolTip.SetToolTip(Me.btnAddRoomRoomColor, "Click this button to select a color")
         Me.btnAddRoomRoomColor.UseVisualStyleBackColor = True
         '
         'Label19
         '
         Me.Label19.AutoSize = True
-        Me.Label19.Location = New System.Drawing.Point(75, 231)
+        Me.Label19.Location = New System.Drawing.Point(75, 239)
         Me.Label19.Name = "Label19"
         Me.Label19.Size = New System.Drawing.Size(93, 20)
         Me.Label19.TabIndex = 4
@@ -731,7 +743,7 @@ Partial Class frmDatabaseMaintenance
         'Label18
         '
         Me.Label18.AutoSize = True
-        Me.Label18.Location = New System.Drawing.Point(75, 140)
+        Me.Label18.Location = New System.Drawing.Point(75, 152)
         Me.Label18.Name = "Label18"
         Me.Label18.Size = New System.Drawing.Size(112, 20)
         Me.Label18.TabIndex = 3
@@ -747,7 +759,7 @@ Partial Class frmDatabaseMaintenance
         'Label17
         '
         Me.Label17.AutoSize = True
-        Me.Label17.Location = New System.Drawing.Point(75, 52)
+        Me.Label17.Location = New System.Drawing.Point(75, 64)
         Me.Label17.Name = "Label17"
         Me.Label17.Size = New System.Drawing.Size(111, 20)
         Me.Label17.TabIndex = 1
@@ -775,6 +787,7 @@ Partial Class frmDatabaseMaintenance
         Me.tpEditRoom.Size = New System.Drawing.Size(834, 583)
         Me.tpEditRoom.TabIndex = 7
         Me.tpEditRoom.Text = "Edit Room"
+        Me.dbToolTip.SetToolTip(Me.tpEditRoom, "Edit a room in the Database")
         Me.tpEditRoom.UseVisualStyleBackColor = True
         '
         'btnEditRoomSave
@@ -801,6 +814,7 @@ Partial Class frmDatabaseMaintenance
         Me.btnEditRoomRoomColor.Name = "btnEditRoomRoomColor"
         Me.btnEditRoomRoomColor.Size = New System.Drawing.Size(146, 26)
         Me.btnEditRoomRoomColor.TabIndex = 11
+        Me.dbToolTip.SetToolTip(Me.btnEditRoomRoomColor, "Click this button to select a color")
         Me.btnEditRoomRoomColor.UseVisualStyleBackColor = True
         '
         'Label20
@@ -853,6 +867,7 @@ Partial Class frmDatabaseMaintenance
         Me.tpRmRoom.Size = New System.Drawing.Size(834, 583)
         Me.tpRmRoom.TabIndex = 8
         Me.tpRmRoom.Text = "Remove Room"
+        Me.dbToolTip.SetToolTip(Me.tpRmRoom, "Remove a room from the Database")
         Me.tpRmRoom.UseVisualStyleBackColor = True
         '
         'btnRemoveRoom
@@ -872,6 +887,15 @@ Partial Class frmDatabaseMaintenance
         Me.comboRemoveRoom.Name = "comboRemoveRoom"
         Me.comboRemoveRoom.Size = New System.Drawing.Size(401, 28)
         Me.comboRemoveRoom.TabIndex = 6
+        '
+        'btnAddRoomSave
+        '
+        Me.btnAddRoomSave.Location = New System.Drawing.Point(79, 330)
+        Me.btnAddRoomSave.Name = "btnAddRoomSave"
+        Me.btnAddRoomSave.Size = New System.Drawing.Size(134, 41)
+        Me.btnAddRoomSave.TabIndex = 14
+        Me.btnAddRoomSave.Text = "Save"
+        Me.btnAddRoomSave.UseVisualStyleBackColor = True
         '
         'frmDatabaseMaintenance
         '
@@ -985,4 +1009,6 @@ Partial Class frmDatabaseMaintenance
     Friend WithEvents btnEditRoomSave As System.Windows.Forms.Button
     Friend WithEvents btnRemoveRoom As System.Windows.Forms.Button
     Friend WithEvents comboRemoveRoom As System.Windows.Forms.ComboBox
+    Friend WithEvents btnAddRoomSave As System.Windows.Forms.Button
+    Friend WithEvents dbToolTip As System.Windows.Forms.ToolTip
 End Class
