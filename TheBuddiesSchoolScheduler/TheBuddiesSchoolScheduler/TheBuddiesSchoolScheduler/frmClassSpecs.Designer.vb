@@ -41,8 +41,8 @@ Partial Class frmClassSpecs
         Me.btnCancel = New System.Windows.Forms.Button()
         Me.lblClassName = New System.Windows.Forms.Label()
         Me.cboProfessor = New System.Windows.Forms.ComboBox()
-        Me.txtRoom = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.cboRoom = New System.Windows.Forms.ComboBox()
         Me.SuspendLayout()
         '
         'lblClass
@@ -179,7 +179,7 @@ Partial Class frmClassSpecs
         '
         'txtEndTime
         '
-        Me.txtEndTime.Location = New System.Drawing.Point(123, 204)
+        Me.txtEndTime.Location = New System.Drawing.Point(122, 201)
         Me.txtEndTime.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.txtEndTime.Name = "txtEndTime"
         Me.txtEndTime.Size = New System.Drawing.Size(148, 26)
@@ -207,6 +207,7 @@ Partial Class frmClassSpecs
         '
         'btnSave
         '
+        Me.btnSave.DialogResult = System.Windows.Forms.DialogResult.OK
         Me.btnSave.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSave.Location = New System.Drawing.Point(62, 395)
         Me.btnSave.Name = "btnSave"
@@ -217,6 +218,7 @@ Partial Class frmClassSpecs
         '
         'btnCancel
         '
+        Me.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.btnCancel.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnCancel.Location = New System.Drawing.Point(226, 395)
         Me.btnCancel.Name = "btnCancel"
@@ -242,15 +244,6 @@ Partial Class frmClassSpecs
         Me.cboProfessor.Size = New System.Drawing.Size(147, 28)
         Me.cboProfessor.TabIndex = 41
         '
-        'txtRoom
-        '
-        Me.txtRoom.AccessibleRole = System.Windows.Forms.AccessibleRole.SplitButton
-        Me.txtRoom.Location = New System.Drawing.Point(123, 249)
-        Me.txtRoom.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.txtRoom.Name = "txtRoom"
-        Me.txtRoom.Size = New System.Drawing.Size(148, 26)
-        Me.txtRoom.TabIndex = 43
-        '
         'Label1
         '
         Me.Label1.AccessibleRole = System.Windows.Forms.AccessibleRole.SplitButton
@@ -262,12 +255,20 @@ Partial Class frmClassSpecs
         Me.Label1.TabIndex = 42
         Me.Label1.Text = "Room:"
         '
+        'cboRoom
+        '
+        Me.cboRoom.FormattingEnabled = True
+        Me.cboRoom.Location = New System.Drawing.Point(123, 244)
+        Me.cboRoom.Name = "cboRoom"
+        Me.cboRoom.Size = New System.Drawing.Size(147, 28)
+        Me.cboRoom.TabIndex = 43
+        '
         'frmClassSpecs
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(384, 431)
-        Me.Controls.Add(Me.txtRoom)
+        Me.Controls.Add(Me.cboRoom)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.cboProfessor)
         Me.Controls.Add(Me.lblClassName)
@@ -316,6 +317,6 @@ Partial Class frmClassSpecs
     Friend WithEvents btnCancel As System.Windows.Forms.Button
     Friend WithEvents lblClassName As System.Windows.Forms.Label
     Friend WithEvents cboProfessor As System.Windows.Forms.ComboBox
-    Friend WithEvents txtRoom As System.Windows.Forms.TextBox
     Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents cboRoom As System.Windows.Forms.ComboBox
 End Class

@@ -64,13 +64,6 @@ Public Class frmStartSchedule2
                     teacherId = r.Item("TeacherID")
                 End If
             Next
-            'Dim firstName As String = ""
-            'Dim lastName As String = ""
-
-            'If fullname <> "" Then
-            '    firstName = fullname.Substring(0, fullname.IndexOf(" "))
-            '    lastName = fullname.Substring(fullname.IndexOf(" ") + 1)
-            'End If
 
             blank = sql.GetStoredProc("InsertProfessorToSchedule '" + department + "', '" + courseNum + "', '" + sectionNum + "', '" + teacherId + "', '" + term + "', '" + termYear + "'")
 
@@ -90,7 +83,6 @@ Public Class frmStartSchedule2
         dt = g.GetDT(dt)
 
         'determine the number of sections for each class
-        '*********Check that sections is numer of sections in physical class room***********
         dt = getSections(dt)
 
         Dim cbb As New DataGridViewComboBoxColumn() With {.HeaderText = "Choose Professor"}
@@ -105,7 +97,6 @@ Public Class frmStartSchedule2
         Next
 
         'The first column will be filled with the values from the last screen
-        'TeacherGridView.Columns.Add("", "Class")
         TeacherGridView.DataSource = dt
         TeacherGridView.Columns("Course").HeaderText = "Course"
         TeacherGridView.Columns("Course").AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
@@ -135,6 +126,7 @@ Public Class frmStartSchedule2
                 Next
             End If
             If dr.Item("Night") > 0 Then
+                'add night sections
                 For i As Integer = 1 To dr.Item("Night")
                     tempdt.Rows.Add(dr.Item("Course") + ".5" + i.ToString)
                 Next
@@ -147,13 +139,10 @@ Public Class frmStartSchedule2
             End If
         Next
 
-        'tempdt.Columns(0).ColumnName = "Course Number"
-
         Return tempdt
     End Function
 
     Private Function IfNullObj(p1 As Object) As Object
         Throw New NotImplementedException
     End Function
-
 End Class

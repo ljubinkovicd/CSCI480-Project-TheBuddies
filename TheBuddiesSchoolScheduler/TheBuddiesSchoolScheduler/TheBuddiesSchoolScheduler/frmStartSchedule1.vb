@@ -77,9 +77,9 @@ Public Class frmStartSchedule1
             cboSemester.Items.Add("Fall " + ((thisYear + i).ToString))
             cboSemester.Items.Add("Summer" + ((thisYear + i).ToString))
         Next
-
-        'change to reflect the next semester
         cboSemester.SelectedText = "Spring " + thisYear.ToString
+
+        '** need to not allow her to edit any of the data grid views
 
         '.AllowUserToAddRows = False
         '.AllowUserToDeleteRows = False

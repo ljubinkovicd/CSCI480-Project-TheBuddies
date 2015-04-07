@@ -18,7 +18,7 @@ Public Class frmScheduleBuilder
     Dim CursorX, CursorY As Integer
     Dim Dragging As Boolean = False
     Dim controlPoint As Point
-    Dim dragToggle As Boolean = False
+    'Dim dragToggle As Boolean = False
     Dim addedColList As New List(Of Integer)
     Dim daysdt As New DataTable
     Dim time(tlpRowCount) As Integer
@@ -32,9 +32,9 @@ Public Class frmScheduleBuilder
         frmTeacherSchedule.Show()
     End Sub
 
-    Private Sub Label13_Click(sender As Object, e As EventArgs)
-        frmClassSpecs.Show()
-    End Sub
+    'Private Sub Label13_Click(sender As Object, e As EventArgs)
+    '    frmClassSpecs.Show()
+    'End Sub
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
         frmReports.Show()
@@ -72,7 +72,6 @@ Public Class frmScheduleBuilder
                 .TextAlign = ContentAlignment.MiddleCenter
                 .BorderStyle = BorderStyle.FixedSingle
                 .ContextMenuStrip = cmsRightClick
-                'AddHandler .Click, AddressOf LabelMouseUp
                 AddHandler .MouseDown, AddressOf labelDown
                 AddHandler .MouseMove, AddressOf labelMove
                 AddHandler .MouseUp, AddressOf labelUp
@@ -98,105 +97,25 @@ Public Class frmScheduleBuilder
         initializeDaysDt()
         initializeTime()
         'dgvTeacherTotals.DataSource = daysdt
+        getLegend()
 
     End Sub
-
-    'Public Sub LabelMouseUp(ByVal sender As System.Object, ByVal e As System.Windows.Forms.MouseEventArgs)
-    '    If e.Button = Windows.Forms.MouseButtons.Right Then
-    '        cmsRightClick.Show()
-    '    End If
-    'End Sub
 
     Private Sub EditToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EditToolStripMenuItem.Click
         Dim lbl = cmsRightClick.SourceControl.Name.ToString
         Dim g As New Globals
+
+        If lbl.Substring(0, 4) = "temp" Then
+            lbl = lbl.Remove(0, 5)
+            lbl = "lbl" + lbl
+        End If
+
         g.SetLabel(lbl.Remove(0, 3))
         Dim frm = frmClassSpecs.ShowDialog()
-
-        editMenuChanges(lbl)
-
-        ''if either the time or day has change, need to reflect in table
-        'Dim changeDT As New DataTable
-        'changeDT = g.GetDT(changeDT)
-        'Try
-        '    If changeDT.Rows(0).Item("ChangeTime").ToString = "True" Or changeDT.Rows(0).Item("ChangeDay").ToString = "True" Then
-        '        Dim startTime = CType(changeDT.Rows(0).Item("StartTime").ToString, Integer)
-        '        Dim endTime = CType(changeDT.Rows(0).Item("EndTime").ToString, Integer)
-        '        Dim days = changeDT.Rows(0).Item("Days").ToString
-
-        '        'if there are no days to add, check to see where the label is and only change if it is in the tlp
-        '        If days.Length > 0 Then
-        '            'set the new label position
-        '            'for now grabbing the first day to add it like that
-        '            days = days.Substring(0, days.IndexOf(","))
-
-        '        End If
-
-        '        'find the col and row
-        '        Dim col As Integer = 0
-        '        Dim startRow As Integer = 0
-        '        Dim endRow As Integer = 0
-
-        '        'col is day
-        '        For Each dr As DataRow In daysdt.Rows
-        '            If days = dr.Item("DayOfWeek") Then
-        '                col = dr.Item("ColStart")
-        '            End If
-        '        Next
-
-        '        'rows determined by start and end times
-        '        For i = 0 To time.Length - 1
-        '            If startTime = time(i) Then
-        '                startRow = i
-        '            End If
-        '            If endTime = time(i) Then
-        '                endRow = i - 1
-        '            End If
-        '        Next
-
-        '        'Check to make sure there is no label in this position
-        '        Dim pos As New TableLayoutPanelCellPosition(0, 0)
-        '        pos.Column = col
-        '        pos.Row = startRow
-        '        Dim cntrl As New Control
-        '        Dim addCntrl As Boolean = True
-
-        '        For i = 0 To endRow - startRow
-        '            cntrl = TableLayoutPanel1.GetControlFromPosition(col, startRow + i)
-        '            If cntrl IsNot Nothing Then
-        '                'then we need to move the label over a column, possibly increment the column also
-        '                addCntrl = False
-        '            End If
-        '        Next
-
-        '        If addCntrl Then
-        '            Dim label As Label = CType(TableLayoutPanel1.Controls(lbl), Label)
-        '            If label Is Nothing Then
-        '                label = CType(ClassesPanel.Controls(lbl), Label)
-        '                ClassesPanel.Controls.Remove(label)
-        '                If label Is Nothing Then
-        '                    label = CType(Me.Controls(lbl), Label)
-        '                    Me.Controls.Remove(label)
-        '                End If
-        '            End If
-        '            TableLayoutPanel1.Controls.Add(label)
-        '            TableLayoutPanel1.SetCellPosition(label, pos)
-        '            TableLayoutPanel1.SetRowSpan(label, endRow - startRow + 1)
-        '        Else
-        '            'check to see if there is an available column
-
-        '            'if there is, add it there
-
-        '            'if not, increment the columns and add it there
-
-        '        End If
-        '        'if there are days, for now check to find the day we want so we only add one day for right now
-        '        '*********update to include more days**************
-
-        '    End If
-        'Catch ex As Exception
-
-        'End Try
+        Dim s As String = frm.ToString
+        If s = "OK" Then
+            editMenuChanges(lbl)
+        End If
     End Sub
 
     Private Sub RemoveToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RemoveToolStripMenuItem.Click
@@ -206,141 +125,173 @@ Public Class frmScheduleBuilder
         '***************eventually want to not place labels on top of each other if removing multiple **************
 
         If label2 IsNot Nothing Then
+            Dim dayOfWeek As String = "Remove"
+            Dim courseNum As String = lbl.Substring(lbl.IndexOf(" ") + 1)
+            Dim sectionNum As String = courseNum.Substring(courseNum.IndexOf(".") + 1)
+            courseNum = courseNum.Substring(0, courseNum.IndexOf("."))
+            Dim term As String = lblSemester.Text.Substring(0, lblSemester.Text.IndexOf(" "))
+            Dim termYear As String = lblSemester.Text.Substring(lblSemester.Text.IndexOf(" ") + 1)
+            Dim sql As New SQLConnect
+            Dim ds As New DataSet
+
             If label2.Name.Substring(0, 4) <> "temp" Then
-                TableLayoutPanel1.Controls.Remove(label2)
-                ClassesPanel.Controls.Add(label2)
-                label2.Height = lblHeight
-                label2.Width = lblWidth
+                
 
                 'remove the start and end times from the database
                 Dim startTime As Integer = 0
                 Dim endTime As Integer = 0
-                Dim dayOfWeek As String = "Remove"
                 Dim department As String = lbl.Substring(3, lbl.IndexOf(" ") - 3)
-                Dim courseNum As String = lbl.Substring(lbl.IndexOf(" ") + 1)
-                Dim sectionNum As String = courseNum.Substring(courseNum.IndexOf(".") + 1)
-                courseNum = courseNum.Substring(0, courseNum.IndexOf("."))
-                Dim term As String = lblSemester.Text.Substring(0, lblSemester.Text.IndexOf(" "))
-                Dim termYear As String = lblSemester.Text.Substring(lblSemester.Text.IndexOf(" ") + 1)
-                Dim sql As New SQLConnect
-                Dim ds As New DataSet
-                ds = sql.GetStoredProc("InsertTimeDayToSchedule '" + department + "', '" + courseNum + "', '" + sectionNum + "', '" + startTime.ToString + "', '" + endTime.ToString + "', '" + dayOfWeek + "', '" + term + "', '" + termYear + "'")
-            Else
-                TableLayoutPanel1.Controls.Remove(label2)
 
+                ds = sql.GetStoredProc("InsertTimeDayToSchedule '" + department + "', '" + courseNum + "', '" + sectionNum + "', '" + startTime.ToString + "', '" + endTime.ToString + "', '" + dayOfWeek + "', '" + term + "', '" + termYear + "'")
+
+                'Remove any repeating labels if it has any
+                Dim temp As String = lbl.Substring(3)
+                For i = 0 To 6
+                    Dim tempLabel As Label = CType(TableLayoutPanel1.Controls("temp" + i.ToString + temp), Label)
+                    If tempLabel IsNot Nothing Then
+                        'delete the label
+                        TableLayoutPanel1.Controls.Remove(tempLabel)
+                    End If
+                Next
+
+                TableLayoutPanel1.Controls.Remove(label2)
+                ClassesPanel.Controls.Add(label2)
+                label2.Height = lblHeight
+                label2.Width = lblWidth
+            Else
+                'remove the repeating label from the database
+                'determine which day the label was on
+                Dim department As String = lbl.Substring(5, lbl.IndexOf(" ") - 5)
+                Dim pos As New TableLayoutPanelCellPosition(0, 0)
+                pos = TableLayoutPanel1.GetCellPosition(label2)
+                Dim c As Integer = pos.Column
+                For Each dr As DataRow In daysdt.Rows
+                    If dr.Item("ColStart") <= c And c <= dr.Item("ColStart") + (dr.Item("NumCol") - 1) Then
+                        dayOfWeek = dr.Item("DayOfWeek").ToString
+                    End If
+                Next
+
+                ds = sql.GetStoredProc("RemoveRepeatingDaySchedule '" + department + "', '" + courseNum + "', '" + sectionNum + "', '" + dayOfWeek + "', '" + term + "', '" + termYear + "'")
+
+                TableLayoutPanel1.Controls.Remove(label2)
             End If
         End If
     End Sub
 
     Private Sub labelDown(sender As System.Object, e As System.Windows.Forms.MouseEventArgs)
         If e.Button = Windows.Forms.MouseButtons.Left Then
-            If dragToggle Then
-                Dragging = True
+            'If dragToggle Then
+            '    Dragging = True
 
-                Dim lbl As Label = DirectCast(sender, Label)
-                Dim mousePoint As Point = Cursor.Position ' mouse position in screen coordinates
+            '    Dim lbl As Label = DirectCast(sender, Label)
+            '    Dim mousePoint As Point = Cursor.Position ' mouse position in screen coordinates
 
-                controlPoint = lbl.PointToClient(mousePoint) ' offset from (0, 0) in label coordinates
+            '    controlPoint = lbl.PointToClient(mousePoint) ' offset from (0, 0) in label coordinates
 
-                ' This is the location of the label's (0, 0) in screen coordinates.
-                Dim screenLoc As Point = New Point(mousePoint.X - controlPoint.X, mousePoint.Y - controlPoint.Y)
+            '    ' This is the location of the label's (0, 0) in screen coordinates.
+            '    Dim screenLoc As Point = New Point(mousePoint.X - controlPoint.X, mousePoint.Y - controlPoint.Y)
 
-                lbl.Location = ClassesPanel.PointToClient(screenLoc)
+            '    lbl.Location = ClassesPanel.PointToClient(screenLoc)
 
-                ' Note positions of cursor when pressed
-                CursorX = e.X
-                CursorY = e.Y
-            Else
-                Dim lbl As Label = DirectCast(sender, Label)
-                Dim mousePoint As Point = Cursor.Position ' mouse position in screen coordinates
+            '    ' Note positions of cursor when pressed
+            '    CursorX = e.X
+            '    CursorY = e.Y
+            'Else
+            Dim lbl As Label = DirectCast(sender, Label)
+            Dim mousePoint As Point = Cursor.Position ' mouse position in screen coordinates
 
-                controlPoint = lbl.PointToClient(mousePoint) ' offset from (0, 0) in label coordinates
+            controlPoint = lbl.PointToClient(mousePoint) ' offset from (0, 0) in label coordinates
 
-                ' This is the location of the label's (0, 0) in screen coordinates.
-                Dim screenLoc As Point = New Point(mousePoint.X - controlPoint.X, mousePoint.Y - controlPoint.Y)
+            ' This is the location of the label's (0, 0) in screen coordinates.
+            Dim screenLoc As Point = New Point(mousePoint.X - controlPoint.X, mousePoint.Y - controlPoint.Y)
 
-                ' Remove the label from the panel and make it a child of the form; bring it to 
-                'the front to make sure it's not hidden behind the panel.
-                TableLayoutPanel1.Controls.Remove(lbl)
-                Me.Controls.Add(lbl)
-                lbl.BringToFront()
+            ' Remove the label from the panel and make it a child of the form; bring it to 
+            'the front to make sure it's not hidden behind the panel.
+            TableLayoutPanel1.Controls.Remove(lbl)
+            Me.Controls.Add(lbl)
+            lbl.BringToFront()
 
-                lbl.Location = Me.PointToClient(screenLoc)
-                ' Set the flag
-                Dragging = True
+            lbl.Location = Me.PointToClient(screenLoc)
+            ' Set the flag
+            Dragging = True
 
-                ' Note positions of cursor when pressed
-                'CursorX = e.X
-                'CursorY = e.Y
-            End If
+            ' Note positions of cursor when pressed
+            'CursorX = e.X
+            'CursorY = e.Y
         End If
+        'End If
         'dgvTeacherTotals.DataSource = daysdt
     End Sub
 
     Private Sub labelUp(sender As System.Object, e As System.Windows.Forms.MouseEventArgs)
         If e.Button = Windows.Forms.MouseButtons.Right Then
             cmsRightClick.Show()
+            Dragging = False
         ElseIf Dragging Then
-            If dragToggle Then
-                Dragging = False
-            Else
-                Dim mouseLocation As Point = Cursor.Position ' mouse location in screen coordinates
-                Dim formLocation As Point = Me.PointToClient(mouseLocation) ' form coordinates
+            'If dragToggle Then
+            '    Dragging = False
+            'Else
+            Dim mouseLocation As Point = Cursor.Position ' mouse location in screen coordinates
+            Dim formLocation As Point = Me.PointToClient(mouseLocation) ' form coordinates
+            Dim pos As New TableLayoutPanelCellPosition(0, 0)
 
-                ' This is what the location of the label should be set to; it's in form coordinates
-                Dim finalLocation As Point = New Point(formLocation.X - controlPoint.X, formLocation.Y - controlPoint.Y)
+            pos = dropLabelPos()
 
-                ' Get the label and set its location
-                Dim lbl As Label = DirectCast(sender, Label)
-                lbl.Location = finalLocation
-
-                ' Remove the label from the form's controls and make it a child of the table layout
-                ' panel.  Also, calculate its new position in the table.
-                Me.Controls.Remove(lbl)
-
-                Dim pos As New TableLayoutPanelCellPosition(0, 0)
-                pos = dropLabelPos()
-
-                TableLayoutPanel1.Controls.Add(lbl)
-                TableLayoutPanel1.SetCellPosition(lbl, pos)
-
-                'TableLayoutPanel1.SetRowSpan(lbl, 2)
-
-                ' Indicate we're no longer dragging
-                Dragging = False
-
-                'send the hours to the edit screen
-                'figure out the start and end hours
-                Dim col As Integer = pos.Column
-                Dim row As Integer = pos.Row
-                Dim startTime As Integer = calcStartTime(col, row)
-                Dim endTime As Integer = calcEndTime(col, row, lbl)
-                Dim dayOfWeek As String = ""
-                For Each dr As DataRow In daysdt.Rows
-                    If dr.Item("ColStart") <= col AndAlso col <= dr.Item("ColStart") + (dr.Item("NumCol") - 1) Then
-                        dayOfWeek = dr.Item("DayOfWeek")
-                    End If
-                Next
-                Dim department As String = lbl.Text.Substring(0, lbl.Text.IndexOf(" "))
-                Dim courseNum As String = lbl.Text.Substring(lbl.Text.IndexOf(" ") + 1)
-                courseNum = courseNum.Substring(0, courseNum.IndexOf(".") + 3)
-                Dim sectionNum As String = courseNum.Substring(courseNum.IndexOf(".") + 1)
-                courseNum = courseNum.Substring(0, courseNum.IndexOf("."))
-                Dim term As String = lblSemester.Text.Substring(0, lblSemester.Text.IndexOf(" "))
-                Dim termYear As String = lblSemester.Text.Substring(lblSemester.Text.IndexOf(" ") + 1)
-                Dim sql As New SQLConnect
-                Dim ds As New DataSet
-                ds = sql.GetStoredProc("InsertTimeDayToSchedule '" + department + "', '" + courseNum + "', '" + sectionNum + "', '" + startTime.ToString + "', '" + endTime.ToString + "', '" + dayOfWeek + "', '" + term + "', '" + termYear + "'")
-
-                'pull up the edit screen when she places something
-                Dim temp As String = lbl.Name.Remove(0, 3)
-                Dim g As New Globals
-                g.SetLabel(temp)
-                frmClassSpecs.ShowDialog()
-                editMenuChanges("lbl" + temp)
-
+            Dragging = False
+            ' Used to prevent the label from getting inserted into the table if outside of the table.
+            If (pos.Row < 0 Or pos.Column < 0) Then
+                Return
             End If
+
+            ' This is what the location of the label should be set to; it's in form coordinates
+            Dim finalLocation As Point = New Point(formLocation.X - controlPoint.X, formLocation.Y - controlPoint.Y)
+
+            ' Get the label and set its location
+            Dim lbl As Label = DirectCast(sender, Label)
+            lbl.Location = finalLocation
+
+            ' Remove the label from the form's controls and make it a child of the table layout
+            ' panel.  Also, calculate its new position in the table.
+            Me.Controls.Remove(lbl)
+
+            TableLayoutPanel1.Controls.Add(lbl)
+            TableLayoutPanel1.SetCellPosition(lbl, pos)
+
+            ' Indicate we're no longer dragging
+            Dragging = False
+
+            'send the hours to the edit screen
+            'figure out the start and end hours
+            Dim col As Integer = pos.Column
+            Dim row As Integer = pos.Row
+            Dim startTime As Integer = calcStartTime(col, row)
+            Dim endTime As Integer = calcEndTime(col, row, lbl)
+            Dim dayOfWeek As String = ""
+            For Each dr As DataRow In daysdt.Rows
+                If dr.Item("ColStart") <= col AndAlso col <= dr.Item("ColStart") + (dr.Item("NumCol") - 1) Then
+                    dayOfWeek = dr.Item("DayOfWeek")
+                End If
+            Next
+            Dim department As String = lbl.Text.Substring(0, lbl.Text.IndexOf(" "))
+            Dim courseNum As String = lbl.Text.Substring(lbl.Text.IndexOf(" ") + 1)
+            courseNum = courseNum.Substring(0, courseNum.IndexOf(".") + 3)
+            Dim sectionNum As String = courseNum.Substring(courseNum.IndexOf(".") + 1)
+            courseNum = courseNum.Substring(0, courseNum.IndexOf("."))
+            Dim term As String = lblSemester.Text.Substring(0, lblSemester.Text.IndexOf(" "))
+            Dim termYear As String = lblSemester.Text.Substring(lblSemester.Text.IndexOf(" ") + 1)
+            Dim sql As New SQLConnect
+            Dim ds As New DataSet
+            ds = sql.GetStoredProc("InsertTimeDayToSchedule '" + department + "', '" + courseNum + "', '" + sectionNum + "', '" + startTime.ToString + "', '" + endTime.ToString + "', '" + dayOfWeek + "', '" + term + "', '" + termYear + "'")
+
+            'pull up the edit screen when she places something
+            Dim temp As String = lbl.Name.Remove(0, 3)
+            Dim g As New Globals
+            g.SetLabel(temp)
+            frmClassSpecs.ShowDialog()
+            editMenuChanges("lbl" + temp)
+
         End If
+        'End If
         'dgvTeacherTotals.DataSource = daysdt
     End Sub
 
@@ -357,38 +308,6 @@ Public Class frmScheduleBuilder
 
     Dim ptOriginal As Point = Point.Empty
 
-    'Private Sub TableLayoutPanel1_DragEnter(ByVal sender As Object, ByVal e As System.Windows.Forms.DragEventArgs) Handles TableLayoutPanel1.DragEnter
-    '    'Dim Lab As Label
-
-    '    'Lab = e.Data.GetData(GetType(Label))
-
-    '    'TableLayoutPanel1.Controls.Add(Lab)
-
-    '    If e.Data.GetDataPresent(GetType(Label)) Then
-    '        ' There is Label data. Allow copy.
-    '        e.Effect = DragDropEffects.Copy
-
-    '        ' Highlight the control.
-    '        TableLayoutPanel1.BorderStyle = BorderStyle.FixedSingle
-    '    Else
-    '        ' There is no Label. Prohibit drop.
-    '        e.Effect = DragDropEffects.None
-    '    End If
-
-    'End Sub
-
-    'Private Sub TableLayoutPanel1_DragOver(ByVal sender As Object, ByVal e As System.Windows.Forms.DragEventArgs) Handles TableLayoutPanel1.DragOver
-    '    DirectCast(e.Data.GetData(GetType(System.Windows.Forms.Label)), Control).Location = Me.PointToClient(New Point(e.X - ptOriginal.X, e.Y - ptOriginal.Y))
-    '    DirectCast(e.Data.GetData(GetType(System.Windows.Forms.Label)), Control).BringToFront()
-    'End Sub
-
-    'Private Sub TableLayoutPanel1_DragDrop(ByVal sender As Object, ByVal e As System.Windows.Forms.DragEventArgs) Handles TableLayoutPanel1.DragDrop
-    '    Dim lbl As Label = DirectCast(e.Data.GetData(GetType(Label)), Label)
-    '    TableLayoutPanel1.Text = lbl.Text
-    '    TableLayoutPanel1.BackColor = lbl.BackColor
-    '    TableLayoutPanel1.BorderStyle = BorderStyle.Fixed3D
-    'End Sub
-
     Private Function GetCellCoordinates() As TableLayoutPanelCellPosition
         Dim pos As New TableLayoutPanelCellPosition(0, 0)
 
@@ -403,6 +322,18 @@ Public Class frmScheduleBuilder
 
         ' Get the client coordinates of the panel
         Dim mousePoint As Point = TableLayoutPanel1.PointToClient(Cursor.Position)
+
+        If (mousePoint.X < 0 Or mousePoint.X > w) Then
+            pos.Row = -1
+            pos.Column = -1
+            Return pos
+        End If
+
+        If (mousePoint.Y < 0 Or mousePoint.Y > h) Then
+            pos.Column = -1
+            pos.Row = -1
+            Return pos
+        End If
 
         Dim i As Integer = widths.Length - 1
         While (i >= 0 AndAlso mousePoint.X < w)
@@ -425,15 +356,13 @@ Public Class frmScheduleBuilder
     End Function
 
     Private Sub btnToggleDrag_Click(sender As Object, e As EventArgs) Handles btnToggleDrag.Click
-        If dragToggle Then
-            dragToggle = False
-            lbldragToggle.Text = "Off"
-        Else
-            dragToggle = True
-            lbldragToggle.Text = "On"
-        End If
-
-
+        'If dragToggle Then
+        '    dragToggle = False
+        '    lbldragToggle.Text = "Off"
+        'Else
+        '    dragToggle = True
+        '    lbldragToggle.Text = "On"
+        'End If
     End Sub
 
     Private Function dropLabelPos()
@@ -447,53 +376,38 @@ Public Class frmScheduleBuilder
         pos = GetCellCoordinates()
         r = pos.Row
         c = pos.Column
+
+        If (r < 0 Or c < 0) Then
+            Return pos
+        End If
+
         Dim cntrl As Control = TableLayoutPanel1.GetControlFromPosition(c, r)
 
         'if there is a control in the drop location check to see if a column needs to be added
         ' then add the column and control to the tlp
-        '*********** Need to use the daysdt ******************
         If cntrl IsNot Nothing Then
-            Dim newcol As Boolean = True
-            'check to see if this column in in the added column list
-            'For i As Integer = 0 To addedColList.Count - 1
-            '    If c = addedColList.Item(i) Then
-            '        newcol = False
-            '    End If
-            'Next
-
-
+            'Dim newcol As Boolean = True
 
             'push everything to the right if it is not a column that already has a duplicate class time and
-            If newcol Then
-                'add new column, push everything right
-                TableLayoutPanel1.ColumnCount += 1
-                TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, tlpCol))
-                TableLayoutPanel1.AutoSize = True
+            'If newcol Then
+            'add new column, push everything right
+            TableLayoutPanel1.ColumnCount += 1
+            TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, tlpCol))
+            TableLayoutPanel1.AutoSize = True
 
-                c = pushLabelsRight(c)
-                pos.Column = c
+            c = pushLabelsRight(c)
+            pos.Column = c
 
-                AddColToDaysDT(c - 1)
+            AddColToDaysDT(c - 1)
 
-                labelDropNewColumn = True
-
-                'increment columns that are to right
-                'For i As Integer = 0 To addedColList.Count - 1
-                '    If c < addedColList.Item(i) Then
-                '        addedColList.Item(i) = addedColList.Item(i) + 1
-                '    End If
-                'Next
-                'addedColList.Add(c - 1)
-
-            End If
+            labelDropNewColumn = True
         End If
+        'End If
         Return pos
     End Function
 
     Private Function pushLabelsRight(ByVal col As Integer)
         Dim newcol As Integer = col + 1
-        'Dim c As Integer = TableLayoutPanel1.ColumnStyles.Count - 1
-        'Dim r As Integer = TableLayoutPanel1.RowStyles.Count - 1
         Dim cntrl As New Control
         Dim pos As New TableLayoutPanelCellPosition(0, 0)
 
@@ -508,7 +422,6 @@ Public Class frmScheduleBuilder
                 End If
             Next
         Next
-
         Return newcol
     End Function
 
@@ -528,7 +441,6 @@ Public Class frmScheduleBuilder
             Next
         Next
     End Sub
-
 
     Private Sub initializeDaysDt()
         daysdt.Columns.Add()
@@ -559,6 +471,7 @@ Public Class frmScheduleBuilder
             i += 1
         Next
     End Sub
+
     Private Sub AddColToDaysDT(ByVal c As Integer)
         'increase the label size on the column that was added
         Dim lbl As Label
@@ -604,8 +517,8 @@ Public Class frmScheduleBuilder
                 'delete the column and update the daysdt
                 TableLayoutPanel1.ColumnCount -= 1
                 TableLayoutPanel1.ColumnStyles.RemoveAt(c)
-                ' how to set the new size
-                'TableLayoutPanel1.Size.Width = TableLayoutPanel1.Size.Width - tlpCol
+
+                '** is the size of the tlp resetting?
 
                 'move all the labels to the right of this column left one column
                 pushLabelsLeft(c)
@@ -619,6 +532,7 @@ Public Class frmScheduleBuilder
                         dr.Item("NumCol") -= 1
                     End If
                     'aligns the labels to the right up with their new row
+                    ' ** can be improved
                     If c < dr.Item("ColStart") Then
                         dr.Item("ColStart") -= 1
                         lbl = CType(Me.Controls("lbl" + dr.Item("DayOfWeek")), Label)
@@ -639,9 +553,8 @@ Public Class frmScheduleBuilder
 
         Dim c As Integer = 0
 
-
-        Dim s = InputBox("Type in the column to remove", "Remove Column", "1")
-
+        Dim s = InputBox("Type in the column to remove (0 is first column)", "Remove Column", "1")
+        '** what happens if they type in a wrong number
         Try
             c = CType(s, Integer)
         Catch ex As Exception
@@ -686,119 +599,115 @@ Public Class frmScheduleBuilder
         Dim changeDT As New DataTable
         changeDT = g.GetDT(changeDT)
         Try
-            If changeDT.Rows(0).Item("ChangeTime").ToString = "True" Or changeDT.Rows(0).Item("ChangeDay").ToString = "True" Then
-                Dim startTime = CType(changeDT.Rows(0).Item("StartTime").ToString, Integer)
-                Dim endTime = CType(changeDT.Rows(0).Item("EndTime").ToString, Integer)
-                Dim days = changeDT.Rows(0).Item("Days").ToString
-                Dim repeatingDays As String = ""
+            'If changeDT.Rows(0).Item("ChangeTime").ToString = "True" Or changeDT.Rows(0).Item("ChangeDay").ToString = "True" Then
+            'If changeDT.Rows(0).Item("ChangeLabel").ToString = "True" Then
+            Dim startTime = CType(changeDT.Rows(0).Item("StartTime").ToString, Integer)
+            Dim endTime = CType(changeDT.Rows(0).Item("EndTime").ToString, Integer)
+            Dim days = changeDT.Rows(0).Item("Days").ToString
+            Dim repeatingDays As String = ""
 
-                'if there are no days to add, check to see where the label is and only change if it is in the tlp
-                If days.Length > 0 Then
-                    'set the new label position
-                    'for now grabbing the first day to add it like that
-                    Try
-                        If days.Contains(",") Then
-                            repeatingDays = days.Substring(days.IndexOf(",") + 1)
-                            days = days.Substring(0, days.IndexOf(","))
-                        End If
-                    Catch ex As Exception
+            'if there are temp labels with this class, delete them before going on
+            Dim temp As String = lbl.Substring(3)
+            'check to see if there are labels to delete
+            For i = 0 To 6
+                Dim tempLabel As Label = CType(TableLayoutPanel1.Controls("temp" + i.ToString + temp), Label)
+                If tempLabel IsNot Nothing Then
+                    'delete the label
+                    TableLayoutPanel1.Controls.Remove(tempLabel)
+                End If
+            Next
 
-                    End Try
+            'if there are no days to add, check to see where the label is and only change if it is in the tlp
+            If days.Length > 0 Then
+                'set the new label position
+                Try
+                    If days.Contains(",") Then
+                        repeatingDays = days.Substring(days.IndexOf(",") + 1)
+                        days = days.Substring(0, days.IndexOf(","))
+                    End If
+                Catch ex As Exception
+
+                End Try
 
 
-                    'find the col and row
-                    Dim col As Integer = 0
-                    Dim startRow As Integer = 0
-                    Dim endRow As Integer = 0
+                'find the col and row
+                Dim col As Integer = 0
+                Dim startRow As Integer = 0
+                Dim endRow As Integer = 0
 
-                    'col is day
-                    For Each dr As DataRow In daysdt.Rows
-                        If days = dr.Item("DayOfWeek") Then
-                            col = dr.Item("ColStart")
-                        End If
-                    Next
+                'col is day
+                For Each dr As DataRow In daysdt.Rows
+                    If days = dr.Item("DayOfWeek") Then
+                        col = dr.Item("ColStart")
+                    End If
+                Next
 
-                    'rows determined by start and end times
-                    For i = 0 To time.Length - 1
-                        If startTime = time(i) Then
-                            startRow = i
-                        End If
-                        If endTime = time(i) Then
-                            endRow = i - 1
-                        End If
-                    Next
+                'rows determined by start and end times
+                For i = 0 To time.Length - 1
+                    If startTime = time(i) Then
+                        startRow = i
+                    End If
+                    If endTime = time(i) Then
+                        endRow = i - 1
+                    End If
+                Next
 
-                    'Check to make sure there is no label in this position
-                    Dim pos As New TableLayoutPanelCellPosition(0, 0)
-                    pos.Column = col
-                    pos.Row = startRow
-                    Dim cntrl As New Control
-                    Dim addCntrl As Boolean = True
-                    Dim label As New Label
+                'Check to make sure there is no label in this position
+                Dim pos As New TableLayoutPanelCellPosition(0, 0)
+                pos.Column = col
+                pos.Row = startRow
+                Dim cntrl As New Control
+                Dim addCntrl As Boolean = True
+                Dim label As New Label
 
-                    For i = 0 To endRow - startRow
-                        cntrl = TableLayoutPanel1.GetControlFromPosition(col, startRow + i)
-                        If cntrl IsNot Nothing Then
-                            'then we need to move the label over a column, possibly increment the column also
-                            addCntrl = False
-                            i = endRow - startRow
-                        End If
-                    Next
+                For i = 0 To endRow - startRow
+                    cntrl = TableLayoutPanel1.GetControlFromPosition(col, startRow + i)
+                    If cntrl IsNot Nothing Then
+                        'then we need to move the label over a column, possibly increment the column also
+                        addCntrl = False
+                        i = endRow - startRow
+                    End If
+                Next
 
-                    label = CType(TableLayoutPanel1.Controls(lbl), Label)
+                label = CType(TableLayoutPanel1.Controls(lbl), Label)
+                If label Is Nothing Then
+                    label = CType(ClassesPanel.Controls(lbl), Label)
+                    ClassesPanel.Controls.Remove(label)
                     If label Is Nothing Then
-                        label = CType(ClassesPanel.Controls(lbl), Label)
-                        ClassesPanel.Controls.Remove(label)
-                        If label Is Nothing Then
-                            label = CType(Me.Controls(lbl), Label)
-                            Me.Controls.Remove(label)
-                        End If
+                        label = CType(Me.Controls(lbl), Label)
+                        Me.Controls.Remove(label)
                     End If
+                End If
 
-                    If addCntrl = False Then
-                        'label = CType(TableLayoutPanel1.Controls(lbl), Label)
-                        'If label Is Nothing Then
-                        '    label = CType(ClassesPanel.Controls(lbl), Label)
-                        '    ClassesPanel.Controls.Remove(label)
-                        '    If label Is Nothing Then
-                        '        label = CType(Me.Controls(lbl), Label)
-                        '        Me.Controls.Remove(label)
-                        '    End If
-                        'End If
+                If addCntrl = False Then
+                    'check to see if the control is the same as the label
+                    If CType(cntrl, Label).Name <> label.Name AndAlso labelDropNewColumn <> True Then
+                        TableLayoutPanel1.ColumnCount += 1
+                        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, tlpCol))
+                        TableLayoutPanel1.AutoSize = True
 
-                        'check to see if the control is the same as the label
-                        If CType(cntrl, Label).Name <> label.Name AndAlso labelDropNewColumn <> True Then
-                            '****check to see if there is an available column first
-                            TableLayoutPanel1.ColumnCount += 1
-                            TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, tlpCol))
-                            TableLayoutPanel1.AutoSize = True
+                        col = pushLabelsRight(col)
+                        pos.Column = col
 
-                            col = pushLabelsRight(col)
-                            pos.Column = col
-
-                            AddColToDaysDT(col - 1)
-
-
-                            'if there is, add it there
-
-                            'if not, increment the columns and add it there
-                        End If
+                        AddColToDaysDT(col - 1)
                     End If
-                    TableLayoutPanel1.Controls.Add(label)
-                    TableLayoutPanel1.SetCellPosition(label, pos)
-                    TableLayoutPanel1.SetRowSpan(label, endRow - startRow + 1)
-                    label.Height = (tlpRow + 2) * (endRow - startRow + 1)
-                    'if there are days, for now check to find the day we want so we only add one day for right now
-                    '*********update to include more days**************
+                End If
+                TableLayoutPanel1.Controls.Add(label)
+                TableLayoutPanel1.SetCellPosition(label, pos)
+                TableLayoutPanel1.SetRowSpan(label, endRow - startRow + 1)
+                label.Height = (tlpRow + 2) * (endRow - startRow + 1)
 
-                    If repeatingDays <> "" Then
-                        createRepeatingLabels(repeatingDays, label, startRow, endRow)
-                    End If
+                'if there are repeating days, create them
+                If repeatingDays <> "" Then
+                    createRepeatingLabels(repeatingDays, label, startRow, endRow)
+                End If
 
-                Else
+            Else
+                If startTime <> 0 AndAlso endTime <> 0 Then
                     MsgBox("Select a day to move the class")
                 End If
             End If
+            'End If
             labelDropNewColumn = False
         Catch ex As Exception
             MsgBox(ex.Message.ToString)
@@ -832,17 +741,32 @@ Public Class frmScheduleBuilder
             End With
 
             'update the position
-            '****need to check if there already is a label****
             For Each dr As DataRow In daysdt.Rows
                 If dayArray(i) = dr.Item("DayOfWeek") Then
+                    'if there is a label already at this spot add a column
+                    'if not just leave the position as the start column for the day
                     pos.Column = dr.Item("ColStart")
+
+                    Dim cntrl As Control = TableLayoutPanel1.GetControlFromPosition(pos.Column, pos.Row)
+                    Dim col As Integer = pos.Column
+                    If cntrl IsNot Nothing Then
+                        TableLayoutPanel1.ColumnCount += 1
+                        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, tlpCol))
+                        TableLayoutPanel1.AutoSize = True
+
+                        col = pushLabelsRight(col)
+                        pos.Column = col
+
+                        AddColToDaysDT(col - 1)
+                    End If
                 End If
             Next
 
             TableLayoutPanel1.Controls.Add(tempLabel)
             TableLayoutPanel1.SetCellPosition(tempLabel, pos)
             TableLayoutPanel1.SetRowSpan(tempLabel, endRow - startRow + 1)
-            label.Height = (tlpRow + 2) * (endRow - startRow + 1)
+            tempLabel.Height = (tlpRow + 2) * (endRow - startRow + 1)
+            tempLabel.BackColor = label.BackColor
 
         Next
     End Sub
@@ -880,5 +804,20 @@ Public Class frmScheduleBuilder
         time(25) = 2030
         time(26) = 2100
         time(27) = 2130
+    End Sub
+
+    Private Sub getLegend()
+        Dim sql As New SQLConnect
+        Dim ds As DataSet = sql.GetStoredProc("GetRooms")
+
+        dgvLegend.DataSource = ds.Tables(0)
+        dgvLegend.Columns("RoomID").Visible = False
+        dgvLegend.RowHeadersVisible = False
+        dgvLegend.Columns("RoomColor").Visible = False
+
+        For Each gr As DataGridViewRow In dgvLegend.Rows
+            Dim c As Int32 = Convert.ToInt32(Trim(gr.DataBoundItem("RoomColor").ToString))
+            gr.Cells("RoomName").Style.BackColor = Color.FromArgb(c)
+        Next
     End Sub
 End Class
