@@ -329,7 +329,7 @@ Public Class frmDatabaseMaintenance
         Dim LastName As String = tbAddProfLastName.Text
         Dim CreditHours As String = tbAddProfCredHours.Text
         ' Will have to change to find what is selected
-        Dim ProfRank As String = comboAddProfRank.SelectedIndex.ToString
+        Dim ProfRank As String = comboAddProfRank.Text
         Dim passed As Boolean = True
         Dim proc As String = ""
         Dim ds As DataSet = New DataSet
@@ -490,7 +490,7 @@ Public Class frmDatabaseMaintenance
         Dim FirstName As String = tbEditProfFirstName.Text
         Dim LastName As String = tbEditProfLastName.Text
         Dim CreditHours As String = tbEditProfCredHours.Text
-        Dim ProfRank As String = comboEditProfRank.SelectedValue.ToString
+        Dim ProfRank As String = comboEditProfRank.Text
         Dim passed As Boolean = True
         Dim proc As String = ""
         Dim ds As DataSet = New DataSet
@@ -609,7 +609,7 @@ Public Class frmDatabaseMaintenance
         End If
 
 
-        If btnAddRoomRoomColor.BackColor = Color.Transparent Then
+        If btnEditRoomRoomColor.BackColor = Color.Transparent Then
             MessageBox.Show("Please click the button and select a color for your room.")
             passed = False
         End If
@@ -618,20 +618,25 @@ Public Class frmDatabaseMaintenance
         ds2 = SQL.GetStoredProc(proc)
 
         If Not ds2 Is Nothing And ds2.Tables(0).Rows.Count > 0 Then
-            MessageBox.Show("The room: " + BuildingName + " " + RoomNumber + " already exists in the database")
-            passed = False
+            If index.ToString <> ds2.Tables(0).Rows(0).Item("RoomID").ToString Then
+
+                MessageBox.Show("The room: " + BuildingName + " " + RoomNumber + " already exists in the database")
+                passed = False
+            End If
         End If
 
         proc = "CheckIfRoomColorExists " + RoomColor.ToString
         ds2 = SQL.GetStoredProc(proc)
 
         If Not ds2 Is Nothing And ds2.Tables(0).Rows.Count > 0 Then
-            Dim result As Integer = MessageBox.Show("The color that was selected already exists in the database, would you like to proceed using that color?", "The Buddies Scheduler", MessageBoxButtons.YesNoCancel)
-            If result = DialogResult.Yes Then
-                ' DO NOTHING YET
-            Else
-                passed = False
-                MessageBox.Show("Please select a new color and hit save again.")
+            If index.ToString <> ds2.Tables(0).Rows(0).Item("RoomID").ToString Then
+                Dim result As Integer = MessageBox.Show("The room color that was selected already exists in the database, would you like to proceed using that color?", "The Buddies Scheduler", MessageBoxButtons.YesNoCancel)
+                If result = DialogResult.Yes Then
+                    ' DO NOTHING YET
+                Else
+                    passed = False
+                    MessageBox.Show("Please select a new color and hit save again.")
+                End If
             End If
         End If
 
