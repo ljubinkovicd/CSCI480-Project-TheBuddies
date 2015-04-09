@@ -838,7 +838,7 @@ BEGIN
 							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
 							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
-					WHERE	0800 BETWEEN StartTime AND EndTime
+					WHERE	0800 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
 					AND		TermYear = @termYear
 				) AS TMP
@@ -854,7 +854,7 @@ BEGIN
 							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
 							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
-					WHERE	0830 BETWEEN StartTime AND EndTime
+					WHERE	0830 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
 					AND		TermYear = @termYear
 				) AS TMP
@@ -870,7 +870,7 @@ BEGIN
 							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
 							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
-					WHERE	0900 BETWEEN StartTime AND EndTime
+					WHERE	0900 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
 					AND		TermYear = @termYear
 				) AS TMP
@@ -886,7 +886,7 @@ BEGIN
 							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
 							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
-					WHERE	0930 BETWEEN StartTime AND EndTime
+					WHERE	0930 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
 					AND		TermYear = @termYear
 				) AS TMP
@@ -902,7 +902,7 @@ BEGIN
 							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
 							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
-					WHERE	1000 BETWEEN StartTime AND EndTime
+					WHERE	1000 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
 					AND		TermYear = @termYear
 				) AS TMP
@@ -918,7 +918,7 @@ BEGIN
 							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
 							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
-					WHERE	1030 BETWEEN StartTime AND EndTime
+					WHERE	1030 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
 					AND		TermYear = @termYear
 				) AS TMP
@@ -934,7 +934,7 @@ BEGIN
 							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
 							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
-					WHERE	1100 BETWEEN StartTime AND EndTime
+					WHERE	1100 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
 					AND		TermYear = @termYear
 				) AS TMP
@@ -950,7 +950,7 @@ BEGIN
 							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
 							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
-					WHERE	1130 BETWEEN StartTime AND EndTime
+					WHERE	1130 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
 					AND		TermYear = @termYear
 				) AS TMP
@@ -966,7 +966,7 @@ BEGIN
 							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
 							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
-					WHERE	1200 BETWEEN StartTime AND EndTime
+					WHERE	1200 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
 					AND		TermYear = @termYear
 				) AS TMP
@@ -982,7 +982,7 @@ BEGIN
 							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
 							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
-					WHERE	1230 BETWEEN StartTime AND EndTime
+					WHERE	1230 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
 					AND		TermYear = @termYear
 				) AS TMP
@@ -998,7 +998,7 @@ BEGIN
 							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
 							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
-					WHERE	1300 BETWEEN StartTime AND EndTime
+					WHERE	1300 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
 					AND		TermYear = @termYear
 				) AS TMP
@@ -1014,7 +1014,7 @@ BEGIN
 							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
 							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
-					WHERE	1330 BETWEEN StartTime AND EndTime
+					WHERE	1330 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
 					AND		TermYear = @termYear
 				) AS TMP
@@ -1030,7 +1030,7 @@ BEGIN
 							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
 							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
-					WHERE	1400 BETWEEN StartTime AND EndTime
+					WHERE	1400 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
 					AND		TermYear = @termYear
 				) AS TMP
@@ -1046,7 +1046,7 @@ BEGIN
 							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
 							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
-					WHERE	1430 BETWEEN StartTime AND EndTime
+					WHERE	1430 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
 					AND		TermYear = @termYear
 				) AS TMP
@@ -1062,7 +1062,7 @@ BEGIN
 							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
 							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
-					WHERE	1500 BETWEEN StartTime AND EndTime
+					WHERE	1500 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
 					AND		TermYear = @termYear
 				) AS TMP
@@ -1078,7 +1078,7 @@ BEGIN
 							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
 							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
-					WHERE	1530 BETWEEN StartTime AND EndTime
+					WHERE	1530 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
 					AND		TermYear = @termYear
 				) AS TMP
@@ -1094,7 +1094,7 @@ BEGIN
 							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
 							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
-					WHERE	1600 BETWEEN StartTime AND EndTime
+					WHERE	1600 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
 					AND		TermYear = @termYear
 				) AS TMP
@@ -1110,7 +1110,7 @@ BEGIN
 							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
 							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
-					WHERE	1630 BETWEEN StartTime AND EndTime
+					WHERE	1630 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
 					AND		TermYear = @termYear
 				) AS TMP
@@ -1126,7 +1126,7 @@ BEGIN
 							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
 							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
-					WHERE	1700 BETWEEN StartTime AND EndTime
+					WHERE	1700 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
 					AND		TermYear = @termYear
 				) AS TMP
@@ -1142,7 +1142,7 @@ BEGIN
 							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
 							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
-					WHERE	1730 BETWEEN StartTime AND EndTime
+					WHERE	1730 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
 					AND		TermYear = @termYear
 				) AS TMP
@@ -1158,7 +1158,7 @@ BEGIN
 							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
 							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
-					WHERE	1800 BETWEEN StartTime AND EndTime
+					WHERE	1800 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
 					AND		TermYear = @termYear
 				) AS TMP
@@ -1174,7 +1174,7 @@ BEGIN
 							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
 							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
-					WHERE	1830 BETWEEN StartTime AND EndTime
+					WHERE	1830 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
 					AND		TermYear = @termYear
 				) AS TMP
@@ -1190,7 +1190,7 @@ BEGIN
 							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
 							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
-					WHERE	1900 BETWEEN StartTime AND EndTime
+					WHERE	1900 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
 					AND		TermYear = @termYear
 				) AS TMP
@@ -1206,7 +1206,7 @@ BEGIN
 							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
 							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
-					WHERE	1930 BETWEEN StartTime AND EndTime
+					WHERE	1930 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
 					AND		TermYear = @termYear
 				) AS TMP
@@ -1222,7 +1222,7 @@ BEGIN
 							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
 							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
-					WHERE	2000 BETWEEN StartTime AND EndTime
+					WHERE	2000 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
 					AND		TermYear = @termYear
 				) AS TMP
@@ -1238,7 +1238,7 @@ BEGIN
 							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
 							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
-					WHERE	2030 BETWEEN StartTime AND EndTime
+					WHERE	2030 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
 					AND		TermYear = @termYear
 				) AS TMP
@@ -1254,7 +1254,7 @@ BEGIN
 							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
 							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
-					WHERE	2100 BETWEEN StartTime AND EndTime
+					WHERE	2100 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
 					AND		TermYear = @termYear
 				) AS TMP
@@ -1270,7 +1270,7 @@ BEGIN
 							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
 							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
-					WHERE	2130 BETWEEN StartTime AND EndTime
+					WHERE	2130 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
 					AND		TermYear = @termYear
 				) AS TMP
@@ -1307,7 +1307,7 @@ BEGIN
 							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
 							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
-					WHERE	0800 BETWEEN StartTime AND EndTime
+					WHERE	0800 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
 					AND		TermYear = @termYear
 					AND		TeacherID = @teacherID
@@ -1324,7 +1324,7 @@ BEGIN
 							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
 							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
-					WHERE	0830 BETWEEN StartTime AND EndTime
+					WHERE	0830 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
 					AND		TermYear = @termYear
 					AND		TeacherID = @teacherID
@@ -1341,7 +1341,7 @@ BEGIN
 							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
 							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
-					WHERE	0900 BETWEEN StartTime AND EndTime
+					WHERE	0900 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
 					AND		TermYear = @termYear
 					AND		TeacherID = @teacherID
@@ -1358,7 +1358,7 @@ BEGIN
 							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
 							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
-					WHERE	0930 BETWEEN StartTime AND EndTime
+					WHERE	0930 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
 					AND		TermYear = @termYear
 					AND		TeacherID = @teacherID
@@ -1375,7 +1375,7 @@ BEGIN
 							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
 							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
-					WHERE	1000 BETWEEN StartTime AND EndTime
+					WHERE	1000 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
 					AND		TermYear = @termYear
 					AND		TeacherID = @teacherID
@@ -1392,7 +1392,7 @@ BEGIN
 							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
 							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
-					WHERE	1030 BETWEEN StartTime AND EndTime
+					WHERE	1030 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
 					AND		TermYear = @termYear
 					AND		TeacherID = @teacherID
@@ -1409,7 +1409,7 @@ BEGIN
 							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
 							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
-					WHERE	1100 BETWEEN StartTime AND EndTime
+					WHERE	1100 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
 					AND		TermYear = @termYear
 					AND		TeacherID = @teacherID
@@ -1426,7 +1426,7 @@ BEGIN
 							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
 							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
-					WHERE	1130 BETWEEN StartTime AND EndTime
+					WHERE	1130 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
 					AND		TermYear = @termYear
 					AND		TeacherID = @teacherID
@@ -1443,7 +1443,7 @@ BEGIN
 							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
 							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
-					WHERE	1200 BETWEEN StartTime AND EndTime
+					WHERE	1200 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
 					AND		TermYear = @termYear
 					AND		TeacherID = @teacherID
@@ -1460,7 +1460,7 @@ BEGIN
 							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
 							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
-					WHERE	1230 BETWEEN StartTime AND EndTime
+					WHERE	1230 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
 					AND		TermYear = @termYear
 					AND		TeacherID = @teacherID
@@ -1477,7 +1477,7 @@ BEGIN
 							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
 							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
-					WHERE	1300 BETWEEN StartTime AND EndTime
+					WHERE	1300 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
 					AND		TermYear = @termYear
 					AND		TeacherID = @teacherID
@@ -1494,7 +1494,7 @@ BEGIN
 							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
 							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
-					WHERE	1330 BETWEEN StartTime AND EndTime
+					WHERE	1330 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
 					AND		TermYear = @termYear
 					AND		TeacherID = @teacherID
@@ -1511,7 +1511,7 @@ BEGIN
 							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
 							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
-					WHERE	1400 BETWEEN StartTime AND EndTime
+					WHERE	1400 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
 					AND		TermYear = @termYear
 					AND		TeacherID = @teacherID
@@ -1528,7 +1528,7 @@ BEGIN
 							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
 							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
-					WHERE	1430 BETWEEN StartTime AND EndTime
+					WHERE	1430 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
 					AND		TermYear = @termYear
 					AND		TeacherID = @teacherID
@@ -1545,7 +1545,7 @@ BEGIN
 							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
 							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
-					WHERE	1500 BETWEEN StartTime AND EndTime
+					WHERE	1500 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
 					AND		TermYear = @termYear
 					AND		TeacherID = @teacherID
@@ -1562,7 +1562,7 @@ BEGIN
 							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
 							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
-					WHERE	1530 BETWEEN StartTime AND EndTime
+					WHERE	1530 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
 					AND		TermYear = @termYear
 					AND		TeacherID = @teacherID
@@ -1579,7 +1579,7 @@ BEGIN
 							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
 							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
-					WHERE	1600 BETWEEN StartTime AND EndTime
+					WHERE	1600 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
 					AND		TermYear = @termYear
 					AND		TeacherID = @teacherID
@@ -1596,7 +1596,7 @@ BEGIN
 							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
 							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
-					WHERE	1630 BETWEEN StartTime AND EndTime
+					WHERE	1630 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
 					AND		TermYear = @termYear
 					AND		TeacherID = @teacherID
@@ -1613,7 +1613,7 @@ BEGIN
 							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
 							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
-					WHERE	1700 BETWEEN StartTime AND EndTime
+					WHERE	1700 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
 					AND		TermYear = @termYear
 					AND		TeacherID = @teacherID
@@ -1630,7 +1630,7 @@ BEGIN
 							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
 							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
-					WHERE	1730 BETWEEN StartTime AND EndTime
+					WHERE	1730 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
 					AND		TermYear = @termYear
 					AND		TeacherID = @teacherID
@@ -1647,7 +1647,7 @@ BEGIN
 							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
 							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
-					WHERE	1800 BETWEEN StartTime AND EndTime
+					WHERE	1800 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
 					AND		TermYear = @termYear
 					AND		TeacherID = @teacherID
@@ -1664,7 +1664,7 @@ BEGIN
 							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
 							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
-					WHERE	1830 BETWEEN StartTime AND EndTime
+					WHERE	1830 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
 					AND		TermYear = @termYear
 					AND		TeacherID = @teacherID
@@ -1681,7 +1681,7 @@ BEGIN
 							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
 							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
-					WHERE	1900 BETWEEN StartTime AND EndTime
+					WHERE	1900 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
 					AND		TermYear = @termYear
 					AND		TeacherID = @teacherID
@@ -1698,7 +1698,7 @@ BEGIN
 							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
 							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
-					WHERE	1930 BETWEEN StartTime AND EndTime
+					WHERE	1930 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
 					AND		TermYear = @termYear
 					AND		TeacherID = @teacherID
@@ -1715,7 +1715,7 @@ BEGIN
 							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
 							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
-					WHERE	2000 BETWEEN StartTime AND EndTime
+					WHERE	2000 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
 					AND		TermYear = @termYear
 					AND		TeacherID = @teacherID
@@ -1732,7 +1732,7 @@ BEGIN
 							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
 							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
-					WHERE	2030 BETWEEN StartTime AND EndTime
+					WHERE	2030 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
 					AND		TermYear = @termYear
 					AND		TeacherID = @teacherID
@@ -1749,7 +1749,7 @@ BEGIN
 							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
 							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
-					WHERE	2100 BETWEEN StartTime AND EndTime
+					WHERE	2100 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
 					AND		TermYear = @termYear
 					AND		TeacherID = @teacherID
@@ -1766,7 +1766,7 @@ BEGIN
 							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
 							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
-					WHERE	2130 BETWEEN StartTime AND EndTime
+					WHERE	2130 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
 					AND		TermYear = @termYear
 					AND		TeacherID = @teacherID

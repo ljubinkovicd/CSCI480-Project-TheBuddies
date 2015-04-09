@@ -10,7 +10,7 @@ Public Class SQLConnect
         Try
             'connectionString = "Server=" + server + ";Database=" + database + ";User=" + username.ToString + ";Pwd=" + password.ToString + ";"
             connectionString = "Server=Mars;Database=480-buddies;User=480-buddies;Pwd=schedule;"
-            'connectionString = "Server=ALEXPC\ALEX080714;Database=SchoolScheduler1;User=test_user;Pwd=pass;"
+            'connectionString = "Server=ALEXPC\ALEX080714;Database=SchoolScheduler2;User=test_user;Pwd=pass;"
             SQLCon.ConnectionString = connectionString
         Catch ex As Exception
             MsgBox(ex.Message)
@@ -37,8 +37,35 @@ Public Class SQLConnect
         Dim adapter As New SqlDataAdapter
         Dim sql As String
 
-        'connectionString = "Server=ALEXPC\ALEX080714;Database=SchoolScheduler;User=test_user;Pwd=pass;"
         sql = "EXEC " + proc
+
+        con = New SqlConnection(connectionString)
+
+        Try
+            con.Open()
+            cmd = New SqlCommand(sql, con)
+            adapter.SelectCommand = cmd
+            adapter.Fill(ds)
+            adapter.Dispose()
+            cmd.Dispose()
+            con.Close()
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+
+        Return ds
+    End Function
+
+    Public Function GetQuery(query As String)
+        Dim ds As New DataSet
+
+        'Dim connetionString As String
+        Dim con As SqlConnection
+        Dim cmd As SqlCommand
+        Dim adapter As New SqlDataAdapter
+        Dim sql As String
+
+        sql = query
 
         con = New SqlConnection(connectionString)
 

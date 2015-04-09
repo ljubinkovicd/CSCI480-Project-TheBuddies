@@ -115,13 +115,6 @@ Public Class frmReports
         Dim sql As New SQLConnect
         Dim tempds As New DataSet
         Dim weeklyTable As New System.Data.DataTable
-        'Dim monTable As New System.Data.DataTable
-        'Dim tuesTable As New System.Data.DataTable
-        'Dim wedTable As New System.Data.DataTable
-        'Dim thursTable As New System.Data.DataTable
-        'Dim friTable As New System.Data.DataTable
-        'Dim satTable As New System.Data.DataTable
-        'Dim sunTable As New System.Data.DataTable
         Dim dayTable As New System.Data.DataTable
         Dim profTable As New System.Data.DataTable
         Dim tempTable As New System.Data.DataTable
@@ -156,32 +149,37 @@ Public Class frmReports
             Dim day As String = ""
             Select Case i
                 Case 0
-                    day = "Monday"
+                    day = "Mon"
                 Case 1
-                    day = "Tuesday"
+                    day = "Tues"
                 Case 2
-                    day = "Wednesday"
+                    day = "Wed"
                 Case 3
-                    day = "Thursday"
+                    day = "Thurs"
                 Case 4
-                    day = "Friday"
+                    day = "Fri"
                 Case 5
-                    day = "Saturday"
+                    day = "Sat"
                 Case 6
-                    day = "Sunday"
+                    day = "Sun"
             End Select
-            tempTable = GetDailyReports(tempds.Tables(0), day, term, termYear)
+            tempTable = tempds.Tables(0).Copy()
+            tempTable = GetDailyReports(tempTable, day, term, termYear)
             dayTable = tempTable.Copy()
             dayTable.TableName = day
             mainds.Tables.Add(dayTable)
+            'If day = "Wed" Then
+            '    dgvTest.DataSource = dayTable
+            'End If
         Next
+
+        'Dim q As Integer = mainds.Tables.Count
 
         Return mainds
     End Function
 
     Private Sub frmReports_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim mainds As DataSet = GetScheduleDS()
-        'dgvTest.DataSource = mainds
     End Sub
 
     Private Sub IncColStart(ByVal day As String)
@@ -348,12 +346,133 @@ Public Class frmReports
     End Function
 
     Private Function GetDailyReports(ByVal profdt As System.Data.DataTable, ByVal day As String, ByVal term As String, ByVal termYear As String)
-        Dim ds As New DataSet
+        Dim dt As New System.Data.DataTable
         Dim sql As New SQLConnect
         Dim query As String = ""
+        Dim topSelect As String = ""
+        Dim cases As String = ""
+        Dim midCase As String = " THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS "
+        Dim bottom As String = ""
+        Dim militaryTime As String = ""
+        Dim colonMilitaryTime As String = ""
+        Dim i As Integer = 0
 
+        For time = 0 To 27
+            'reset strings and i
+            topSelect = "SELECT Time"
+            cases = ""
+            bottom = ""
+            i = 0
 
+            For Each dr As DataRow In profdt.Rows
+                topSelect = topSelect + ", " + dr.Item("Professor").ToString
+                cases = cases + "(SELECT CASE TeacherID WHEN " + dr.Item("TeacherID").ToString
+                cases = cases + midCase
+                cases = cases + dr.Item("Professor").ToString
 
-        Return ds
+                If i < profdt.Rows.Count - 1 Then
+                    cases = cases + ", "
+                Else
+                    cases = cases + " "
+                End If
+                i += 1
+            Next
+
+            topSelect = topSelect + " FROM ( SELECT "
+            militaryTime = CalcMilitaryTime(time)
+            If militaryTime.Length <= 3 Then
+                colonMilitaryTime = militaryTime.Insert(1, ":")
+            Else
+                colonMilitaryTime = militaryTime.Insert(2, ":")
+            End If
+            bottom = "FROM SCHEDULE S WHERE " + militaryTime + " BETWEEN StartTime AND (EndTime - 1) AND Term = '" + term + "' AND TermYear = '" + termYear + "'"
+            bottom = bottom + " AND " + day + " = 1" + " ) AS TMP RIGHT JOIN TIMES ON 1 = 1 WHERE TIME = '" + colonMilitaryTime + "' "
+
+            If time < 27 Then
+                bottom = bottom + "UNION "
+            End If
+
+            query = query + topSelect + cases + bottom
+        Next
+
+        topSelect = "SELECT Time"
+        For Each dr As DataRow In profdt.Rows
+            topSelect = topSelect + ", " + dr.Item("Professor").ToString
+        Next
+        topSelect = topSelect + " FROM ( "
+
+        bottom = ") AS k ORDER BY CONVERT(int, Replace(Time, ':', ''))"
+        query = topSelect + query + bottom
+
+        'once you have the query, need to get a dt from it
+        Dim ds As DataSet = sql.GetQuery(query)
+        dt = ds.Tables(0)
+
+        Return dt
+    End Function
+
+    Private Function CalcMilitaryTime(ByVal i As Integer)
+        Dim militaryTime As String = ""
+
+        Select Case i
+            Case 0
+                militaryTime = "800"
+            Case 1
+                militaryTime = "830"
+            Case 2
+                militaryTime = "900"
+            Case 3
+                militaryTime = "930"
+            Case 4
+                militaryTime = "1000"
+            Case 5
+                militaryTime = "1030"
+            Case 6
+                militaryTime = "1100"
+            Case 7
+                militaryTime = "1130"
+            Case 8
+                militaryTime = "1200"
+            Case 9
+                militaryTime = "1230"
+            Case 10
+                militaryTime = "1300"
+            Case 11
+                militaryTime = "1330"
+            Case 12
+                militaryTime = "1400"
+            Case 13
+                militaryTime = "1430"
+            Case 14
+                militaryTime = "1500"
+            Case 15
+                militaryTime = "1530"
+            Case 16
+                militaryTime = "1600"
+            Case 17
+                militaryTime = "1630"
+            Case 18
+                militaryTime = "1700"
+            Case 19
+                militaryTime = "1730"
+            Case 20
+                militaryTime = "1800"
+            Case 21
+                militaryTime = "1830"
+            Case 22
+                militaryTime = "1900"
+            Case 23
+                militaryTime = "1930"
+            Case 24
+                militaryTime = "2000"
+            Case 25
+                militaryTime = "2030"
+            Case 26
+                militaryTime = "2100"
+            Case 27
+                militaryTime = "2130"
+        End Select
+
+        Return militaryTime
     End Function
 End Class
