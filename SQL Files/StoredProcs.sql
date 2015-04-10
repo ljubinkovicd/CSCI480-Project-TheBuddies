@@ -830,13 +830,13 @@ BEGIN
 	SELECT Time, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday
 	FROM (
 		SELECT	Time, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday
-		FROM	(	SELECT	(SELECT CASE Mon WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Monday,
-							(SELECT CASE Tues WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Tuesday,
-							(SELECT CASE Wed WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Wednesday,
-							(SELECT CASE Thurs WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Thursday,
-							(SELECT CASE Fri WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Friday,
-							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
-							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
+		FROM	(	SELECT	(SELECT CASE Mon WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Monday,
+							(SELECT CASE Tues WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Tuesday,
+							(SELECT CASE Wed WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Wednesday,
+							(SELECT CASE Thurs WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Thursday,
+							(SELECT CASE Fri WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Friday,
+							(SELECT CASE Sat WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
+							(SELECT CASE Sun WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
 					WHERE	0800 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
@@ -846,13 +846,13 @@ BEGIN
 		WHERE Time = '8:00'
 		UNION
 		SELECT	Time, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday
-		FROM	(	SELECT	(SELECT CASE Mon WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Monday,
-							(SELECT CASE Tues WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Tuesday,
-							(SELECT CASE Wed WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Wednesday,
-							(SELECT CASE Thurs WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Thursday,
-							(SELECT CASE Fri WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Friday,
-							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
-							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
+		FROM	(	SELECT	(SELECT CASE Mon WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Monday,
+							(SELECT CASE Tues WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Tuesday,
+							(SELECT CASE Wed WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Wednesday,
+							(SELECT CASE Thurs WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Thursday,
+							(SELECT CASE Fri WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Friday,
+							(SELECT CASE Sat WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
+							(SELECT CASE Sun WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
 					WHERE	0830 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
@@ -862,13 +862,13 @@ BEGIN
 		WHERE Time = '8:30'
 		UNION
 		SELECT	Time, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday
-		FROM	(	SELECT	(SELECT CASE Mon WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Monday,
-							(SELECT CASE Tues WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Tuesday,
-							(SELECT CASE Wed WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Wednesday,
-							(SELECT CASE Thurs WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Thursday,
-							(SELECT CASE Fri WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Friday,
-							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
-							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
+		FROM	(	SELECT	(SELECT CASE Mon WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Monday,
+							(SELECT CASE Tues WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Tuesday,
+							(SELECT CASE Wed WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Wednesday,
+							(SELECT CASE Thurs WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Thursday,
+							(SELECT CASE Fri WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Friday,
+							(SELECT CASE Sat WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
+							(SELECT CASE Sun WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
 					WHERE	0900 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
@@ -878,13 +878,13 @@ BEGIN
 		WHERE Time = '9:00'
 		UNION
 		SELECT	Time, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday
-		FROM	(	SELECT	(SELECT CASE Mon WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Monday,
-							(SELECT CASE Tues WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Tuesday,
-							(SELECT CASE Wed WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Wednesday,
-							(SELECT CASE Thurs WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Thursday,
-							(SELECT CASE Fri WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Friday,
-							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
-							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
+		FROM	(	SELECT	(SELECT CASE Mon WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Monday,
+							(SELECT CASE Tues WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Tuesday,
+							(SELECT CASE Wed WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Wednesday,
+							(SELECT CASE Thurs WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Thursday,
+							(SELECT CASE Fri WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Friday,
+							(SELECT CASE Sat WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
+							(SELECT CASE Sun WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
 					WHERE	0930 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
@@ -894,13 +894,13 @@ BEGIN
 		WHERE Time = '9:30'
 		UNION
 		SELECT	Time, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday
-		FROM	(	SELECT	(SELECT CASE Mon WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Monday,
-							(SELECT CASE Tues WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Tuesday,
-							(SELECT CASE Wed WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Wednesday,
-							(SELECT CASE Thurs WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Thursday,
-							(SELECT CASE Fri WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Friday,
-							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
-							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
+		FROM	(	SELECT	(SELECT CASE Mon WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Monday,
+							(SELECT CASE Tues WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Tuesday,
+							(SELECT CASE Wed WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Wednesday,
+							(SELECT CASE Thurs WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Thursday,
+							(SELECT CASE Fri WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Friday,
+							(SELECT CASE Sat WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
+							(SELECT CASE Sun WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
 					WHERE	1000 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
@@ -910,13 +910,13 @@ BEGIN
 		WHERE Time = '10:00'
 		UNION
 		SELECT	Time, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday
-		FROM	(	SELECT	(SELECT CASE Mon WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Monday,
-							(SELECT CASE Tues WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Tuesday,
-							(SELECT CASE Wed WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Wednesday,
-							(SELECT CASE Thurs WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Thursday,
-							(SELECT CASE Fri WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Friday,
-							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
-							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
+		FROM	(	SELECT	(SELECT CASE Mon WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Monday,
+							(SELECT CASE Tues WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Tuesday,
+							(SELECT CASE Wed WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Wednesday,
+							(SELECT CASE Thurs WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Thursday,
+							(SELECT CASE Fri WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Friday,
+							(SELECT CASE Sat WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
+							(SELECT CASE Sun WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
 					WHERE	1030 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
@@ -926,13 +926,13 @@ BEGIN
 		WHERE Time = '10:30'
 		UNION
 		SELECT	Time, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday
-		FROM	(	SELECT	(SELECT CASE Mon WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Monday,
-							(SELECT CASE Tues WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Tuesday,
-							(SELECT CASE Wed WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Wednesday,
-							(SELECT CASE Thurs WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Thursday,
-							(SELECT CASE Fri WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Friday,
-							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
-							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
+		FROM	(	SELECT	(SELECT CASE Mon WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Monday,
+							(SELECT CASE Tues WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Tuesday,
+							(SELECT CASE Wed WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Wednesday,
+							(SELECT CASE Thurs WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Thursday,
+							(SELECT CASE Fri WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Friday,
+							(SELECT CASE Sat WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
+							(SELECT CASE Sun WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
 					WHERE	1100 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
@@ -942,13 +942,13 @@ BEGIN
 		WHERE Time = '11:00'
 		UNION
 		SELECT	Time, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday
-		FROM	(	SELECT	(SELECT CASE Mon WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Monday,
-							(SELECT CASE Tues WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Tuesday,
-							(SELECT CASE Wed WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Wednesday,
-							(SELECT CASE Thurs WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Thursday,
-							(SELECT CASE Fri WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Friday,
-							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
-							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
+		FROM	(	SELECT	(SELECT CASE Mon WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Monday,
+							(SELECT CASE Tues WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Tuesday,
+							(SELECT CASE Wed WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Wednesday,
+							(SELECT CASE Thurs WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Thursday,
+							(SELECT CASE Fri WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Friday,
+							(SELECT CASE Sat WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
+							(SELECT CASE Sun WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
 					WHERE	1130 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
@@ -958,13 +958,13 @@ BEGIN
 		WHERE Time = '11:30'
 		UNION
 		SELECT	Time, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday
-		FROM	(	SELECT	(SELECT CASE Mon WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Monday,
-							(SELECT CASE Tues WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Tuesday,
-							(SELECT CASE Wed WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Wednesday,
-							(SELECT CASE Thurs WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Thursday,
-							(SELECT CASE Fri WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Friday,
-							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
-							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
+		FROM	(	SELECT	(SELECT CASE Mon WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Monday,
+							(SELECT CASE Tues WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Tuesday,
+							(SELECT CASE Wed WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Wednesday,
+							(SELECT CASE Thurs WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Thursday,
+							(SELECT CASE Fri WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Friday,
+							(SELECT CASE Sat WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
+							(SELECT CASE Sun WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
 					WHERE	1200 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
@@ -974,13 +974,13 @@ BEGIN
 		WHERE Time = '12:00'
 		UNION
 		SELECT	Time, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday
-		FROM	(	SELECT	(SELECT CASE Mon WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Monday,
-							(SELECT CASE Tues WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Tuesday,
-							(SELECT CASE Wed WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Wednesday,
-							(SELECT CASE Thurs WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Thursday,
-							(SELECT CASE Fri WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Friday,
-							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
-							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
+		FROM	(	SELECT	(SELECT CASE Mon WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Monday,
+							(SELECT CASE Tues WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Tuesday,
+							(SELECT CASE Wed WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Wednesday,
+							(SELECT CASE Thurs WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Thursday,
+							(SELECT CASE Fri WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Friday,
+							(SELECT CASE Sat WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
+							(SELECT CASE Sun WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
 					WHERE	1230 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
@@ -990,13 +990,13 @@ BEGIN
 		WHERE Time = '12:30'
 		UNION
 		SELECT	Time, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday
-		FROM	(	SELECT	(SELECT CASE Mon WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Monday,
-							(SELECT CASE Tues WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Tuesday,
-							(SELECT CASE Wed WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Wednesday,
-							(SELECT CASE Thurs WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Thursday,
-							(SELECT CASE Fri WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Friday,
-							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
-							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
+		FROM	(	SELECT	(SELECT CASE Mon WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Monday,
+							(SELECT CASE Tues WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Tuesday,
+							(SELECT CASE Wed WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Wednesday,
+							(SELECT CASE Thurs WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Thursday,
+							(SELECT CASE Fri WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Friday,
+							(SELECT CASE Sat WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
+							(SELECT CASE Sun WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
 					WHERE	1300 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
@@ -1006,13 +1006,13 @@ BEGIN
 		WHERE Time = '13:00'
 		UNION
 		SELECT	Time, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday
-		FROM	(	SELECT	(SELECT CASE Mon WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Monday,
-							(SELECT CASE Tues WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Tuesday,
-							(SELECT CASE Wed WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Wednesday,
-							(SELECT CASE Thurs WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Thursday,
-							(SELECT CASE Fri WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Friday,
-							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
-							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
+		FROM	(	SELECT	(SELECT CASE Mon WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Monday,
+							(SELECT CASE Tues WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Tuesday,
+							(SELECT CASE Wed WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Wednesday,
+							(SELECT CASE Thurs WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Thursday,
+							(SELECT CASE Fri WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Friday,
+							(SELECT CASE Sat WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
+							(SELECT CASE Sun WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
 					WHERE	1330 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
@@ -1022,13 +1022,13 @@ BEGIN
 		WHERE Time = '13:30'
 		UNION
 		SELECT	Time, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday
-		FROM	(	SELECT	(SELECT CASE Mon WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Monday,
-							(SELECT CASE Tues WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Tuesday,
-							(SELECT CASE Wed WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Wednesday,
-							(SELECT CASE Thurs WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Thursday,
-							(SELECT CASE Fri WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Friday,
-							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
-							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
+		FROM	(	SELECT	(SELECT CASE Mon WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Monday,
+							(SELECT CASE Tues WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Tuesday,
+							(SELECT CASE Wed WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Wednesday,
+							(SELECT CASE Thurs WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Thursday,
+							(SELECT CASE Fri WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Friday,
+							(SELECT CASE Sat WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
+							(SELECT CASE Sun WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
 					WHERE	1400 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
@@ -1038,13 +1038,13 @@ BEGIN
 		WHERE Time = '14:00'
 		UNION
 		SELECT	Time, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday
-		FROM	(	SELECT	(SELECT CASE Mon WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Monday,
-							(SELECT CASE Tues WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Tuesday,
-							(SELECT CASE Wed WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Wednesday,
-							(SELECT CASE Thurs WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Thursday,
-							(SELECT CASE Fri WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Friday,
-							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
-							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
+		FROM	(	SELECT	(SELECT CASE Mon WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Monday,
+							(SELECT CASE Tues WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Tuesday,
+							(SELECT CASE Wed WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Wednesday,
+							(SELECT CASE Thurs WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Thursday,
+							(SELECT CASE Fri WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Friday,
+							(SELECT CASE Sat WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
+							(SELECT CASE Sun WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
 					WHERE	1430 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
@@ -1054,13 +1054,13 @@ BEGIN
 		WHERE Time = '14:30'
 		UNION
 		SELECT	Time, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday
-		FROM	(	SELECT	(SELECT CASE Mon WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Monday,
-							(SELECT CASE Tues WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Tuesday,
-							(SELECT CASE Wed WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Wednesday,
-							(SELECT CASE Thurs WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Thursday,
-							(SELECT CASE Fri WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Friday,
-							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
-							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
+		FROM	(	SELECT	(SELECT CASE Mon WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Monday,
+							(SELECT CASE Tues WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Tuesday,
+							(SELECT CASE Wed WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Wednesday,
+							(SELECT CASE Thurs WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Thursday,
+							(SELECT CASE Fri WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Friday,
+							(SELECT CASE Sat WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
+							(SELECT CASE Sun WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
 					WHERE	1500 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
@@ -1070,13 +1070,13 @@ BEGIN
 		WHERE Time = '15:00'
 		UNION
 		SELECT	Time, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday
-		FROM	(	SELECT	(SELECT CASE Mon WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Monday,
-							(SELECT CASE Tues WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Tuesday,
-							(SELECT CASE Wed WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Wednesday,
-							(SELECT CASE Thurs WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Thursday,
-							(SELECT CASE Fri WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Friday,
-							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
-							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
+		FROM	(	SELECT	(SELECT CASE Mon WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Monday,
+							(SELECT CASE Tues WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Tuesday,
+							(SELECT CASE Wed WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Wednesday,
+							(SELECT CASE Thurs WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Thursday,
+							(SELECT CASE Fri WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Friday,
+							(SELECT CASE Sat WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
+							(SELECT CASE Sun WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
 					WHERE	1530 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
@@ -1086,13 +1086,13 @@ BEGIN
 		WHERE Time = '15:30'
 		UNION
 		SELECT	Time, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday
-		FROM	(	SELECT	(SELECT CASE Mon WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Monday,
-							(SELECT CASE Tues WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Tuesday,
-							(SELECT CASE Wed WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Wednesday,
-							(SELECT CASE Thurs WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Thursday,
-							(SELECT CASE Fri WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Friday,
-							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
-							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
+		FROM	(	SELECT	(SELECT CASE Mon WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Monday,
+							(SELECT CASE Tues WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Tuesday,
+							(SELECT CASE Wed WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Wednesday,
+							(SELECT CASE Thurs WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Thursday,
+							(SELECT CASE Fri WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Friday,
+							(SELECT CASE Sat WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
+							(SELECT CASE Sun WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
 					WHERE	1600 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
@@ -1102,13 +1102,13 @@ BEGIN
 		WHERE Time = '16:00'
 		UNION
 		SELECT	Time, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday
-		FROM	(	SELECT	(SELECT CASE Mon WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Monday,
-							(SELECT CASE Tues WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Tuesday,
-							(SELECT CASE Wed WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Wednesday,
-							(SELECT CASE Thurs WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Thursday,
-							(SELECT CASE Fri WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Friday,
-							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
-							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
+		FROM	(	SELECT	(SELECT CASE Mon WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Monday,
+							(SELECT CASE Tues WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Tuesday,
+							(SELECT CASE Wed WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Wednesday,
+							(SELECT CASE Thurs WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Thursday,
+							(SELECT CASE Fri WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Friday,
+							(SELECT CASE Sat WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
+							(SELECT CASE Sun WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
 					WHERE	1630 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
@@ -1118,13 +1118,13 @@ BEGIN
 		WHERE Time = '16:30'
 		UNION
 		SELECT	Time, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday
-		FROM	(	SELECT	(SELECT CASE Mon WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Monday,
-							(SELECT CASE Tues WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Tuesday,
-							(SELECT CASE Wed WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Wednesday,
-							(SELECT CASE Thurs WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Thursday,
-							(SELECT CASE Fri WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Friday,
-							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
-							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
+		FROM	(	SELECT	(SELECT CASE Mon WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Monday,
+							(SELECT CASE Tues WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Tuesday,
+							(SELECT CASE Wed WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Wednesday,
+							(SELECT CASE Thurs WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Thursday,
+							(SELECT CASE Fri WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Friday,
+							(SELECT CASE Sat WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
+							(SELECT CASE Sun WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
 					WHERE	1700 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
@@ -1134,13 +1134,13 @@ BEGIN
 		WHERE Time = '17:00'
 		UNION
 		SELECT	Time, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday
-		FROM	(	SELECT	(SELECT CASE Mon WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Monday,
-							(SELECT CASE Tues WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Tuesday,
-							(SELECT CASE Wed WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Wednesday,
-							(SELECT CASE Thurs WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Thursday,
-							(SELECT CASE Fri WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Friday,
-							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
-							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
+		FROM	(	SELECT	(SELECT CASE Mon WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Monday,
+							(SELECT CASE Tues WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Tuesday,
+							(SELECT CASE Wed WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Wednesday,
+							(SELECT CASE Thurs WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Thursday,
+							(SELECT CASE Fri WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Friday,
+							(SELECT CASE Sat WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
+							(SELECT CASE Sun WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
 					WHERE	1730 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
@@ -1150,13 +1150,13 @@ BEGIN
 		WHERE Time = '17:30'
 		UNION
 		SELECT	Time, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday
-		FROM	(	SELECT	(SELECT CASE Mon WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Monday,
-							(SELECT CASE Tues WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Tuesday,
-							(SELECT CASE Wed WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Wednesday,
-							(SELECT CASE Thurs WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Thursday,
-							(SELECT CASE Fri WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Friday,
-							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
-							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
+		FROM	(	SELECT	(SELECT CASE Mon WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Monday,
+							(SELECT CASE Tues WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Tuesday,
+							(SELECT CASE Wed WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Wednesday,
+							(SELECT CASE Thurs WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Thursday,
+							(SELECT CASE Fri WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Friday,
+							(SELECT CASE Sat WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
+							(SELECT CASE Sun WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
 					WHERE	1800 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
@@ -1166,13 +1166,13 @@ BEGIN
 		WHERE Time = '18:00'
 		UNION
 		SELECT	Time, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday
-		FROM	(	SELECT	(SELECT CASE Mon WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Monday,
-							(SELECT CASE Tues WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Tuesday,
-							(SELECT CASE Wed WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Wednesday,
-							(SELECT CASE Thurs WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Thursday,
-							(SELECT CASE Fri WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Friday,
-							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
-							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
+		FROM	(	SELECT	(SELECT CASE Mon WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Monday,
+							(SELECT CASE Tues WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Tuesday,
+							(SELECT CASE Wed WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Wednesday,
+							(SELECT CASE Thurs WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Thursday,
+							(SELECT CASE Fri WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Friday,
+							(SELECT CASE Sat WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
+							(SELECT CASE Sun WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
 					WHERE	1830 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
@@ -1182,13 +1182,13 @@ BEGIN
 		WHERE Time = '18:30'
 		UNION
 		SELECT	Time, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday
-		FROM	(	SELECT	(SELECT CASE Mon WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Monday,
-							(SELECT CASE Tues WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Tuesday,
-							(SELECT CASE Wed WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Wednesday,
-							(SELECT CASE Thurs WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Thursday,
-							(SELECT CASE Fri WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Friday,
-							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
-							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
+		FROM	(	SELECT	(SELECT CASE Mon WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Monday,
+							(SELECT CASE Tues WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Tuesday,
+							(SELECT CASE Wed WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Wednesday,
+							(SELECT CASE Thurs WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Thursday,
+							(SELECT CASE Fri WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Friday,
+							(SELECT CASE Sat WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
+							(SELECT CASE Sun WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
 					WHERE	1900 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
@@ -1198,13 +1198,13 @@ BEGIN
 		WHERE Time = '19:00'
 		UNION
 		SELECT	Time, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday
-		FROM	(	SELECT	(SELECT CASE Mon WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Monday,
-							(SELECT CASE Tues WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Tuesday,
-							(SELECT CASE Wed WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Wednesday,
-							(SELECT CASE Thurs WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Thursday,
-							(SELECT CASE Fri WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Friday,
-							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
-							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
+		FROM	(	SELECT	(SELECT CASE Mon WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Monday,
+							(SELECT CASE Tues WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Tuesday,
+							(SELECT CASE Wed WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Wednesday,
+							(SELECT CASE Thurs WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Thursday,
+							(SELECT CASE Fri WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Friday,
+							(SELECT CASE Sat WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
+							(SELECT CASE Sun WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
 					WHERE	1930 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
@@ -1214,13 +1214,13 @@ BEGIN
 		WHERE Time = '19:30'
 		UNION
 		SELECT	Time, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday
-		FROM	(	SELECT	(SELECT CASE Mon WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Monday,
-							(SELECT CASE Tues WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Tuesday,
-							(SELECT CASE Wed WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Wednesday,
-							(SELECT CASE Thurs WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Thursday,
-							(SELECT CASE Fri WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Friday,
-							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
-							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
+		FROM	(	SELECT	(SELECT CASE Mon WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Monday,
+							(SELECT CASE Tues WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Tuesday,
+							(SELECT CASE Wed WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Wednesday,
+							(SELECT CASE Thurs WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Thursday,
+							(SELECT CASE Fri WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Friday,
+							(SELECT CASE Sat WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
+							(SELECT CASE Sun WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
 					WHERE	2000 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
@@ -1230,13 +1230,13 @@ BEGIN
 		WHERE Time = '20:00'
 		UNION
 		SELECT	Time, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday
-		FROM	(	SELECT	(SELECT CASE Mon WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Monday,
-							(SELECT CASE Tues WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Tuesday,
-							(SELECT CASE Wed WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Wednesday,
-							(SELECT CASE Thurs WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Thursday,
-							(SELECT CASE Fri WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Friday,
-							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
-							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
+		FROM	(	SELECT	(SELECT CASE Mon WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Monday,
+							(SELECT CASE Tues WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Tuesday,
+							(SELECT CASE Wed WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Wednesday,
+							(SELECT CASE Thurs WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Thursday,
+							(SELECT CASE Fri WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Friday,
+							(SELECT CASE Sat WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
+							(SELECT CASE Sun WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
 					WHERE	2030 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
@@ -1246,13 +1246,13 @@ BEGIN
 		WHERE Time = '20:30'
 		UNION
 		SELECT	Time, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday
-		FROM	(	SELECT	(SELECT CASE Mon WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Monday,
-							(SELECT CASE Tues WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Tuesday,
-							(SELECT CASE Wed WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Wednesday,
-							(SELECT CASE Thurs WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Thursday,
-							(SELECT CASE Fri WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Friday,
-							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
-							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
+		FROM	(	SELECT	(SELECT CASE Mon WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Monday,
+							(SELECT CASE Tues WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Tuesday,
+							(SELECT CASE Wed WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Wednesday,
+							(SELECT CASE Thurs WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Thursday,
+							(SELECT CASE Fri WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Friday,
+							(SELECT CASE Sat WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
+							(SELECT CASE Sun WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
 					WHERE	2100 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term
@@ -1262,13 +1262,13 @@ BEGIN
 		WHERE Time = '21:00'
 		UNION
 		SELECT	Time, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday
-		FROM	(	SELECT	(SELECT CASE Mon WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Monday,
-							(SELECT CASE Tues WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Tuesday,
-							(SELECT CASE Wed WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Wednesday,
-							(SELECT CASE Thurs WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Thursday,
-							(SELECT CASE Fri WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Friday,
-							(SELECT CASE Sat WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
-							(SELECT CASE Sun WHEN 1 THEN ((select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
+		FROM	(	SELECT	(SELECT CASE Mon WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Monday,
+							(SELECT CASE Tues WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Tuesday,
+							(SELECT CASE Wed WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Wednesday,
+							(SELECT CASE Thurs WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Thursday,
+							(SELECT CASE Fri WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Friday,
+							(SELECT CASE Sat WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Saturday,
+							(SELECT CASE Sun WHEN 1 THEN (CONVERT(varchar, RoomID) + ' ' + (select (Department + ' ' + CourseNum) from CLASS where ClassID = s.ClassID) + '.' + CONVERT(varchar, SectionNum) + ' ' + (select LastName from PROFESSOR where TeacherID = s.TeacherID)) ELSE ' ' END) AS Sunday
 					FROM	SCHEDULE s
 					WHERE	2130 BETWEEN StartTime AND (EndTime - 1)
 					AND		Term = @term

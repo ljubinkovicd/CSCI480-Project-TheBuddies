@@ -132,6 +132,8 @@ Public Class frmReports
 
         mainds.Tables.Add(weeklyTable)
 
+        'dgvTest.DataSource = weeklyTable
+
         'faculty reports
         tempds = sql.GetStoredProc("GetProfessorName")
 
@@ -142,6 +144,7 @@ Public Class frmReports
             mainds.Tables.Add(profTable)
         Next
 
+        'dgvTest.DataSource = mainds.Tables("Langhals")
         'dgvTest.DataSource = mainds.Tables("Baker")
 
         'Daily Reports
@@ -173,7 +176,7 @@ Public Class frmReports
             'End If
         Next
 
-        'Dim q As Integer = mainds.Tables.Count
+        Dim q As Integer = mainds.Tables.Count
 
         Return mainds
     End Function
@@ -214,126 +217,115 @@ Public Class frmReports
     End Sub
 
     Private Function GetWeeklyReport(ByVal weeklyTable As System.Data.DataTable)
-        Dim count As Integer = weeklyTable.Rows.Count - 1
-        Dim monCol As Integer = 1
-        Dim tuesCol As Integer = 1
-        Dim wedCol As Integer = 1
-        Dim thursCol As Integer = 1
-        Dim friCol As Integer = 1
-        Dim satCol As Integer = 1
-        Dim sunCol As Integer = 1
-        Dim newCol As String = ""
+        'second try
+        'weeklyTable is the dt given in bad format
+        'weekdt is the dt we are populating
+        Dim weekdt As New System.Data.DataTable
+        weekdt = InitReportDT(weekdt, "week") 'change
+        For Each dr As DataRow In weeklyTable.Rows
+            For Each dc As DataColumn In weeklyTable.Columns
+                If dc.ColumnName.ToString <> "Time" Then
+                    If dr.Item(dc).ToString <> "" And dr.Item(dc).ToString <> " " Then
+                        Dim time As String = dr.Item("Time").ToString
+                        Dim colName As String = dc.ColumnName.ToString
+                        Dim value As String = dr.Item(dc).ToString
+                        Dim roomId As String = value.Substring(0, value.IndexOf(" "))
+                        Dim cell As New TableLayoutPanelCellPosition(0, 0)
+                        Dim placed As Boolean = False
 
-        For i = 0 To count
-            Dim j As Integer = i + 1
-            Dim removeRow As Boolean = False
-            If i < count Then
-                If weeklyTable.Rows(i).Item("Time").ToString = weeklyTable.Rows(j).Item("Time").ToString Then
-                    'Then there are at least two rows with the same time
-                    'need to be combined into one row
+                        cell.Row = GetReportRow(time)
+                        cell.Column = weekdt.Columns(colName + roomId).Ordinal 'change
 
-                    Dim day As String = ""
-                    Dim col As Integer = 0
-                    Dim start As Integer = 0
-
-                    For z = 0 To 6
-                        Select Case z
-                            Case 0
-                                day = "Monday"
-                                col = monCol
-                                start = monStart
-                            Case 1
-                                day = "Tuesday"
-                                col = tuesCol
-                                start = tuesStart
-                            Case 2
-                                day = "Wednesday"
-                                col = wedCol
-                                start = wedStart
-                            Case 3
-                                day = "Thursday"
-                                col = thursCol
-                                start = thursStart
-                            Case 4
-                                day = "Friday"
-                                col = friCol
-                                start = friStart
-                            Case 5
-                                day = "Saturday"
-                                col = satCol
-                                start = satStart
-                            Case 6
-                                day = "Sunday"
-                                col = sunCol
-                                start = sunStart
-                        End Select
-
-                        If weeklyTable.Rows(j).Item(day).ToString <> "" And weeklyTable.Rows(j).Item(day).ToString <> " " Then
-                            removeRow = True
-                            If weeklyTable.Rows(i).Item(day).ToString <> "" And weeklyTable.Rows(i).Item(day).ToString <> " " Then
-                                'check to see if a column has already been created, if so check to see if something is there
-                                If col > 1 Then
-                                    'loop through to find the next available column spot, if none found create a new column
-                                    For a = 2 To col
-                                        If weeklyTable.Rows(i).Item(day + a.ToString).ToString <> "" And weeklyTable.Rows(i).Item(day + a.ToString).ToString <> " " Then
-                                            If weeklyTable.Columns.Contains(day + (a + 1).ToString) Then
-                                                Continue For
-                                            Else
-                                                col += 1
-                                                newCol = day + (col).ToString
-                                                weeklyTable.Columns.Add(newCol).SetOrdinal((col - 1) + start)
-                                                weeklyTable.Rows(i).Item(newCol) = weeklyTable.Rows(j).Item(day).ToString
-                                                a = col + 1
-                                                IncColStart(day)
-                                            End If
-                                        Else
-                                            weeklyTable.Rows(i).Item(day + a.ToString) = weeklyTable.Rows(j).Item(day).ToString
-                                            a = col + 1
-                                        End If
-                                    Next
-                                Else
-                                    col += 1
-                                    newCol = day + (col).ToString
-                                    weeklyTable.Columns.Add(newCol).SetOrdinal((col - 1) + start)
-                                    weeklyTable.Rows(i).Item(newCol) = weeklyTable.Rows(j).Item(day).ToString
-                                    IncColStart(day)
-                                End If
-                            Else
-                                weeklyTable.Rows(i).Item(day) = weeklyTable.Rows(j).Item(day).ToString
-                            End If
-                        End If
-                        Select Case z
-                            Case 0
-                                monCol = col
-                            Case 1
-                                tuesCol = col
-                            Case 2
-                                wedCol = col
-                            Case 3
-                                thursCol = col
-                            Case 4
-                                friCol = col
-                            Case 5
-                                satCol = col
-                            Case 6
-                                sunCol = col
-                        End Select
-                    Next
-
-                    If removeRow Then
-                        weeklyTable.Rows.RemoveAt(j)
-                        count -= 1
+                        'While placed = False
+                        'If weekdt.Rows(cell.Row).Item(cell.Column).ToString = "" Or weekdt.Rows(cell.Row).Item(cell.Column).ToString = " " Then
+                        weekdt.Rows(cell.Row).Item(cell.Column) = value
+                        'placed = True
+                        'Else
+                        'cell.Column += 1
+                        'End If
+                        'End While
                     End If
-
                 End If
-            End If
+            Next
         Next
+
+        'delete unused columns
+        '** need to fix to not erase all of one day
+        Dim j As Integer = 0
+
+        While j < weekdt.Columns.Count
+            Dim removeColumn = True
+            If weekdt.Columns(j).ToString.Substring(weekdt.Columns(j).ToString.Length - 1) <> "0" Then
+                For i = 0 To weekdt.Rows.Count - 1
+                    If weekdt.Rows(i).Item(j).ToString <> "" And weekdt.Rows(i).Item(j).ToString <> " " Then
+                        removeColumn = False
+                        Exit For
+                    End If
+                Next
+                If removeColumn Then
+                    weekdt.Columns.RemoveAt(j)
+                Else
+                    j += 1
+                End If
+            Else
+                j += 1
+            End If
+        End While
+
+        'loop back through and fix stuff
+        
 
         '** loop back through to turn the military time to normal
 
-        'dgvTest.DataSource = weeklyTable
+        Return weekdt
+    End Function
 
-        Return weeklyTable
+    Private Function GetReportRow(ByVal time As String)
+        Dim cell As New TableLayoutPanelCellPosition(0, 0)
+
+        Dim times = {"8:00", "8:30", "9:00", "9:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00", "21:30"}
+
+        For i = 0 To times.Length - 1
+            If times(i) = time Then
+                cell.Row = i
+            End If
+        Next
+
+        Return cell.Row
+    End Function
+
+    Private Function InitReportDT(ByVal tempdt As System.Data.DataTable, ByVal s As String)
+        Dim times = {"8:00", "8:30", "9:00", "9:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00", "21:30"}
+        Dim days = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"}
+        Dim sql As New SQLConnect
+        Dim ds As DataSet = sql.GetStoredProc("GetRooms")
+        Dim profds As DataSet = sql.GetStoredProc("GetProfessorName")
+        'Dim roomCount As Integer = CType(ds.Tables(0).Rows(0).Item(0).ToString, Integer)
+
+        tempdt.Columns.Add("Time")
+
+        For i = 0 To 27
+            tempdt.Rows.Add()
+            tempdt.Rows(i).Item("Time") = times(i)
+        Next
+
+        If s = "week" Then
+            For i = 0 To days.Length - 1
+                For j = 0 To ds.Tables(0).Rows.Count - 1
+                    tempdt.Columns.Add(days(i) + ds.Tables(0).Rows(j).Item("RoomID").ToString)
+                Next
+            Next
+        ElseIf s = "daily" Then
+            For i = 0 To profds.Tables(0).Rows.Count - 1
+                tempdt.Columns.Add(profds.Tables(0).Rows(i).Item("Professor").ToString)
+            Next
+        ElseIf s = "prof" Then
+            For i = 0 To days.Length - 1
+                tempdt.Columns.Add(days(i))
+            Next
+        End If
+
+        Return tempdt
     End Function
 
     Private Function GetFacultyReport(ByVal prof As String, ByVal term As String, ByVal termYear As String)
@@ -342,7 +334,29 @@ Public Class frmReports
 
         ds = sql.GetStoredProc("ProfessorWeeklyReport '" + term + "', '" + termYear + "', '" + prof + "'")
 
-        Return ds.Tables(0)
+        'loop back through to get the correct table
+        Dim profdt As New System.Data.DataTable
+        profdt = InitReportDT(profdt, "prof")
+
+        For Each dr As DataRow In ds.Tables(0).Rows
+            For Each dc As DataColumn In ds.Tables(0).Columns
+                If dc.ColumnName.ToString <> "Time" Then
+                    If dr.Item(dc).ToString <> "" And dr.Item(dc).ToString <> " " Then
+                        Dim time As String = dr.Item("Time").ToString
+                        Dim colName As String = dc.ColumnName.ToString
+                        Dim value As String = dr.Item(dc).ToString
+                        Dim cell As New TableLayoutPanelCellPosition(0, 0)
+
+                        cell.Row = GetReportRow(time)
+                        cell.Column = profdt.Columns(colName).Ordinal
+
+                        profdt.Rows(cell.Row).Item(cell.Column) = value
+                    End If
+                End If
+            Next
+        Next
+
+        Return profdt
     End Function
 
     Private Function GetDailyReports(ByVal profdt As System.Data.DataTable, ByVal day As String, ByVal term As String, ByVal termYear As String)
@@ -406,9 +420,31 @@ Public Class frmReports
 
         'once you have the query, need to get a dt from it
         Dim ds As DataSet = sql.GetQuery(query)
-        dt = ds.Tables(0)
+        'dt = ds.Tables(0)
 
-        Return dt
+        'loop through the table to fix it
+        Dim daydt As New System.Data.DataTable
+        daydt = InitReportDT(daydt, "daily")
+
+        For Each dr As DataRow In ds.Tables(0).Rows
+            For Each dc As DataColumn In ds.Tables(0).Columns
+                If dc.ColumnName.ToString <> "Time" Then
+                    If dr.Item(dc).ToString <> "" And dr.Item(dc).ToString <> " " Then
+                        Dim time As String = dr.Item("Time").ToString
+                        Dim colName As String = dc.ColumnName.ToString
+                        Dim value As String = dr.Item(dc).ToString
+                        Dim cell As New TableLayoutPanelCellPosition(0, 0)
+
+                        cell.Row = GetReportRow(time)
+                        cell.Column = daydt.Columns(colName).Ordinal
+
+                        daydt.Rows(cell.Row).Item(cell.Column) = value
+                    End If
+                End If
+            Next
+        Next
+
+        Return daydt
     End Function
 
     Private Function CalcMilitaryTime(ByVal i As Integer)
@@ -476,3 +512,249 @@ Public Class frmReports
         Return militaryTime
     End Function
 End Class
+
+'old code
+'Dim count As Integer = weeklyTable.Rows.Count - 1
+'Dim monCol As Integer = 1
+'Dim tuesCol As Integer = 1
+'Dim wedCol As Integer = 1
+'Dim thursCol As Integer = 1
+'Dim friCol As Integer = 1
+'Dim satCol As Integer = 1
+'Dim sunCol As Integer = 1
+'Dim newCol As String = ""
+
+'For i = 0 To count
+'    Dim j As Integer = i + 1
+'    Dim removeRow As Boolean = False
+'    If i < count Then
+'        If weeklyTable.Rows(i).Item("Time").ToString = weeklyTable.Rows(j).Item("Time").ToString Then
+'            'Then there are at least two rows with the same time
+'            'need to be combined into one row
+
+'            Dim day As String = ""
+'            Dim col As Integer = 0
+'            Dim start As Integer = 0
+
+'            For z = 0 To 6
+'                Select Case z
+'                    Case 0
+'                        day = "Monday"
+'                        col = monCol
+'                        start = monStart
+'                    Case 1
+'                        day = "Tuesday"
+'                        col = tuesCol
+'                        start = tuesStart
+'                    Case 2
+'                        day = "Wednesday"
+'                        col = wedCol
+'                        start = wedStart
+'                    Case 3
+'                        day = "Thursday"
+'                        col = thursCol
+'                        start = thursStart
+'                    Case 4
+'                        day = "Friday"
+'                        col = friCol
+'                        start = friStart
+'                    Case 5
+'                        day = "Saturday"
+'                        col = satCol
+'                        start = satStart
+'                    Case 6
+'                        day = "Sunday"
+'                        col = sunCol
+'                        start = sunStart
+'                End Select
+
+'                If weeklyTable.Rows(j).Item(day).ToString <> "" And weeklyTable.Rows(j).Item(day).ToString <> " " Then
+'                    removeRow = True
+'                    If weeklyTable.Rows(i).Item(day).ToString <> "" And weeklyTable.Rows(i).Item(day).ToString <> " " Then
+'                        'check to see if a column has already been created, if so check to see if something is there
+'                        If col > 1 Then
+'                            'loop through to find the next available column spot, if none found create a new column
+'                            For a = 2 To col
+'                                If weeklyTable.Rows(i).Item(day + a.ToString).ToString <> "" And weeklyTable.Rows(i).Item(day + a.ToString).ToString <> " " Then
+'                                    If weeklyTable.Columns.Contains(day + (a + 1).ToString) Then
+'                                        Continue For
+'                                    Else
+'                                        col += 1
+'                                        newCol = day + (col).ToString
+'                                        weeklyTable.Columns.Add(newCol).SetOrdinal((col - 1) + start)
+'                                        weeklyTable.Rows(i).Item(newCol) = weeklyTable.Rows(j).Item(day).ToString
+'                                        a = col + 1
+'                                        IncColStart(day)
+'                                    End If
+'                                Else
+'                                    weeklyTable.Rows(i).Item(day + a.ToString) = weeklyTable.Rows(j).Item(day).ToString
+'                                    a = col + 1
+'                                End If
+'                            Next
+'                        Else
+'                            col += 1
+'                            newCol = day + (col).ToString
+'                            weeklyTable.Columns.Add(newCol).SetOrdinal((col - 1) + start)
+'                            weeklyTable.Rows(i).Item(newCol) = weeklyTable.Rows(j).Item(day).ToString
+'                            IncColStart(day)
+'                        End If
+'                    Else
+'                        weeklyTable.Rows(i).Item(day) = weeklyTable.Rows(j).Item(day).ToString
+'                    End If
+'                End If
+'                Select Case z
+'                    Case 0
+'                        monCol = col
+'                    Case 1
+'                        tuesCol = col
+'                    Case 2
+'                        wedCol = col
+'                    Case 3
+'                        thursCol = col
+'                    Case 4
+'                        friCol = col
+'                    Case 5
+'                        satCol = col
+'                    Case 6
+'                        sunCol = col
+'                End Select
+'            Next
+
+'            If removeRow Then
+'                weeklyTable.Rows.RemoveAt(j)
+'                count -= 1
+'            End If
+
+'        End If
+'    End If
+'Next
+
+'  'Try
+'    For j = 0 To weekdt.Columns.Count - 2
+'        Dim removeColumn = True
+'        If weekdt.Columns(j).ToString.Substring(weekdt.Columns(j).ToString.Length - 1) <> "0" Then
+'            For i = 0 To weekdt.Rows.Count - 1
+'                If weekdt.Rows(i).Item(j).ToString <> "" And weekdt.Rows(i).Item(j).ToString <> " " Then
+'                    removeColumn = False
+'                    Exit For
+'                End If
+'            Next
+'            If removeColumn Then
+'                weekdt.Columns.RemoveAt(j)
+'            End If
+'        End If
+'    Next
+'Catch ex As Exception
+
+'End Try
+
+'Dim i As Integer = 0
+
+''For i = 0 To weekdt.Rows.Count - 1
+'    For k = 0 To weekdt.Columns.Count - 1
+'        Try
+'            If weekdt.Rows(i).Item(k).ToString <> "" And weekdt.Rows(i).Item(k).ToString <> " " And weekdt.Rows(i).Item(k).ToString = weekdt.Rows(i - 1).Item(k - 1).ToString And weekdt.Rows(i).Item(k).ToString <> weekdt.Rows(i - 1).Item(k).ToString Then
+'                'shift that weird one right
+'                weekdt.Rows(i - 1).Item(k) = weekdt.Rows(i - 1).Item(k - 1).ToString
+'                weekdt.Rows(i - 1).Item(k - 1) = ""
+'                Dim checkMore As Boolean = True
+'                Dim newi As Integer = i
+'                'Dim newk As Integer = k
+'                While checkMore
+'                    If weekdt.Rows(newi).Item(k).ToString = weekdt.Rows(newi - 1).Item(k).ToString Then
+'                        newi -= 1
+'                        weekdt.Rows(newi - 1).Item(k) = weekdt.Rows(newi - 1).Item(k - 1).ToString
+'                        weekdt.Rows(newi - 1).Item(k - 1) = ""
+'                    Else
+'                        checkMore = False
+'                    End If
+'                End While
+'            End If
+
+'            If weekdt.Rows(i).Item(k).ToString <> "" And weekdt.Rows(i).Item(k).ToString <> " " And weekdt.Rows(i).Item(k).ToString = weekdt.Rows(i + 1).Item(k - 1).ToString And weekdt.Rows(i).Item(k).ToString <> weekdt.Rows(i + 1).Item(k).ToString Then
+'                'shift that weird one right
+'                weekdt.Rows(i + 1).Item(k) = weekdt.Rows(i + 1).Item(k - 1).ToString
+'                weekdt.Rows(i + 1).Item(k - 1) = ""
+'                Dim checkMore As Boolean = True
+'                Dim newi As Integer = i
+'                While checkMore
+'                    If weekdt.Rows(newi).Item(k).ToString = weekdt.Rows(newi + 1).Item(k).ToString Then
+'                        newi += 1
+'                        weekdt.Rows(newi + 1).Item(k) = weekdt.Rows(newi + 1).Item(k - 1).ToString
+'                        weekdt.Rows(newi + 1).Item(k - 1) = ""
+'                    Else
+'                        checkMore = False
+'                    End If
+'                End While
+'            End If
+'        Catch ex As Exception
+
+'        End Try
+'    Next
+'Next
+
+'Dim weekdt As New System.Data.DataTable
+'weekdt = InitReportDT(weekdt, "week")
+'For Each dr As DataRow In weeklyTable.Rows
+'    For Each dc As DataColumn In weeklyTable.Columns
+'        If dc.ColumnName.ToString <> "Time" Then
+'            If dr.Item(dc).ToString <> "" And dr.Item(dc).ToString <> " " Then
+'                Dim time As String = dr.Item("Time").ToString
+'                Dim colName As String = dc.ColumnName.ToString
+'                Dim value As String = dr.Item(dc).ToString
+'                Dim cell As New TableLayoutPanelCellPosition(0, 0)
+'                Dim isAnotherCol As Boolean = True
+'                Dim placed As Boolean = False
+
+'                cell.Row = GetReportRow(time)
+'                cell.Column = weekdt.Columns(colName).Ordinal
+
+'                While isAnotherCol
+'                    Try
+'                        If weekdt.Rows(cell.Row).Item(cell.Column).ToString = "" Or weekdt.Rows(cell.Row).Item(cell.Column).ToString = " " Then
+'                            weekdt.Rows(cell.Row).Item(cell.Column) = value
+'                            placed = True
+'                            isAnotherCol = False
+'                        Else
+'                            Dim a As String = weekdt.Columns(cell.Column).ColumnName.ToString
+'                            Dim b As String = weekdt.Columns(cell.Column + 1).ColumnName.ToString
+'                            b = b.Substring(0, a.Length)
+
+'                            If a <> b Then
+'                                isAnotherCol = False
+'                            End If
+'                            cell.Column += 1
+'                        End If
+'                    Catch ex As Exception
+'                        'last column
+'                        isAnotherCol = False
+'                        cell.Column += 1
+'                    End Try
+'                End While
+
+'                If placed = False Then
+'                    'create new column
+'                    'find the place of the column
+'                    Try
+'                        Dim newcolname As String = weekdt.Columns(cell.Column - 1).ColumnName.ToString
+'                        Dim num As Integer = 0
+'                        Try
+'                            num = CType(newcolname.Substring(newcolname.Length - 1), Integer)
+'                            num += 1
+'                            newcolname = newcolname.Substring(0, newcolname.Length - 1)
+'                        Catch ex As Exception
+
+'                        End Try
+'                        'newcolname = newcolname.Substring(0, newcolname.Length - 1)
+'                        weekdt.Columns.Add(newcolname + num.ToString).SetOrdinal(cell.Column)
+'                        weekdt.Rows(cell.Row).Item(cell.Column + 1) = value
+'                    Catch ex As Exception
+'                        dgvTest.DataSource = weekdt
+'                        Exit For
+'                        Exit For
+'                    End Try
+'                End If
+'            End If
+'        End If
+'    Next
+'Next
