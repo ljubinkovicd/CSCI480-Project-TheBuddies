@@ -75,7 +75,7 @@ Public Class frmStartSchedule1
         For i As Integer = -3 To 3
             cboSemester.Items.Add("Spring " + ((thisYear + i).ToString))
             cboSemester.Items.Add("Fall " + ((thisYear + i).ToString))
-            cboSemester.Items.Add("Summer" + ((thisYear + i).ToString))
+            cboSemester.Items.Add("Summer " + ((thisYear + i).ToString))
         Next
         cboSemester.SelectedText = "Spring " + thisYear.ToString
 
