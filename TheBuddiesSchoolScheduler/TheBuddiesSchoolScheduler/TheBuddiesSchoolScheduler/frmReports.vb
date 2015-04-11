@@ -21,21 +21,11 @@ Public Class frmReports
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
         Me.Close()
     End Sub
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub ExportToExcel_Click(sender As Object, e As EventArgs) Handles ExportToExcel.Click
         'Initialize the objects before use
         Dim dataAdapter As New SqlClient.SqlDataAdapter()
         Dim dataSet As New DataSet
-        Dim command As New SqlClient.SqlCommand
-        Dim datatableMain As New System.Data.DataTable()
-        Dim connection As New SqlClient.SqlConnection
-
-        'Assign the connection string to connection object
-        connection.ConnectionString = "data source=mars;" & "Initial Catalog=480-Buddies;user id=480-Buddies;password=schedule;"
-        command.Connection = connection
-        command.CommandType = CommandType.Text
-        ' Use any select command.
-        command.CommandText = "Select * from SCHEDULE"
-        dataAdapter.SelectCommand = command
+        dataSet = GetScheduleDS()
 
         ' User is able to select a folder into which to export excel.
         Dim f As FolderBrowserDialog = New FolderBrowserDialog
@@ -46,45 +36,33 @@ Public Class frmReports
                 Dim oExcel As Excel.Application
                 Dim oBook As Excel.Workbook
                 Dim oSheet As Excel.Worksheet
+
                 oExcel = CreateObject("Excel.Application")
                 oBook = oExcel.Workbooks.Add(Type.Missing)
-                oSheet = oBook.Worksheets(1)
+                Dim dataTableCollection As System.Data.DataTableCollection = dataSet.Tables
+                Dim numberOfSheets As Integer = dataTableCollection.Count
 
-                Dim dc As System.Data.DataColumn
-                Dim dr As System.Data.DataRow
-                Dim colIndex As Integer = 0
-                Dim rowIndex As Integer = 0
+                Dim dataTable As System.Data.DataTable
+                Dim sheetCounter As Integer = 1
 
-                'Fill data to datatable
-                connection.Open()
-                dataAdapter.Fill(datatableMain)
-                connection.Close()
-
-
-                'Export the Columns to excel file
-                For Each dc In datatableMain.Columns
-                    colIndex = colIndex + 1
-                    oSheet.Cells(1, colIndex) = dc.ColumnName
+                'Adding empty sheets based on data table count
+                For Each dataTable In dataTableCollection
+                    oBook.Worksheets.Add()
                 Next
 
-                'Export the rows to excel file
-                For Each dr In datatableMain.Rows
-                    rowIndex = rowIndex + 1
-                    colIndex = 0
-                    For Each dc In datatableMain.Columns
-                        colIndex = colIndex + 1
-                        oSheet.Cells(rowIndex + 1, colIndex) = dr(dc.ColumnName)
-                    Next
+                'Exports all data tables to corresponding data sheets.
+                For Each dataTable In dataTableCollection
+                    oSheet = oBook.Worksheets(sheetCounter)
+                    oSheet.Name = dataTable.TableName
+                    exportDataSetToExcelWorksheet(dataTable, oSheet)
+                    sheetCounter += 1
                 Next
 
                 'Set final path
                 Dim fileName As String = "\Schedule" + ".xls"
                 Dim finalPath = f.SelectedPath + fileName
-                oSheet.Columns.AutoFit()
                 'Save file in final path
                 oBook.SaveAs(finalPath, XlFileFormat.xlWorkbookNormal, Type.Missing, Type.Missing, Type.Missing, Type.Missing, XlSaveAsAccessMode.xlExclusive, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing)
-                'Release the objects
-                ReleaseObject(oSheet)
                 oBook.Close(False, Type.Missing, Type.Missing)
                 ReleaseObject(oBook)
                 oExcel.Quit()
@@ -119,9 +97,11 @@ Public Class frmReports
         Dim profTable As New System.Data.DataTable
         Dim tempTable As New System.Data.DataTable
 
+        Dim termAndYear As String = lblTerm.Text
         'temporary term and termyear
-        Dim term As String = "Fall"
-        Dim termYear As String = "2014"
+        Dim termArray As String() = termAndYear.Split(" ")
+        Dim term As String = termArray(0)
+        Dim termYear As String = termArray(1)
 
         'weekly report
         tempds = sql.GetStoredProc("WeeklyReport '" + term + "', '" + termYear + "'")
@@ -182,7 +162,9 @@ Public Class frmReports
     End Function
 
     Private Sub frmReports_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Dim mainds As DataSet = GetScheduleDS()
+        Dim g As New Globals
+        Dim str As String = ""
+        lblTerm.Text = g.GetSemester(str)
     End Sub
 
     Private Sub IncColStart(ByVal day As String)
@@ -511,6 +493,36 @@ Public Class frmReports
 
         Return militaryTime
     End Function
+
+    'Function that puts all the data into excel cells
+    Private Sub exportDataSetToExcelWorksheet(ByVal dt As System.Data.DataTable, ByVal excelSheet As Excel.Worksheet)
+
+        Dim dc As System.Data.DataColumn
+        Dim dr As System.Data.DataRow
+        Dim colIndex As Integer = 0
+        Dim rowIndex As Integer = 0
+
+        'Export the Columns to excel file
+        For Each dc In dt.Columns
+            colIndex = colIndex + 1
+            excelSheet.Cells(1, colIndex) = dc.ColumnName
+        Next
+
+        'Export the rows to excel file
+        For Each dr In dt.Rows
+            rowIndex = rowIndex + 1
+            colIndex = 0
+            For Each dc In dt.Columns
+                colIndex = colIndex + 1
+                excelSheet.Cells(rowIndex + 1, colIndex) = dr(dc.ColumnName)
+            Next
+        Next
+
+        excelSheet.Columns.AutoFit()
+        'Release the objects
+        ReleaseObject(excelSheet)
+    End Sub
+
 End Class
 
 'old code
