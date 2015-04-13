@@ -30,7 +30,7 @@
             End If
 
             'check to make sure start time is less than end time
-            If startTime < endTime Then
+            If startTime <= endTime Then
 
                 Dim lbl As String = lblClass.Text
                 Dim department As String = lbl.Substring(0, lbl.IndexOf(" "))

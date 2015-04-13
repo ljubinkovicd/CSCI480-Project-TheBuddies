@@ -96,6 +96,8 @@ Public Class frmScheduleBuilder
 
         initializeDaysDt()
         initializeTime()
+
+        getTeacherTotals()
         'dgvTeacherTotals.DataSource = daysdt
         getLegend()
 
@@ -115,6 +117,7 @@ Public Class frmScheduleBuilder
         Dim s As String = frm.ToString
         If s = "OK" Then
             editMenuChanges(lbl)
+            getTeacherTotals()
         End If
     End Sub
 
@@ -175,6 +178,7 @@ Public Class frmScheduleBuilder
 
                 TableLayoutPanel1.Controls.Remove(label2)
             End If
+            getTeacherTotals()
         End If
     End Sub
 
@@ -289,10 +293,8 @@ Public Class frmScheduleBuilder
             g.SetLabel(temp)
             frmClassSpecs.ShowDialog()
             editMenuChanges("lbl" + temp)
-
+            getTeacherTotals()
         End If
-        'End If
-        'dgvTeacherTotals.DataSource = daysdt
     End Sub
 
     Private Sub labelMove(sender As System.Object, e As System.Windows.Forms.MouseEventArgs)
@@ -772,10 +774,6 @@ Public Class frmScheduleBuilder
         Next
     End Sub
 
-    Private Sub calcTeachTotals()
-
-    End Sub
-
     Private Sub initializeTime()
         time(0) = 800
         time(1) = 830
@@ -825,5 +823,22 @@ Public Class frmScheduleBuilder
 
     Private Sub dgvLegend_SelectionChanged(sender As Object, e As EventArgs) Handles dgvLegend.SelectionChanged
         dgvLegend.ClearSelection()
+    End Sub
+
+    Private Sub getTeacherTotals()
+        Dim sql As New SQLConnect
+        Dim termYear As Integer = lblSemester.Text.Substring(lblSemester.Text.IndexOf(" ") + 1)
+        'if it is a fall semester, increment the year by one because of stored proc
+        If lblSemester.Text.Substring(0, lblSemester.Text.IndexOf(" ")) = "Fall" Then
+            termYear += 1
+        End If
+
+        Dim ds As DataSet = sql.GetStoredProc("GetTeacherTotals '" + termYear.ToString + "'")
+
+        dgvTeacherTotals.DataSource = ds.Tables(0)
+        dgvTeacherTotals.RowHeadersVisible = False
+        dgvTeacherTotals.Columns("Name").AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
+        dgvTeacherTotals.Columns("Yearly").AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
+        dgvTeacherTotals.Columns("Current").AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
     End Sub
 End Class
