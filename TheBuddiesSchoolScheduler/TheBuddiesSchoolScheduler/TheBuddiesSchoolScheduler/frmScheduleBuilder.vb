@@ -518,8 +518,6 @@ Public Class frmScheduleBuilder
                 TableLayoutPanel1.ColumnCount -= 1
                 TableLayoutPanel1.ColumnStyles.RemoveAt(c)
 
-                '** is the size of the tlp resetting?
-
                 'move all the labels to the right of this column left one column
                 pushLabelsLeft(c)
 
@@ -544,7 +542,11 @@ Public Class frmScheduleBuilder
                 MsgBox("Cannot remove column. There is a class in this column.")
             End If
         Else
-            MsgBox("Cannot remove column. There is not more than one for this day.")
+            If c > TableLayoutPanel1.ColumnCount - 1 Then
+                MsgBox("Not a valid number")
+            Else
+                MsgBox("Cannot remove column. There is not more than one for this day.")
+            End If
         End If
         'dgvTeacherTotals.DataSource = daysdt
     End Sub
@@ -554,15 +556,14 @@ Public Class frmScheduleBuilder
         Dim c As Integer = 0
 
         Dim s = InputBox("Type in the column to remove (0 is first column)", "Remove Column", "1")
-        '** what happens if they type in a wrong number
         Try
-            c = CType(s, Integer)
+            If s <> "" Then
+                c = CType(s, Integer)
+                RemColFromDaysDT(c)
+            End If
         Catch ex As Exception
             MsgBox("Incorrect value. Try again.")
         End Try
-
-        RemColFromDaysDT(c)
-
     End Sub
 
     Private Function calcStartTime(ByVal c As Integer, ByVal r As Integer)

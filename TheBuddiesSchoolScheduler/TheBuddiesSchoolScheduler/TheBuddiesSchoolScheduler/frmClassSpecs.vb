@@ -30,7 +30,7 @@
             End If
 
             'check to make sure start time is less than end time
-            If startTime <= endTime Then
+            If startTime < endTime Then
 
                 Dim lbl As String = lblClass.Text
                 Dim department As String = lbl.Substring(0, lbl.IndexOf(" "))
@@ -94,26 +94,23 @@
                     End If
                 Next
 
-                '**Need to figure out how to get the credit hours
-                If label IsNot Nothing Then
-                    label.Text = lbl + vbNewLine + cboProfessor.SelectedItem(1).ToString + vbNewLine + "3 hours"
-                    label.BackColor = Color.FromArgb(newColor)
-                ElseIf label2 IsNot Nothing Then
-                    label2.Text = lbl + vbNewLine + cboProfessor.SelectedItem(1).ToString + vbNewLine + "3 hours"
-                    label2.BackColor = Color.FromArgb(newColor)
-                End If
+                ds = sql.GetStoredProc("GetCreditHours '" + department + "', '" + courseNum + "'")
+
+                'Need to figure out how to get the credit hours
+                Try
+                    If label IsNot Nothing Then
+                        label.Text = lbl + vbNewLine + cboProfessor.SelectedItem(1).ToString + vbNewLine + ds.Tables(0).Rows(0).Item(0).ToString + " hours"
+                        label.BackColor = Color.FromArgb(newColor)
+                    ElseIf label2 IsNot Nothing Then
+                        label2.Text = lbl + vbNewLine + cboProfessor.SelectedItem(1).ToString + vbNewLine + ds.Tables(0).Rows(0).Item(0).ToString + " hours"
+                        label2.BackColor = Color.FromArgb(newColor)
+                    End If
+                Catch ex As Exception
+                    MsgBox("Unable to get the TeacherCreditHours")
+                End Try
 
                 initChangeDT()
-                'If cprofessor <> cboProfessor.Text Then
-                '    changeDT.Rows(0).Item("ChangeProfessor") = True
-                '    changeDT.Rows(0).Item("Professor") = cboProfessor.Text
-                'Else
-                '    changeDT.Rows(0).Item("ChangeProfessor") = False
-                'End If
                 Dim newdays As String = getDays()
-                'If txtStartTime.Text IsNot Nothing AndAlso txtEndTime.Text IsNot Nothing Then
-                'If (txtStartTime.Text <> "" AndAlso cstartTime <> CType(txtStartTime.Text, Integer)) Or (txtEndTime.Text <> "" AndAlso cendTime <> CType(txtEndTime.Text, Integer)) Or cdays <> newdays Or croom <> cboRoom.SelectedValue Then
-                'changeDT.Rows(0).Item("ChangeLabel") = True
                 If txtStartTime.Text = "" Then
                     changeDT.Rows(0).Item("StartTime") = 0
                 Else
@@ -125,35 +122,6 @@
                     changeDT.Rows(0).Item("EndTime") = txtEndTime.Text
                 End If
                 changeDT.Rows(0).Item("Days") = newdays
-                ' Else
-                'changeDT.Rows(0).Item("ChangeLabel") = False
-                'End If
-                'End If
-                'If croom <> cboRoom.SelectedValue Then
-                '    changeDT.Rows(0).Item("ChangeRoom") = True
-                '    changeDT.Rows(0).Item("Room") = cboRoom.SelectedValue
-                'Else
-                '    changeDT.Rows(0).Item("ChangeRoom") = False
-                'End If
-
-                'If cdays <> newdays Then
-                '    changeDT.Rows(0).Item("ChangeDay") = True
-                '    changeDT.Rows(0).Item("Days") = newdays
-                'Else
-                '    changeDT.Rows(0).Item("ChangeDay") = False
-                'End If
-
-                'If changeTime Or changeDay Then
-                '    'updateChangeDT()
-                '    initChangeDT()
-                '    changeDT.Rows(0).Item("ChangeTime") = changeTime
-                '    changeDT.Rows(0).Item("ChangeDay") = changeDay
-                '    changeDT.Rows(0).Item("StartTime") = txtStartTime.Text
-                '    changeDT.Rows(0).Item("EndTime") = txtEndTime.Text
-
-                '    Dim days As String = getDays()
-
-                '    changeDT.Rows(0).Item("Days") = days
 
                 Dim dt As New DataTable
                 g.SetDT(changeDT)
@@ -268,32 +236,31 @@
         End If
 
         'Set the global variables for if things have changed
-        '** do not think it is used anymore
-        If txtStartTime.Text = "" Then
-            cstartTime = 0
-        Else
-            cstartTime = txtStartTime.Text
-        End If
-        If txtEndTime.Text = "" Then
-            cendTime = 0
-        Else
-            cendTime = txtEndTime.Text
-        End If
-        croom = cboRoom.SelectedValue
-        cdays = getDays()
+        ' do not think it is used anymore
+        'If txtStartTime.Text = "" Then
+        '    cstartTime = 0
+        'Else
+        '    cstartTime = txtStartTime.Text
+        'End If
+        'If txtEndTime.Text = "" Then
+        '    cendTime = 0
+        'Else
+        '    cendTime = txtEndTime.Text
+        'End If
+        'croom = cboRoom.SelectedValue
+        'cdays = getDays()
     End Sub
 
     Private Sub initChangeDT()
-        '** not using many of these
-        changeDT.Columns.Add("ChangeProfessor")
+        'changeDT.Columns.Add("ChangeProfessor")
         'changeDT.Columns.Add("ChangeTime")
-        changeDT.Columns.Add("ChangeLabel")
-        changeDT.Columns.Add("ChangeRoom")
+        'changeDT.Columns.Add("ChangeLabel")
+        'changeDT.Columns.Add("ChangeRoom")
         'changeDT.Columns.Add("ChangeDay")
-        changeDT.Columns.Add("Professor")
+        'changeDT.Columns.Add("Professor")
         changeDT.Columns.Add("StartTime")
         changeDT.Columns.Add("EndTime")
-        changeDT.Columns.Add("Room")
+        'changeDT.Columns.Add("Room")
         changeDT.Columns.Add("Days")
         changeDT.Rows.Add()
     End Sub

@@ -63,6 +63,7 @@ Public Class frmStartSchedule1
         Dim ds As DataSet = SQL.GetStoredProc("GetClasses")
 
         ClassListGridView.DataSource = ds.Tables(0)
+        ClassListGridView.RowHeadersVisible = False
         ClassListGridView.Columns("Course").AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
         ClassListGridView.Columns("Course Name").Width = 285
         ClassListGridView.Columns("Day").AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells

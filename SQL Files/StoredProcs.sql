@@ -1833,3 +1833,24 @@ CREATE PROCEDURE GetRooms AS
 )
 GO
 -- End Procedure GetRooms --
+
+--- Start Procedure GetCreditHours ---
+IF EXISTS ( SELECT  *
+            FROM    sys.objects
+            WHERE   object_id = OBJECT_ID(N'GetCreditHours')
+                    AND type IN ( N'P', N'PC' ) ) 
+DROP PROCEDURE GetCreditHours;
+GO
+
+CREATE PROCEDURE GetCreditHours 
+	@department varchar(255),
+	@courseNum varchar(255)
+AS
+(
+	SELECT	TeacherCreditHours
+	FROM	CLASS
+	WHERE	Department = @department
+	AND		CourseNum = @courseNum
+)
+GO
+--- End Procedure GetCreditHours ---

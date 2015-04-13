@@ -98,6 +98,7 @@ Public Class frmStartSchedule2
 
         'The first column will be filled with the values from the last screen
         TeacherGridView.DataSource = dt
+        TeacherGridView.RowHeadersVisible = False
         TeacherGridView.Columns("Course").HeaderText = "Course"
         TeacherGridView.Columns("Course").AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
         TeacherGridView.Columns.Insert(1, cbb)

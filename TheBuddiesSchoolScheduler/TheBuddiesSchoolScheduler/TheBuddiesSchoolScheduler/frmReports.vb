@@ -156,7 +156,8 @@ Public Class frmReports
             'End If
         Next
 
-        Dim q As Integer = mainds.Tables.Count
+        'loop back through to turn the military time to normal
+        changeMilitaryTime(mainds)
 
         Return mainds
     End Function
@@ -256,8 +257,6 @@ Public Class frmReports
 
         'loop back through and fix stuff
         
-
-        '** loop back through to turn the military time to normal
 
         Return weekdt
     End Function
@@ -523,6 +522,53 @@ Public Class frmReports
         ReleaseObject(excelSheet)
     End Sub
 
+    Private Function changeMilitaryTime(ByVal mainds As DataSet)
+        For Each dt As System.Data.DataTable In mainds.Tables
+            For Each dr As DataRow In dt.Rows
+                Dim time As String = dr.Item("Time").ToString
+                Select Case time
+                    Case "13:00"
+                        time = "1:00"
+                    Case "13:30"
+                        time = "1:30"
+                    Case "14:00"
+                        time = "2:00"
+                    Case "14:30"
+                        time = "2:30"
+                    Case "15:00"
+                        time = "3:00"
+                    Case "15:30"
+                        time = "3:30"
+                    Case "16:00"
+                        time = "4:00"
+                    Case "16:30"
+                        time = "4:30"
+                    Case "17:00"
+                        time = "5:00"
+                    Case "17:30"
+                        time = "5:30"
+                    Case "18:00"
+                        time = "6:00"
+                    Case "18:30"
+                        time = "6:30"
+                    Case "19:00"
+                        time = "7:00"
+                    Case "19:30"
+                        time = "7:30"
+                    Case "20:00"
+                        time = "8:00"
+                    Case "20:30"
+                        time = "8:30"
+                    Case "21:00"
+                        time = "9:00"
+                    Case "21:30"
+                        time = "9:30"
+                End Select
+                dr.Item("Time") = time
+            Next
+        Next
+        Return mainds
+    End Function
 End Class
 
 'old code
