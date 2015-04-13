@@ -57,7 +57,8 @@ Public Class frmScheduleBuilder
         Dim lbls(count) As Label
         Dim i As Integer = 0
         Dim j As Integer = 0
-
+        Dim frm As frmLoading = New frmLoading
+        frm.ShowDialog()
         For Each dr As DataRow In ds.Tables(0).Rows
             lbls(i) = New Label()
             With lbls(i)
