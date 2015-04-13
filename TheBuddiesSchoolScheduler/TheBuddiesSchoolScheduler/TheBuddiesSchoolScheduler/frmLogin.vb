@@ -55,6 +55,7 @@ Public Class frmLogin
                 txtDatabase.Text = Trim(tr.ReadLine())
                 txtUser.Text = Trim(tr.ReadLine())
             End Using
+            chkSaveInfo.Checked = True
         End If
 
     End Sub
