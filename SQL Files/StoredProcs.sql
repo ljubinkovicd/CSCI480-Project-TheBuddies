@@ -1854,3 +1854,37 @@ AS
 )
 GO
 --- End Procedure GetCreditHours ---
+
+--- Start Procedure GetTeacherTotals ---
+IF EXISTS ( SELECT  *
+            FROM    sys.objects
+            WHERE   object_id = OBJECT_ID(N'GetTeacherTotals')
+                    AND type IN ( N'P', N'PC' ) ) 
+DROP PROCEDURE GetTeacherTotals;
+GO
+
+CREATE PROCEDURE GetTeacherTotals 
+	@intNewestTermYear int
+AS
+BEGIN
+	DECLARE @intLastTermYear int
+	SET		@intLastTermYear = @intNewestTermYear - 1
+
+	DECLARE @strNewestTermYear varchar(4),
+			@strLastTermYear varchar(4)
+	SET		@strNewestTermYear = CONVERT(varchar, @intNewestTermYear)
+	SET		@strLastTermYear = CONVERT(varchar, @intLastTermYear)
+
+	SELECT	P.LastName AS Name, P.YearlyCreditHours AS Yearly, TMP.TeacherCreditHours AS 'Current'
+	FROM	PROFESSOR P
+	LEFT	JOIN (	SELECT	P.LastName, P.YearlyCreditHours, SUM(C.TeacherCreditHours) AS TeacherCreditHours, P.TeacherID
+					FROM	SCHEDULE S
+					JOIN	CLASS C on S.ClassID = C.ClassID
+					JOIN	PROFESSOR P on S.TeacherID = P.TeacherID
+					WHERE	(Term = 'Fall' and TermYear = @strLastTermYear)
+					OR		(Term = 'Spring' and TermYear = @strNewestTermYear)
+					OR		(Term = 'Summer' and TermYear = @strNewestTermYear)
+					GROUP BY P.LastName, P.YearlyCreditHours, P.TeacherID) as TMP ON P.TeacherID = TMP.TeacherID
+END
+GO
+--- End Procedure GetTeacherTotals ---
