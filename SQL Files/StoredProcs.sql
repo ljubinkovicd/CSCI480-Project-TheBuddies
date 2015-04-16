@@ -1793,7 +1793,7 @@ CREATE PROCEDURE CheckIfRoomExists
 AS
 (
 	SELECT *
-	FROM	ROOM
+	FROM	ROOMS
 	WHERE BuildingName = @BuildingName AND RoomNumber = @RoomNumber
 )
 GO
@@ -1812,7 +1812,7 @@ CREATE PROCEDURE CheckIfRoomColorExists
 AS
 (
 	SELECT *
-	FROM	ROOM
+	FROM	ROOMS
 	WHERE RoomColor = @RoomColor
 )
 GO

@@ -617,7 +617,7 @@ Public Class frmDatabaseMaintenance
         proc = "CheckIfRoomExists '" + BuildingName + "', '" + RoomNumber + "'"
         ds2 = SQL.GetStoredProc(proc)
 
-        If Not ds2 Is Nothing And ds2.Tables(0).Rows.Count > 0 Then
+        If ds2 IsNot Nothing And ds2.Tables(0).Rows.Count > 0 Then
             If index.ToString <> ds2.Tables(0).Rows(0).Item("RoomID").ToString Then
 
                 MessageBox.Show("The room: " + BuildingName + " " + RoomNumber + " already exists in the database")
@@ -628,7 +628,7 @@ Public Class frmDatabaseMaintenance
         proc = "CheckIfRoomColorExists " + RoomColor.ToString
         ds2 = SQL.GetStoredProc(proc)
 
-        If Not ds2 Is Nothing And ds2.Tables(0).Rows.Count > 0 Then
+        If ds2 IsNot Nothing And ds2.Tables(0).Rows.Count > 0 Then
             If index.ToString <> ds2.Tables(0).Rows(0).Item("RoomID").ToString Then
                 Dim result As Integer = MessageBox.Show("The room color that was selected already exists in the database, would you like to proceed using that color?", "The Buddies Scheduler", MessageBoxButtons.YesNoCancel)
                 If result = DialogResult.Yes Then
@@ -728,9 +728,9 @@ Public Class frmDatabaseMaintenance
         End If
 
         proc = "CheckIfRoomExists '" + BuildingName + "', '" + RoomNumber + "'"
-        ds2 = SQL.GetStoredProc(proc)
+        ds = SQL.GetStoredProc(proc)
 
-        If Not ds2 Is Nothing And ds2.Tables(0).Rows.Count > 0 Then
+        If ds IsNot Nothing AndAlso ds.Tables(0).Rows.Count > 0 Then
             MessageBox.Show("The room: " + BuildingName + " " + RoomNumber + " already exists in the database")
             passed = False
         End If
@@ -738,7 +738,7 @@ Public Class frmDatabaseMaintenance
         proc = "CheckIfRoomColorExists " + RoomColor.ToString
         ds2 = SQL.GetStoredProc(proc)
 
-        If Not ds2 Is Nothing And ds2.Tables(0).Rows.Count > 0 Then
+        If ds2 IsNot Nothing AndAlso ds2.Tables(0).Rows.Count > 0 Then
             Dim result As Integer = MessageBox.Show("The color that was selected already exists in the database, would you like to proceed using that color?", "The Buddies Scheduler", MessageBoxButtons.YesNoCancel)
             If result = DialogResult.Yes Then
                 ' DO NOTHING YET
