@@ -807,8 +807,13 @@ Public Class frmScheduleBuilder
     End Sub
 
     Private Sub getLegend()
+        Dim g As New Globals
+
         Dim sql As New SQLConnect
         Dim ds As DataSet = sql.GetStoredProc("GetRooms")
+        Dim colorCollection As Dictionary(Of String, Color) = New Dictionary(Of String, Color)
+        Dim roomColor As Color
+        Dim roomNumber As String
 
         dgvLegend.DataSource = ds.Tables(0)
         dgvLegend.Columns("RoomID").Visible = False
@@ -818,8 +823,14 @@ Public Class frmScheduleBuilder
 
         For Each gr As DataGridViewRow In dgvLegend.Rows
             Dim c As Int32 = Convert.ToInt32(Trim(gr.DataBoundItem("RoomColor").ToString))
-            gr.Cells("RoomName").Style.BackColor = Color.FromArgb(c)
+            roomNumber = Trim(gr.DataBoundItem("RoomID").ToString)
+            roomColor = Color.FromArgb(c)
+            colorCollection.Add(roomNumber, roomColor)
+            gr.Cells("RoomName").Style.BackColor = roomColor
         Next
+
+        g.SetRoomColors(colorCollection)
+
     End Sub
 
     Private Sub dgvLegend_SelectionChanged(sender As Object, e As EventArgs) Handles dgvLegend.SelectionChanged

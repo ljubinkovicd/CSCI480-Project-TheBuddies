@@ -54,6 +54,9 @@ Public Class frmReports
                 For Each dataTable In dataTableCollection
                     oSheet = oBook.Worksheets(sheetCounter)
                     oSheet.Name = dataTable.TableName
+                    If (dataTable.TableName = "WeeklyTable") Then
+                        getRoomColors(dataTable)
+                    End If
                     exportDataSetToExcelWorksheet(dataTable, oSheet)
                     sheetCounter += 1
                 Next
@@ -76,6 +79,50 @@ Public Class frmReports
         Catch ex As Exception
             MessageBox.Show(ex.Message, "Warning", MessageBoxButtons.OK)
         End Try
+    End Sub
+
+    Private Sub getRoomColors(ByVal dt As System.Data.DataTable)
+
+        Dim g As New Globals
+
+        Dim dictionary As Dictionary(Of String, Color) = New Dictionary(Of String, Color)
+
+        Dim dc As System.Data.DataColumn
+        Dim dr As System.Data.DataRow
+        Dim colIndex As Integer = 0
+        Dim rowIndex As Integer = 0
+        Dim data As String
+        Dim dataStrings As String()
+        Dim roomNum As String
+        Dim dataInfo As String
+        Dim c As Color
+        Dim i As Integer
+
+        Dim roomColors = g.GetRoomColors()
+
+        'Export the rows to excel file
+        For Each dr In dt.Rows
+            rowIndex = rowIndex + 1
+            colIndex = 1
+            For i = 1 To dt.Columns.Count - 1
+                colIndex = colIndex + 1
+                data = dr(i).ToString()
+                If Not String.IsNullOrEmpty(data) Then
+                    dataStrings = data.Split(" ")
+                    roomNum = dataStrings(0)
+                    dataInfo = data.Substring(2)
+                    If roomColors.ContainsKey(roomNum) Then
+                        c = roomColors.Item(roomNum)
+                        If Not dictionary.ContainsKey(dataInfo) Then
+                            dictionary.Add(dataInfo, c)
+                        End If
+                    End If
+                End If
+            Next
+        Next
+
+        g.SetRoomColors(dictionary)
+
     End Sub
 
     Private Sub ReleaseObject(ByVal o As Object)
@@ -256,7 +303,7 @@ Public Class frmReports
         End While
 
         'loop back through and fix stuff
-        
+
 
         Return weekdt
     End Function
@@ -496,10 +543,16 @@ Public Class frmReports
     'Function that puts all the data into excel cells
     Private Sub exportDataSetToExcelWorksheet(ByVal dt As System.Data.DataTable, ByVal excelSheet As Excel.Worksheet)
 
+        Dim g As New Globals
+
         Dim dc As System.Data.DataColumn
         Dim dr As System.Data.DataRow
         Dim colIndex As Integer = 0
         Dim rowIndex As Integer = 0
+        Dim roomColors As Dictionary(Of String, Color) = g.GetRoomColors()
+        Dim data As String
+        Dim c As Color
+
 
         'Export the Columns to excel file
         For Each dc In dt.Columns
@@ -513,7 +566,14 @@ Public Class frmReports
             colIndex = 0
             For Each dc In dt.Columns
                 colIndex = colIndex + 1
-                excelSheet.Cells(rowIndex + 1, colIndex) = dr(dc.ColumnName)
+                If Not IsDBNull(dr(dc.ColumnName)) Then
+                    excelSheet.Cells(rowIndex + 1, colIndex) = dr(dc.ColumnName)
+                    data = dr(dc.ColumnName).ToString()
+                    If roomColors.ContainsKey(data) Then
+                        c = roomColors(data)
+                        excelSheet.Cells(rowIndex + 1, colIndex).Interior.Color = c
+                    End If
+                End If
             Next
         Next
 
