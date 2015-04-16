@@ -117,6 +117,7 @@ Public Class frmReports
                             dictionary.Add(dataInfo, c)
                         End If
                     End If
+                    dr(i) = dataInfo
                 End If
             Next
         Next
