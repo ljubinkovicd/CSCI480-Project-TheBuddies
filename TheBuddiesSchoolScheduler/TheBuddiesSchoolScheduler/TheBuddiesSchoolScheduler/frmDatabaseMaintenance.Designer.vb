@@ -85,6 +85,10 @@ Partial Class frmDatabaseMaintenance
         Me.btnRemoveProfessor = New System.Windows.Forms.Button()
         Me.cbRmProfessor = New System.Windows.Forms.ComboBox()
         Me.tpAddRoom = New System.Windows.Forms.TabPage()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.radioAddRoomWhite = New System.Windows.Forms.RadioButton()
+        Me.radioAddRoomBlack = New System.Windows.Forms.RadioButton()
+        Me.btnAddRoomSave = New System.Windows.Forms.Button()
         Me.btnAddRoomRoomColor = New System.Windows.Forms.Button()
         Me.Label19 = New System.Windows.Forms.Label()
         Me.Label18 = New System.Windows.Forms.Label()
@@ -104,8 +108,10 @@ Partial Class frmDatabaseMaintenance
         Me.btnRemoveRoom = New System.Windows.Forms.Button()
         Me.comboRemoveRoom = New System.Windows.Forms.ComboBox()
         Me.ColorDialog1 = New System.Windows.Forms.ColorDialog()
-        Me.btnAddRoomSave = New System.Windows.Forms.Button()
         Me.dbToolTip = New System.Windows.Forms.ToolTip(Me.components)
+        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.radioEditRoomWhite = New System.Windows.Forms.RadioButton()
+        Me.radioEditRoomBlack = New System.Windows.Forms.RadioButton()
         Me.tcDBMaint.SuspendLayout()
         Me.tpAddClass.SuspendLayout()
         Me.tpEditClass.SuspendLayout()
@@ -114,8 +120,10 @@ Partial Class frmDatabaseMaintenance
         Me.tpEditProf.SuspendLayout()
         Me.tpRmProf.SuspendLayout()
         Me.tpAddRoom.SuspendLayout()
+        Me.GroupBox1.SuspendLayout()
         Me.tpEditRoom.SuspendLayout()
         Me.tpRmRoom.SuspendLayout()
+        Me.GroupBox2.SuspendLayout()
         Me.SuspendLayout()
         '
         'Label1
@@ -707,6 +715,7 @@ Partial Class frmDatabaseMaintenance
         '
         'tpAddRoom
         '
+        Me.tpAddRoom.Controls.Add(Me.GroupBox1)
         Me.tpAddRoom.Controls.Add(Me.btnAddRoomSave)
         Me.tpAddRoom.Controls.Add(Me.btnAddRoomRoomColor)
         Me.tpAddRoom.Controls.Add(Me.Label19)
@@ -722,12 +731,56 @@ Partial Class frmDatabaseMaintenance
         Me.dbToolTip.SetToolTip(Me.tpAddRoom, "Add a room to the Database")
         Me.tpAddRoom.UseVisualStyleBackColor = True
         '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.radioAddRoomWhite)
+        Me.GroupBox1.Controls.Add(Me.radioAddRoomBlack)
+        Me.GroupBox1.Location = New System.Drawing.Point(79, 323)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(266, 90)
+        Me.GroupBox1.TabIndex = 15
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "Text Color"
+        '
+        'radioAddRoomWhite
+        '
+        Me.radioAddRoomWhite.AutoSize = True
+        Me.radioAddRoomWhite.Location = New System.Drawing.Point(0, 56)
+        Me.radioAddRoomWhite.Name = "radioAddRoomWhite"
+        Me.radioAddRoomWhite.Size = New System.Drawing.Size(75, 24)
+        Me.radioAddRoomWhite.TabIndex = 1
+        Me.radioAddRoomWhite.TabStop = True
+        Me.radioAddRoomWhite.Text = "White"
+        Me.radioAddRoomWhite.UseVisualStyleBackColor = True
+        '
+        'radioAddRoomBlack
+        '
+        Me.radioAddRoomBlack.AutoSize = True
+        Me.radioAddRoomBlack.Location = New System.Drawing.Point(0, 26)
+        Me.radioAddRoomBlack.Name = "radioAddRoomBlack"
+        Me.radioAddRoomBlack.Size = New System.Drawing.Size(73, 24)
+        Me.radioAddRoomBlack.TabIndex = 0
+        Me.radioAddRoomBlack.TabStop = True
+        Me.radioAddRoomBlack.Text = "Black"
+        Me.radioAddRoomBlack.UseVisualStyleBackColor = True
+        '
+        'btnAddRoomSave
+        '
+        Me.btnAddRoomSave.Location = New System.Drawing.Point(79, 439)
+        Me.btnAddRoomSave.Name = "btnAddRoomSave"
+        Me.btnAddRoomSave.Size = New System.Drawing.Size(134, 41)
+        Me.btnAddRoomSave.TabIndex = 14
+        Me.btnAddRoomSave.Text = "Save"
+        Me.btnAddRoomSave.UseVisualStyleBackColor = True
+        '
         'btnAddRoomRoomColor
         '
+        Me.btnAddRoomRoomColor.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnAddRoomRoomColor.Location = New System.Drawing.Point(79, 264)
         Me.btnAddRoomRoomColor.Name = "btnAddRoomRoomColor"
-        Me.btnAddRoomRoomColor.Size = New System.Drawing.Size(146, 26)
+        Me.btnAddRoomRoomColor.Size = New System.Drawing.Size(155, 45)
         Me.btnAddRoomRoomColor.TabIndex = 5
+        Me.btnAddRoomRoomColor.Text = "Sample Text"
         Me.dbToolTip.SetToolTip(Me.btnAddRoomRoomColor, "Click this button to select a color")
         Me.btnAddRoomRoomColor.UseVisualStyleBackColor = True
         '
@@ -774,6 +827,7 @@ Partial Class frmDatabaseMaintenance
         '
         'tpEditRoom
         '
+        Me.tpEditRoom.Controls.Add(Me.GroupBox2)
         Me.tpEditRoom.Controls.Add(Me.btnEditRoomSave)
         Me.tpEditRoom.Controls.Add(Me.comboEditRoom)
         Me.tpEditRoom.Controls.Add(Me.btnEditRoomRoomColor)
@@ -792,7 +846,7 @@ Partial Class frmDatabaseMaintenance
         '
         'btnEditRoomSave
         '
-        Me.btnEditRoomSave.Location = New System.Drawing.Point(79, 359)
+        Me.btnEditRoomSave.Location = New System.Drawing.Point(79, 458)
         Me.btnEditRoomSave.Name = "btnEditRoomSave"
         Me.btnEditRoomSave.Size = New System.Drawing.Size(134, 41)
         Me.btnEditRoomSave.TabIndex = 13
@@ -810,10 +864,12 @@ Partial Class frmDatabaseMaintenance
         '
         'btnEditRoomRoomColor
         '
-        Me.btnEditRoomRoomColor.Location = New System.Drawing.Point(79, 295)
+        Me.btnEditRoomRoomColor.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnEditRoomRoomColor.Location = New System.Drawing.Point(79, 290)
         Me.btnEditRoomRoomColor.Name = "btnEditRoomRoomColor"
-        Me.btnEditRoomRoomColor.Size = New System.Drawing.Size(146, 26)
+        Me.btnEditRoomRoomColor.Size = New System.Drawing.Size(155, 45)
         Me.btnEditRoomRoomColor.TabIndex = 11
+        Me.btnEditRoomRoomColor.Text = "Sample Text"
         Me.dbToolTip.SetToolTip(Me.btnEditRoomRoomColor, "Click this button to select a color")
         Me.btnEditRoomRoomColor.UseVisualStyleBackColor = True
         '
@@ -888,14 +944,38 @@ Partial Class frmDatabaseMaintenance
         Me.comboRemoveRoom.Size = New System.Drawing.Size(401, 28)
         Me.comboRemoveRoom.TabIndex = 6
         '
-        'btnAddRoomSave
+        'GroupBox2
         '
-        Me.btnAddRoomSave.Location = New System.Drawing.Point(79, 330)
-        Me.btnAddRoomSave.Name = "btnAddRoomSave"
-        Me.btnAddRoomSave.Size = New System.Drawing.Size(134, 41)
-        Me.btnAddRoomSave.TabIndex = 14
-        Me.btnAddRoomSave.Text = "Save"
-        Me.btnAddRoomSave.UseVisualStyleBackColor = True
+        Me.GroupBox2.Controls.Add(Me.radioEditRoomWhite)
+        Me.GroupBox2.Controls.Add(Me.radioEditRoomBlack)
+        Me.GroupBox2.Location = New System.Drawing.Point(79, 351)
+        Me.GroupBox2.Name = "GroupBox2"
+        Me.GroupBox2.Size = New System.Drawing.Size(266, 90)
+        Me.GroupBox2.TabIndex = 16
+        Me.GroupBox2.TabStop = False
+        Me.GroupBox2.Text = "Text Color"
+        '
+        'radioEditRoomWhite
+        '
+        Me.radioEditRoomWhite.AutoSize = True
+        Me.radioEditRoomWhite.Location = New System.Drawing.Point(0, 56)
+        Me.radioEditRoomWhite.Name = "radioEditRoomWhite"
+        Me.radioEditRoomWhite.Size = New System.Drawing.Size(75, 24)
+        Me.radioEditRoomWhite.TabIndex = 1
+        Me.radioEditRoomWhite.TabStop = True
+        Me.radioEditRoomWhite.Text = "White"
+        Me.radioEditRoomWhite.UseVisualStyleBackColor = True
+        '
+        'radioEditRoomBlack
+        '
+        Me.radioEditRoomBlack.AutoSize = True
+        Me.radioEditRoomBlack.Location = New System.Drawing.Point(0, 26)
+        Me.radioEditRoomBlack.Name = "radioEditRoomBlack"
+        Me.radioEditRoomBlack.Size = New System.Drawing.Size(73, 24)
+        Me.radioEditRoomBlack.TabIndex = 0
+        Me.radioEditRoomBlack.TabStop = True
+        Me.radioEditRoomBlack.Text = "Black"
+        Me.radioEditRoomBlack.UseVisualStyleBackColor = True
         '
         'frmDatabaseMaintenance
         '
@@ -922,9 +1002,13 @@ Partial Class frmDatabaseMaintenance
         Me.tpRmProf.ResumeLayout(False)
         Me.tpAddRoom.ResumeLayout(False)
         Me.tpAddRoom.PerformLayout()
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
         Me.tpEditRoom.ResumeLayout(False)
         Me.tpEditRoom.PerformLayout()
         Me.tpRmRoom.ResumeLayout(False)
+        Me.GroupBox2.ResumeLayout(False)
+        Me.GroupBox2.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1011,4 +1095,10 @@ Partial Class frmDatabaseMaintenance
     Friend WithEvents comboRemoveRoom As System.Windows.Forms.ComboBox
     Friend WithEvents btnAddRoomSave As System.Windows.Forms.Button
     Friend WithEvents dbToolTip As System.Windows.Forms.ToolTip
+    Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
+    Friend WithEvents radioAddRoomWhite As System.Windows.Forms.RadioButton
+    Friend WithEvents radioAddRoomBlack As System.Windows.Forms.RadioButton
+    Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
+    Friend WithEvents radioEditRoomWhite As System.Windows.Forms.RadioButton
+    Friend WithEvents radioEditRoomBlack As System.Windows.Forms.RadioButton
 End Class

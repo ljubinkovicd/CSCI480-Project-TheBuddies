@@ -1830,7 +1830,7 @@ GO
 
 CREATE PROCEDURE GetRooms AS
 (
-	SELECT	RoomID, (BuildingName + ' ' + RoomNumber) As 'RoomName', RoomColor
+	SELECT	RoomID, (BuildingName + ' ' + RoomNumber) As 'RoomName', RoomColor, TextColor
 	FROM	ROOMS
 )
 GO

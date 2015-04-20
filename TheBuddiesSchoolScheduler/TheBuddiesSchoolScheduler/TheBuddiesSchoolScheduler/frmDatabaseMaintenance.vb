@@ -122,6 +122,14 @@ Public Class frmDatabaseMaintenance
             ' Convert the room color and set the button to the color of the room
             RoomColor = Convert.ToInt32(Trim(ds.Tables(0).Rows(0).Item("RoomColor").ToString))
             btnEditRoomRoomColor.BackColor = Color.FromArgb(RoomColor)
+
+            If Trim(ds.Tables(0).Rows(0).Item("RoomColor").ToString) = "B" Then
+                btnEditRoomRoomColor.ForeColor = Color.Black
+                radioEditRoomBlack.Checked = True
+            ElseIf Trim(ds.Tables(0).Rows(0).Item("RoomColor").ToString) = "W" Then
+                btnEditRoomRoomColor.ForeColor = Color.White
+                radioEditRoomWhite.Checked = True
+            End If
         ElseIf tcDBMaint.SelectedIndex = 8 Then
             ' REMOVE ROOM
 
@@ -572,6 +580,7 @@ Public Class frmDatabaseMaintenance
         Dim index As Integer = 0
         Dim RoomColor As Integer
         Dim ColorString As String = ""
+        Dim TextColor As String = ""
 
         ds = Sql.GetStoredProc("GetAllRooms")
 
@@ -579,10 +588,19 @@ Public Class frmDatabaseMaintenance
 
         txtEditRoomBuildingName.Text = ds.Tables(0).Rows(index).Item("BuildingName").ToString
         txtEditRoomRmNumber.Text = ds.Tables(0).Rows(index).Item("RoomNumber").ToString
+        TextColor = Trim(ds.Tables(0).Rows(index).Item("TextColor").ToString)
 
         RoomColor = Convert.ToInt32(Trim(ds.Tables(0).Rows(index).Item("RoomColor").ToString))
 
         btnEditRoomRoomColor.BackColor = Color.FromArgb(RoomColor)
+
+        If TextColor = "B" Then
+            btnEditRoomRoomColor.ForeColor = Color.Black
+            radioEditRoomBlack.Checked = True
+        ElseIf TextColor = "W" Then
+            btnEditRoomRoomColor.ForeColor = Color.White
+            radioEditRoomWhite.Checked = True
+        End If
     End Sub
 
     Private Sub btnEditRoomSave_Click(sender As Object, e As EventArgs) Handles btnEditRoomSave.Click
@@ -595,6 +613,14 @@ Public Class frmDatabaseMaintenance
         Dim RoomColor As Integer = btnEditRoomRoomColor.BackColor.ToArgb
         Dim proc As String = ""
         Dim index As Integer
+        Dim ColorConvert As Color = btnEditRoomRoomColor.ForeColor
+        Dim TextColor As String = ""
+
+        If ColorConvert = Color.Black Then
+            TextColor = "B"
+        Else
+            TextColor = "W"
+        End If
 
         index = comboEditRoom.SelectedValue
 
@@ -617,7 +643,7 @@ Public Class frmDatabaseMaintenance
         proc = "CheckIfRoomExists '" + BuildingName + "', '" + RoomNumber + "'"
         ds2 = SQL.GetStoredProc(proc)
 
-        If ds2 IsNot Nothing And ds2.Tables(0).Rows.Count > 0 Then
+        If ds2 IsNot Nothing AndAlso ds2.Tables(0).Rows.Count > 0 Then
             If index.ToString <> ds2.Tables(0).Rows(0).Item("RoomID").ToString Then
 
                 MessageBox.Show("The room: " + BuildingName + " " + RoomNumber + " already exists in the database")
@@ -628,7 +654,7 @@ Public Class frmDatabaseMaintenance
         proc = "CheckIfRoomColorExists " + RoomColor.ToString
         ds2 = SQL.GetStoredProc(proc)
 
-        If ds2 IsNot Nothing And ds2.Tables(0).Rows.Count > 0 Then
+        If ds2 IsNot Nothing AndAlso ds2.Tables(0).Rows.Count > 0 Then
             If index.ToString <> ds2.Tables(0).Rows(0).Item("RoomID").ToString Then
                 Dim result As Integer = MessageBox.Show("The room color that was selected already exists in the database, would you like to proceed using that color?", "The Buddies Scheduler", MessageBoxButtons.YesNoCancel)
                 If result = DialogResult.Yes Then
@@ -642,7 +668,7 @@ Public Class frmDatabaseMaintenance
 
         If passed Then
             Try
-                proc = "EditRoom " + index.ToString + ", '" + BuildingName + "', '" + RoomNumber + "' , " + RoomColor.ToString
+                proc = "EditRoom " + index.ToString + ", '" + BuildingName + "', '" + RoomNumber + "' , " + RoomColor.ToString + " , '" + TextColor + "'"
                 ds = SQL.GetStoredProc(proc)
             Catch ex As Exception
                 passed = False
@@ -710,7 +736,15 @@ Public Class frmDatabaseMaintenance
         Dim BuildingName As String = txtAddRoomBuildingName.Text
         Dim RoomNumber As String = txtAddRoomRmNumber.Text
         Dim RoomColor As Integer = btnAddRoomRoomColor.BackColor.ToArgb
+        Dim ColorConvert As Color = btnAddRoomRoomColor.ForeColor
+        Dim TextColor As String = ""
         Dim proc As String = ""
+
+        If ColorConvert = Color.Black Then
+            TextColor = "B"
+        Else
+            TextColor = "W"
+        End If
 
         If Not (Trim(BuildingName) <> "" And CheckStringLength(BuildingName, 0, 255)) Then
             MessageBox.Show("Building Name is either Blank or of the wrong size.")
@@ -728,9 +762,9 @@ Public Class frmDatabaseMaintenance
         End If
 
         proc = "CheckIfRoomExists '" + BuildingName + "', '" + RoomNumber + "'"
-        ds = SQL.GetStoredProc(proc)
+        ds2 = SQL.GetStoredProc(proc)
 
-        If ds IsNot Nothing AndAlso ds.Tables(0).Rows.Count > 0 Then
+        If ds2 IsNot Nothing AndAlso ds2.Tables(0).Rows.Count > 0 Then
             MessageBox.Show("The room: " + BuildingName + " " + RoomNumber + " already exists in the database")
             passed = False
         End If
@@ -750,7 +784,7 @@ Public Class frmDatabaseMaintenance
 
         If passed Then
             Try
-                proc = "AddRoom " + "'" + BuildingName + "', '" + RoomNumber + "' , " + RoomColor.ToString
+                proc = "AddRoom " + "'" + BuildingName + "', '" + RoomNumber + "' , " + RoomColor.ToString + " , '" + TextColor + "'"
                 ds = SQL.GetStoredProc(proc)
             Catch ex As Exception
                 passed = False
@@ -774,5 +808,21 @@ Public Class frmDatabaseMaintenance
             c1 = ColorDialog1.Color
             btnAddRoomRoomColor.BackColor = c1
         End If
+    End Sub
+
+    Private Sub radioAddRoomBlack_Click(sender As Object, e As EventArgs) Handles radioAddRoomBlack.Click
+        btnAddRoomRoomColor.ForeColor = Color.Black
+    End Sub
+
+    Private Sub radioAddRoomWhite_CheckedChanged(sender As Object, e As EventArgs) Handles radioAddRoomWhite.CheckedChanged
+        btnAddRoomRoomColor.ForeColor = Color.White
+    End Sub
+
+    Private Sub radioEditRoomBlack_CheckedChanged(sender As Object, e As EventArgs) Handles radioEditRoomBlack.CheckedChanged
+        btnEditRoomRoomColor.ForeColor = Color.Black
+    End Sub
+
+    Private Sub radioEditRoomWhite_CheckedChanged(sender As Object, e As EventArgs) Handles radioEditRoomWhite.CheckedChanged
+        btnEditRoomRoomColor.ForeColor = Color.White
     End Sub
 End Class
