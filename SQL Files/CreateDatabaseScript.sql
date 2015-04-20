@@ -52,6 +52,7 @@ CREATE TABLE ROOMS
 	BuildingName VARCHAR(255) NOT NULL,
 	RoomNumber VARCHAR(10) NOT NULL,
 	RoomColor INT,
+	TextColor VARCHAR(1) NOT NULL
 )
 GO
 --- END CREATING ROOMS TABLE ---
@@ -165,13 +166,13 @@ GO
 -- BEGIN ROOMS Insert Statement --
 INSERT INTO ROOMS
 VALUES
-	('Davis', '196', -16744448),
-	('Main', '301', -128),
-	('Davis', '179', -8323200),
-	('Main', '309', -256),
-	('INET', 'INET', -8355585),
-	('BCHS', '100', -8323073),
-	('BCHS', '107', -16776961);
+	('Davis', '196', -16744448, 'B'),
+	('Main', '301', -128, 'B'),
+	('Davis', '179', -8323200, 'B'),
+	('Main', '309', -256, 'B'),
+	('INET', 'INET', -8355585, 'B'),
+	('BCHS', '100', -8323073, 'B'),
+	('BCHS', '107', -16776961, 'B');
 GO
 -- END ROOMS Insert Statement --
 

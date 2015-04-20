@@ -688,7 +688,7 @@ GO
 CREATE PROCEDURE GetAllRooms 
 AS
 (
-	SELECT 	RoomID, BuildingName, RoomNumber, RoomColor, BuildingName + ' ' + RoomNumber AS 'Room'
+	SELECT 	RoomID, BuildingName, RoomNumber, RoomColor, BuildingName + ' ' + RoomNumber AS 'Room', TextColor
 	FROM	ROOMS
 )
 GO
@@ -706,12 +706,13 @@ GO
 CREATE PROCEDURE AddRoom
 	@BuildingName VARCHAR(255),
 	@RoomNumber VARCHAR(10),
-	@RoomColor INT
+	@RoomColor INT,
+	@TextColor VARCHAR(1)
 AS
 BEGIN
 	INSERT INTO ROOMS
-	       (BuildingName, RoomNumber, RoomColor)
-	VALUES (@BuildingName, @RoomNumber, @RoomColor)
+	       (BuildingName, RoomNumber, RoomColor, TextColor)
+	VALUES (@BuildingName, @RoomNumber, @RoomColor, @TextColor)
 END
 GO
 --- End Procedure AddRoom ---
@@ -729,11 +730,12 @@ CREATE PROCEDURE EditRoom
 	@RoomID INT,
 	@BuildingName VARCHAR(255),
 	@RoomNumber VARCHAR(10),
-	@RoomColor INT
+	@RoomColor INT,
+	@TextColor VARCHAR(1)
 AS
 BEGIN
 	UPDATE ROOMS
-	SET      BuildingName = @BuildingName, RoomNumber = @RoomNumber, RoomColor = @RoomColor 
+	SET      BuildingName = @BuildingName, RoomNumber = @RoomNumber, RoomColor = @RoomColor, TextColor = @TextColor
 	WHERE RoomID = @RoomID
 END
 GO
