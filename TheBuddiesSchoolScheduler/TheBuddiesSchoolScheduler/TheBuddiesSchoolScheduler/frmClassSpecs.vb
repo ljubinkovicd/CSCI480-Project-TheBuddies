@@ -88,9 +88,11 @@
 
                 Dim roomds As DataSet = sql.GetStoredProc("GetRooms")
                 Dim newColor As Int32
+                Dim textColor As String = ""
                 For Each dr As DataRow In roomds.Tables(0).Rows
                     If cboRoom.SelectedValue.ToString = dr.Item("RoomID").ToString Then
                         newColor = Convert.ToInt32(Trim(dr.Item("RoomColor").ToString))
+                        textColor = dr.Item("TextColor").ToString
                     End If
                 Next
 
@@ -101,9 +103,19 @@
                     If label IsNot Nothing Then
                         label.Text = lbl + vbNewLine + cboProfessor.SelectedItem(1).ToString + vbNewLine + ds.Tables(0).Rows(0).Item(0).ToString + " hours"
                         label.BackColor = Color.FromArgb(newColor)
+                        If textColor = "W" Then
+                            label.ForeColor = Color.White
+                        Else
+                            label.ForeColor = Color.Black
+                        End If
                     ElseIf label2 IsNot Nothing Then
                         label2.Text = lbl + vbNewLine + cboProfessor.SelectedItem(1).ToString + vbNewLine + ds.Tables(0).Rows(0).Item(0).ToString + " hours"
                         label2.BackColor = Color.FromArgb(newColor)
+                        If textColor = "W" Then
+                            label2.ForeColor = Color.White
+                        Else
+                            label2.ForeColor = Color.Black
+                        End If
                     End If
                 Catch ex As Exception
                     MsgBox("Unable to get the TeacherCreditHours")

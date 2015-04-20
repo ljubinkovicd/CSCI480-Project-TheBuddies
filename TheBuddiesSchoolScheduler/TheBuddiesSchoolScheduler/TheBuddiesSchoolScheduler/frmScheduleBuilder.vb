@@ -78,6 +78,8 @@ Public Class frmScheduleBuilder
                 AddHandler .MouseUp, AddressOf labelUp
             End With
 
+            lbls(i).Font = New Font(lbls(i).Font, FontStyle.Bold)
+
             If position = "left" Then
                 lbls(i).Left = 20
                 position = "center"
@@ -744,6 +746,8 @@ Public Class frmScheduleBuilder
                 .ContextMenuStrip = cmsRightClick
             End With
 
+            tempLabel.Font = New Font(tempLabel.Font, FontStyle.Bold)
+
             'update the position
             For Each dr As DataRow In daysdt.Rows
                 If dayArray(i) = dr.Item("DayOfWeek") Then
@@ -771,6 +775,7 @@ Public Class frmScheduleBuilder
             TableLayoutPanel1.SetRowSpan(tempLabel, endRow - startRow + 1)
             tempLabel.Height = (tlpRow + 2) * (endRow - startRow + 1)
             tempLabel.BackColor = label.BackColor
+            tempLabel.ForeColor = label.ForeColor
 
         Next
     End Sub
@@ -819,7 +824,9 @@ Public Class frmScheduleBuilder
         dgvLegend.Columns("RoomID").Visible = False
         dgvLegend.RowHeadersVisible = False
         dgvLegend.Columns("RoomColor").Visible = False
+        dgvLegend.Columns("TextColor").Visible = False
         dgvLegend.Columns("RoomName").SortMode = DataGridViewColumnSortMode.NotSortable
+        dgvLegend.DefaultCellStyle.Font = New Font(dgvLegend.Font, FontStyle.Bold)
 
         For Each gr As DataGridViewRow In dgvLegend.Rows
             Dim c As Int32 = Convert.ToInt32(Trim(gr.DataBoundItem("RoomColor").ToString))
@@ -827,6 +834,11 @@ Public Class frmScheduleBuilder
             roomColor = Color.FromArgb(c)
             colorCollection.Add(roomNumber, roomColor)
             gr.Cells("RoomName").Style.BackColor = roomColor
+            If gr.DataBoundItem("TextColor").ToString = "W" Then
+                gr.Cells("RoomName").Style.ForeColor = Color.White
+            Else
+                gr.Cells("RoomName").Style.ForeColor = Color.Black
+            End If
         Next
 
         g.SetRoomColors(colorCollection)
