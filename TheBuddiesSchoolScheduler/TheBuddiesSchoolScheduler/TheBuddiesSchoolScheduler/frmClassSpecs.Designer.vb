@@ -33,8 +33,6 @@ Partial Class frmClassSpecs
         Me.chkThursday = New System.Windows.Forms.CheckBox()
         Me.chkTuesday = New System.Windows.Forms.CheckBox()
         Me.Label10 = New System.Windows.Forms.Label()
-        Me.txtStartTime = New System.Windows.Forms.TextBox()
-        Me.txtEndTime = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.btnSave = New System.Windows.Forms.Button()
@@ -43,6 +41,8 @@ Partial Class frmClassSpecs
         Me.cboProfessor = New System.Windows.Forms.ComboBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.cboRoom = New System.Windows.Forms.ComboBox()
+        Me.cboEndTime = New System.Windows.Forms.ComboBox()
+        Me.cboStartTime = New System.Windows.Forms.ComboBox()
         Me.SuspendLayout()
         '
         'lblClass
@@ -169,22 +169,6 @@ Partial Class frmClassSpecs
         Me.Label10.TabIndex = 24
         Me.Label10.Text = "Start:"
         '
-        'txtStartTime
-        '
-        Me.txtStartTime.Location = New System.Drawing.Point(123, 157)
-        Me.txtStartTime.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.txtStartTime.Name = "txtStartTime"
-        Me.txtStartTime.Size = New System.Drawing.Size(148, 26)
-        Me.txtStartTime.TabIndex = 34
-        '
-        'txtEndTime
-        '
-        Me.txtEndTime.Location = New System.Drawing.Point(122, 201)
-        Me.txtEndTime.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.txtEndTime.Name = "txtEndTime"
-        Me.txtEndTime.Size = New System.Drawing.Size(148, 26)
-        Me.txtEndTime.TabIndex = 36
-        '
         'Label4
         '
         Me.Label4.AutoSize = True
@@ -263,11 +247,29 @@ Partial Class frmClassSpecs
         Me.cboRoom.Size = New System.Drawing.Size(147, 28)
         Me.cboRoom.TabIndex = 43
         '
+        'cboEndTime
+        '
+        Me.cboEndTime.FormattingEnabled = True
+        Me.cboEndTime.Location = New System.Drawing.Point(124, 204)
+        Me.cboEndTime.Name = "cboEndTime"
+        Me.cboEndTime.Size = New System.Drawing.Size(147, 28)
+        Me.cboEndTime.TabIndex = 44
+        '
+        'cboStartTime
+        '
+        Me.cboStartTime.FormattingEnabled = True
+        Me.cboStartTime.Location = New System.Drawing.Point(123, 160)
+        Me.cboStartTime.Name = "cboStartTime"
+        Me.cboStartTime.Size = New System.Drawing.Size(147, 28)
+        Me.cboStartTime.TabIndex = 45
+        '
         'frmClassSpecs
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(384, 431)
+        Me.Controls.Add(Me.cboStartTime)
+        Me.Controls.Add(Me.cboEndTime)
         Me.Controls.Add(Me.cboRoom)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.cboProfessor)
@@ -275,9 +277,7 @@ Partial Class frmClassSpecs
         Me.Controls.Add(Me.btnCancel)
         Me.Controls.Add(Me.btnSave)
         Me.Controls.Add(Me.Label5)
-        Me.Controls.Add(Me.txtEndTime)
         Me.Controls.Add(Me.Label4)
-        Me.Controls.Add(Me.txtStartTime)
         Me.Controls.Add(Me.chkSunday)
         Me.Controls.Add(Me.chkSaturday)
         Me.Controls.Add(Me.chkWednesday)
@@ -309,8 +309,6 @@ Partial Class frmClassSpecs
     Friend WithEvents chkThursday As System.Windows.Forms.CheckBox
     Friend WithEvents chkTuesday As System.Windows.Forms.CheckBox
     Friend WithEvents Label10 As System.Windows.Forms.Label
-    Friend WithEvents txtStartTime As System.Windows.Forms.TextBox
-    Friend WithEvents txtEndTime As System.Windows.Forms.TextBox
     Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents btnSave As System.Windows.Forms.Button
@@ -319,4 +317,6 @@ Partial Class frmClassSpecs
     Friend WithEvents cboProfessor As System.Windows.Forms.ComboBox
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents cboRoom As System.Windows.Forms.ComboBox
+    Friend WithEvents cboEndTime As System.Windows.Forms.ComboBox
+    Friend WithEvents cboStartTime As System.Windows.Forms.ComboBox
 End Class
