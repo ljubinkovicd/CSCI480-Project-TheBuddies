@@ -121,6 +121,10 @@ Public Class frmScheduleBuilder
         If s = "OK" Then
             editMenuChanges(lbl)
             getTeacherTotals()
+            'remove columns if needed
+            For i As Integer = 0 To TableLayoutPanel1.ColumnCount - 1
+                RemColFromDaysDTAuto(i)
+            Next
         End If
     End Sub
 
@@ -182,6 +186,10 @@ Public Class frmScheduleBuilder
                 TableLayoutPanel1.Controls.Remove(label2)
             End If
             getTeacherTotals()
+            'remove columns if needed
+            For i As Integer = 0 To TableLayoutPanel1.ColumnCount - 1
+                RemColFromDaysDTAuto(i)
+            Next
         End If
     End Sub
 
@@ -297,6 +305,11 @@ Public Class frmScheduleBuilder
             frmClassSpecs.ShowDialog()
             editMenuChanges("lbl" + temp)
             getTeacherTotals()
+
+            'remove columns if needed
+            For i As Integer = 0 To TableLayoutPanel1.ColumnCount - 1
+                RemColFromDaysDTAuto(i)
+            Next
         End If
     End Sub
 
@@ -551,6 +564,67 @@ Public Class frmScheduleBuilder
                 MsgBox("Not a valid number")
             Else
                 MsgBox("Cannot remove column. There is not more than one for this day.")
+            End If
+        End If
+        'dgvTeacherTotals.DataSource = daysdt
+    End Sub
+
+    Private Sub RemColFromDaysDTAuto(ByVal c As Integer)
+        Dim hasMoreThanOneCol As Boolean = False
+        'check to see if there is only one column for this day
+        For Each dr As DataRow In daysdt.Rows
+            If dr.Item("ColStart") < c And c <= dr.Item("ColStart") + (dr.Item("NumCol") - 1) Then
+                hasMoreThanOneCol = True
+            End If
+        Next
+
+        If hasMoreThanOneCol Then
+            'check to see if there are any controls in the column
+            Dim cntrl As New Control
+            Dim pos As New TableLayoutPanelCellPosition(0, 0)
+            Dim canDelete As Boolean = True
+
+            For i As Integer = 0 To TableLayoutPanel1.RowCount - 1
+                cntrl = TableLayoutPanel1.GetControlFromPosition(c, i)
+                If cntrl IsNot Nothing Then
+                    canDelete = False
+                    i = TableLayoutPanel1.RowCount
+                End If
+            Next
+
+            If canDelete Then
+                'delete the column and update the daysdt
+                TableLayoutPanel1.ColumnCount -= 1
+                TableLayoutPanel1.ColumnStyles.RemoveAt(c)
+
+                'move all the labels to the right of this column left one column
+                pushLabelsLeft(c)
+
+                'decrease the label size of the row deleted
+                Dim lbl As Label
+                For Each dr As DataRow In daysdt.Rows
+                    If dr.Item("ColStart") <= c And c <= dr.Item("ColStart") + (dr.Item("NumCol") - 1) Then
+                        lbl = CType(Me.Controls("lbl" + dr.Item("DayOfWeek")), Label)
+                        lbl.Width = lbl.Width - tlpCol
+                        dr.Item("NumCol") -= 1
+                    End If
+                    'aligns the labels to the right up with their new row
+                    ' ** can be improved
+                    If c < dr.Item("ColStart") Then
+                        dr.Item("ColStart") -= 1
+                        lbl = CType(Me.Controls("lbl" + dr.Item("DayOfWeek")), Label)
+                        lbl.Left = lbl.Left - tlpCol - 1
+                    End If
+                Next
+            Else
+                'display message
+                'MsgBox("Cannot remove column. There is a class in this column.")
+            End If
+        Else
+            If c > TableLayoutPanel1.ColumnCount - 1 Then
+                'MsgBox("Not a valid number")
+            Else
+                'MsgBox("Cannot remove column. There is not more than one for this day.")
             End If
         End If
         'dgvTeacherTotals.DataSource = daysdt
