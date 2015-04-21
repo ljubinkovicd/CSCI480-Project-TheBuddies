@@ -25,7 +25,6 @@ Partial Class frmStartSchedule1
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.cboSemester = New System.Windows.Forms.ComboBox()
-        Me.btnBack = New System.Windows.Forms.Button()
         Me.btnCancel = New System.Windows.Forms.Button()
         Me.btnNext = New System.Windows.Forms.Button()
         Me.ClassListGridView = New System.Windows.Forms.DataGridView()
@@ -58,15 +57,6 @@ Partial Class frmStartSchedule1
         Me.cboSemester.Name = "cboSemester"
         Me.cboSemester.Size = New System.Drawing.Size(121, 21)
         Me.cboSemester.TabIndex = 3
-        '
-        'btnBack
-        '
-        Me.btnBack.Location = New System.Drawing.Point(18, 573)
-        Me.btnBack.Name = "btnBack"
-        Me.btnBack.Size = New System.Drawing.Size(151, 23)
-        Me.btnBack.TabIndex = 41
-        Me.btnBack.Text = "Back"
-        Me.btnBack.UseVisualStyleBackColor = True
         '
         'btnCancel
         '
@@ -102,7 +92,6 @@ Partial Class frmStartSchedule1
         Me.Controls.Add(Me.ClassListGridView)
         Me.Controls.Add(Me.btnNext)
         Me.Controls.Add(Me.btnCancel)
-        Me.Controls.Add(Me.btnBack)
         Me.Controls.Add(Me.cboSemester)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
@@ -117,7 +106,6 @@ Partial Class frmStartSchedule1
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents cboSemester As System.Windows.Forms.ComboBox
-    Friend WithEvents btnBack As System.Windows.Forms.Button
     Friend WithEvents btnCancel As System.Windows.Forms.Button
     Friend WithEvents btnNext As System.Windows.Forms.Button
     Friend WithEvents ClassListGridView As System.Windows.Forms.DataGridView

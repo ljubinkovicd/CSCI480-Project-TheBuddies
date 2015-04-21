@@ -3,6 +3,8 @@
 Public Class frmStartSchedule2
     Dim profdt As New DataTable
     Private Sub btnBack_Click_1(sender As Object, e As EventArgs) Handles btnBack.Click
+        Dim g As New Globals
+        g.IsBackTrue()
         frmStartSchedule1.Show()
         Me.Close()
     End Sub
@@ -101,6 +103,7 @@ Public Class frmStartSchedule2
         TeacherGridView.RowHeadersVisible = False
         TeacherGridView.Columns("Course").HeaderText = "Course"
         TeacherGridView.Columns("Course").AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
+        TeacherGridView.Columns("Course").ReadOnly = True
         TeacherGridView.Columns.Insert(1, cbb)
         TeacherGridView.Columns(1).Width = 100
 

@@ -3,7 +3,8 @@
     Public Shared semester As String
     Public Shared label As String
     Public Shared roomColors As Dictionary(Of String, Color)
-    'Public Shared scheduleDataTable As DataTable
+    Public Shared tempdt As DataTable
+    Public Shared isBack As Boolean = False
 
     Public Sub SetDT(dt As DataTable)
         dataTable = dt
@@ -40,4 +41,24 @@
         Return roomColors
     End Function
 
+    Public Sub SetTempDT(dt As DataTable)
+        tempdt = dt
+    End Sub
+
+    Public Function GetTempDT(dt As DataTable)
+        dt = tempdt
+        Return dt
+    End Function
+
+    Public Sub IsBackTrue()
+        isBack = True
+    End Sub
+
+    Public Sub IsBackFalse()
+        isBack = False
+    End Sub
+
+    Public Function GetIsBack()
+        Return isBack
+    End Function
 End Class
