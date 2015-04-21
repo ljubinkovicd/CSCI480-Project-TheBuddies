@@ -24,7 +24,6 @@ Partial Class frmScheduleBuilder
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.btnTeacher = New System.Windows.Forms.Button()
         Me.btnSave = New System.Windows.Forms.Button()
         Me.btnCancel = New System.Windows.Forms.Button()
         Me.ClassesPanel = New System.Windows.Forms.Panel()
@@ -72,7 +71,6 @@ Partial Class frmScheduleBuilder
         Me.Label33 = New System.Windows.Forms.Label()
         Me.Label34 = New System.Windows.Forms.Label()
         Me.lblSemester = New System.Windows.Forms.Label()
-        Me.Label22 = New System.Windows.Forms.Label()
         Me.dgvLegend = New System.Windows.Forms.DataGridView()
         Me.cmsRightClick.SuspendLayout()
         CType(Me.dgvTeacherTotals, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -88,18 +86,9 @@ Partial Class frmScheduleBuilder
         Me.Label1.TabIndex = 3
         Me.Label1.Text = "Schedule Builder"
         '
-        'btnTeacher
-        '
-        Me.btnTeacher.Location = New System.Drawing.Point(590, 713)
-        Me.btnTeacher.Name = "btnTeacher"
-        Me.btnTeacher.Size = New System.Drawing.Size(75, 23)
-        Me.btnTeacher.TabIndex = 33
-        Me.btnTeacher.Text = "Teachers"
-        Me.btnTeacher.UseVisualStyleBackColor = True
-        '
         'btnSave
         '
-        Me.btnSave.Location = New System.Drawing.Point(697, 713)
+        Me.btnSave.Location = New System.Drawing.Point(567, 699)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(75, 23)
         Me.btnSave.TabIndex = 34
@@ -108,7 +97,7 @@ Partial Class frmScheduleBuilder
         '
         'btnCancel
         '
-        Me.btnCancel.Location = New System.Drawing.Point(810, 713)
+        Me.btnCancel.Location = New System.Drawing.Point(680, 699)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(75, 23)
         Me.btnCancel.TabIndex = 35
@@ -152,7 +141,7 @@ Partial Class frmScheduleBuilder
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 79.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80.0!))
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(427, 58)
         Me.TableLayoutPanel1.Margin = New System.Windows.Forms.Padding(2)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
@@ -594,16 +583,6 @@ Partial Class frmScheduleBuilder
         Me.lblSemester.TabIndex = 78
         Me.lblSemester.Text = "Label2"
         '
-        'Label22
-        '
-        Me.Label22.AutoSize = True
-        Me.Label22.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label22.Location = New System.Drawing.Point(569, 663)
-        Me.Label22.Name = "Label22"
-        Me.Label22.Size = New System.Drawing.Size(57, 16)
-        Me.Label22.TabIndex = 28
-        Me.Label22.Text = "Legend:"
-        '
         'dgvLegend
         '
         Me.dgvLegend.AllowUserToAddRows = False
@@ -666,8 +645,6 @@ Partial Class frmScheduleBuilder
         Me.Controls.Add(Me.ClassesPanel)
         Me.Controls.Add(Me.btnCancel)
         Me.Controls.Add(Me.btnSave)
-        Me.Controls.Add(Me.btnTeacher)
-        Me.Controls.Add(Me.Label22)
         Me.Controls.Add(Me.Label1)
         Me.Name = "frmScheduleBuilder"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -680,7 +657,6 @@ Partial Class frmScheduleBuilder
 
     End Sub
     Friend WithEvents Label1 As System.Windows.Forms.Label
-    Friend WithEvents btnTeacher As System.Windows.Forms.Button
     Friend WithEvents btnSave As System.Windows.Forms.Button
     Friend WithEvents btnCancel As System.Windows.Forms.Button
     Friend WithEvents ClassesPanel As System.Windows.Forms.Panel
@@ -728,6 +704,5 @@ Partial Class frmScheduleBuilder
     Friend WithEvents Label33 As System.Windows.Forms.Label
     Friend WithEvents Label34 As System.Windows.Forms.Label
     Friend WithEvents lblSemester As System.Windows.Forms.Label
-    Friend WithEvents Label22 As System.Windows.Forms.Label
     Friend WithEvents dgvLegend As System.Windows.Forms.DataGridView
 End Class

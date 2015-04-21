@@ -4,13 +4,13 @@ Imports System.Data.Sql
 Imports System.Data.SqlClient
 
 Public Class frmStartSchedule1
-    Dim cont As Boolean = True
     Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
+        Dim g As New Globals
+        g.IsBackFalse()
         Me.Close()
     End Sub
 
     Private Sub btnNext_Click(sender As Object, e As EventArgs) Handles btnNext.Click
-        If cont Then
             Dim g As New Globals
 
             'Set the semester
@@ -53,7 +53,6 @@ Public Class frmStartSchedule1
                 frmStartSchedule2.Show()
                 Me.Close()
             End If
-        End If
     End Sub
 
     Private Sub frmStartSchedule1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -111,9 +110,6 @@ Public Class frmStartSchedule1
             ClassListGridView.Rows(e.RowIndex).Cells(e.ColumnIndex).Value = 0
             ClassListGridView.CurrentCell = ClassListGridView.Rows(e.RowIndex).Cells(e.ColumnIndex)
             MsgBox("Invalid Data")
-            cont = False
-        Else
-            cont = True
         End If
     End Sub
 End Class

@@ -10,6 +10,8 @@ Public Class frmStartSchedule2
     End Sub
 
     Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
+        Dim g As New Globals
+        g.IsBackFalse()
         Me.Close()
     End Sub
 
@@ -104,8 +106,14 @@ Public Class frmStartSchedule2
         TeacherGridView.Columns("Course").HeaderText = "Course"
         TeacherGridView.Columns("Course").AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
         TeacherGridView.Columns("Course").ReadOnly = True
+        TeacherGridView.Columns("Course").SortMode = DataGridViewColumnSortMode.NotSortable
         TeacherGridView.Columns.Insert(1, cbb)
         TeacherGridView.Columns(1).Width = 100
+        TeacherGridView.Columns(1).SortMode = DataGridViewColumnSortMode.NotSortable
+
+        TeacherGridView.AllowUserToAddRows = False
+        TeacherGridView.AllowUserToDeleteRows = False
+        TeacherGridView.AllowUserToResizeRows = False
 
         'set the semester label
         Dim str As String = ""

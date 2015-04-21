@@ -28,7 +28,7 @@ Public Class frmScheduleBuilder
         Me.Close()
     End Sub
 
-    Private Sub btnTeacher_Click(sender As Object, e As EventArgs) Handles btnTeacher.Click
+    Private Sub btnTeacher_Click(sender As Object, e As EventArgs)
         frmTeacherSchedule.Show()
     End Sub
 
@@ -902,6 +902,10 @@ Public Class frmScheduleBuilder
         dgvLegend.Columns("RoomName").SortMode = DataGridViewColumnSortMode.NotSortable
         dgvLegend.DefaultCellStyle.Font = New Font(dgvLegend.Font, FontStyle.Bold)
 
+        dgvLegend.AllowUserToAddRows = False
+        dgvLegend.AllowUserToDeleteRows = False
+        dgvLegend.AllowUserToResizeRows = False
+
         For Each gr As DataGridViewRow In dgvLegend.Rows
             Dim c As Int32 = Convert.ToInt32(Trim(gr.DataBoundItem("RoomColor").ToString))
             roomNumber = Trim(gr.DataBoundItem("RoomID").ToString)
@@ -938,5 +942,9 @@ Public Class frmScheduleBuilder
         dgvTeacherTotals.Columns("Name").AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
         dgvTeacherTotals.Columns("Yearly").AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
         dgvTeacherTotals.Columns("Current").AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
+
+        dgvTeacherTotals.AllowUserToAddRows = False
+        dgvTeacherTotals.AllowUserToDeleteRows = False
+        dgvTeacherTotals.AllowUserToResizeRows = False
     End Sub
 End Class
