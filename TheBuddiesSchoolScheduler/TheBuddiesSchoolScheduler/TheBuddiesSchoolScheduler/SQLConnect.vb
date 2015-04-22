@@ -8,9 +8,8 @@ Public Class SQLConnect
 
     Public Sub Connect(server As String, database As String, username As String, password As String)
         Try
-            'connectionString = "Server=" + server + ";Database=" + database + ";User=" + username.ToString + ";Pwd=" + password.ToString + ";"
-            connectionString = "Server=Mars;Database=480-buddies;User=480-buddies;Pwd=schedule;"
-            'connectionString = "Server=ALEXPC\ALEX080714;Database=SchoolScheduler2;User=test_user;Pwd=pass;"
+            connectionString = "Server=" + server + ";Database=" + database + ";User=" + username.ToString + ";Pwd=" + password.ToString + ";"
+            'connectionString = "Server=Mars;Database=480-buddies;User=480-buddies;Pwd=schedule;"
             SQLCon.ConnectionString = connectionString
         Catch ex As Exception
             MsgBox(ex.Message)

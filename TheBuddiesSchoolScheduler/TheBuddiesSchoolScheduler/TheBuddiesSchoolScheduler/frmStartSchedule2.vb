@@ -40,9 +40,6 @@ Public Class frmStartSchedule2
             dt.Rows.Add(row)
         Next
 
-        'remove the last row since it is blank
-        dt.Rows.RemoveAt(dt.Rows.Count - 1)
-
         dt.Columns(1).ColumnName = "Professor"
 
         'pass this datatable to the next screen
