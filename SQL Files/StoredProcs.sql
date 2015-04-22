@@ -11,7 +11,7 @@ GO
 
 CREATE PROCEDURE GetClasses AS
 (
-	SELECT	(Department + ' ' + CourseNum) AS Course, CourseName AS 'Course Name', '1' AS 'Day', '0' AS 'Night', '0' AS 'Online'
+	SELECT	(Department + ' ' + CourseNum) AS Course, CourseName AS 'Course Name', '0' AS 'Day', '0' AS 'Night', '0' AS 'Online'
 	FROM	CLASS
 )
 GO
