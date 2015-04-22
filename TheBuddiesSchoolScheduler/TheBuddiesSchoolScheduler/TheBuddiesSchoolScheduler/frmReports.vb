@@ -22,62 +22,66 @@ Public Class frmReports
         Me.Close()
     End Sub
     Private Sub ExportToExcel_Click(sender As Object, e As EventArgs) Handles ExportToExcel.Click
-        'Initialize the objects before use
-        Dim dataAdapter As New SqlClient.SqlDataAdapter()
-        Dim dataSet As New DataSet
-        dataSet = GetScheduleDS()
-
-        ' User is able to select a folder into which to export excel.
-        Dim f As FolderBrowserDialog = New FolderBrowserDialog
         Try
-            If f.ShowDialog() = DialogResult.OK Then
-                'This section helps if your language is not English.
-                System.Threading.Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.CreateSpecificCulture("en-US")
-                Dim oExcel As Excel.Application
-                Dim oBook As Excel.Workbook
-                Dim oSheet As Excel.Worksheet
+            'Initialize the objects before use
+            Dim dataAdapter As New SqlClient.SqlDataAdapter()
+            Dim dataSet As New DataSet
+            dataSet = GetScheduleDS()
 
-                oExcel = CreateObject("Excel.Application")
-                oBook = oExcel.Workbooks.Add(Type.Missing)
-                Dim dataTableCollection As System.Data.DataTableCollection = dataSet.Tables
-                Dim numberOfSheets As Integer = dataTableCollection.Count
+            ' User is able to select a folder into which to export excel.
+            Dim f As FolderBrowserDialog = New FolderBrowserDialog
+            Try
+                If f.ShowDialog() = DialogResult.OK Then
+                    'This section helps if your language is not English.
+                    System.Threading.Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.CreateSpecificCulture("en-US")
+                    Dim oExcel As Excel.Application
+                    Dim oBook As Excel.Workbook
+                    Dim oSheet As Excel.Worksheet
 
-                Dim dataTable As System.Data.DataTable
-                Dim sheetCounter As Integer = 1
+                    oExcel = CreateObject("Excel.Application")
+                    oBook = oExcel.Workbooks.Add(Type.Missing)
+                    Dim dataTableCollection As System.Data.DataTableCollection = dataSet.Tables
+                    Dim numberOfSheets As Integer = dataTableCollection.Count
 
-                'Adding empty sheets based on data table count
-                For Each dataTable In dataTableCollection
-                    oBook.Worksheets.Add()
-                Next
+                    Dim dataTable As System.Data.DataTable
+                    Dim sheetCounter As Integer = 1
 
-                'Exports all data tables to corresponding data sheets.
-                For Each dataTable In dataTableCollection
-                    oSheet = oBook.Worksheets(sheetCounter)
-                    oSheet.Name = dataTable.TableName
-                    If (dataTable.TableName = "WeeklyTable") Then
-                        getRoomColors(dataTable)
-                    End If
-                    exportDataSetToExcelWorksheet(dataTable, oSheet)
-                    sheetCounter += 1
-                Next
+                    'Adding empty sheets based on data table count
+                    For Each dataTable In dataTableCollection
+                        oBook.Worksheets.Add()
+                    Next
 
-                'Set final path
-                Dim fileName As String = "\Schedule" + ".xls"
-                Dim finalPath = f.SelectedPath + fileName
-                'Save file in final path
-                oBook.SaveAs(finalPath, XlFileFormat.xlWorkbookNormal, Type.Missing, Type.Missing, Type.Missing, Type.Missing, XlSaveAsAccessMode.xlExclusive, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing)
-                oBook.Close(False, Type.Missing, Type.Missing)
-                ReleaseObject(oBook)
-                oExcel.Quit()
-                ReleaseObject(oExcel)
-                'Some time Office application does not quit after automation: 
-                'so i am calling GC.Collect method.
-                GC.Collect()
+                    'Exports all data tables to corresponding data sheets.
+                    For Each dataTable In dataTableCollection
+                        oSheet = oBook.Worksheets(sheetCounter)
+                        oSheet.Name = dataTable.TableName
+                        If (dataTable.TableName = "WeeklyTable") Then
+                            getRoomColors(dataTable)
+                        End If
+                        exportDataSetToExcelWorksheet(dataTable, oSheet)
+                        sheetCounter += 1
+                    Next
 
-                MessageBox.Show("Export done successfully!")
-            End If
+                    'Set final path
+                    Dim fileName As String = "\Schedule" + ".xls"
+                    Dim finalPath = f.SelectedPath + fileName
+                    'Save file in final path
+                    oBook.SaveAs(finalPath, XlFileFormat.xlWorkbookNormal, Type.Missing, Type.Missing, Type.Missing, Type.Missing, XlSaveAsAccessMode.xlExclusive, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing)
+                    oBook.Close(False, Type.Missing, Type.Missing)
+                    ReleaseObject(oBook)
+                    oExcel.Quit()
+                    ReleaseObject(oExcel)
+                    'Some time Office application does not quit after automation: 
+                    'so i am calling GC.Collect method.
+                    GC.Collect()
+
+                    MessageBox.Show("Export done successfully!")
+                End If
+            Catch ex As Exception
+                MessageBox.Show(ex.Message, "Warning", MessageBoxButtons.OK)
+            End Try
         Catch ex As Exception
-            MessageBox.Show(ex.Message, "Warning", MessageBoxButtons.OK)
+            MsgBox("Unable to get any reports. Check to make sure at least one report exists.")
         End Try
     End Sub
 
@@ -219,13 +223,16 @@ Public Class frmReports
         Dim ds As New DataSet
         ds = sql.GetStoredProc("LoadScreenTermsAndYears")
 
-        For i As Integer = 0 To ds.Tables(0).Rows.Count - 1
-            cboTermAndYear.Items.Add(ds.Tables(0).Rows(i).Item("TermAndYear").ToString)
-            If str = ds.Tables(0).Rows(i).Item("TermAndYear").ToString Then
-                cboTermAndYear.Text = str
-            End If
-        Next
-
+        Try
+            For i As Integer = 0 To ds.Tables(0).Rows.Count - 1
+                cboTermAndYear.Items.Add(ds.Tables(0).Rows(i).Item("TermAndYear").ToString)
+                If str = ds.Tables(0).Rows(i).Item("TermAndYear").ToString Then
+                    cboTermAndYear.Text = str
+                End If
+            Next
+        Catch ex As Exception
+            MsgBox("Unable to get any reports. Check to make sure at least one report exists.")
+        End Try
     End Sub
 
     Private Sub IncColStart(ByVal day As String)
