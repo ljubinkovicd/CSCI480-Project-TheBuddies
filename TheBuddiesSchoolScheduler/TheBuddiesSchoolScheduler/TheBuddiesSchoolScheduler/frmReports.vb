@@ -39,6 +39,7 @@ Public Class frmReports
                     Dim oSheet As Excel.Worksheet
 
                     oExcel = CreateObject("Excel.Application")
+                    oExcel.DisplayAlerts = False
                     oBook = oExcel.Workbooks.Add(Type.Missing)
                     Dim dataTableCollection As System.Data.DataTableCollection = dataSet.Tables
                     Dim numberOfSheets As Integer = dataTableCollection.Count
@@ -572,7 +573,39 @@ Public Class frmReports
         Dim roomColors As Dictionary(Of String, Color) = g.GetRoomColors()
         Dim data As String
         Dim c As Color
+        Dim i As Integer
+        Dim j As Integer
+        Dim cellColumnName(26) As String
+        cellColumnName(1) = "A"
+        cellColumnName(2) = "B"
+        cellColumnName(3) = "C"
+        cellColumnName(4) = "D"
+        cellColumnName(5) = "E"
+        cellColumnName(6) = "F"
+        cellColumnName(7) = "G"
+        cellColumnName(8) = "H"
+        cellColumnName(9) = "I"
+        cellColumnName(10) = "J"
+        cellColumnName(11) = "K"
+        cellColumnName(12) = "L"
+        cellColumnName(13) = "M"
+        cellColumnName(14) = "N"
+        cellColumnName(15) = "O"
+        cellColumnName(16) = "P"
+        cellColumnName(17) = "Q"
+        cellColumnName(18) = "R"
+        cellColumnName(19) = "S"
+        cellColumnName(20) = "T"
+        cellColumnName(21) = "U"
+        cellColumnName(22) = "V"
+        cellColumnName(23) = "W"
+        cellColumnName(24) = "X"
+        cellColumnName(25) = "Y"
+        cellColumnName(26) = "Z"
 
+        Dim r As Excel.Range
+
+        r = CType(excelSheet.Columns("A:Z"), Excel.Range)
 
         'Export the Columns to excel file
         For Each dc In dt.Columns
@@ -588,6 +621,9 @@ Public Class frmReports
                 colIndex = colIndex + 1
                 If Not IsDBNull(dr(dc.ColumnName)) Then
                     excelSheet.Cells(rowIndex + 1, colIndex) = dr(dc.ColumnName)
+                    excelSheet.Cells(rowIndex + 1, colIndex).VerticalAlignment = Constants.xlCenter
+                    excelSheet.Cells(rowIndex + 1, colIndex).HorizontalAlignment = Constants.xlCenter
+
                     data = dr(dc.ColumnName).ToString()
                     If roomColors.ContainsKey(data) Then
                         c = roomColors(data)
@@ -597,7 +633,35 @@ Public Class frmReports
             Next
         Next
 
-        excelSheet.Columns.AutoFit()
+        Dim v As Object
+        Dim cellColor As Long
+        Dim lastColor As Long
+
+        For j = 2 To dt.Columns.Count
+            lastColor = RGB(0, 0, 0)
+
+            For i = 2 To dt.Rows.Count
+                v = excelSheet.Cells(i, j).Value()
+                If v IsNot Nothing Then
+                    cellColor = excelSheet.Cells(i, j).Interior.Color
+                    If cellColor = lastColor Then
+
+                        Dim range As String = cellColumnName(j).ToString + (i - 1).ToString + ":" + cellColumnName(j).ToString + i.ToString
+
+                        excelSheet.Range(range).Merge()
+                        excelSheet.Range(range).BorderAround2(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlMedium, Excel.XlColorIndex.xlColorIndexAutomatic)
+                    Else
+                    End If
+                    lastColor = cellColor
+                Else
+                    lastColor = RGB(0, 0, 0)
+                End If
+            Next
+        Next
+
+        r.ColumnWidth = 11.56
+        excelSheet.Columns.WrapText = True
+
         'Release the objects
         ReleaseObject(excelSheet)
     End Sub
