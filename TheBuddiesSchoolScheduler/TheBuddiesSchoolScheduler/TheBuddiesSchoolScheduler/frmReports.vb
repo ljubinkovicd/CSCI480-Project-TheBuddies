@@ -15,10 +15,10 @@ Public Class frmReports
     Dim satStart As Integer = 6
     Dim sunStart As Integer = 7
 
-    Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
+    Private Sub btnCancel_Click(sender As Object, e As EventArgs)
         Me.Close()
     End Sub
-    Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
+    Private Sub btnSave_Click(sender As Object, e As EventArgs)
         Me.Close()
     End Sub
     Private Sub ExportToExcel_Click(sender As Object, e As EventArgs) Handles ExportToExcel.Click
@@ -145,7 +145,7 @@ Public Class frmReports
         Dim profTable As New System.Data.DataTable
         Dim tempTable As New System.Data.DataTable
 
-        Dim termAndYear As String = lblTerm.Text
+        Dim termAndYear As String = cboTermAndYear.Text
         'temporary term and termyear
         Dim termArray As String() = termAndYear.Split(" ")
         Dim term As String = termArray(0)
@@ -213,7 +213,19 @@ Public Class frmReports
     Private Sub frmReports_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim g As New Globals
         Dim str As String = ""
-        lblTerm.Text = g.GetSemester(str)
+        str = g.GetSemester(str)
+
+        Dim sql As New SQLConnect
+        Dim ds As New DataSet
+        ds = sql.GetStoredProc("LoadScreenTermsAndYears")
+
+        For i As Integer = 0 To ds.Tables(0).Rows.Count - 1
+            cboTermAndYear.Items.Add(ds.Tables(0).Rows(i).Item("TermAndYear").ToString)
+            If str = ds.Tables(0).Rows(i).Item("TermAndYear").ToString Then
+                cboTermAndYear.Text = str
+            End If
+        Next
+
     End Sub
 
     Private Sub IncColStart(ByVal day As String)
