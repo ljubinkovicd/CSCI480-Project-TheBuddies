@@ -172,9 +172,9 @@ Public Class frmDatabaseMaintenance
             ds.Tables(0).Rows(index).Delete()
             cbDBData.DataSource = ds.Tables(0)
             cbDBData.ValueMember = "Course"
-            MessageBox.Show("The Course has been Removed successfully")
+            MessageBox.Show("The class has been Removed successfully")
         Else
-            MessageBox.Show("The Course has not been removed")
+            MessageBox.Show("The class has not been removed")
         End If
     End Sub
 
@@ -482,7 +482,7 @@ Public Class frmDatabaseMaintenance
         End If
 
         If passed Then
-            MessageBox.Show("Class was successfully edited in the database.")
+            MessageBox.Show("The class was successfully edited in the database.")
 
             ds = SQL.GetStoredProc("GetAllClasses")
 
@@ -537,7 +537,7 @@ Public Class frmDatabaseMaintenance
         End If
 
         If passed Then
-            MessageBox.Show("Class was successfully edited in the database.")
+            MessageBox.Show("The professor was successfully edited in the database.")
             ds = SQL.GetStoredProc("GetAllProfessors")
 
             cbEditProfSelectProf.DisplayMember = ds.Tables(0).Columns(0).ToString
@@ -722,7 +722,7 @@ Public Class frmDatabaseMaintenance
             comboRemoveRoom.ValueMember = ds.Tables(0).Columns(0).ToString
             comboRemoveRoom.DataSource = ds.Tables(0)
 
-            MessageBox.Show("The room has been Removed successfully")
+            MessageBox.Show("The room has been removed successfully")
         Else
             MessageBox.Show("The room has not been removed")
         End If
