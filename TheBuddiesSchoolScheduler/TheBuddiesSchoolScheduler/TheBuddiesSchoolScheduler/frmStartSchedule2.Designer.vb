@@ -22,6 +22,7 @@ Partial Class frmStartSchedule2
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmStartSchedule2))
         Me.Label1 = New System.Windows.Forms.Label()
         Me.btnNext = New System.Windows.Forms.Button()
         Me.btnCancel = New System.Windows.Forms.Button()
@@ -33,6 +34,7 @@ Partial Class frmStartSchedule2
         '
         'Label1
         '
+        Me.Label1.BackColor = System.Drawing.Color.Transparent
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 26.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.Location = New System.Drawing.Point(12, 23)
         Me.Label1.Name = "Label1"
@@ -78,6 +80,7 @@ Partial Class frmStartSchedule2
         'lblSemester
         '
         Me.lblSemester.AutoSize = True
+        Me.lblSemester.BackColor = System.Drawing.Color.Transparent
         Me.lblSemester.Location = New System.Drawing.Point(333, 52)
         Me.lblSemester.Name = "lblSemester"
         Me.lblSemester.Size = New System.Drawing.Size(39, 13)
@@ -88,6 +91,9 @@ Partial Class frmStartSchedule2
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackColor = System.Drawing.SystemColors.ControlLight
+        Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
+        Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(614, 608)
         Me.Controls.Add(Me.lblSemester)
         Me.Controls.Add(Me.TeacherGridView)

@@ -19,7 +19,7 @@
         frmStartSchedule1.Show()
     End Sub
 
-    Private Sub btnLoadSchedule_Click(sender As Object, e As EventArgs) Handles btnLoadSchedule.Click
+    Private Sub btnLoadSchedule_Click(sender As Object, e As EventArgs)
         frmReports.Show()
     End Sub
 

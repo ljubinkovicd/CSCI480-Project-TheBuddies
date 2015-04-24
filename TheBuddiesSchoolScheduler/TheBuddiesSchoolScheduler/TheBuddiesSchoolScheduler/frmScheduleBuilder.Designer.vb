@@ -23,6 +23,7 @@ Partial Class frmScheduleBuilder
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmScheduleBuilder))
         Me.Label1 = New System.Windows.Forms.Label()
         Me.btnSave = New System.Windows.Forms.Button()
         Me.btnCancel = New System.Windows.Forms.Button()
@@ -79,6 +80,7 @@ Partial Class frmScheduleBuilder
         '
         'Label1
         '
+        Me.Label1.BackColor = System.Drawing.Color.Transparent
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 26.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.Location = New System.Drawing.Point(21, 23)
         Me.Label1.Name = "Label1"
@@ -107,6 +109,8 @@ Partial Class frmScheduleBuilder
         'ClassesPanel
         '
         Me.ClassesPanel.AutoScroll = True
+        Me.ClassesPanel.BackColor = System.Drawing.Color.Transparent
+        Me.ClassesPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.ClassesPanel.Location = New System.Drawing.Point(28, 86)
         Me.ClassesPanel.Name = "ClassesPanel"
         Me.ClassesPanel.Size = New System.Drawing.Size(329, 561)
@@ -133,6 +137,7 @@ Partial Class frmScheduleBuilder
         'TableLayoutPanel1
         '
         Me.TableLayoutPanel1.AllowDrop = True
+        Me.TableLayoutPanel1.BackColor = System.Drawing.SystemColors.ControlLight
         Me.TableLayoutPanel1.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.[Single]
         Me.TableLayoutPanel1.ColumnCount = 7
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
@@ -141,7 +146,7 @@ Partial Class frmScheduleBuilder
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 81.0!))
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(427, 58)
         Me.TableLayoutPanel1.Margin = New System.Windows.Forms.Padding(2)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
@@ -180,6 +185,7 @@ Partial Class frmScheduleBuilder
         'Label2
         '
         Me.Label2.AutoSize = True
+        Me.Label2.BackColor = System.Drawing.Color.Transparent
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.Location = New System.Drawing.Point(390, 61)
         Me.Label2.Name = "Label2"
@@ -190,6 +196,7 @@ Partial Class frmScheduleBuilder
         'Label3
         '
         Me.Label3.AutoSize = True
+        Me.Label3.BackColor = System.Drawing.Color.Transparent
         Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.Location = New System.Drawing.Point(390, 82)
         Me.Label3.Name = "Label3"
@@ -200,6 +207,7 @@ Partial Class frmScheduleBuilder
         'Label4
         '
         Me.Label4.AutoSize = True
+        Me.Label4.BackColor = System.Drawing.Color.Transparent
         Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.Location = New System.Drawing.Point(390, 104)
         Me.Label4.Name = "Label4"
@@ -210,6 +218,7 @@ Partial Class frmScheduleBuilder
         'Label5
         '
         Me.Label5.AutoSize = True
+        Me.Label5.BackColor = System.Drawing.Color.Transparent
         Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.Location = New System.Drawing.Point(383, 166)
         Me.Label5.Name = "Label5"
@@ -220,6 +229,7 @@ Partial Class frmScheduleBuilder
         'Label6
         '
         Me.Label6.AutoSize = True
+        Me.Label6.BackColor = System.Drawing.Color.Transparent
         Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label6.Location = New System.Drawing.Point(383, 145)
         Me.Label6.Name = "Label6"
@@ -230,6 +240,7 @@ Partial Class frmScheduleBuilder
         'Label7
         '
         Me.Label7.AutoSize = True
+        Me.Label7.BackColor = System.Drawing.Color.Transparent
         Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label7.Location = New System.Drawing.Point(390, 125)
         Me.Label7.Name = "Label7"
@@ -240,6 +251,7 @@ Partial Class frmScheduleBuilder
         'Label8
         '
         Me.Label8.AutoSize = True
+        Me.Label8.BackColor = System.Drawing.Color.Transparent
         Me.Label8.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label8.Location = New System.Drawing.Point(390, 292)
         Me.Label8.Name = "Label8"
@@ -250,6 +262,7 @@ Partial Class frmScheduleBuilder
         'Label9
         '
         Me.Label9.AutoSize = True
+        Me.Label9.BackColor = System.Drawing.Color.Transparent
         Me.Label9.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label9.Location = New System.Drawing.Point(390, 271)
         Me.Label9.Name = "Label9"
@@ -260,6 +273,7 @@ Partial Class frmScheduleBuilder
         'Label10
         '
         Me.Label10.AutoSize = True
+        Me.Label10.BackColor = System.Drawing.Color.Transparent
         Me.Label10.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label10.Location = New System.Drawing.Point(383, 250)
         Me.Label10.Name = "Label10"
@@ -270,6 +284,7 @@ Partial Class frmScheduleBuilder
         'Label11
         '
         Me.Label11.AutoSize = True
+        Me.Label11.BackColor = System.Drawing.Color.Transparent
         Me.Label11.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label11.Location = New System.Drawing.Point(383, 229)
         Me.Label11.Name = "Label11"
@@ -280,6 +295,7 @@ Partial Class frmScheduleBuilder
         'Label12
         '
         Me.Label12.AutoSize = True
+        Me.Label12.BackColor = System.Drawing.Color.Transparent
         Me.Label12.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label12.Location = New System.Drawing.Point(383, 208)
         Me.Label12.Name = "Label12"
@@ -290,6 +306,7 @@ Partial Class frmScheduleBuilder
         'Label13
         '
         Me.Label13.AutoSize = True
+        Me.Label13.BackColor = System.Drawing.Color.Transparent
         Me.Label13.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label13.Location = New System.Drawing.Point(383, 187)
         Me.Label13.Name = "Label13"
@@ -299,6 +316,7 @@ Partial Class frmScheduleBuilder
         '
         'lblMonday
         '
+        Me.lblMonday.BackColor = System.Drawing.Color.Transparent
         Me.lblMonday.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.lblMonday.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblMonday.Location = New System.Drawing.Point(429, 28)
@@ -320,6 +338,7 @@ Partial Class frmScheduleBuilder
         '
         'lbldragToggle
         '
+        Me.lbldragToggle.BackColor = System.Drawing.Color.Transparent
         Me.lbldragToggle.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbldragToggle.Location = New System.Drawing.Point(363, 57)
         Me.lbldragToggle.Name = "lbldragToggle"
@@ -330,6 +349,7 @@ Partial Class frmScheduleBuilder
         '
         'lblTuesday
         '
+        Me.lblTuesday.BackColor = System.Drawing.Color.Transparent
         Me.lblTuesday.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.lblTuesday.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblTuesday.Location = New System.Drawing.Point(501, 28)
@@ -341,6 +361,7 @@ Partial Class frmScheduleBuilder
         '
         'lblWednesday
         '
+        Me.lblWednesday.BackColor = System.Drawing.Color.Transparent
         Me.lblWednesday.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.lblWednesday.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblWednesday.Location = New System.Drawing.Point(572, 28)
@@ -352,6 +373,7 @@ Partial Class frmScheduleBuilder
         '
         'lblThursday
         '
+        Me.lblThursday.BackColor = System.Drawing.Color.Transparent
         Me.lblThursday.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.lblThursday.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblThursday.Location = New System.Drawing.Point(644, 28)
@@ -363,6 +385,7 @@ Partial Class frmScheduleBuilder
         '
         'lblFriday
         '
+        Me.lblFriday.BackColor = System.Drawing.Color.Transparent
         Me.lblFriday.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.lblFriday.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblFriday.Location = New System.Drawing.Point(715, 28)
@@ -374,6 +397,7 @@ Partial Class frmScheduleBuilder
         '
         'lblSaturday
         '
+        Me.lblSaturday.BackColor = System.Drawing.Color.Transparent
         Me.lblSaturday.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.lblSaturday.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblSaturday.Location = New System.Drawing.Point(785, 28)
@@ -385,6 +409,7 @@ Partial Class frmScheduleBuilder
         '
         'lblSunday
         '
+        Me.lblSunday.BackColor = System.Drawing.Color.Transparent
         Me.lblSunday.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.lblSunday.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblSunday.Location = New System.Drawing.Point(854, 28)
@@ -417,6 +442,7 @@ Partial Class frmScheduleBuilder
         'Label14
         '
         Me.Label14.AutoSize = True
+        Me.Label14.BackColor = System.Drawing.Color.Transparent
         Me.Label14.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label14.Location = New System.Drawing.Point(390, 544)
         Me.Label14.Name = "Label14"
@@ -427,6 +453,7 @@ Partial Class frmScheduleBuilder
         'Label15
         '
         Me.Label15.AutoSize = True
+        Me.Label15.BackColor = System.Drawing.Color.Transparent
         Me.Label15.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label15.Location = New System.Drawing.Point(390, 523)
         Me.Label15.Name = "Label15"
@@ -437,6 +464,7 @@ Partial Class frmScheduleBuilder
         'Label16
         '
         Me.Label16.AutoSize = True
+        Me.Label16.BackColor = System.Drawing.Color.Transparent
         Me.Label16.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label16.Location = New System.Drawing.Point(390, 502)
         Me.Label16.Name = "Label16"
@@ -447,6 +475,7 @@ Partial Class frmScheduleBuilder
         'Label17
         '
         Me.Label17.AutoSize = True
+        Me.Label17.BackColor = System.Drawing.Color.Transparent
         Me.Label17.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label17.Location = New System.Drawing.Point(390, 481)
         Me.Label17.Name = "Label17"
@@ -457,6 +486,7 @@ Partial Class frmScheduleBuilder
         'Label18
         '
         Me.Label18.AutoSize = True
+        Me.Label18.BackColor = System.Drawing.Color.Transparent
         Me.Label18.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label18.Location = New System.Drawing.Point(390, 460)
         Me.Label18.Name = "Label18"
@@ -467,6 +497,7 @@ Partial Class frmScheduleBuilder
         'Label19
         '
         Me.Label19.AutoSize = True
+        Me.Label19.BackColor = System.Drawing.Color.Transparent
         Me.Label19.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label19.Location = New System.Drawing.Point(390, 439)
         Me.Label19.Name = "Label19"
@@ -477,6 +508,7 @@ Partial Class frmScheduleBuilder
         'Label20
         '
         Me.Label20.AutoSize = True
+        Me.Label20.BackColor = System.Drawing.Color.Transparent
         Me.Label20.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label20.Location = New System.Drawing.Point(390, 418)
         Me.Label20.Name = "Label20"
@@ -487,6 +519,7 @@ Partial Class frmScheduleBuilder
         'Label21
         '
         Me.Label21.AutoSize = True
+        Me.Label21.BackColor = System.Drawing.Color.Transparent
         Me.Label21.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label21.Location = New System.Drawing.Point(390, 397)
         Me.Label21.Name = "Label21"
@@ -497,6 +530,7 @@ Partial Class frmScheduleBuilder
         'Label27
         '
         Me.Label27.AutoSize = True
+        Me.Label27.BackColor = System.Drawing.Color.Transparent
         Me.Label27.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label27.Location = New System.Drawing.Point(390, 376)
         Me.Label27.Name = "Label27"
@@ -507,6 +541,7 @@ Partial Class frmScheduleBuilder
         'Label28
         '
         Me.Label28.AutoSize = True
+        Me.Label28.BackColor = System.Drawing.Color.Transparent
         Me.Label28.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label28.Location = New System.Drawing.Point(390, 355)
         Me.Label28.Name = "Label28"
@@ -517,6 +552,7 @@ Partial Class frmScheduleBuilder
         'Label29
         '
         Me.Label29.AutoSize = True
+        Me.Label29.BackColor = System.Drawing.Color.Transparent
         Me.Label29.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label29.Location = New System.Drawing.Point(390, 334)
         Me.Label29.Name = "Label29"
@@ -527,6 +563,7 @@ Partial Class frmScheduleBuilder
         'Label30
         '
         Me.Label30.AutoSize = True
+        Me.Label30.BackColor = System.Drawing.Color.Transparent
         Me.Label30.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label30.Location = New System.Drawing.Point(390, 313)
         Me.Label30.Name = "Label30"
@@ -537,6 +574,7 @@ Partial Class frmScheduleBuilder
         'Label31
         '
         Me.Label31.AutoSize = True
+        Me.Label31.BackColor = System.Drawing.Color.Transparent
         Me.Label31.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label31.Location = New System.Drawing.Point(390, 628)
         Me.Label31.Name = "Label31"
@@ -547,6 +585,7 @@ Partial Class frmScheduleBuilder
         'Label32
         '
         Me.Label32.AutoSize = True
+        Me.Label32.BackColor = System.Drawing.Color.Transparent
         Me.Label32.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label32.Location = New System.Drawing.Point(390, 607)
         Me.Label32.Name = "Label32"
@@ -557,6 +596,7 @@ Partial Class frmScheduleBuilder
         'Label33
         '
         Me.Label33.AutoSize = True
+        Me.Label33.BackColor = System.Drawing.Color.Transparent
         Me.Label33.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label33.Location = New System.Drawing.Point(390, 586)
         Me.Label33.Name = "Label33"
@@ -567,6 +607,7 @@ Partial Class frmScheduleBuilder
         'Label34
         '
         Me.Label34.AutoSize = True
+        Me.Label34.BackColor = System.Drawing.Color.Transparent
         Me.Label34.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label34.Location = New System.Drawing.Point(390, 565)
         Me.Label34.Name = "Label34"
@@ -577,6 +618,7 @@ Partial Class frmScheduleBuilder
         'lblSemester
         '
         Me.lblSemester.AutoSize = True
+        Me.lblSemester.BackColor = System.Drawing.Color.Transparent
         Me.lblSemester.Location = New System.Drawing.Point(318, 23)
         Me.lblSemester.Name = "lblSemester"
         Me.lblSemester.Size = New System.Drawing.Size(39, 13)
@@ -599,6 +641,9 @@ Partial Class frmScheduleBuilder
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoScroll = True
+        Me.BackColor = System.Drawing.SystemColors.ControlLight
+        Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
+        Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1146, 765)
         Me.Controls.Add(Me.dgvLegend)
         Me.Controls.Add(Me.lblSemester)
