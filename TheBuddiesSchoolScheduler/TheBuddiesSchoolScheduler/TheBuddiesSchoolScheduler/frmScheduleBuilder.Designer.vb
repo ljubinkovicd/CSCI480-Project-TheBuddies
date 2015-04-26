@@ -45,15 +45,12 @@ Partial Class frmScheduleBuilder
         Me.Label12 = New System.Windows.Forms.Label()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.lblMonday = New System.Windows.Forms.Label()
-        Me.btnToggleDrag = New System.Windows.Forms.Button()
-        Me.lbldragToggle = New System.Windows.Forms.Label()
         Me.lblTuesday = New System.Windows.Forms.Label()
         Me.lblWednesday = New System.Windows.Forms.Label()
         Me.lblThursday = New System.Windows.Forms.Label()
         Me.lblFriday = New System.Windows.Forms.Label()
         Me.lblSaturday = New System.Windows.Forms.Label()
         Me.lblSunday = New System.Windows.Forms.Label()
-        Me.btnRemCol = New System.Windows.Forms.Button()
         Me.dgvTeacherTotals = New System.Windows.Forms.DataGridView()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.Label15 = New System.Windows.Forms.Label()
@@ -67,7 +64,6 @@ Partial Class frmScheduleBuilder
         Me.Label28 = New System.Windows.Forms.Label()
         Me.Label29 = New System.Windows.Forms.Label()
         Me.Label30 = New System.Windows.Forms.Label()
-        Me.Label31 = New System.Windows.Forms.Label()
         Me.Label32 = New System.Windows.Forms.Label()
         Me.Label33 = New System.Windows.Forms.Label()
         Me.Label34 = New System.Windows.Forms.Label()
@@ -146,11 +142,11 @@ Partial Class frmScheduleBuilder
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 81.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 82.0!))
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(427, 58)
         Me.TableLayoutPanel1.Margin = New System.Windows.Forms.Padding(2)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
-        Me.TableLayoutPanel1.RowCount = 28
+        Me.TableLayoutPanel1.RowCount = 27
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
@@ -178,8 +174,7 @@ Partial Class frmScheduleBuilder
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(490, 589)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(490, 565)
         Me.TableLayoutPanel1.TabIndex = 37
         '
         'Label2
@@ -326,27 +321,6 @@ Partial Class frmScheduleBuilder
         Me.lblMonday.Text = "Monday"
         Me.lblMonday.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'btnToggleDrag
-        '
-        Me.btnToggleDrag.Location = New System.Drawing.Point(282, 54)
-        Me.btnToggleDrag.Name = "btnToggleDrag"
-        Me.btnToggleDrag.Size = New System.Drawing.Size(75, 23)
-        Me.btnToggleDrag.TabIndex = 52
-        Me.btnToggleDrag.Text = "Toggle Drag"
-        Me.btnToggleDrag.UseVisualStyleBackColor = True
-        Me.btnToggleDrag.Visible = False
-        '
-        'lbldragToggle
-        '
-        Me.lbldragToggle.BackColor = System.Drawing.Color.Transparent
-        Me.lbldragToggle.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbldragToggle.Location = New System.Drawing.Point(363, 57)
-        Me.lbldragToggle.Name = "lbldragToggle"
-        Me.lbldragToggle.Size = New System.Drawing.Size(29, 20)
-        Me.lbldragToggle.TabIndex = 53
-        Me.lbldragToggle.Text = "Off"
-        Me.lbldragToggle.Visible = False
-        '
         'lblTuesday
         '
         Me.lblTuesday.BackColor = System.Drawing.Color.Transparent
@@ -418,16 +392,6 @@ Partial Class frmScheduleBuilder
         Me.lblSunday.TabIndex = 59
         Me.lblSunday.Text = "Sunday"
         Me.lblSunday.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'btnRemCol
-        '
-        Me.btnRemCol.Location = New System.Drawing.Point(590, 2)
-        Me.btnRemCol.Name = "btnRemCol"
-        Me.btnRemCol.Size = New System.Drawing.Size(100, 23)
-        Me.btnRemCol.TabIndex = 60
-        Me.btnRemCol.Text = "Remove Column"
-        Me.btnRemCol.UseVisualStyleBackColor = True
-        Me.btnRemCol.Visible = False
         '
         'dgvTeacherTotals
         '
@@ -571,17 +535,6 @@ Partial Class frmScheduleBuilder
         Me.Label30.TabIndex = 62
         Me.Label30.Text = "2:00"
         '
-        'Label31
-        '
-        Me.Label31.AutoSize = True
-        Me.Label31.BackColor = System.Drawing.Color.Transparent
-        Me.Label31.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label31.Location = New System.Drawing.Point(390, 628)
-        Me.Label31.Name = "Label31"
-        Me.Label31.Size = New System.Drawing.Size(32, 16)
-        Me.Label31.TabIndex = 77
-        Me.Label31.Text = "9:30"
-        '
         'Label32
         '
         Me.Label32.AutoSize = True
@@ -648,7 +601,6 @@ Partial Class frmScheduleBuilder
         Me.Controls.Add(Me.dgvLegend)
         Me.Controls.Add(Me.lblSemester)
         Me.Controls.Add(Me.dgvTeacherTotals)
-        Me.Controls.Add(Me.Label31)
         Me.Controls.Add(Me.Label32)
         Me.Controls.Add(Me.Label33)
         Me.Controls.Add(Me.Label34)
@@ -664,15 +616,12 @@ Partial Class frmScheduleBuilder
         Me.Controls.Add(Me.Label28)
         Me.Controls.Add(Me.Label29)
         Me.Controls.Add(Me.Label30)
-        Me.Controls.Add(Me.btnRemCol)
         Me.Controls.Add(Me.lblSunday)
         Me.Controls.Add(Me.lblSaturday)
         Me.Controls.Add(Me.lblFriday)
         Me.Controls.Add(Me.lblThursday)
         Me.Controls.Add(Me.lblWednesday)
         Me.Controls.Add(Me.lblTuesday)
-        Me.Controls.Add(Me.lbldragToggle)
-        Me.Controls.Add(Me.btnToggleDrag)
         Me.Controls.Add(Me.lblMonday)
         Me.Controls.Add(Me.Label8)
         Me.Controls.Add(Me.Label9)
@@ -722,15 +671,12 @@ Partial Class frmScheduleBuilder
     Friend WithEvents Label13 As System.Windows.Forms.Label
     Friend WithEvents lblMonday As System.Windows.Forms.Label
     Friend WithEvents RemoveToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents btnToggleDrag As System.Windows.Forms.Button
-    Friend WithEvents lbldragToggle As System.Windows.Forms.Label
     Friend WithEvents lblTuesday As System.Windows.Forms.Label
     Friend WithEvents lblWednesday As System.Windows.Forms.Label
     Friend WithEvents lblThursday As System.Windows.Forms.Label
     Friend WithEvents lblFriday As System.Windows.Forms.Label
     Friend WithEvents lblSaturday As System.Windows.Forms.Label
     Friend WithEvents lblSunday As System.Windows.Forms.Label
-    Friend WithEvents btnRemCol As System.Windows.Forms.Button
     Friend WithEvents dgvTeacherTotals As System.Windows.Forms.DataGridView
     Friend WithEvents Label14 As System.Windows.Forms.Label
     Friend WithEvents Label15 As System.Windows.Forms.Label
@@ -744,7 +690,6 @@ Partial Class frmScheduleBuilder
     Friend WithEvents Label28 As System.Windows.Forms.Label
     Friend WithEvents Label29 As System.Windows.Forms.Label
     Friend WithEvents Label30 As System.Windows.Forms.Label
-    Friend WithEvents Label31 As System.Windows.Forms.Label
     Friend WithEvents Label32 As System.Windows.Forms.Label
     Friend WithEvents Label33 As System.Windows.Forms.Label
     Friend WithEvents Label34 As System.Windows.Forms.Label

@@ -9,20 +9,21 @@ Imports System.Text
 Imports System.Threading.Tasks
 
 Public Class frmScheduleBuilder
-    Const tlpCol As Integer = 70
-    Const tlpRow As Integer = 20
-    Const tlpRowCount As Integer = 28
-    Const lblHeight As Integer = 70
-    Const lblWidth As Integer = 70
+    Const tlpCol As Integer = 70        'The table layout panel column width
+    Const tlpRow As Integer = 20        'The table layout panel row height
+    Const tlpRowCount As Integer = 27   'Number of rows in the table layout panel
+    Const lblHeight As Integer = 70     'Height of the starting labels
+    Const lblWidth As Integer = 70      'Width of the starting labels
 
-    Dim CursorX, CursorY As Integer
-    Dim Dragging As Boolean = False
-    Dim controlPoint As Point
-    'Dim dragToggle As Boolean = False
-    Dim addedColList As New List(Of Integer)
-    Dim daysdt As New DataTable
-    Dim time(tlpRowCount) As Integer
+    Dim CursorX, CursorY As Integer     'cursor positions
+    Dim Dragging As Boolean = False     'determines if we are currently dragging a label
+    Dim controlPoint As Point           'point of the cursor
+    Dim daysdt As New DataTable         'the main datatable to determine the table layout panel size and columns
+    Dim time(tlpRowCount) As Integer    'time array for all of the possible times
     Dim labelDropNewColumn As Boolean = False 'determines whether or not to add a new column when using the edit screen
+
+    'Most dragging functionality was retrieved from:
+    'http://www.xtremevbtalk.com/showthread.php?t=298184
 
     Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
         Me.Close()
@@ -32,23 +33,20 @@ Public Class frmScheduleBuilder
         frmTeacherSchedule.Show()
     End Sub
 
-    'Private Sub Label13_Click(sender As Object, e As EventArgs)
-    '    frmClassSpecs.Show()
-    'End Sub
-
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
         frmReports.Show()
         Me.Close()
     End Sub
 
     Private Sub frmScheduleBuilder_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Dim g As New Globals
         'set the semester label
+        Dim g As New Globals
         Dim str As String = ""
         lblSemester.Text = g.GetSemester(str)
         Dim term As String = lblSemester.Text.Substring(0, lblSemester.Text.IndexOf(" "))
         Dim termYear As String = lblSemester.Text.Substring(lblSemester.Text.IndexOf(" ") + 1)
 
+        'Get all of the classes for this semester from the schedule table and create labels for them
         Dim sql As New SQLConnect
         Dim ds As New DataSet
         ds = sql.GetStoredProc("GetScheduleForLabels " + "'" + term + "', '" + termYear + "'")
@@ -80,6 +78,7 @@ Public Class frmScheduleBuilder
 
             lbls(i).Font = New Font(lbls(i).Font, FontStyle.Bold)
 
+            'can be placed better, but this places the labels in the classes panel in three columns
             If position = "left" Then
                 lbls(i).Left = 20
                 position = "center"
@@ -100,8 +99,8 @@ Public Class frmScheduleBuilder
         initializeDaysDt()
         initializeTime()
 
+        'Getting the teacher totals and legend datagridviews
         getTeacherTotals()
-        'dgvTeacherTotals.DataSource = daysdt
         getLegend()
 
     End Sub
@@ -110,6 +109,7 @@ Public Class frmScheduleBuilder
         Dim lbl = cmsRightClick.SourceControl.Name.ToString
         Dim g As New Globals
 
+        'if we are coming from a temp label
         If lbl.Substring(0, 4) = "temp" Then
             lbl = lbl.Remove(0, 5)
             lbl = "lbl" + lbl
@@ -195,23 +195,6 @@ Public Class frmScheduleBuilder
 
     Private Sub labelDown(sender As System.Object, e As System.Windows.Forms.MouseEventArgs)
         If e.Button = Windows.Forms.MouseButtons.Left Then
-            'If dragToggle Then
-            '    Dragging = True
-
-            '    Dim lbl As Label = DirectCast(sender, Label)
-            '    Dim mousePoint As Point = Cursor.Position ' mouse position in screen coordinates
-
-            '    controlPoint = lbl.PointToClient(mousePoint) ' offset from (0, 0) in label coordinates
-
-            '    ' This is the location of the label's (0, 0) in screen coordinates.
-            '    Dim screenLoc As Point = New Point(mousePoint.X - controlPoint.X, mousePoint.Y - controlPoint.Y)
-
-            '    lbl.Location = ClassesPanel.PointToClient(screenLoc)
-
-            '    ' Note positions of cursor when pressed
-            '    CursorX = e.X
-            '    CursorY = e.Y
-            'Else
             Dim lbl As Label = DirectCast(sender, Label)
             Dim mousePoint As Point = Cursor.Position ' mouse position in screen coordinates
 
@@ -230,12 +213,7 @@ Public Class frmScheduleBuilder
             ' Set the flag
             Dragging = True
 
-            ' Note positions of cursor when pressed
-            'CursorX = e.X
-            'CursorY = e.Y
         End If
-        'End If
-        'dgvTeacherTotals.DataSource = daysdt
     End Sub
 
     Private Sub labelUp(sender As System.Object, e As System.Windows.Forms.MouseEventArgs)
@@ -243,9 +221,6 @@ Public Class frmScheduleBuilder
             cmsRightClick.Show()
             Dragging = False
         ElseIf Dragging Then
-            'If dragToggle Then
-            '    Dragging = False
-            'Else
             Dim mouseLocation As Point = Cursor.Position ' mouse location in screen coordinates
             Dim formLocation As Point = Me.PointToClient(mouseLocation) ' form coordinates
             Dim pos As New TableLayoutPanelCellPosition(0, 0)
@@ -324,8 +299,6 @@ Public Class frmScheduleBuilder
         End If
     End Sub
 
-    Dim ptOriginal As Point = Point.Empty
-
     Private Function GetCellCoordinates() As TableLayoutPanelCellPosition
         Dim pos As New TableLayoutPanelCellPosition(0, 0)
 
@@ -373,16 +346,6 @@ Public Class frmScheduleBuilder
 
     End Function
 
-    Private Sub btnToggleDrag_Click(sender As Object, e As EventArgs) Handles btnToggleDrag.Click
-        'If dragToggle Then
-        '    dragToggle = False
-        '    lbldragToggle.Text = "Off"
-        'Else
-        '    dragToggle = True
-        '    lbldragToggle.Text = "On"
-        'End If
-    End Sub
-
     Private Function dropLabelPos()
         Dim pos As New TableLayoutPanelCellPosition(0, 0)
         'determine if there is anything in that cell before placing it
@@ -420,7 +383,6 @@ Public Class frmScheduleBuilder
 
             labelDropNewColumn = True
         End If
-        'End If
         Return pos
     End Function
 
@@ -508,6 +470,7 @@ Public Class frmScheduleBuilder
         Next
     End Sub
 
+    'below function was replaced by RemColFromDaysDTAuto
     Private Sub RemColFromDaysDT(ByVal c As Integer)
         Dim hasMoreThanOneCol As Boolean = False
         'check to see if there is only one column for this day
@@ -627,22 +590,6 @@ Public Class frmScheduleBuilder
                 'MsgBox("Cannot remove column. There is not more than one for this day.")
             End If
         End If
-        'dgvTeacherTotals.DataSource = daysdt
-    End Sub
-
-    Private Sub btnRemCol_Click(sender As Object, e As EventArgs) Handles btnRemCol.Click
-
-        Dim c As Integer = 0
-
-        Dim s = InputBox("Type in the column to remove (0 is first column)", "Remove Column", "1")
-        Try
-            If s <> "" Then
-                c = CType(s, Integer)
-                RemColFromDaysDT(c)
-            End If
-        Catch ex As Exception
-            MsgBox("Incorrect value. Try again.")
-        End Try
     End Sub
 
     Private Function calcStartTime(ByVal c As Integer, ByVal r As Integer)
@@ -651,36 +598,38 @@ Public Class frmScheduleBuilder
 
     Private Function calcEndTime(ByVal c As Integer, ByVal r As Integer, ByVal lbl As Label)
         Dim endTime As Integer = 0
-        Dim s As String = ""
+        Try
+            Dim s As String = ""
 
-        For Each dr As DataRow In daysdt.Rows
-            If dr.Item("ColStart") <= c AndAlso c <= dr.Item("ColStart") + (dr.Item("NumCol") - 1) Then
-                s = dr.Item("DayOfWeek").ToString
+            For Each dr As DataRow In daysdt.Rows
+                If dr.Item("ColStart") <= c AndAlso c <= dr.Item("ColStart") + (dr.Item("NumCol") - 1) Then
+                    s = dr.Item("DayOfWeek").ToString
+                End If
+            Next
+
+            If s = "Monday" Or s = "Wednesday" Or s = "Friday" Then
+                endTime = time(r + 2)
+                TableLayoutPanel1.SetRowSpan(lbl, 2)
+            ElseIf s = "Tuesday" Or s = "Thursday" Then
+                endTime = time(r + 3)
+                TableLayoutPanel1.SetRowSpan(lbl, 3)
+            Else
+                endTime = time(r + 2)
+                TableLayoutPanel1.SetRowSpan(lbl, 2)
             End If
-        Next
-
-        If s = "Monday" Or s = "Wednesday" Or s = "Friday" Then
-            endTime = time(r + 2)
-            TableLayoutPanel1.SetRowSpan(lbl, 2)
-        ElseIf s = "Tuesday" Or s = "Thursday" Then
-            endTime = time(r + 3)
-            TableLayoutPanel1.SetRowSpan(lbl, 3)
-        Else
-            endTime = time(r + 2)
-            TableLayoutPanel1.SetRowSpan(lbl, 2)
-        End If
+        Catch ex As Exception
+            endTime = time(r + 1)
+        End Try
 
         Return endTime
     End Function
 
     Private Sub editMenuChanges(ByVal lbl As String)
-        'if either the time or day has change, need to reflect in table
+        'try to get stuff from the changedt table from the previous screen, if there is an error, then nothing was changed
         Dim g As New Globals
         Dim changeDT As New DataTable
         changeDT = g.GetDT(changeDT)
         Try
-            'If changeDT.Rows(0).Item("ChangeTime").ToString = "True" Or changeDT.Rows(0).Item("ChangeDay").ToString = "True" Then
-            'If changeDT.Rows(0).Item("ChangeLabel").ToString = "True" Then
             Dim startTime = CType(changeDT.Rows(0).Item("StartTime").ToString, Integer)
             Dim endTime = CType(changeDT.Rows(0).Item("EndTime").ToString, Integer)
             Dim days = changeDT.Rows(0).Item("Days").ToString
@@ -749,6 +698,7 @@ Public Class frmScheduleBuilder
                     End If
                 Next
 
+                'find the label and remove it from wherever it is
                 label = CType(TableLayoutPanel1.Controls(lbl), Label)
                 If label Is Nothing Then
                     label = CType(ClassesPanel.Controls(lbl), Label)
@@ -787,7 +737,6 @@ Public Class frmScheduleBuilder
                     MsgBox("Select a day to move the class")
                 End If
             End If
-            'End If
             labelDropNewColumn = False
         Catch ex As Exception
             MsgBox(ex.Message.ToString)
@@ -924,6 +873,7 @@ Public Class frmScheduleBuilder
     End Sub
 
     Private Sub dgvLegend_SelectionChanged(sender As Object, e As EventArgs) Handles dgvLegend.SelectionChanged
+        'don't allow a cell to be selected, it changes the color
         dgvLegend.ClearSelection()
     End Sub
 

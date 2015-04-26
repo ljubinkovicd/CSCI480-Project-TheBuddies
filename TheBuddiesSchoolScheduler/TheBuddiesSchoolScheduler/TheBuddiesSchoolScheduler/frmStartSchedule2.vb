@@ -150,8 +150,4 @@ Public Class frmStartSchedule2
 
         Return tempdt
     End Function
-
-    Private Function IfNullObj(p1 As Object) As Object
-        Throw New NotImplementedException
-    End Function
 End Class

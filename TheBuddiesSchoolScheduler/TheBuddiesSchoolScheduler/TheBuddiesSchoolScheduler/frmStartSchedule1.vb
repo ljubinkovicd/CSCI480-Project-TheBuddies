@@ -91,20 +91,17 @@ Public Class frmStartSchedule1
             Next
             cboSemester.SelectedText = "Spring " + thisYear.ToString
 
-            '** need to not allow her to edit any of the data grid views
-
             ClassListGridView.AllowUserToAddRows = False
             ClassListGridView.AllowUserToDeleteRows = False
-            '.AllowUserToOrderColumns = False
-            '.AllowUserToResizeColumns = False
             ClassListGridView.AllowUserToResizeRows = False
-            '.AutoGenerateColumns = False
         Catch ex As Exception
             MsgBox("Error loading data")
         End Try
     End Sub
 
     Private Sub ClassListGridView_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles ClassListGridView.CellEndEdit
+        'check to see if the text is numeric, if not remove the text
+        '** for some reason the current cell code is  not working
         Dim t = ClassListGridView.Rows(e.RowIndex).Cells(e.ColumnIndex).Value
         If Not IsNumeric(t) Then
             ClassListGridView.Rows(e.RowIndex).Cells(e.ColumnIndex).Value = 0
