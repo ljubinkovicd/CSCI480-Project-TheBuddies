@@ -28,6 +28,40 @@
     End Sub
 
     Private Sub btnReports_Click(sender As Object, e As EventArgs) Handles btnReports.Click
+        Dim g As New Globals
+
+        Dim sql As New SQLConnect
+        Dim ds As DataSet = sql.GetStoredProc("GetRooms")
+        Dim colorCollection As Dictionary(Of String, Color) = New Dictionary(Of String, Color)
+        Dim roomColorCollection As Dictionary(Of String, Color) = New Dictionary(Of String, Color)
+        Dim roomColor As Color
+        Dim roomNumber As String
+        Dim roomName As String
+
+        'dgvLegend.DataSource = ds.Tables(0)
+        'dgvLegend.Columns("RoomID").Visible = False
+        'dgvLegend.RowHeadersVisible = False
+        'dgvLegend.Columns("RoomColor").Visible = False
+        'dgvLegend.Columns("TextColor").Visible = False
+        'dgvLegend.Columns("RoomName").SortMode = DataGridViewColumnSortMode.NotSortable
+        'dgvLegend.DefaultCellStyle.Font = New Font(dgvLegend.Font, FontStyle.Bold)
+
+        'dgvLegend.AllowUserToAddRows = False
+        'dgvLegend.AllowUserToDeleteRows = False
+        'dgvLegend.AllowUserToResizeRows = False
+
+        For Each gr As DataRow In ds.Tables(0).Rows
+            Dim c As Int32 = Convert.ToInt32(Trim(gr("RoomColor").ToString))
+            roomName = gr("RoomName").ToString
+            roomNumber = Trim(gr("RoomID").ToString)
+            roomColor = Color.FromArgb(c)
+            colorCollection.Add(roomNumber, roomColor)
+            roomColorCollection.Add(roomName, roomColor)
+        Next
+
+        g.SetRoomColors(colorCollection)
+        g.SetRoomNumberColors(roomColorCollection)
+
         frmReports.Show()
     End Sub
 

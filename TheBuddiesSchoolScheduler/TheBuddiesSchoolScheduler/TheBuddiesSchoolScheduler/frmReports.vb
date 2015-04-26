@@ -22,6 +22,8 @@ Public Class frmReports
         Me.Close()
     End Sub
     Private Sub ExportToExcel_Click(sender As Object, e As EventArgs) Handles ExportToExcel.Click
+        ExportToExcel.Enabled = False
+
         Try
             'Initialize the objects before use
             Dim dataAdapter As New SqlClient.SqlDataAdapter()
@@ -84,6 +86,8 @@ Public Class frmReports
         Catch ex As Exception
             MsgBox("Unable to get any reports. Check to make sure at least one report exists.")
         End Try
+
+        ExportToExcel.Enabled = True
     End Sub
 
     Private Sub getRoomColors(ByVal dt As System.Data.DataTable)
@@ -115,7 +119,7 @@ Public Class frmReports
                 If Not String.IsNullOrEmpty(data) Then
                     dataStrings = data.Split(" ")
                     roomNum = dataStrings(0)
-                    dataInfo = data.Substring(2)
+                    dataInfo = data.Substring(2).Trim
                     If roomColors.ContainsKey(roomNum) Then
                         c = roomColors.Item(roomNum)
                         If Not dictionary.ContainsKey(dataInfo) Then
@@ -624,7 +628,7 @@ Public Class frmReports
                     excelSheet.Cells(rowIndex + 1, colIndex).VerticalAlignment = Constants.xlCenter
                     excelSheet.Cells(rowIndex + 1, colIndex).HorizontalAlignment = Constants.xlCenter
 
-                    data = dr(dc.ColumnName).ToString()
+                    data = dr(dc.ColumnName).ToString().Trim
                     If roomColors.ContainsKey(data) Then
                         c = roomColors(data)
                         excelSheet.Cells(rowIndex + 1, colIndex).Interior.Color = c
@@ -662,8 +666,23 @@ Public Class frmReports
         r.ColumnWidth = 11.56
         excelSheet.Columns.WrapText = True
 
+        Dim roomNumberColors As Dictionary(Of String, Color) = g.GetRoomNumberColors()
+        Dim roomNum As String
+        ' Put keys into List Of String.
+        Dim roomNumbers As New List(Of String)(roomNumberColors.Keys)
+        Dim rowNum As Integer = dt.Rows.Count + 5
+        Dim colNum As Integer = 2
+
+        For Each roomNum In roomNumbers
+            c = roomNumberColors.Item(roomNum)
+            excelSheet.Cells(rowNum, colNum).Value = roomNum
+            excelSheet.Cells(rowNum, colNum).Interior.Color = c
+            colNum += 1
+        Next
+
         'Release the objects
         ReleaseObject(excelSheet)
+
     End Sub
 
     Private Function changeMilitaryTime(ByVal mainds As DataSet)

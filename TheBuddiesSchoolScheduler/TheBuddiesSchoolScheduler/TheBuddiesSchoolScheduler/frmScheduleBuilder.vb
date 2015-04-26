@@ -840,8 +840,10 @@ Public Class frmScheduleBuilder
         Dim sql As New SQLConnect
         Dim ds As DataSet = sql.GetStoredProc("GetRooms")
         Dim colorCollection As Dictionary(Of String, Color) = New Dictionary(Of String, Color)
+        Dim roomColorCollection As Dictionary(Of String, Color) = New Dictionary(Of String, Color)
         Dim roomColor As Color
         Dim roomNumber As String
+        Dim roomName As String
 
         dgvLegend.DataSource = ds.Tables(0)
         dgvLegend.Columns("RoomID").Visible = False
@@ -857,9 +859,11 @@ Public Class frmScheduleBuilder
 
         For Each gr As DataGridViewRow In dgvLegend.Rows
             Dim c As Int32 = Convert.ToInt32(Trim(gr.DataBoundItem("RoomColor").ToString))
+            roomName = gr.DataBoundItem("RoomName").ToString
             roomNumber = Trim(gr.DataBoundItem("RoomID").ToString)
             roomColor = Color.FromArgb(c)
             colorCollection.Add(roomNumber, roomColor)
+            roomColorCollection.Add(roomName, roomColor)
             gr.Cells("RoomName").Style.BackColor = roomColor
             If gr.DataBoundItem("TextColor").ToString = "W" Then
                 gr.Cells("RoomName").Style.ForeColor = Color.White
@@ -869,6 +873,7 @@ Public Class frmScheduleBuilder
         Next
 
         g.SetRoomColors(colorCollection)
+        g.SetRoomNumberColors(roomColorCollection)
 
     End Sub
 
