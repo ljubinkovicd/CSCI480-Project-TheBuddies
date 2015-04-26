@@ -81,10 +81,9 @@ Partial Class frmStartSchedule2
         '
         Me.lblSemester.AutoSize = True
         Me.lblSemester.BackColor = System.Drawing.Color.Transparent
-        Me.lblSemester.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblSemester.Location = New System.Drawing.Point(409, 35)
+        Me.lblSemester.Location = New System.Drawing.Point(333, 52)
         Me.lblSemester.Name = "lblSemester"
-        Me.lblSemester.Size = New System.Drawing.Size(77, 25)
+        Me.lblSemester.Size = New System.Drawing.Size(39, 13)
         Me.lblSemester.TabIndex = 73
         Me.lblSemester.Text = "Label2"
         '
@@ -104,7 +103,7 @@ Partial Class frmStartSchedule2
         Me.Controls.Add(Me.Label1)
         Me.Name = "frmStartSchedule2"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "The Buddies School Scheduler"
+        Me.Text = "The Buddies Easy Scheduler"
         CType(Me.TeacherGridView, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()

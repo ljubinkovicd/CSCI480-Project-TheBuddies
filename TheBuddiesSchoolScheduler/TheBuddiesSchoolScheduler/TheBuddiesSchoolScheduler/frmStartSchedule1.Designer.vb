@@ -47,7 +47,7 @@ Partial Class frmStartSchedule1
         Me.Label2.AutoSize = True
         Me.Label2.BackColor = System.Drawing.Color.Transparent
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(430, 18)
+        Me.Label2.Location = New System.Drawing.Point(265, 23)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(78, 20)
         Me.Label2.TabIndex = 2
@@ -56,25 +56,25 @@ Partial Class frmStartSchedule1
         'cboSemester
         '
         Me.cboSemester.FormattingEnabled = True
-        Me.cboSemester.Location = New System.Drawing.Point(434, 41)
+        Me.cboSemester.Location = New System.Drawing.Point(269, 46)
         Me.cboSemester.Name = "cboSemester"
         Me.cboSemester.Size = New System.Drawing.Size(121, 21)
         Me.cboSemester.TabIndex = 3
         '
         'btnCancel
         '
-        Me.btnCancel.Location = New System.Drawing.Point(69, 555)
+        Me.btnCancel.Location = New System.Drawing.Point(219, 573)
         Me.btnCancel.Name = "btnCancel"
-        Me.btnCancel.Size = New System.Drawing.Size(213, 41)
+        Me.btnCancel.Size = New System.Drawing.Size(151, 23)
         Me.btnCancel.TabIndex = 42
         Me.btnCancel.Text = "Cancel"
         Me.btnCancel.UseVisualStyleBackColor = True
         '
         'btnNext
         '
-        Me.btnNext.Location = New System.Drawing.Point(351, 555)
+        Me.btnNext.Location = New System.Drawing.Point(420, 573)
         Me.btnNext.Name = "btnNext"
-        Me.btnNext.Size = New System.Drawing.Size(213, 41)
+        Me.btnNext.Size = New System.Drawing.Size(151, 23)
         Me.btnNext.TabIndex = 43
         Me.btnNext.Text = "Next"
         Me.btnNext.UseVisualStyleBackColor = True
@@ -102,7 +102,7 @@ Partial Class frmStartSchedule1
         Me.Controls.Add(Me.Label1)
         Me.Name = "frmStartSchedule1"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "The Buddies School Scheduler"
+        Me.Text = "The Buddies Easy Scheduler"
         CType(Me.ClassListGridView, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
