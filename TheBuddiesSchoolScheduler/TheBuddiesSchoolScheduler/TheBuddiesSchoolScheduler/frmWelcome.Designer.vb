@@ -102,7 +102,7 @@ Partial Class frmWelcome
         Me.Controls.Add(Me.Label1)
         Me.Name = "frmWelcome"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "The Buddies Easy Scheduler"
+        Me.Text = "The Buddies School Scheduler"
         Me.ResumeLayout(False)
 
     End Sub
