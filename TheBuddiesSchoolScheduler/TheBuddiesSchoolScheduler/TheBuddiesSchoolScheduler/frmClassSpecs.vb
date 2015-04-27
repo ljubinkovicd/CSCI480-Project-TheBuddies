@@ -15,10 +15,6 @@ Public Class frmClassSpecs
 
     Dim times As New List(Of String) 'list of the times as strings for the conversion from military to normal
 
-    Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
-        Me.Close()
-    End Sub
-
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
         'get all of the input from the form and determine if something has been changed, if so add it to the database
         Try
