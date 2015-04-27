@@ -96,7 +96,7 @@ Public Class frmReports
 
         Dim dictionary As Dictionary(Of String, Color) = New Dictionary(Of String, Color)
 
-        Dim dc As System.Data.DataColumn
+        'Dim dc As System.Data.DataColumn
         Dim dr As System.Data.DataRow
         Dim colIndex As Integer = 0
         Dim rowIndex As Integer = 0

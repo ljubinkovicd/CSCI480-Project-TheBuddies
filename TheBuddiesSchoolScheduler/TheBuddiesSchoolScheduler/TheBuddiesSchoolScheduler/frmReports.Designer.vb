@@ -22,6 +22,7 @@ Partial Class frmReports
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmReports))
         Me.Label1 = New System.Windows.Forms.Label()
         Me.ExportToExcel = New System.Windows.Forms.Button()
         Me.cboTermAndYear = New System.Windows.Forms.ComboBox()
@@ -29,6 +30,7 @@ Partial Class frmReports
         '
         'Label1
         '
+        Me.Label1.BackColor = System.Drawing.Color.Transparent
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 26.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.Location = New System.Drawing.Point(21, 23)
         Me.Label1.Name = "Label1"
@@ -38,32 +40,35 @@ Partial Class frmReports
         '
         'ExportToExcel
         '
-        Me.ExportToExcel.Location = New System.Drawing.Point(106, 140)
+        Me.ExportToExcel.BackColor = System.Drawing.SystemColors.ControlLight
+        Me.ExportToExcel.Location = New System.Drawing.Point(97, 154)
         Me.ExportToExcel.Name = "ExportToExcel"
-        Me.ExportToExcel.Size = New System.Drawing.Size(97, 29)
+        Me.ExportToExcel.Size = New System.Drawing.Size(180, 50)
         Me.ExportToExcel.TabIndex = 50
         Me.ExportToExcel.Text = "Print to Excel"
-        Me.ExportToExcel.UseVisualStyleBackColor = True
+        Me.ExportToExcel.UseVisualStyleBackColor = False
         '
         'cboTermAndYear
         '
         Me.cboTermAndYear.FormattingEnabled = True
-        Me.cboTermAndYear.Location = New System.Drawing.Point(95, 89)
+        Me.cboTermAndYear.Location = New System.Drawing.Point(78, 102)
         Me.cboTermAndYear.Name = "cboTermAndYear"
-        Me.cboTermAndYear.Size = New System.Drawing.Size(121, 21)
+        Me.cboTermAndYear.Size = New System.Drawing.Size(220, 21)
         Me.cboTermAndYear.TabIndex = 56
         '
         'frmReports
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(325, 202)
+        Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
+        Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.ClientSize = New System.Drawing.Size(377, 263)
         Me.Controls.Add(Me.cboTermAndYear)
         Me.Controls.Add(Me.ExportToExcel)
         Me.Controls.Add(Me.Label1)
         Me.Name = "frmReports"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "The Buddies Easy Scheduler"
+        Me.Text = "The Buddies School Scheduler"
         Me.ResumeLayout(False)
 
     End Sub
