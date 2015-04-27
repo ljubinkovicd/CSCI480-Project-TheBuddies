@@ -15,12 +15,6 @@ Public Class frmReports
     Dim satStart As Integer = 6
     Dim sunStart As Integer = 7
 
-    Private Sub btnCancel_Click(sender As Object, e As EventArgs)
-        Me.Close()
-    End Sub
-    Private Sub btnSave_Click(sender As Object, e As EventArgs)
-        Me.Close()
-    End Sub
     Private Sub ExportToExcel_Click(sender As Object, e As EventArgs) Handles ExportToExcel.Click
         ExportToExcel.Enabled = False
 
@@ -96,7 +90,7 @@ Public Class frmReports
 
         Dim dictionary As Dictionary(Of String, Color) = New Dictionary(Of String, Color)
 
-        Dim dc As System.Data.DataColumn
+        'Dim dc As System.Data.DataColumn
         Dim dr As System.Data.DataRow
         Dim colIndex As Integer = 0
         Dim rowIndex As Integer = 0

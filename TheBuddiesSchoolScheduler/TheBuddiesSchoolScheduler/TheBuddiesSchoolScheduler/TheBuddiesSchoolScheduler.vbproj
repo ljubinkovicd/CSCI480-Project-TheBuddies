@@ -82,9 +82,7 @@
     <Compile Include="frmClassSpecs.Designer.vb">
       <DependentUpon>frmClassSpecs.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmClassSpecs.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="frmClassSpecs.vb" />
     <Compile Include="frmDatabaseMaintenance.Designer.vb">
       <DependentUpon>frmDatabaseMaintenance.vb</DependentUpon>
     </Compile>
@@ -119,18 +117,6 @@
       <DependentUpon>frmStartSchedule1.vb</DependentUpon>
     </Compile>
     <Compile Include="frmStartSchedule1.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmTeacherSchedule.Designer.vb">
-      <DependentUpon>frmTeacherSchedule.vb</DependentUpon>
-    </Compile>
-    <Compile Include="frmTeacherSchedule.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmTeacherSpecs.Designer.vb">
-      <DependentUpon>frmTeacherSpecs.vb</DependentUpon>
-    </Compile>
-    <Compile Include="frmTeacherSpecs.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmWelcome.vb">
@@ -185,12 +171,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmStartSchedule2.resx">
       <DependentUpon>frmStartSchedule2.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmTeacherSchedule.resx">
-      <DependentUpon>frmTeacherSchedule.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmTeacherSpecs.resx">
-      <DependentUpon>frmTeacherSpecs.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmWelcome.resx">
       <DependentUpon>frmWelcome.vb</DependentUpon>

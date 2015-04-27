@@ -29,7 +29,11 @@ Partial Class frmStartSchedule2
         Me.btnBack = New System.Windows.Forms.Button()
         Me.TeacherGridView = New System.Windows.Forms.DataGridView()
         Me.lblSemester = New System.Windows.Forms.Label()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         CType(Me.TeacherGridView, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label1
@@ -44,27 +48,27 @@ Partial Class frmStartSchedule2
         '
         'btnNext
         '
-        Me.btnNext.Location = New System.Drawing.Point(414, 573)
+        Me.btnNext.Location = New System.Drawing.Point(407, 538)
         Me.btnNext.Name = "btnNext"
-        Me.btnNext.Size = New System.Drawing.Size(151, 23)
+        Me.btnNext.Size = New System.Drawing.Size(150, 46)
         Me.btnNext.TabIndex = 71
         Me.btnNext.Text = "Next"
         Me.btnNext.UseVisualStyleBackColor = True
         '
         'btnCancel
         '
-        Me.btnCancel.Location = New System.Drawing.Point(213, 573)
+        Me.btnCancel.Location = New System.Drawing.Point(232, 538)
         Me.btnCancel.Name = "btnCancel"
-        Me.btnCancel.Size = New System.Drawing.Size(151, 23)
+        Me.btnCancel.Size = New System.Drawing.Size(150, 46)
         Me.btnCancel.TabIndex = 70
         Me.btnCancel.Text = "Cancel"
         Me.btnCancel.UseVisualStyleBackColor = True
         '
         'btnBack
         '
-        Me.btnBack.Location = New System.Drawing.Point(12, 573)
+        Me.btnBack.Location = New System.Drawing.Point(57, 538)
         Me.btnBack.Name = "btnBack"
-        Me.btnBack.Size = New System.Drawing.Size(151, 23)
+        Me.btnBack.Size = New System.Drawing.Size(150, 46)
         Me.btnBack.TabIndex = 69
         Me.btnBack.Text = "Back"
         Me.btnBack.UseVisualStyleBackColor = True
@@ -72,20 +76,43 @@ Partial Class frmStartSchedule2
         'TeacherGridView
         '
         Me.TeacherGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.TeacherGridView.Location = New System.Drawing.Point(158, 106)
+        Me.TeacherGridView.Location = New System.Drawing.Point(232, 83)
         Me.TeacherGridView.Name = "TeacherGridView"
-        Me.TeacherGridView.Size = New System.Drawing.Size(229, 426)
+        Me.TeacherGridView.Size = New System.Drawing.Size(150, 426)
         Me.TeacherGridView.TabIndex = 72
         '
         'lblSemester
         '
         Me.lblSemester.AutoSize = True
         Me.lblSemester.BackColor = System.Drawing.Color.Transparent
-        Me.lblSemester.Location = New System.Drawing.Point(333, 52)
+        Me.lblSemester.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblSemester.Location = New System.Drawing.Point(409, 35)
         Me.lblSemester.Name = "lblSemester"
-        Me.lblSemester.Size = New System.Drawing.Size(39, 13)
+        Me.lblSemester.Size = New System.Drawing.Size(77, 25)
         Me.lblSemester.TabIndex = 73
         Me.lblSemester.Text = "Label2"
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.BackColor = System.Drawing.Color.Transparent
+        Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), System.Drawing.Image)
+        Me.PictureBox1.Location = New System.Drawing.Point(407, 134)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(195, 305)
+        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox1.TabIndex = 74
+        Me.PictureBox1.TabStop = False
+        '
+        'PictureBox2
+        '
+        Me.PictureBox2.BackColor = System.Drawing.Color.Transparent
+        Me.PictureBox2.Image = CType(resources.GetObject("PictureBox2.Image"), System.Drawing.Image)
+        Me.PictureBox2.Location = New System.Drawing.Point(12, 134)
+        Me.PictureBox2.Name = "PictureBox2"
+        Me.PictureBox2.Size = New System.Drawing.Size(195, 305)
+        Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox2.TabIndex = 75
+        Me.PictureBox2.TabStop = False
         '
         'frmStartSchedule2
         '
@@ -95,6 +122,8 @@ Partial Class frmStartSchedule2
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(614, 608)
+        Me.Controls.Add(Me.PictureBox2)
+        Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.lblSemester)
         Me.Controls.Add(Me.TeacherGridView)
         Me.Controls.Add(Me.btnNext)
@@ -103,8 +132,10 @@ Partial Class frmStartSchedule2
         Me.Controls.Add(Me.Label1)
         Me.Name = "frmStartSchedule2"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "The Buddies Easy Scheduler"
+        Me.Text = "The Buddies School Scheduler"
         CType(Me.TeacherGridView, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -115,4 +146,6 @@ Partial Class frmStartSchedule2
     Friend WithEvents btnBack As System.Windows.Forms.Button
     Friend WithEvents TeacherGridView As System.Windows.Forms.DataGridView
     Friend WithEvents lblSemester As System.Windows.Forms.Label
+    Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
+    Friend WithEvents PictureBox2 As System.Windows.Forms.PictureBox
 End Class

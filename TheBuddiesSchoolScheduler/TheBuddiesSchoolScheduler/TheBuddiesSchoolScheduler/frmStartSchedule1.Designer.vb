@@ -47,34 +47,34 @@ Partial Class frmStartSchedule1
         Me.Label2.AutoSize = True
         Me.Label2.BackColor = System.Drawing.Color.Transparent
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(265, 23)
+        Me.Label2.Location = New System.Drawing.Point(359, 39)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(78, 20)
+        Me.Label2.Size = New System.Drawing.Size(82, 20)
         Me.Label2.TabIndex = 2
-        Me.Label2.Text = "Semester"
+        Me.Label2.Text = "Semester:"
         '
         'cboSemester
         '
         Me.cboSemester.FormattingEnabled = True
-        Me.cboSemester.Location = New System.Drawing.Point(269, 46)
+        Me.cboSemester.Location = New System.Drawing.Point(462, 41)
         Me.cboSemester.Name = "cboSemester"
         Me.cboSemester.Size = New System.Drawing.Size(121, 21)
         Me.cboSemester.TabIndex = 3
         '
         'btnCancel
         '
-        Me.btnCancel.Location = New System.Drawing.Point(219, 573)
+        Me.btnCancel.Location = New System.Drawing.Point(88, 552)
         Me.btnCancel.Name = "btnCancel"
-        Me.btnCancel.Size = New System.Drawing.Size(151, 23)
+        Me.btnCancel.Size = New System.Drawing.Size(196, 44)
         Me.btnCancel.TabIndex = 42
         Me.btnCancel.Text = "Cancel"
         Me.btnCancel.UseVisualStyleBackColor = True
         '
         'btnNext
         '
-        Me.btnNext.Location = New System.Drawing.Point(420, 573)
+        Me.btnNext.Location = New System.Drawing.Point(332, 552)
         Me.btnNext.Name = "btnNext"
-        Me.btnNext.Size = New System.Drawing.Size(151, 23)
+        Me.btnNext.Size = New System.Drawing.Size(196, 44)
         Me.btnNext.TabIndex = 43
         Me.btnNext.Text = "Next"
         Me.btnNext.UseVisualStyleBackColor = True
@@ -82,9 +82,9 @@ Partial Class frmStartSchedule1
         'ClassListGridView
         '
         Me.ClassListGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.ClassListGridView.Location = New System.Drawing.Point(28, 88)
+        Me.ClassListGridView.Location = New System.Drawing.Point(43, 84)
         Me.ClassListGridView.Name = "ClassListGridView"
-        Me.ClassListGridView.Size = New System.Drawing.Size(569, 447)
+        Me.ClassListGridView.Size = New System.Drawing.Size(540, 447)
         Me.ClassListGridView.TabIndex = 64
         '
         'frmStartSchedule1
@@ -93,7 +93,7 @@ Partial Class frmStartSchedule1
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.ClientSize = New System.Drawing.Size(643, 608)
+        Me.ClientSize = New System.Drawing.Size(630, 608)
         Me.Controls.Add(Me.ClassListGridView)
         Me.Controls.Add(Me.btnNext)
         Me.Controls.Add(Me.btnCancel)
@@ -102,7 +102,7 @@ Partial Class frmStartSchedule1
         Me.Controls.Add(Me.Label1)
         Me.Name = "frmStartSchedule1"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "The Buddies Easy Scheduler"
+        Me.Text = "The Buddies School Scheduler"
         CType(Me.ClassListGridView, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
