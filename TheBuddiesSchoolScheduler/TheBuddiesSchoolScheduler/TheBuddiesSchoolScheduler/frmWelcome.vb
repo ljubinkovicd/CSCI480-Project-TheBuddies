@@ -19,6 +19,10 @@
         frmStartSchedule1.Show()
     End Sub
 
+    Private Sub btnLoadSchedule_Click(sender As Object, e As EventArgs)
+        frmReports.Show()
+    End Sub
+
     Private Sub btnDatabaseMaintenance_Click(sender As Object, e As EventArgs) Handles btnDatabaseMaintenance.Click
         frmDatabaseMaintenance.Show()
     End Sub

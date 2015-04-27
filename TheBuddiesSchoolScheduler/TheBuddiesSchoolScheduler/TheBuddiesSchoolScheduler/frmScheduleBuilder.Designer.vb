@@ -78,7 +78,7 @@ Partial Class frmScheduleBuilder
         '
         Me.Label1.BackColor = System.Drawing.Color.Transparent
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 26.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(21, 13)
+        Me.Label1.Location = New System.Drawing.Point(21, 23)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(282, 43)
         Me.Label1.TabIndex = 3
@@ -86,18 +86,18 @@ Partial Class frmScheduleBuilder
         '
         'btnSave
         '
-        Me.btnSave.Location = New System.Drawing.Point(477, 674)
+        Me.btnSave.Location = New System.Drawing.Point(567, 699)
         Me.btnSave.Name = "btnSave"
-        Me.btnSave.Size = New System.Drawing.Size(165, 48)
+        Me.btnSave.Size = New System.Drawing.Size(75, 23)
         Me.btnSave.TabIndex = 34
         Me.btnSave.Text = "Save"
         Me.btnSave.UseVisualStyleBackColor = True
         '
         'btnCancel
         '
-        Me.btnCancel.Location = New System.Drawing.Point(715, 674)
+        Me.btnCancel.Location = New System.Drawing.Point(680, 699)
         Me.btnCancel.Name = "btnCancel"
-        Me.btnCancel.Size = New System.Drawing.Size(165, 48)
+        Me.btnCancel.Size = New System.Drawing.Size(75, 23)
         Me.btnCancel.TabIndex = 35
         Me.btnCancel.Text = "Cancel"
         Me.btnCancel.UseVisualStyleBackColor = True
@@ -142,7 +142,7 @@ Partial Class frmScheduleBuilder
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 83.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 82.0!))
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(427, 58)
         Me.TableLayoutPanel1.Margin = New System.Windows.Forms.Padding(2)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
@@ -400,7 +400,7 @@ Partial Class frmScheduleBuilder
         Me.dgvTeacherTotals.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvTeacherTotals.Location = New System.Drawing.Point(28, 653)
         Me.dgvTeacherTotals.Name = "dgvTeacherTotals"
-        Me.dgvTeacherTotals.Size = New System.Drawing.Size(203, 112)
+        Me.dgvTeacherTotals.Size = New System.Drawing.Size(216, 105)
         Me.dgvTeacherTotals.TabIndex = 61
         '
         'Label14
@@ -572,10 +572,9 @@ Partial Class frmScheduleBuilder
         '
         Me.lblSemester.AutoSize = True
         Me.lblSemester.BackColor = System.Drawing.Color.Transparent
-        Me.lblSemester.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblSemester.Location = New System.Drawing.Point(317, 29)
+        Me.lblSemester.Location = New System.Drawing.Point(318, 23)
         Me.lblSemester.Name = "lblSemester"
-        Me.lblSemester.Size = New System.Drawing.Size(57, 20)
+        Me.lblSemester.Size = New System.Drawing.Size(39, 13)
         Me.lblSemester.TabIndex = 78
         Me.lblSemester.Text = "Label2"
         '
@@ -584,10 +583,10 @@ Partial Class frmScheduleBuilder
         Me.dgvLegend.AllowUserToAddRows = False
         Me.dgvLegend.AllowUserToDeleteRows = False
         Me.dgvLegend.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvLegend.Location = New System.Drawing.Point(259, 653)
+        Me.dgvLegend.Location = New System.Drawing.Point(282, 653)
         Me.dgvLegend.Name = "dgvLegend"
         Me.dgvLegend.ReadOnly = True
-        Me.dgvLegend.Size = New System.Drawing.Size(119, 105)
+        Me.dgvLegend.Size = New System.Drawing.Size(126, 105)
         Me.dgvLegend.TabIndex = 79
         '
         'frmScheduleBuilder
@@ -598,7 +597,7 @@ Partial Class frmScheduleBuilder
         Me.BackColor = System.Drawing.SystemColors.ControlLight
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.ClientSize = New System.Drawing.Size(1091, 765)
+        Me.ClientSize = New System.Drawing.Size(1146, 765)
         Me.Controls.Add(Me.dgvLegend)
         Me.Controls.Add(Me.lblSemester)
         Me.Controls.Add(Me.dgvTeacherTotals)
@@ -643,7 +642,7 @@ Partial Class frmScheduleBuilder
         Me.Controls.Add(Me.Label1)
         Me.Name = "frmScheduleBuilder"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "The Buddies School Scheduler"
+        Me.Text = "The Buddies Easy Scheduler"
         Me.cmsRightClick.ResumeLayout(False)
         CType(Me.dgvTeacherTotals, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dgvLegend, System.ComponentModel.ISupportInitialize).EndInit()
