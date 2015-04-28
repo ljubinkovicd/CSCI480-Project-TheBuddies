@@ -45,10 +45,10 @@ Partial Class frmWelcome
         Me.btnStartSchedule.BackColor = System.Drawing.SystemColors.ControlLight
         Me.btnStartSchedule.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnStartSchedule.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnStartSchedule.Location = New System.Drawing.Point(143, 96)
+        Me.btnStartSchedule.Location = New System.Drawing.Point(138, 96)
         Me.btnStartSchedule.Name = "btnStartSchedule"
         Me.btnStartSchedule.Size = New System.Drawing.Size(294, 58)
-        Me.btnStartSchedule.TabIndex = 1
+        Me.btnStartSchedule.TabIndex = 0
         Me.btnStartSchedule.Text = "Start Schedule"
         Me.btnStartSchedule.UseVisualStyleBackColor = False
         '
@@ -57,10 +57,10 @@ Partial Class frmWelcome
         Me.btnDatabaseMaintenance.BackColor = System.Drawing.SystemColors.ControlLight
         Me.btnDatabaseMaintenance.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnDatabaseMaintenance.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnDatabaseMaintenance.Location = New System.Drawing.Point(143, 170)
+        Me.btnDatabaseMaintenance.Location = New System.Drawing.Point(138, 170)
         Me.btnDatabaseMaintenance.Name = "btnDatabaseMaintenance"
         Me.btnDatabaseMaintenance.Size = New System.Drawing.Size(294, 58)
-        Me.btnDatabaseMaintenance.TabIndex = 3
+        Me.btnDatabaseMaintenance.TabIndex = 1
         Me.btnDatabaseMaintenance.Text = "Database Maintenance"
         Me.btnDatabaseMaintenance.UseVisualStyleBackColor = False
         '
@@ -69,10 +69,10 @@ Partial Class frmWelcome
         Me.btnReports.BackColor = System.Drawing.SystemColors.ControlLight
         Me.btnReports.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnReports.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnReports.Location = New System.Drawing.Point(143, 249)
+        Me.btnReports.Location = New System.Drawing.Point(138, 249)
         Me.btnReports.Name = "btnReports"
         Me.btnReports.Size = New System.Drawing.Size(294, 58)
-        Me.btnReports.TabIndex = 4
+        Me.btnReports.TabIndex = 2
         Me.btnReports.Text = "Reports"
         Me.btnReports.UseVisualStyleBackColor = False
         '
@@ -81,10 +81,10 @@ Partial Class frmWelcome
         Me.btnLogOut.BackColor = System.Drawing.SystemColors.ControlLight
         Me.btnLogOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnLogOut.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnLogOut.Location = New System.Drawing.Point(143, 330)
+        Me.btnLogOut.Location = New System.Drawing.Point(138, 330)
         Me.btnLogOut.Name = "btnLogOut"
         Me.btnLogOut.Size = New System.Drawing.Size(294, 58)
-        Me.btnLogOut.TabIndex = 5
+        Me.btnLogOut.TabIndex = 3
         Me.btnLogOut.Text = "Log Out"
         Me.btnLogOut.UseVisualStyleBackColor = False
         '

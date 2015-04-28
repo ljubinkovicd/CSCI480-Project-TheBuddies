@@ -51,7 +51,7 @@ Partial Class frmStartSchedule2
         Me.btnNext.Location = New System.Drawing.Point(414, 548)
         Me.btnNext.Name = "btnNext"
         Me.btnNext.Size = New System.Drawing.Size(151, 48)
-        Me.btnNext.TabIndex = 71
+        Me.btnNext.TabIndex = 3
         Me.btnNext.Text = "Next"
         Me.btnNext.UseVisualStyleBackColor = True
         '
@@ -60,7 +60,7 @@ Partial Class frmStartSchedule2
         Me.btnCancel.Location = New System.Drawing.Point(232, 548)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(151, 48)
-        Me.btnCancel.TabIndex = 70
+        Me.btnCancel.TabIndex = 2
         Me.btnCancel.Text = "Cancel"
         Me.btnCancel.UseVisualStyleBackColor = True
         '
@@ -69,17 +69,17 @@ Partial Class frmStartSchedule2
         Me.btnBack.Location = New System.Drawing.Point(50, 548)
         Me.btnBack.Name = "btnBack"
         Me.btnBack.Size = New System.Drawing.Size(151, 48)
-        Me.btnBack.TabIndex = 69
+        Me.btnBack.TabIndex = 1
         Me.btnBack.Text = "Back"
         Me.btnBack.UseVisualStyleBackColor = True
         '
         'TeacherGridView
         '
         Me.TeacherGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.TeacherGridView.Location = New System.Drawing.Point(222, 89)
+        Me.TeacherGridView.Location = New System.Drawing.Point(221, 91)
         Me.TeacherGridView.Name = "TeacherGridView"
-        Me.TeacherGridView.Size = New System.Drawing.Size(170, 426)
-        Me.TeacherGridView.TabIndex = 72
+        Me.TeacherGridView.Size = New System.Drawing.Size(172, 426)
+        Me.TeacherGridView.TabIndex = 0
         '
         'lblSemester
         '
@@ -96,7 +96,7 @@ Partial Class frmStartSchedule2
         '
         Me.PictureBox1.BackColor = System.Drawing.Color.Transparent
         Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), System.Drawing.Image)
-        Me.PictureBox1.Location = New System.Drawing.Point(12, 140)
+        Me.PictureBox1.Location = New System.Drawing.Point(12, 132)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(189, 344)
         Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -107,7 +107,7 @@ Partial Class frmStartSchedule2
         '
         Me.PictureBox2.BackColor = System.Drawing.Color.Transparent
         Me.PictureBox2.Image = CType(resources.GetObject("PictureBox2.Image"), System.Drawing.Image)
-        Me.PictureBox2.Location = New System.Drawing.Point(413, 140)
+        Me.PictureBox2.Location = New System.Drawing.Point(413, 132)
         Me.PictureBox2.Name = "PictureBox2"
         Me.PictureBox2.Size = New System.Drawing.Size(189, 344)
         Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage

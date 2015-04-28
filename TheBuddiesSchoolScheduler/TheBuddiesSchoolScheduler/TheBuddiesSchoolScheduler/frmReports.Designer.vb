@@ -44,7 +44,7 @@ Partial Class frmReports
         Me.ExportToExcel.Location = New System.Drawing.Point(97, 154)
         Me.ExportToExcel.Name = "ExportToExcel"
         Me.ExportToExcel.Size = New System.Drawing.Size(180, 50)
-        Me.ExportToExcel.TabIndex = 50
+        Me.ExportToExcel.TabIndex = 1
         Me.ExportToExcel.Text = "Print to Excel"
         Me.ExportToExcel.UseVisualStyleBackColor = False
         '
@@ -54,7 +54,7 @@ Partial Class frmReports
         Me.cboTermAndYear.Location = New System.Drawing.Point(78, 102)
         Me.cboTermAndYear.Name = "cboTermAndYear"
         Me.cboTermAndYear.Size = New System.Drawing.Size(220, 21)
-        Me.cboTermAndYear.TabIndex = 56
+        Me.cboTermAndYear.TabIndex = 0
         '
         'frmReports
         '

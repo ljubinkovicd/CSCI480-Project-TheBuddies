@@ -48,7 +48,7 @@ Partial Class frmLogin
         'UsernameLabel
         '
         Me.UsernameLabel.BackColor = System.Drawing.Color.Transparent
-        Me.UsernameLabel.Location = New System.Drawing.Point(171, 104)
+        Me.UsernameLabel.Location = New System.Drawing.Point(171, 105)
         Me.UsernameLabel.Name = "UsernameLabel"
         Me.UsernameLabel.Size = New System.Drawing.Size(220, 23)
         Me.UsernameLabel.TabIndex = 0
@@ -58,7 +58,7 @@ Partial Class frmLogin
         'PasswordLabel
         '
         Me.PasswordLabel.BackColor = System.Drawing.Color.Transparent
-        Me.PasswordLabel.Location = New System.Drawing.Point(171, 151)
+        Me.PasswordLabel.Location = New System.Drawing.Point(171, 152)
         Me.PasswordLabel.Name = "PasswordLabel"
         Me.PasswordLabel.Size = New System.Drawing.Size(220, 23)
         Me.PasswordLabel.TabIndex = 2
@@ -68,7 +68,7 @@ Partial Class frmLogin
         'txtUser
         '
         Me.txtUser.BackColor = System.Drawing.SystemColors.ControlLight
-        Me.txtUser.Location = New System.Drawing.Point(171, 129)
+        Me.txtUser.Location = New System.Drawing.Point(171, 130)
         Me.txtUser.Name = "txtUser"
         Me.txtUser.Size = New System.Drawing.Size(220, 20)
         Me.txtUser.TabIndex = 2
@@ -76,7 +76,7 @@ Partial Class frmLogin
         'txtPassword
         '
         Me.txtPassword.BackColor = System.Drawing.SystemColors.ControlLight
-        Me.txtPassword.Location = New System.Drawing.Point(171, 176)
+        Me.txtPassword.Location = New System.Drawing.Point(171, 177)
         Me.txtPassword.Name = "txtPassword"
         Me.txtPassword.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.txtPassword.Size = New System.Drawing.Size(220, 20)
@@ -85,10 +85,10 @@ Partial Class frmLogin
         'OK
         '
         Me.OK.BackColor = System.Drawing.SystemColors.ControlLight
-        Me.OK.Location = New System.Drawing.Point(197, 239)
+        Me.OK.Location = New System.Drawing.Point(197, 240)
         Me.OK.Name = "OK"
         Me.OK.Size = New System.Drawing.Size(94, 23)
-        Me.OK.TabIndex = 4
+        Me.OK.TabIndex = 5
         Me.OK.Text = "&OK"
         Me.OK.UseVisualStyleBackColor = False
         '
@@ -96,17 +96,17 @@ Partial Class frmLogin
         '
         Me.Cancel.BackColor = System.Drawing.SystemColors.ControlLight
         Me.Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.Cancel.Location = New System.Drawing.Point(300, 239)
+        Me.Cancel.Location = New System.Drawing.Point(300, 240)
         Me.Cancel.Name = "Cancel"
         Me.Cancel.Size = New System.Drawing.Size(94, 23)
-        Me.Cancel.TabIndex = 5
+        Me.Cancel.TabIndex = 6
         Me.Cancel.Text = "&Cancel"
         Me.Cancel.UseVisualStyleBackColor = False
         '
         'Label1
         '
         Me.Label1.BackColor = System.Drawing.Color.Transparent
-        Me.Label1.Location = New System.Drawing.Point(171, 9)
+        Me.Label1.Location = New System.Drawing.Point(171, 10)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(220, 23)
         Me.Label1.TabIndex = 6
@@ -116,7 +116,7 @@ Partial Class frmLogin
         'txtServer
         '
         Me.txtServer.BackColor = System.Drawing.SystemColors.ControlLight
-        Me.txtServer.Location = New System.Drawing.Point(171, 33)
+        Me.txtServer.Location = New System.Drawing.Point(171, 34)
         Me.txtServer.Name = "txtServer"
         Me.txtServer.Size = New System.Drawing.Size(220, 20)
         Me.txtServer.TabIndex = 0
@@ -124,7 +124,7 @@ Partial Class frmLogin
         'txtDatabase
         '
         Me.txtDatabase.BackColor = System.Drawing.SystemColors.ControlLight
-        Me.txtDatabase.Location = New System.Drawing.Point(171, 80)
+        Me.txtDatabase.Location = New System.Drawing.Point(171, 81)
         Me.txtDatabase.Name = "txtDatabase"
         Me.txtDatabase.Size = New System.Drawing.Size(220, 20)
         Me.txtDatabase.TabIndex = 1
@@ -132,7 +132,7 @@ Partial Class frmLogin
         'Label2
         '
         Me.Label2.BackColor = System.Drawing.Color.Transparent
-        Me.Label2.Location = New System.Drawing.Point(171, 56)
+        Me.Label2.Location = New System.Drawing.Point(171, 57)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(220, 23)
         Me.Label2.TabIndex = 8
@@ -143,11 +143,11 @@ Partial Class frmLogin
         '
         Me.chkSaveInfo.AutoSize = True
         Me.chkSaveInfo.BackColor = System.Drawing.Color.Transparent
-        Me.chkSaveInfo.Location = New System.Drawing.Point(171, 211)
-        Me.chkSaveInfo.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.chkSaveInfo.Location = New System.Drawing.Point(171, 212)
+        Me.chkSaveInfo.Margin = New System.Windows.Forms.Padding(2)
         Me.chkSaveInfo.Name = "chkSaveInfo"
         Me.chkSaveInfo.Size = New System.Drawing.Size(217, 17)
-        Me.chkSaveInfo.TabIndex = 9
+        Me.chkSaveInfo.TabIndex = 4
         Me.chkSaveInfo.Text = "Save Server, Database, and User Name"
         Me.chkSaveInfo.UseVisualStyleBackColor = False
         '

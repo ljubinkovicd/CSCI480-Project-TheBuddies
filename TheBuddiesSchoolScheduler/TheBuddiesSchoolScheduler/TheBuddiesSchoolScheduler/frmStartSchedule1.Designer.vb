@@ -59,33 +59,33 @@ Partial Class frmStartSchedule1
         Me.cboSemester.Location = New System.Drawing.Point(450, 41)
         Me.cboSemester.Name = "cboSemester"
         Me.cboSemester.Size = New System.Drawing.Size(121, 21)
-        Me.cboSemester.TabIndex = 3
+        Me.cboSemester.TabIndex = 0
         '
         'btnCancel
         '
-        Me.btnCancel.Location = New System.Drawing.Point(67, 552)
+        Me.btnCancel.Location = New System.Drawing.Point(65, 552)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(217, 44)
-        Me.btnCancel.TabIndex = 42
+        Me.btnCancel.TabIndex = 2
         Me.btnCancel.Text = "Cancel"
         Me.btnCancel.UseVisualStyleBackColor = True
         '
         'btnNext
         '
-        Me.btnNext.Location = New System.Drawing.Point(322, 552)
+        Me.btnNext.Location = New System.Drawing.Point(320, 552)
         Me.btnNext.Name = "btnNext"
         Me.btnNext.Size = New System.Drawing.Size(217, 44)
-        Me.btnNext.TabIndex = 43
+        Me.btnNext.TabIndex = 3
         Me.btnNext.Text = "Next"
         Me.btnNext.UseVisualStyleBackColor = True
         '
         'ClassListGridView
         '
         Me.ClassListGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.ClassListGridView.Location = New System.Drawing.Point(29, 88)
+        Me.ClassListGridView.Location = New System.Drawing.Point(31, 82)
         Me.ClassListGridView.Name = "ClassListGridView"
         Me.ClassListGridView.Size = New System.Drawing.Size(540, 445)
-        Me.ClassListGridView.TabIndex = 64
+        Me.ClassListGridView.TabIndex = 1
         '
         'frmStartSchedule1
         '

@@ -89,7 +89,7 @@ Partial Class frmScheduleBuilder
         Me.btnSave.Location = New System.Drawing.Point(454, 683)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(185, 54)
-        Me.btnSave.TabIndex = 34
+        Me.btnSave.TabIndex = 1
         Me.btnSave.Text = "Save"
         Me.btnSave.UseVisualStyleBackColor = True
         '
@@ -98,7 +98,7 @@ Partial Class frmScheduleBuilder
         Me.btnCancel.Location = New System.Drawing.Point(715, 683)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(185, 54)
-        Me.btnCancel.TabIndex = 35
+        Me.btnCancel.TabIndex = 2
         Me.btnCancel.Text = "Cancel"
         Me.btnCancel.UseVisualStyleBackColor = True
         '
@@ -110,7 +110,7 @@ Partial Class frmScheduleBuilder
         Me.ClassesPanel.Location = New System.Drawing.Point(28, 86)
         Me.ClassesPanel.Name = "ClassesPanel"
         Me.ClassesPanel.Size = New System.Drawing.Size(329, 561)
-        Me.ClassesPanel.TabIndex = 36
+        Me.ClassesPanel.TabIndex = 0
         '
         'cmsRightClick
         '
@@ -142,7 +142,7 @@ Partial Class frmScheduleBuilder
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 84.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 85.0!))
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(427, 58)
         Me.TableLayoutPanel1.Margin = New System.Windows.Forms.Padding(2)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"

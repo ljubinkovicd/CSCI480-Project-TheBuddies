@@ -50,7 +50,7 @@ Partial Class frmClassSpecs
         Me.lblClass.AutoSize = True
         Me.lblClass.BackColor = System.Drawing.Color.Transparent
         Me.lblClass.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblClass.Location = New System.Drawing.Point(36, 21)
+        Me.lblClass.Location = New System.Drawing.Point(36, 16)
         Me.lblClass.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblClass.Name = "lblClass"
         Me.lblClass.Size = New System.Drawing.Size(0, 20)
@@ -60,7 +60,7 @@ Partial Class frmClassSpecs
         '
         Me.Label2.AutoSize = True
         Me.Label2.BackColor = System.Drawing.Color.Transparent
-        Me.Label2.Location = New System.Drawing.Point(31, 54)
+        Me.Label2.Location = New System.Drawing.Point(31, 49)
         Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(55, 20)
@@ -71,7 +71,7 @@ Partial Class frmClassSpecs
         '
         Me.Label3.AutoSize = True
         Me.Label3.BackColor = System.Drawing.Color.Transparent
-        Me.Label3.Location = New System.Drawing.Point(30, 94)
+        Me.Label3.Location = New System.Drawing.Point(30, 89)
         Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(81, 20)
@@ -82,11 +82,11 @@ Partial Class frmClassSpecs
         '
         Me.chkSunday.BackColor = System.Drawing.Color.Transparent
         Me.chkSunday.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.chkSunday.Location = New System.Drawing.Point(310, 302)
+        Me.chkSunday.Location = New System.Drawing.Point(310, 297)
         Me.chkSunday.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.chkSunday.Name = "chkSunday"
         Me.chkSunday.Size = New System.Drawing.Size(45, 68)
-        Me.chkSunday.TabIndex = 31
+        Me.chkSunday.TabIndex = 10
         Me.chkSunday.Text = "Sun"
         Me.chkSunday.TextAlign = System.Drawing.ContentAlignment.TopCenter
         Me.chkSunday.UseVisualStyleBackColor = False
@@ -95,11 +95,11 @@ Partial Class frmClassSpecs
         '
         Me.chkSaturday.BackColor = System.Drawing.Color.Transparent
         Me.chkSaturday.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.chkSaturday.Location = New System.Drawing.Point(266, 302)
+        Me.chkSaturday.Location = New System.Drawing.Point(266, 297)
         Me.chkSaturday.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.chkSaturday.Name = "chkSaturday"
         Me.chkSaturday.Size = New System.Drawing.Size(45, 68)
-        Me.chkSaturday.TabIndex = 30
+        Me.chkSaturday.TabIndex = 9
         Me.chkSaturday.Text = "Sat"
         Me.chkSaturday.TextAlign = System.Drawing.ContentAlignment.TopCenter
         Me.chkSaturday.UseVisualStyleBackColor = False
@@ -108,11 +108,11 @@ Partial Class frmClassSpecs
         '
         Me.chkWednesday.BackColor = System.Drawing.Color.Transparent
         Me.chkWednesday.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.chkWednesday.Location = New System.Drawing.Point(130, 302)
+        Me.chkWednesday.Location = New System.Drawing.Point(130, 297)
         Me.chkWednesday.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.chkWednesday.Name = "chkWednesday"
         Me.chkWednesday.Size = New System.Drawing.Size(45, 68)
-        Me.chkWednesday.TabIndex = 29
+        Me.chkWednesday.TabIndex = 6
         Me.chkWednesday.Text = "W"
         Me.chkWednesday.TextAlign = System.Drawing.ContentAlignment.TopCenter
         Me.chkWednesday.UseVisualStyleBackColor = False
@@ -121,11 +121,11 @@ Partial Class frmClassSpecs
         '
         Me.chkMonday.BackColor = System.Drawing.Color.Transparent
         Me.chkMonday.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.chkMonday.Location = New System.Drawing.Point(40, 302)
+        Me.chkMonday.Location = New System.Drawing.Point(40, 297)
         Me.chkMonday.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.chkMonday.Name = "chkMonday"
         Me.chkMonday.Size = New System.Drawing.Size(45, 68)
-        Me.chkMonday.TabIndex = 28
+        Me.chkMonday.TabIndex = 4
         Me.chkMonday.Text = "M"
         Me.chkMonday.TextAlign = System.Drawing.ContentAlignment.TopCenter
         Me.chkMonday.UseVisualStyleBackColor = False
@@ -134,11 +134,11 @@ Partial Class frmClassSpecs
         '
         Me.chkFriday.BackColor = System.Drawing.Color.Transparent
         Me.chkFriday.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.chkFriday.Location = New System.Drawing.Point(220, 302)
+        Me.chkFriday.Location = New System.Drawing.Point(220, 297)
         Me.chkFriday.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.chkFriday.Name = "chkFriday"
         Me.chkFriday.Size = New System.Drawing.Size(45, 68)
-        Me.chkFriday.TabIndex = 27
+        Me.chkFriday.TabIndex = 8
         Me.chkFriday.Text = "F"
         Me.chkFriday.TextAlign = System.Drawing.ContentAlignment.TopCenter
         Me.chkFriday.UseVisualStyleBackColor = False
@@ -147,11 +147,11 @@ Partial Class frmClassSpecs
         '
         Me.chkThursday.BackColor = System.Drawing.Color.Transparent
         Me.chkThursday.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.chkThursday.Location = New System.Drawing.Point(176, 302)
+        Me.chkThursday.Location = New System.Drawing.Point(176, 297)
         Me.chkThursday.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.chkThursday.Name = "chkThursday"
         Me.chkThursday.Size = New System.Drawing.Size(45, 68)
-        Me.chkThursday.TabIndex = 26
+        Me.chkThursday.TabIndex = 7
         Me.chkThursday.Text = "H"
         Me.chkThursday.TextAlign = System.Drawing.ContentAlignment.TopCenter
         Me.chkThursday.UseVisualStyleBackColor = False
@@ -160,11 +160,11 @@ Partial Class frmClassSpecs
         '
         Me.chkTuesday.BackColor = System.Drawing.Color.Transparent
         Me.chkTuesday.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.chkTuesday.Location = New System.Drawing.Point(86, 302)
+        Me.chkTuesday.Location = New System.Drawing.Point(86, 297)
         Me.chkTuesday.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.chkTuesday.Name = "chkTuesday"
         Me.chkTuesday.Size = New System.Drawing.Size(45, 68)
-        Me.chkTuesday.TabIndex = 25
+        Me.chkTuesday.TabIndex = 5
         Me.chkTuesday.Text = "T"
         Me.chkTuesday.TextAlign = System.Drawing.ContentAlignment.TopCenter
         Me.chkTuesday.UseVisualStyleBackColor = False
@@ -173,7 +173,7 @@ Partial Class frmClassSpecs
         '
         Me.Label10.AutoSize = True
         Me.Label10.BackColor = System.Drawing.Color.Transparent
-        Me.Label10.Location = New System.Drawing.Point(30, 143)
+        Me.Label10.Location = New System.Drawing.Point(30, 138)
         Me.Label10.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(48, 20)
@@ -184,7 +184,7 @@ Partial Class frmClassSpecs
         '
         Me.Label4.AutoSize = True
         Me.Label4.BackColor = System.Drawing.Color.Transparent
-        Me.Label4.Location = New System.Drawing.Point(30, 187)
+        Me.Label4.Location = New System.Drawing.Point(30, 182)
         Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(42, 20)
@@ -195,7 +195,7 @@ Partial Class frmClassSpecs
         '
         Me.Label5.AutoSize = True
         Me.Label5.BackColor = System.Drawing.Color.Transparent
-        Me.Label5.Location = New System.Drawing.Point(30, 277)
+        Me.Label5.Location = New System.Drawing.Point(30, 272)
         Me.Label5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(87, 20)
@@ -206,10 +206,10 @@ Partial Class frmClassSpecs
         '
         Me.btnSave.DialogResult = System.Windows.Forms.DialogResult.OK
         Me.btnSave.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnSave.Location = New System.Drawing.Point(130, 378)
+        Me.btnSave.Location = New System.Drawing.Point(130, 373)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(122, 41)
-        Me.btnSave.TabIndex = 38
+        Me.btnSave.TabIndex = 11
         Me.btnSave.Text = "Save"
         Me.btnSave.UseVisualStyleBackColor = True
         '
@@ -217,7 +217,7 @@ Partial Class frmClassSpecs
         '
         Me.lblClassName.AutoSize = True
         Me.lblClassName.BackColor = System.Drawing.Color.Transparent
-        Me.lblClassName.Location = New System.Drawing.Point(111, 54)
+        Me.lblClassName.Location = New System.Drawing.Point(111, 49)
         Me.lblClassName.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblClassName.Name = "lblClassName"
         Me.lblClassName.Size = New System.Drawing.Size(0, 20)
@@ -226,17 +226,17 @@ Partial Class frmClassSpecs
         'cboProfessor
         '
         Me.cboProfessor.FormattingEnabled = True
-        Me.cboProfessor.Location = New System.Drawing.Point(118, 86)
+        Me.cboProfessor.Location = New System.Drawing.Point(118, 81)
         Me.cboProfessor.Name = "cboProfessor"
         Me.cboProfessor.Size = New System.Drawing.Size(147, 28)
-        Me.cboProfessor.TabIndex = 41
+        Me.cboProfessor.TabIndex = 0
         '
         'Label1
         '
         Me.Label1.AccessibleRole = System.Windows.Forms.AccessibleRole.SplitButton
         Me.Label1.AutoSize = True
         Me.Label1.BackColor = System.Drawing.Color.Transparent
-        Me.Label1.Location = New System.Drawing.Point(30, 232)
+        Me.Label1.Location = New System.Drawing.Point(30, 227)
         Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(56, 20)
@@ -246,26 +246,26 @@ Partial Class frmClassSpecs
         'cboRoom
         '
         Me.cboRoom.FormattingEnabled = True
-        Me.cboRoom.Location = New System.Drawing.Point(117, 224)
+        Me.cboRoom.Location = New System.Drawing.Point(117, 219)
         Me.cboRoom.Name = "cboRoom"
         Me.cboRoom.Size = New System.Drawing.Size(147, 28)
-        Me.cboRoom.TabIndex = 43
+        Me.cboRoom.TabIndex = 3
         '
         'cboEndTime
         '
         Me.cboEndTime.FormattingEnabled = True
-        Me.cboEndTime.Location = New System.Drawing.Point(118, 184)
+        Me.cboEndTime.Location = New System.Drawing.Point(118, 179)
         Me.cboEndTime.Name = "cboEndTime"
         Me.cboEndTime.Size = New System.Drawing.Size(147, 28)
-        Me.cboEndTime.TabIndex = 44
+        Me.cboEndTime.TabIndex = 2
         '
         'cboStartTime
         '
         Me.cboStartTime.FormattingEnabled = True
-        Me.cboStartTime.Location = New System.Drawing.Point(117, 140)
+        Me.cboStartTime.Location = New System.Drawing.Point(117, 135)
         Me.cboStartTime.Name = "cboStartTime"
         Me.cboStartTime.Size = New System.Drawing.Size(147, 28)
-        Me.cboStartTime.TabIndex = 45
+        Me.cboStartTime.TabIndex = 1
         '
         'frmClassSpecs
         '

@@ -139,10 +139,10 @@ Partial Class frmDatabaseMaintenance
         '
         'btnOK
         '
-        Me.btnOK.Location = New System.Drawing.Point(311, 473)
+        Me.btnOK.Location = New System.Drawing.Point(317, 473)
         Me.btnOK.Name = "btnOK"
         Me.btnOK.Size = New System.Drawing.Size(95, 25)
-        Me.btnOK.TabIndex = 11
+        Me.btnOK.TabIndex = 8
         Me.btnOK.Text = "Cancel"
         Me.btnOK.UseVisualStyleBackColor = True
         '
@@ -157,7 +157,7 @@ Partial Class frmDatabaseMaintenance
         Me.tcDBMaint.Controls.Add(Me.tpAddRoom)
         Me.tcDBMaint.Controls.Add(Me.tpEditRoom)
         Me.tcDBMaint.Controls.Add(Me.tpRmRoom)
-        Me.tcDBMaint.Location = New System.Drawing.Point(29, 68)
+        Me.tcDBMaint.Location = New System.Drawing.Point(28, 68)
         Me.tcDBMaint.Margin = New System.Windows.Forms.Padding(2)
         Me.tcDBMaint.Name = "tcDBMaint"
         Me.tcDBMaint.SelectedIndex = 0
@@ -190,11 +190,11 @@ Partial Class frmDatabaseMaintenance
         '
         'btnAddClassSave
         '
-        Me.btnAddClassSave.Location = New System.Drawing.Point(298, 328)
+        Me.btnAddClassSave.Location = New System.Drawing.Point(290, 330)
         Me.btnAddClassSave.Margin = New System.Windows.Forms.Padding(2)
         Me.btnAddClassSave.Name = "btnAddClassSave"
         Me.btnAddClassSave.Size = New System.Drawing.Size(75, 23)
-        Me.btnAddClassSave.TabIndex = 11
+        Me.btnAddClassSave.TabIndex = 6
         Me.btnAddClassSave.Text = "Save Class"
         Me.btnAddClassSave.UseVisualStyleBackColor = True
         '
@@ -202,11 +202,11 @@ Partial Class frmDatabaseMaintenance
         '
         Me.chkGradClass.AutoSize = True
         Me.chkGradClass.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkGradClass.Location = New System.Drawing.Point(218, 300)
+        Me.chkGradClass.Location = New System.Drawing.Point(99, 301)
         Me.chkGradClass.Margin = New System.Windows.Forms.Padding(2)
         Me.chkGradClass.Name = "chkGradClass"
         Me.chkGradClass.Size = New System.Drawing.Size(139, 24)
-        Me.chkGradClass.TabIndex = 10
+        Me.chkGradClass.TabIndex = 5
         Me.chkGradClass.Text = "Graduate Class"
         Me.chkGradClass.UseVisualStyleBackColor = True
         '
@@ -214,7 +214,7 @@ Partial Class frmDatabaseMaintenance
         '
         Me.lblAddClassProfCredHours.AutoSize = True
         Me.lblAddClassProfCredHours.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblAddClassProfCredHours.Location = New System.Drawing.Point(218, 242)
+        Me.lblAddClassProfCredHours.Location = New System.Drawing.Point(95, 245)
         Me.lblAddClassProfCredHours.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblAddClassProfCredHours.Name = "lblAddClassProfCredHours"
         Me.lblAddClassProfCredHours.Size = New System.Drawing.Size(209, 20)
@@ -224,17 +224,17 @@ Partial Class frmDatabaseMaintenance
         'tbAddClassProfCredHour
         '
         Me.tbAddClassProfCredHour.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tbAddClassProfCredHour.Location = New System.Drawing.Point(218, 268)
+        Me.tbAddClassProfCredHour.Location = New System.Drawing.Point(99, 270)
         Me.tbAddClassProfCredHour.Margin = New System.Windows.Forms.Padding(2)
         Me.tbAddClassProfCredHour.Name = "tbAddClassProfCredHour"
-        Me.tbAddClassProfCredHour.Size = New System.Drawing.Size(211, 26)
-        Me.tbAddClassProfCredHour.TabIndex = 8
+        Me.tbAddClassProfCredHour.Size = New System.Drawing.Size(460, 26)
+        Me.tbAddClassProfCredHour.TabIndex = 4
         '
         'lblAddClassStuCredHours
         '
         Me.lblAddClassStuCredHours.AutoSize = True
         Me.lblAddClassStuCredHours.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblAddClassStuCredHours.Location = New System.Drawing.Point(218, 184)
+        Me.lblAddClassStuCredHours.Location = New System.Drawing.Point(95, 189)
         Me.lblAddClassStuCredHours.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblAddClassStuCredHours.Name = "lblAddClassStuCredHours"
         Me.lblAddClassStuCredHours.Size = New System.Drawing.Size(198, 20)
@@ -244,17 +244,17 @@ Partial Class frmDatabaseMaintenance
         'tbAddClassStuCredHours
         '
         Me.tbAddClassStuCredHours.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tbAddClassStuCredHours.Location = New System.Drawing.Point(218, 210)
+        Me.tbAddClassStuCredHours.Location = New System.Drawing.Point(99, 214)
         Me.tbAddClassStuCredHours.Margin = New System.Windows.Forms.Padding(2)
         Me.tbAddClassStuCredHours.Name = "tbAddClassStuCredHours"
-        Me.tbAddClassStuCredHours.Size = New System.Drawing.Size(211, 26)
-        Me.tbAddClassStuCredHours.TabIndex = 6
+        Me.tbAddClassStuCredHours.Size = New System.Drawing.Size(460, 26)
+        Me.tbAddClassStuCredHours.TabIndex = 3
         '
         'lblAddClassCourseName
         '
         Me.lblAddClassCourseName.AutoSize = True
         Me.lblAddClassCourseName.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblAddClassCourseName.Location = New System.Drawing.Point(218, 126)
+        Me.lblAddClassCourseName.Location = New System.Drawing.Point(95, 133)
         Me.lblAddClassCourseName.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblAddClassCourseName.Name = "lblAddClassCourseName"
         Me.lblAddClassCourseName.Size = New System.Drawing.Size(106, 20)
@@ -264,17 +264,17 @@ Partial Class frmDatabaseMaintenance
         'tbAddClassCourseName
         '
         Me.tbAddClassCourseName.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tbAddClassCourseName.Location = New System.Drawing.Point(218, 152)
+        Me.tbAddClassCourseName.Location = New System.Drawing.Point(99, 158)
         Me.tbAddClassCourseName.Margin = New System.Windows.Forms.Padding(2)
         Me.tbAddClassCourseName.Name = "tbAddClassCourseName"
-        Me.tbAddClassCourseName.Size = New System.Drawing.Size(211, 26)
-        Me.tbAddClassCourseName.TabIndex = 4
+        Me.tbAddClassCourseName.Size = New System.Drawing.Size(460, 26)
+        Me.tbAddClassCourseName.TabIndex = 2
         '
         'lblAddClassCourseNum
         '
         Me.lblAddClassCourseNum.AutoSize = True
         Me.lblAddClassCourseNum.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblAddClassCourseNum.Location = New System.Drawing.Point(218, 68)
+        Me.lblAddClassCourseNum.Location = New System.Drawing.Point(95, 77)
         Me.lblAddClassCourseNum.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblAddClassCourseNum.Name = "lblAddClassCourseNum"
         Me.lblAddClassCourseNum.Size = New System.Drawing.Size(120, 20)
@@ -284,17 +284,17 @@ Partial Class frmDatabaseMaintenance
         'tbAddClassCourseNum
         '
         Me.tbAddClassCourseNum.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tbAddClassCourseNum.Location = New System.Drawing.Point(218, 94)
+        Me.tbAddClassCourseNum.Location = New System.Drawing.Point(99, 102)
         Me.tbAddClassCourseNum.Margin = New System.Windows.Forms.Padding(2)
         Me.tbAddClassCourseNum.Name = "tbAddClassCourseNum"
-        Me.tbAddClassCourseNum.Size = New System.Drawing.Size(211, 26)
-        Me.tbAddClassCourseNum.TabIndex = 2
+        Me.tbAddClassCourseNum.Size = New System.Drawing.Size(460, 26)
+        Me.tbAddClassCourseNum.TabIndex = 1
         '
         'lblAddClassDept
         '
         Me.lblAddClassDept.AutoSize = True
         Me.lblAddClassDept.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblAddClassDept.Location = New System.Drawing.Point(218, 10)
+        Me.lblAddClassDept.Location = New System.Drawing.Point(95, 21)
         Me.lblAddClassDept.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblAddClassDept.Name = "lblAddClassDept"
         Me.lblAddClassDept.Size = New System.Drawing.Size(94, 20)
@@ -304,10 +304,10 @@ Partial Class frmDatabaseMaintenance
         'tbAddClassDepartment
         '
         Me.tbAddClassDepartment.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tbAddClassDepartment.Location = New System.Drawing.Point(218, 36)
+        Me.tbAddClassDepartment.Location = New System.Drawing.Point(99, 46)
         Me.tbAddClassDepartment.Margin = New System.Windows.Forms.Padding(2)
         Me.tbAddClassDepartment.Name = "tbAddClassDepartment"
-        Me.tbAddClassDepartment.Size = New System.Drawing.Size(211, 26)
+        Me.tbAddClassDepartment.Size = New System.Drawing.Size(460, 26)
         Me.tbAddClassDepartment.TabIndex = 0
         '
         'tpEditClass
@@ -337,11 +337,11 @@ Partial Class frmDatabaseMaintenance
         '
         'btnEditClassSave
         '
-        Me.btnEditClassSave.Location = New System.Drawing.Point(278, 334)
+        Me.btnEditClassSave.Location = New System.Drawing.Point(274, 323)
         Me.btnEditClassSave.Margin = New System.Windows.Forms.Padding(2)
         Me.btnEditClassSave.Name = "btnEditClassSave"
         Me.btnEditClassSave.Size = New System.Drawing.Size(95, 25)
-        Me.btnEditClassSave.TabIndex = 22
+        Me.btnEditClassSave.TabIndex = 7
         Me.btnEditClassSave.Text = "Save"
         Me.btnEditClassSave.UseVisualStyleBackColor = True
         '
@@ -349,11 +349,11 @@ Partial Class frmDatabaseMaintenance
         '
         Me.chkEditClassGradClass.AutoSize = True
         Me.chkEditClassGradClass.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkEditClassGradClass.Location = New System.Drawing.Point(210, 306)
+        Me.chkEditClassGradClass.Location = New System.Drawing.Point(99, 297)
         Me.chkEditClassGradClass.Margin = New System.Windows.Forms.Padding(2)
         Me.chkEditClassGradClass.Name = "chkEditClassGradClass"
         Me.chkEditClassGradClass.Size = New System.Drawing.Size(139, 24)
-        Me.chkEditClassGradClass.TabIndex = 21
+        Me.chkEditClassGradClass.TabIndex = 6
         Me.chkEditClassGradClass.Text = "Graduate Class"
         Me.chkEditClassGradClass.UseVisualStyleBackColor = True
         '
@@ -361,7 +361,7 @@ Partial Class frmDatabaseMaintenance
         '
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(208, 256)
+        Me.Label2.Location = New System.Drawing.Point(95, 247)
         Me.Label2.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(209, 20)
@@ -371,17 +371,17 @@ Partial Class frmDatabaseMaintenance
         'tbEditClassProfHr
         '
         Me.tbEditClassProfHr.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tbEditClassProfHr.Location = New System.Drawing.Point(210, 278)
+        Me.tbEditClassProfHr.Location = New System.Drawing.Point(99, 269)
         Me.tbEditClassProfHr.Margin = New System.Windows.Forms.Padding(2)
         Me.tbEditClassProfHr.Name = "tbEditClassProfHr"
-        Me.tbEditClassProfHr.Size = New System.Drawing.Size(244, 26)
-        Me.tbEditClassProfHr.TabIndex = 19
+        Me.tbEditClassProfHr.Size = New System.Drawing.Size(460, 26)
+        Me.tbEditClassProfHr.TabIndex = 5
         '
         'Label3
         '
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(208, 206)
+        Me.Label3.Location = New System.Drawing.Point(95, 197)
         Me.Label3.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(198, 20)
@@ -391,17 +391,17 @@ Partial Class frmDatabaseMaintenance
         'tbEditClassStuCredHr
         '
         Me.tbEditClassStuCredHr.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tbEditClassStuCredHr.Location = New System.Drawing.Point(210, 228)
+        Me.tbEditClassStuCredHr.Location = New System.Drawing.Point(99, 219)
         Me.tbEditClassStuCredHr.Margin = New System.Windows.Forms.Padding(2)
         Me.tbEditClassStuCredHr.Name = "tbEditClassStuCredHr"
-        Me.tbEditClassStuCredHr.Size = New System.Drawing.Size(244, 26)
-        Me.tbEditClassStuCredHr.TabIndex = 17
+        Me.tbEditClassStuCredHr.Size = New System.Drawing.Size(460, 26)
+        Me.tbEditClassStuCredHr.TabIndex = 4
         '
         'Label4
         '
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(208, 156)
+        Me.Label4.Location = New System.Drawing.Point(95, 147)
         Me.Label4.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(106, 20)
@@ -411,17 +411,17 @@ Partial Class frmDatabaseMaintenance
         'tbEditClassCourseName
         '
         Me.tbEditClassCourseName.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tbEditClassCourseName.Location = New System.Drawing.Point(210, 178)
+        Me.tbEditClassCourseName.Location = New System.Drawing.Point(99, 169)
         Me.tbEditClassCourseName.Margin = New System.Windows.Forms.Padding(2)
         Me.tbEditClassCourseName.Name = "tbEditClassCourseName"
-        Me.tbEditClassCourseName.Size = New System.Drawing.Size(244, 26)
-        Me.tbEditClassCourseName.TabIndex = 15
+        Me.tbEditClassCourseName.Size = New System.Drawing.Size(460, 26)
+        Me.tbEditClassCourseName.TabIndex = 3
         '
         'Label5
         '
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(208, 106)
+        Me.Label5.Location = New System.Drawing.Point(95, 97)
         Me.Label5.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(120, 20)
@@ -431,17 +431,17 @@ Partial Class frmDatabaseMaintenance
         'tbEditClassCourseNum
         '
         Me.tbEditClassCourseNum.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tbEditClassCourseNum.Location = New System.Drawing.Point(210, 128)
+        Me.tbEditClassCourseNum.Location = New System.Drawing.Point(99, 119)
         Me.tbEditClassCourseNum.Margin = New System.Windows.Forms.Padding(2)
         Me.tbEditClassCourseNum.Name = "tbEditClassCourseNum"
-        Me.tbEditClassCourseNum.Size = New System.Drawing.Size(244, 26)
-        Me.tbEditClassCourseNum.TabIndex = 13
+        Me.tbEditClassCourseNum.Size = New System.Drawing.Size(460, 26)
+        Me.tbEditClassCourseNum.TabIndex = 2
         '
         'Label6
         '
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(206, 56)
+        Me.Label6.Location = New System.Drawing.Point(95, 47)
         Me.Label6.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(94, 20)
@@ -451,21 +451,21 @@ Partial Class frmDatabaseMaintenance
         'tbEditClassDept
         '
         Me.tbEditClassDept.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tbEditClassDept.Location = New System.Drawing.Point(210, 78)
+        Me.tbEditClassDept.Location = New System.Drawing.Point(99, 69)
         Me.tbEditClassDept.Margin = New System.Windows.Forms.Padding(2)
         Me.tbEditClassDept.Name = "tbEditClassDept"
-        Me.tbEditClassDept.Size = New System.Drawing.Size(244, 26)
-        Me.tbEditClassDept.TabIndex = 11
+        Me.tbEditClassDept.Size = New System.Drawing.Size(460, 26)
+        Me.tbEditClassDept.TabIndex = 1
         '
         'tcEditClass
         '
         Me.tcEditClass.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.tcEditClass.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tcEditClass.FormattingEnabled = True
-        Me.tcEditClass.Location = New System.Drawing.Point(206, 16)
+        Me.tcEditClass.Location = New System.Drawing.Point(99, 17)
         Me.tcEditClass.Margin = New System.Windows.Forms.Padding(2)
         Me.tcEditClass.Name = "tcEditClass"
-        Me.tcEditClass.Size = New System.Drawing.Size(251, 28)
+        Me.tcEditClass.Size = New System.Drawing.Size(460, 28)
         Me.tcEditClass.TabIndex = 0
         '
         'tpRmClass
@@ -484,11 +484,11 @@ Partial Class frmDatabaseMaintenance
         '
         'btnRemove
         '
-        Me.btnRemove.Location = New System.Drawing.Point(278, 202)
+        Me.btnRemove.Location = New System.Drawing.Point(267, 203)
         Me.btnRemove.Margin = New System.Windows.Forms.Padding(2)
         Me.btnRemove.Name = "btnRemove"
         Me.btnRemove.Size = New System.Drawing.Size(95, 25)
-        Me.btnRemove.TabIndex = 3
+        Me.btnRemove.TabIndex = 1
         Me.btnRemove.Text = "Remove"
         Me.btnRemove.UseVisualStyleBackColor = True
         '
@@ -497,11 +497,11 @@ Partial Class frmDatabaseMaintenance
         Me.cbDBData.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbDBData.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cbDBData.FormattingEnabled = True
-        Me.cbDBData.Location = New System.Drawing.Point(191, 145)
+        Me.cbDBData.Location = New System.Drawing.Point(97, 146)
         Me.cbDBData.Margin = New System.Windows.Forms.Padding(2)
         Me.cbDBData.Name = "cbDBData"
-        Me.cbDBData.Size = New System.Drawing.Size(269, 28)
-        Me.cbDBData.TabIndex = 2
+        Me.cbDBData.Size = New System.Drawing.Size(460, 28)
+        Me.cbDBData.TabIndex = 0
         '
         'tpAddProf
         '
@@ -529,7 +529,7 @@ Partial Class frmDatabaseMaintenance
         '
         Me.Label16.AutoSize = True
         Me.Label16.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label16.Location = New System.Drawing.Point(231, 263)
+        Me.Label16.Location = New System.Drawing.Point(231, 267)
         Me.Label16.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label16.Name = "Label16"
         Me.Label16.Size = New System.Drawing.Size(109, 20)
@@ -541,19 +541,19 @@ Partial Class frmDatabaseMaintenance
         Me.comboAddProfRank.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboAddProfRank.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.comboAddProfRank.FormattingEnabled = True
-        Me.comboAddProfRank.Location = New System.Drawing.Point(235, 291)
+        Me.comboAddProfRank.Location = New System.Drawing.Point(235, 295)
         Me.comboAddProfRank.Margin = New System.Windows.Forms.Padding(2)
         Me.comboAddProfRank.Name = "comboAddProfRank"
         Me.comboAddProfRank.Size = New System.Drawing.Size(189, 28)
-        Me.comboAddProfRank.TabIndex = 50
+        Me.comboAddProfRank.TabIndex = 4
         '
         'btnAddProfSaveProf
         '
-        Me.btnAddProfSaveProf.Location = New System.Drawing.Point(278, 336)
+        Me.btnAddProfSaveProf.Location = New System.Drawing.Point(278, 331)
         Me.btnAddProfSaveProf.Margin = New System.Windows.Forms.Padding(2)
         Me.btnAddProfSaveProf.Name = "btnAddProfSaveProf"
         Me.btnAddProfSaveProf.Size = New System.Drawing.Size(95, 25)
-        Me.btnAddProfSaveProf.TabIndex = 33
+        Me.btnAddProfSaveProf.TabIndex = 5
         Me.btnAddProfSaveProf.Text = "Save Professor"
         Me.btnAddProfSaveProf.UseVisualStyleBackColor = True
         '
@@ -561,7 +561,7 @@ Partial Class frmDatabaseMaintenance
         '
         Me.Label8.AutoSize = True
         Me.Label8.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label8.Location = New System.Drawing.Point(231, 201)
+        Me.Label8.Location = New System.Drawing.Point(231, 205)
         Me.Label8.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(146, 20)
@@ -571,17 +571,17 @@ Partial Class frmDatabaseMaintenance
         'tbAddProfCredHours
         '
         Me.tbAddProfCredHours.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tbAddProfCredHours.Location = New System.Drawing.Point(235, 229)
+        Me.tbAddProfCredHours.Location = New System.Drawing.Point(235, 233)
         Me.tbAddProfCredHours.Margin = New System.Windows.Forms.Padding(2)
         Me.tbAddProfCredHours.Name = "tbAddProfCredHours"
         Me.tbAddProfCredHours.Size = New System.Drawing.Size(189, 26)
-        Me.tbAddProfCredHours.TabIndex = 27
+        Me.tbAddProfCredHours.TabIndex = 3
         '
         'Label9
         '
         Me.Label9.AutoSize = True
         Me.Label9.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.Location = New System.Drawing.Point(231, 139)
+        Me.Label9.Location = New System.Drawing.Point(231, 143)
         Me.Label9.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(86, 20)
@@ -591,17 +591,17 @@ Partial Class frmDatabaseMaintenance
         'tbAddProfLastName
         '
         Me.tbAddProfLastName.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tbAddProfLastName.Location = New System.Drawing.Point(235, 167)
+        Me.tbAddProfLastName.Location = New System.Drawing.Point(235, 171)
         Me.tbAddProfLastName.Margin = New System.Windows.Forms.Padding(2)
         Me.tbAddProfLastName.Name = "tbAddProfLastName"
         Me.tbAddProfLastName.Size = New System.Drawing.Size(189, 26)
-        Me.tbAddProfLastName.TabIndex = 25
+        Me.tbAddProfLastName.TabIndex = 2
         '
         'Label10
         '
         Me.Label10.AutoSize = True
         Me.Label10.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label10.Location = New System.Drawing.Point(231, 77)
+        Me.Label10.Location = New System.Drawing.Point(231, 81)
         Me.Label10.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(86, 20)
@@ -611,17 +611,17 @@ Partial Class frmDatabaseMaintenance
         'tbAddProfFirstName
         '
         Me.tbAddProfFirstName.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tbAddProfFirstName.Location = New System.Drawing.Point(235, 105)
+        Me.tbAddProfFirstName.Location = New System.Drawing.Point(235, 109)
         Me.tbAddProfFirstName.Margin = New System.Windows.Forms.Padding(2)
         Me.tbAddProfFirstName.Name = "tbAddProfFirstName"
         Me.tbAddProfFirstName.Size = New System.Drawing.Size(189, 26)
-        Me.tbAddProfFirstName.TabIndex = 23
+        Me.tbAddProfFirstName.TabIndex = 1
         '
         'Label11
         '
         Me.Label11.AutoSize = True
         Me.Label11.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label11.Location = New System.Drawing.Point(231, 15)
+        Me.Label11.Location = New System.Drawing.Point(231, 19)
         Me.Label11.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(88, 20)
@@ -631,11 +631,11 @@ Partial Class frmDatabaseMaintenance
         'tbAddProfTeacherID
         '
         Me.tbAddProfTeacherID.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tbAddProfTeacherID.Location = New System.Drawing.Point(235, 43)
+        Me.tbAddProfTeacherID.Location = New System.Drawing.Point(235, 47)
         Me.tbAddProfTeacherID.Margin = New System.Windows.Forms.Padding(2)
         Me.tbAddProfTeacherID.Name = "tbAddProfTeacherID"
         Me.tbAddProfTeacherID.Size = New System.Drawing.Size(189, 26)
-        Me.tbAddProfTeacherID.TabIndex = 21
+        Me.tbAddProfTeacherID.TabIndex = 0
         '
         'tpEditProf
         '
@@ -664,7 +664,7 @@ Partial Class frmDatabaseMaintenance
         '
         Me.Label15.AutoSize = True
         Me.Label15.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label15.Location = New System.Drawing.Point(228, 259)
+        Me.Label15.Location = New System.Drawing.Point(213, 271)
         Me.Label15.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(109, 20)
@@ -676,30 +676,30 @@ Partial Class frmDatabaseMaintenance
         Me.comboEditProfRank.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboEditProfRank.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.comboEditProfRank.FormattingEnabled = True
-        Me.comboEditProfRank.Location = New System.Drawing.Point(230, 280)
+        Me.comboEditProfRank.Location = New System.Drawing.Point(215, 295)
         Me.comboEditProfRank.Margin = New System.Windows.Forms.Padding(2)
         Me.comboEditProfRank.Name = "comboEditProfRank"
         Me.comboEditProfRank.Size = New System.Drawing.Size(227, 28)
-        Me.comboEditProfRank.TabIndex = 48
+        Me.comboEditProfRank.TabIndex = 5
         '
         'cbEditProfSelectProf
         '
         Me.cbEditProfSelectProf.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbEditProfSelectProf.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cbEditProfSelectProf.FormattingEnabled = True
-        Me.cbEditProfSelectProf.Location = New System.Drawing.Point(231, 22)
+        Me.cbEditProfSelectProf.Location = New System.Drawing.Point(216, 23)
         Me.cbEditProfSelectProf.Margin = New System.Windows.Forms.Padding(2)
         Me.cbEditProfSelectProf.Name = "cbEditProfSelectProf"
         Me.cbEditProfSelectProf.Size = New System.Drawing.Size(226, 28)
-        Me.cbEditProfSelectProf.TabIndex = 47
+        Me.cbEditProfSelectProf.TabIndex = 0
         '
         'btnEditProfessorSave
         '
-        Me.btnEditProfessorSave.Location = New System.Drawing.Point(278, 334)
+        Me.btnEditProfessorSave.Location = New System.Drawing.Point(263, 327)
         Me.btnEditProfessorSave.Margin = New System.Windows.Forms.Padding(2)
         Me.btnEditProfessorSave.Name = "btnEditProfessorSave"
         Me.btnEditProfessorSave.Size = New System.Drawing.Size(95, 25)
-        Me.btnEditProfessorSave.TabIndex = 46
+        Me.btnEditProfessorSave.TabIndex = 6
         Me.btnEditProfessorSave.Text = "Save Professor"
         Me.btnEditProfessorSave.UseVisualStyleBackColor = True
         '
@@ -707,7 +707,7 @@ Partial Class frmDatabaseMaintenance
         '
         Me.Label7.AutoSize = True
         Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.Location = New System.Drawing.Point(228, 211)
+        Me.Label7.Location = New System.Drawing.Point(213, 217)
         Me.Label7.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(146, 20)
@@ -717,17 +717,17 @@ Partial Class frmDatabaseMaintenance
         'tbEditProfCredHours
         '
         Me.tbEditProfCredHours.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tbEditProfCredHours.Location = New System.Drawing.Point(230, 232)
+        Me.tbEditProfCredHours.Location = New System.Drawing.Point(215, 241)
         Me.tbEditProfCredHours.Margin = New System.Windows.Forms.Padding(2)
         Me.tbEditProfCredHours.Name = "tbEditProfCredHours"
         Me.tbEditProfCredHours.Size = New System.Drawing.Size(227, 26)
-        Me.tbEditProfCredHours.TabIndex = 40
+        Me.tbEditProfCredHours.TabIndex = 4
         '
         'Label12
         '
         Me.Label12.AutoSize = True
         Me.Label12.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label12.Location = New System.Drawing.Point(228, 163)
+        Me.Label12.Location = New System.Drawing.Point(213, 163)
         Me.Label12.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(86, 20)
@@ -737,17 +737,17 @@ Partial Class frmDatabaseMaintenance
         'tbEditProfLastName
         '
         Me.tbEditProfLastName.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tbEditProfLastName.Location = New System.Drawing.Point(230, 184)
+        Me.tbEditProfLastName.Location = New System.Drawing.Point(215, 187)
         Me.tbEditProfLastName.Margin = New System.Windows.Forms.Padding(2)
         Me.tbEditProfLastName.Name = "tbEditProfLastName"
         Me.tbEditProfLastName.Size = New System.Drawing.Size(227, 26)
-        Me.tbEditProfLastName.TabIndex = 38
+        Me.tbEditProfLastName.TabIndex = 3
         '
         'Label13
         '
         Me.Label13.AutoSize = True
         Me.Label13.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label13.Location = New System.Drawing.Point(228, 115)
+        Me.Label13.Location = New System.Drawing.Point(213, 109)
         Me.Label13.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(86, 20)
@@ -757,17 +757,17 @@ Partial Class frmDatabaseMaintenance
         'tbEditProfFirstName
         '
         Me.tbEditProfFirstName.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tbEditProfFirstName.Location = New System.Drawing.Point(230, 136)
+        Me.tbEditProfFirstName.Location = New System.Drawing.Point(215, 133)
         Me.tbEditProfFirstName.Margin = New System.Windows.Forms.Padding(2)
         Me.tbEditProfFirstName.Name = "tbEditProfFirstName"
         Me.tbEditProfFirstName.Size = New System.Drawing.Size(227, 26)
-        Me.tbEditProfFirstName.TabIndex = 36
+        Me.tbEditProfFirstName.TabIndex = 2
         '
         'Label14
         '
         Me.Label14.AutoSize = True
         Me.Label14.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label14.Location = New System.Drawing.Point(228, 67)
+        Me.Label14.Location = New System.Drawing.Point(213, 55)
         Me.Label14.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(158, 20)
@@ -778,11 +778,11 @@ Partial Class frmDatabaseMaintenance
         '
         Me.tbEditProfTeacherID.Enabled = False
         Me.tbEditProfTeacherID.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tbEditProfTeacherID.Location = New System.Drawing.Point(231, 88)
+        Me.tbEditProfTeacherID.Location = New System.Drawing.Point(216, 79)
         Me.tbEditProfTeacherID.Margin = New System.Windows.Forms.Padding(2)
         Me.tbEditProfTeacherID.Name = "tbEditProfTeacherID"
         Me.tbEditProfTeacherID.Size = New System.Drawing.Size(226, 26)
-        Me.tbEditProfTeacherID.TabIndex = 34
+        Me.tbEditProfTeacherID.TabIndex = 1
         '
         'tpRmProf
         '
@@ -799,11 +799,11 @@ Partial Class frmDatabaseMaintenance
         '
         'btnRemoveProfessor
         '
-        Me.btnRemoveProfessor.Location = New System.Drawing.Point(278, 207)
+        Me.btnRemoveProfessor.Location = New System.Drawing.Point(280, 206)
         Me.btnRemoveProfessor.Margin = New System.Windows.Forms.Padding(2)
         Me.btnRemoveProfessor.Name = "btnRemoveProfessor"
         Me.btnRemoveProfessor.Size = New System.Drawing.Size(95, 25)
-        Me.btnRemoveProfessor.TabIndex = 5
+        Me.btnRemoveProfessor.TabIndex = 1
         Me.btnRemoveProfessor.Text = "Remove"
         Me.btnRemoveProfessor.UseVisualStyleBackColor = True
         '
@@ -812,11 +812,11 @@ Partial Class frmDatabaseMaintenance
         Me.cbRmProfessor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbRmProfessor.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cbRmProfessor.FormattingEnabled = True
-        Me.cbRmProfessor.Location = New System.Drawing.Point(191, 145)
+        Me.cbRmProfessor.Location = New System.Drawing.Point(193, 144)
         Me.cbRmProfessor.Margin = New System.Windows.Forms.Padding(2)
         Me.cbRmProfessor.Name = "cbRmProfessor"
         Me.cbRmProfessor.Size = New System.Drawing.Size(269, 28)
-        Me.cbRmProfessor.TabIndex = 4
+        Me.cbRmProfessor.TabIndex = 0
         '
         'tpAddRoom
         '
@@ -842,12 +842,12 @@ Partial Class frmDatabaseMaintenance
         Me.GroupBox1.Controls.Add(Me.radioAddRoomWhite)
         Me.GroupBox1.Controls.Add(Me.radioAddRoomBlack)
         Me.GroupBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox1.Location = New System.Drawing.Point(222, 218)
+        Me.GroupBox1.Location = New System.Drawing.Point(213, 251)
         Me.GroupBox1.Margin = New System.Windows.Forms.Padding(2)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Padding = New System.Windows.Forms.Padding(2)
         Me.GroupBox1.Size = New System.Drawing.Size(177, 58)
-        Me.GroupBox1.TabIndex = 15
+        Me.GroupBox1.TabIndex = 3
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Text Color"
         '
@@ -858,7 +858,7 @@ Partial Class frmDatabaseMaintenance
         Me.radioAddRoomWhite.Margin = New System.Windows.Forms.Padding(2)
         Me.radioAddRoomWhite.Name = "radioAddRoomWhite"
         Me.radioAddRoomWhite.Size = New System.Drawing.Size(68, 24)
-        Me.radioAddRoomWhite.TabIndex = 1
+        Me.radioAddRoomWhite.TabIndex = 5
         Me.radioAddRoomWhite.TabStop = True
         Me.radioAddRoomWhite.Text = "White"
         Me.radioAddRoomWhite.UseVisualStyleBackColor = True
@@ -870,29 +870,29 @@ Partial Class frmDatabaseMaintenance
         Me.radioAddRoomBlack.Margin = New System.Windows.Forms.Padding(2)
         Me.radioAddRoomBlack.Name = "radioAddRoomBlack"
         Me.radioAddRoomBlack.Size = New System.Drawing.Size(66, 24)
-        Me.radioAddRoomBlack.TabIndex = 0
+        Me.radioAddRoomBlack.TabIndex = 4
         Me.radioAddRoomBlack.TabStop = True
         Me.radioAddRoomBlack.Text = "Black"
         Me.radioAddRoomBlack.UseVisualStyleBackColor = True
         '
         'btnAddRoomSave
         '
-        Me.btnAddRoomSave.Location = New System.Drawing.Point(278, 308)
+        Me.btnAddRoomSave.Location = New System.Drawing.Point(269, 323)
         Me.btnAddRoomSave.Margin = New System.Windows.Forms.Padding(2)
         Me.btnAddRoomSave.Name = "btnAddRoomSave"
         Me.btnAddRoomSave.Size = New System.Drawing.Size(95, 25)
-        Me.btnAddRoomSave.TabIndex = 14
+        Me.btnAddRoomSave.TabIndex = 6
         Me.btnAddRoomSave.Text = "Save"
         Me.btnAddRoomSave.UseVisualStyleBackColor = True
         '
         'btnAddRoomRoomColor
         '
         Me.btnAddRoomRoomColor.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnAddRoomRoomColor.Location = New System.Drawing.Point(222, 171)
+        Me.btnAddRoomRoomColor.Location = New System.Drawing.Point(213, 208)
         Me.btnAddRoomRoomColor.Margin = New System.Windows.Forms.Padding(2)
         Me.btnAddRoomRoomColor.Name = "btnAddRoomRoomColor"
         Me.btnAddRoomRoomColor.Size = New System.Drawing.Size(103, 29)
-        Me.btnAddRoomRoomColor.TabIndex = 5
+        Me.btnAddRoomRoomColor.TabIndex = 2
         Me.btnAddRoomRoomColor.Text = "Sample Text"
         Me.dbToolTip.SetToolTip(Me.btnAddRoomRoomColor, "Click this button to select a color")
         Me.btnAddRoomRoomColor.UseVisualStyleBackColor = True
@@ -901,7 +901,7 @@ Partial Class frmDatabaseMaintenance
         '
         Me.Label19.AutoSize = True
         Me.Label19.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label19.Location = New System.Drawing.Point(218, 143)
+        Me.Label19.Location = New System.Drawing.Point(209, 174)
         Me.Label19.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label19.Name = "Label19"
         Me.Label19.Size = New System.Drawing.Size(93, 20)
@@ -912,7 +912,7 @@ Partial Class frmDatabaseMaintenance
         '
         Me.Label18.AutoSize = True
         Me.Label18.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label18.Location = New System.Drawing.Point(218, 78)
+        Me.Label18.Location = New System.Drawing.Point(209, 100)
         Me.Label18.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label18.Name = "Label18"
         Me.Label18.Size = New System.Drawing.Size(112, 20)
@@ -922,17 +922,17 @@ Partial Class frmDatabaseMaintenance
         'txtAddRoomRmNumber
         '
         Me.txtAddRoomRmNumber.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtAddRoomRmNumber.Location = New System.Drawing.Point(222, 106)
+        Me.txtAddRoomRmNumber.Location = New System.Drawing.Point(213, 134)
         Me.txtAddRoomRmNumber.Margin = New System.Windows.Forms.Padding(2)
         Me.txtAddRoomRmNumber.Name = "txtAddRoomRmNumber"
         Me.txtAddRoomRmNumber.Size = New System.Drawing.Size(233, 26)
-        Me.txtAddRoomRmNumber.TabIndex = 2
+        Me.txtAddRoomRmNumber.TabIndex = 1
         '
         'Label17
         '
         Me.Label17.AutoSize = True
         Me.Label17.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label17.Location = New System.Drawing.Point(218, 10)
+        Me.Label17.Location = New System.Drawing.Point(209, 26)
         Me.Label17.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label17.Name = "Label17"
         Me.Label17.Size = New System.Drawing.Size(111, 20)
@@ -942,7 +942,7 @@ Partial Class frmDatabaseMaintenance
         'txtAddRoomBuildingName
         '
         Me.txtAddRoomBuildingName.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtAddRoomBuildingName.Location = New System.Drawing.Point(222, 38)
+        Me.txtAddRoomBuildingName.Location = New System.Drawing.Point(213, 60)
         Me.txtAddRoomBuildingName.Margin = New System.Windows.Forms.Padding(2)
         Me.txtAddRoomBuildingName.Name = "txtAddRoomBuildingName"
         Me.txtAddRoomBuildingName.Size = New System.Drawing.Size(233, 26)
@@ -973,12 +973,12 @@ Partial Class frmDatabaseMaintenance
         Me.GroupBox2.Controls.Add(Me.radioEditRoomWhite)
         Me.GroupBox2.Controls.Add(Me.radioEditRoomBlack)
         Me.GroupBox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox2.Location = New System.Drawing.Point(206, 267)
+        Me.GroupBox2.Location = New System.Drawing.Point(182, 263)
         Me.GroupBox2.Margin = New System.Windows.Forms.Padding(2)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Padding = New System.Windows.Forms.Padding(2)
         Me.GroupBox2.Size = New System.Drawing.Size(177, 58)
-        Me.GroupBox2.TabIndex = 16
+        Me.GroupBox2.TabIndex = 4
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Text Color"
         '
@@ -989,7 +989,7 @@ Partial Class frmDatabaseMaintenance
         Me.radioEditRoomWhite.Margin = New System.Windows.Forms.Padding(2)
         Me.radioEditRoomWhite.Name = "radioEditRoomWhite"
         Me.radioEditRoomWhite.Size = New System.Drawing.Size(68, 24)
-        Me.radioEditRoomWhite.TabIndex = 1
+        Me.radioEditRoomWhite.TabIndex = 6
         Me.radioEditRoomWhite.TabStop = True
         Me.radioEditRoomWhite.Text = "White"
         Me.radioEditRoomWhite.UseVisualStyleBackColor = True
@@ -1001,18 +1001,18 @@ Partial Class frmDatabaseMaintenance
         Me.radioEditRoomBlack.Margin = New System.Windows.Forms.Padding(2)
         Me.radioEditRoomBlack.Name = "radioEditRoomBlack"
         Me.radioEditRoomBlack.Size = New System.Drawing.Size(66, 24)
-        Me.radioEditRoomBlack.TabIndex = 0
+        Me.radioEditRoomBlack.TabIndex = 5
         Me.radioEditRoomBlack.TabStop = True
         Me.radioEditRoomBlack.Text = "Black"
         Me.radioEditRoomBlack.UseVisualStyleBackColor = True
         '
         'btnEditRoomSave
         '
-        Me.btnEditRoomSave.Location = New System.Drawing.Point(278, 336)
+        Me.btnEditRoomSave.Location = New System.Drawing.Point(254, 332)
         Me.btnEditRoomSave.Margin = New System.Windows.Forms.Padding(2)
         Me.btnEditRoomSave.Name = "btnEditRoomSave"
         Me.btnEditRoomSave.Size = New System.Drawing.Size(95, 25)
-        Me.btnEditRoomSave.TabIndex = 13
+        Me.btnEditRoomSave.TabIndex = 7
         Me.btnEditRoomSave.Text = "Save"
         Me.btnEditRoomSave.UseVisualStyleBackColor = True
         '
@@ -1021,20 +1021,20 @@ Partial Class frmDatabaseMaintenance
         Me.comboEditRoom.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboEditRoom.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.comboEditRoom.FormattingEnabled = True
-        Me.comboEditRoom.Location = New System.Drawing.Point(206, 16)
+        Me.comboEditRoom.Location = New System.Drawing.Point(182, 17)
         Me.comboEditRoom.Margin = New System.Windows.Forms.Padding(2)
         Me.comboEditRoom.Name = "comboEditRoom"
         Me.comboEditRoom.Size = New System.Drawing.Size(295, 28)
-        Me.comboEditRoom.TabIndex = 12
+        Me.comboEditRoom.TabIndex = 0
         '
         'btnEditRoomRoomColor
         '
         Me.btnEditRoomRoomColor.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnEditRoomRoomColor.Location = New System.Drawing.Point(206, 219)
+        Me.btnEditRoomRoomColor.Location = New System.Drawing.Point(182, 223)
         Me.btnEditRoomRoomColor.Margin = New System.Windows.Forms.Padding(2)
         Me.btnEditRoomRoomColor.Name = "btnEditRoomRoomColor"
         Me.btnEditRoomRoomColor.Size = New System.Drawing.Size(103, 29)
-        Me.btnEditRoomRoomColor.TabIndex = 11
+        Me.btnEditRoomRoomColor.TabIndex = 3
         Me.btnEditRoomRoomColor.Text = "Sample Text"
         Me.dbToolTip.SetToolTip(Me.btnEditRoomRoomColor, "Click this button to select a color")
         Me.btnEditRoomRoomColor.UseVisualStyleBackColor = True
@@ -1043,7 +1043,7 @@ Partial Class frmDatabaseMaintenance
         '
         Me.Label20.AutoSize = True
         Me.Label20.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label20.Location = New System.Drawing.Point(202, 197)
+        Me.Label20.Location = New System.Drawing.Point(178, 192)
         Me.Label20.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label20.Name = "Label20"
         Me.Label20.Size = New System.Drawing.Size(93, 20)
@@ -1054,7 +1054,7 @@ Partial Class frmDatabaseMaintenance
         '
         Me.Label21.AutoSize = True
         Me.Label21.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label21.Location = New System.Drawing.Point(202, 136)
+        Me.Label21.Location = New System.Drawing.Point(178, 124)
         Me.Label21.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label21.Name = "Label21"
         Me.Label21.Size = New System.Drawing.Size(112, 20)
@@ -1064,17 +1064,17 @@ Partial Class frmDatabaseMaintenance
         'txtEditRoomRmNumber
         '
         Me.txtEditRoomRmNumber.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtEditRoomRmNumber.Location = New System.Drawing.Point(206, 158)
+        Me.txtEditRoomRmNumber.Location = New System.Drawing.Point(182, 155)
         Me.txtEditRoomRmNumber.Margin = New System.Windows.Forms.Padding(2)
         Me.txtEditRoomRmNumber.Name = "txtEditRoomRmNumber"
         Me.txtEditRoomRmNumber.Size = New System.Drawing.Size(295, 26)
-        Me.txtEditRoomRmNumber.TabIndex = 8
+        Me.txtEditRoomRmNumber.TabIndex = 2
         '
         'Label22
         '
         Me.Label22.AutoSize = True
         Me.Label22.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label22.Location = New System.Drawing.Point(202, 69)
+        Me.Label22.Location = New System.Drawing.Point(178, 56)
         Me.Label22.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label22.Name = "Label22"
         Me.Label22.Size = New System.Drawing.Size(111, 20)
@@ -1084,11 +1084,11 @@ Partial Class frmDatabaseMaintenance
         'txtEditRoomBuildingName
         '
         Me.txtEditRoomBuildingName.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtEditRoomBuildingName.Location = New System.Drawing.Point(206, 91)
+        Me.txtEditRoomBuildingName.Location = New System.Drawing.Point(182, 87)
         Me.txtEditRoomBuildingName.Margin = New System.Windows.Forms.Padding(2)
         Me.txtEditRoomBuildingName.Name = "txtEditRoomBuildingName"
         Me.txtEditRoomBuildingName.Size = New System.Drawing.Size(295, 26)
-        Me.txtEditRoomBuildingName.TabIndex = 6
+        Me.txtEditRoomBuildingName.TabIndex = 1
         '
         'tpRmRoom
         '
@@ -1105,11 +1105,11 @@ Partial Class frmDatabaseMaintenance
         '
         'btnRemoveRoom
         '
-        Me.btnRemoveRoom.Location = New System.Drawing.Point(278, 207)
+        Me.btnRemoveRoom.Location = New System.Drawing.Point(280, 206)
         Me.btnRemoveRoom.Margin = New System.Windows.Forms.Padding(2)
         Me.btnRemoveRoom.Name = "btnRemoveRoom"
         Me.btnRemoveRoom.Size = New System.Drawing.Size(95, 25)
-        Me.btnRemoveRoom.TabIndex = 7
+        Me.btnRemoveRoom.TabIndex = 1
         Me.btnRemoveRoom.Text = "Remove"
         Me.btnRemoveRoom.UseVisualStyleBackColor = True
         '
@@ -1118,11 +1118,11 @@ Partial Class frmDatabaseMaintenance
         Me.comboRemoveRoom.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboRemoveRoom.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.comboRemoveRoom.FormattingEnabled = True
-        Me.comboRemoveRoom.Location = New System.Drawing.Point(191, 145)
+        Me.comboRemoveRoom.Location = New System.Drawing.Point(193, 144)
         Me.comboRemoveRoom.Margin = New System.Windows.Forms.Padding(2)
         Me.comboRemoveRoom.Name = "comboRemoveRoom"
         Me.comboRemoveRoom.Size = New System.Drawing.Size(269, 28)
-        Me.comboRemoveRoom.TabIndex = 6
+        Me.comboRemoveRoom.TabIndex = 0
         '
         'frmDatabaseMaintenance
         '
