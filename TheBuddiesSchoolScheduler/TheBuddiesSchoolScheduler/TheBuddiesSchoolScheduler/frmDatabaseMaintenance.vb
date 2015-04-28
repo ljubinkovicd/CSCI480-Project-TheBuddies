@@ -180,9 +180,12 @@ Public Class frmDatabaseMaintenance
         End Try
 
         If success Then
-            ds.Tables(0).Rows(index).Delete()
+            ds = SQL.GetStoredProc("GetAllClasses")
+
+
+            cbDBData.DisplayMember = ds.Tables(0).Columns(0).ToString
+            cbDBData.ValueMember = ds.Tables(0).Columns(1).ToString
             cbDBData.DataSource = ds.Tables(0)
-            cbDBData.ValueMember = "Course"
             MessageBox.Show("The class has been Removed successfully")
         Else
             MessageBox.Show("The class has not been removed")
@@ -332,9 +335,12 @@ Public Class frmDatabaseMaintenance
         End Try
 
         If success Then
-            ds.Tables(0).Rows(index).Delete()
+            ds = SQL.GetStoredProc("GetAllProfessors")
+
+            ' Set the combo box to show the professors
+            cbRmProfessor.DisplayMember = ds.Tables(0).Columns(0).ToString
+            cbRmProfessor.ValueMember = ds.Tables(0).Columns(1).ToString
             cbRmProfessor.DataSource = ds.Tables(0)
-            cbRmProfessor.ValueMember = "Professor"
             MessageBox.Show("The Professor has been Removed successfully")
         Else
             MessageBox.Show("The Professor has not been removed")
@@ -728,7 +734,9 @@ Public Class frmDatabaseMaintenance
         End Try
 
         If success Then
-            ds.Tables(0).Rows(index).Delete()
+            ds = SQL.GetStoredProc("GetAllRooms")
+
+            ' Set the combo box equal to what was retrieved from the database
             comboRemoveRoom.DisplayMember = ds.Tables(0).Columns("Room").ToString
             comboRemoveRoom.ValueMember = ds.Tables(0).Columns(0).ToString
             comboRemoveRoom.DataSource = ds.Tables(0)
